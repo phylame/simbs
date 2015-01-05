@@ -11,7 +11,7 @@ CREATE TABLE book_info
 	Bisbn CHAR(17) PRIMARY KEY,						/* ISBN of the book */
 	Bname VARCHAR(128) NOT NULL,						/* book name */
 	Bversion VARCHAR(32),							/* version message */
-	Bauthors VARCHAR(128) NOT NULL,						/* authors, if more than one, split with "," */
+	Bauthors VARCHAR(128) NOT NULL,					/* authors, if more than one, split with "," */
 	Bdate DATE NOT NULL,							/* published date */
 	Bcategory VARCHAR(64),							/* category */
 	Bpublisher VARCHAR(64) NOT NULL,					/* the publisher */
@@ -25,7 +25,7 @@ CREATE TABLE customer_info
 	Cid INT PRIMARY KEY CHECK (Cid > 0),					/* customer ID, begin from 1 */
 	Cname VARCHAR(32) NOT NULL,						/* customer name */
 	Cphone CHAR(16),							/* cell-phone count */
-	Cemail CHAR(36)								/* email */
+	Cemail VARCHAR(36)							/* email */
 );
 
 /* existing book stock */
