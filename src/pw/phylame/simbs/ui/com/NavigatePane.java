@@ -39,25 +39,25 @@ public class NavigatePane implements PaneRender {
 
     public NavigatePane() {
         final Application app = Application.getInstance();
-        btnViewBook.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                app.onCommand(Constants.VIEW_BOOK);
-            }
-        });
-
-        btnViewInventory.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                app.onCommand(Constants.VIEW_INVENTORY);
-            }
-        });
-        btnViewCustomer.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                app.onCommand(Constants.VIEW_CUSTOMER);
-            }
-        });
+//
+//        btnViewBook.addActionListener(new ActionListener() {
+//            @Override
+//            public void actionPerformed(ActionEvent e) {
+//                app.onCommand(Constants.VIEW_BOOK);
+//            }
+//        });
+//        btnViewInventory.addActionListener(new ActionListener() {
+//            @Override
+//            public void actionPerformed(ActionEvent e) {
+//                app.onCommand(Constants.VIEW_INVENTORY);
+//            }
+//        });
+//        btnViewCustomer.addActionListener(new ActionListener() {
+//            @Override
+//            public void actionPerformed(ActionEvent e) {
+//                app.onCommand(Constants.VIEW_CUSTOMER);
+//            }
+//        });
     }
 
     @Override

@@ -40,7 +40,7 @@ public class ChooseBookDialog extends JDialog {
             "FROM book_info LEFT OUTER JOIN book_stock ON (book_info.bisbn = book_stock.bisbn) ";
 
     private JPanel contentPane;
-    private JButton buttonOk;
+//    private JButton buttonOk;
     private JButton buttonCancel;
     private JButton buttonSearch;
     private JButton buttonNew;
@@ -62,7 +62,7 @@ public class ChooseBookDialog extends JDialog {
     public ChooseBookDialog() {
         setContentPane(contentPane);
         setModal(true);
-        getRootPane().setDefaultButton(buttonOk);
+//        getRootPane().setDefaultButton(buttonOk);
 
         Application app = Application.getInstance();
 
@@ -81,11 +81,11 @@ public class ChooseBookDialog extends JDialog {
         });
 
 
-        buttonOk.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                onOK();
-            }
-        });
+//        buttonOk.addActionListener(new ActionListener() {
+//            public void actionPerformed(ActionEvent e) {
+//                onOK();
+//            }
+//        });
 
         buttonCancel.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -217,9 +217,10 @@ public class ChooseBookDialog extends JDialog {
                         if (isbn != null) {
                             if (e.getClickCount() == 2) {
                                 dispose();
-                            } else {
-                                buttonOk.setEnabled(true);
                             }
+//                            } else {
+//                                buttonOk.setEnabled(true);
+//                            }
                         }
                     }
                 });
@@ -228,9 +229,9 @@ public class ChooseBookDialog extends JDialog {
                 setLocationRelativeTo(null);
             } else {
                 tableAdapter.setDataSource(dataSet);
-                if (dataSet.getRowCount() == 0) {       // not found result
-                    buttonOk.setEnabled(false);
-                }
+//                if (dataSet.getRowCount() == 0) {       // not found result
+//                    buttonOk.setEnabled(false);
+//                }
             }
         } catch (SQLException e) {
             e.printStackTrace();

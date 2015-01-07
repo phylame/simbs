@@ -45,7 +45,7 @@ public class ChooseCustomerDialog extends JDialog {
     private JTextField tfName;
     private JTextField tfPhone;
     private JTextField tfEmail;
-    private JButton buttonOk;
+//    private JButton buttonOk;
     private TablePane tablePane;
 
     private int customerID = -1;
@@ -70,12 +70,12 @@ public class ChooseCustomerDialog extends JDialog {
             }
         });
 
-        buttonOk.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                onOk();
-            }
-        });
+//        buttonOk.addActionListener(new ActionListener() {
+//            @Override
+//            public void actionPerformed(ActionEvent e) {
+//                onOk();
+//            }
+//        });
 
         buttonCancel.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -162,9 +162,10 @@ public class ChooseCustomerDialog extends JDialog {
                         if (customerID > 0) {
                             if (e.getClickCount() == 2) {
                                 dispose();
-                            } else {
-                                buttonOk.setEnabled(true);
                             }
+//                            } else {
+//                                buttonOk.setEnabled(true);
+//                            }
                         }
                     }
                 });
@@ -174,9 +175,9 @@ public class ChooseCustomerDialog extends JDialog {
             } else {
                 tableAdapter.setDataSource(dataSet);
                 tablePane.updatePageStatus();
-                if (dataSet.getRowCount() == 0) {       // not found result
-                    buttonOk.setEnabled(false);
-                }
+//                if (dataSet.getRowCount() == 0) {       // not found result
+//                    buttonOk.setEnabled(false);
+//                }
             }
         } catch (SQLException e) {
             e.printStackTrace();
