@@ -16,9 +16,9 @@
 
 package pw.phylame.simbs.ui.dialog;
 
-import pw.phylame.simbs.SimbsApplication;
-import pw.phylame.simbs.SqlAdmin;
-import pw.phylame.simbs.Worker;
+import pw.phylame.ixin.IToolkit;
+import pw.phylame.simbs.Application;
+import pw.phylame.simbs.Constants;
 import pw.phylame.simbs.ds.Customer;
 
 import javax.swing.*;
@@ -31,6 +31,8 @@ public class ModifyCustomerDialog extends JDialog {
     private JTextField tfName;
     private JTextField tfPhone;
     private JTextField tfEmail;
+    private JSpinner jsLentLimit;
+    private JFormattedTextField tfLentLimit;
 
     private Customer customer = null;
 
@@ -68,24 +70,31 @@ public class ModifyCustomerDialog extends JDialog {
             }
         }, KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
 
+        Application app = Application.getInstance();
+        setIconImage(IToolkit.createImage(app.getString("Customer.Icon")));
+
         pack();
+        setLocationRelativeTo(null);
+
+        jsLentLimit.setModel(new SpinnerNumberModel(Constants.DEFAULT_LENT_LIMIT, 1, Constants.DEFAULT_LENT_LIMIT*3, 1));
     }
 
     private void onOK() {
 // add your code here
-        SimbsApplication app = SimbsApplication.getInstance();
+        Application app = Application.getInstance();
         String s = tfName.getText().trim();
         if ("".equals(s)) {
-            DialogFactory.showError(app.getString("Customer.NoName"), getTitle());
+            DialogFactory.showError(this, app.getString("Dialog.ModifyCustomer.NoName"), getTitle());
             return;
         }
         if (customer == null) {
             customer = new Customer();
-            customer.setId(Worker.getInstance().getMaxCustomerId()+1);
+//            customer.setId(Worker.getInstance().getAvailableCustomerId()+1);
         }
         customer.setName(s);
         customer.setPhone(tfPhone.getText().trim());
         customer.setEmail(tfEmail.getText().trim());
+        customer.setLentLimit((int) jsLentLimit.getValue());
         isReady = true;
         dispose();
     }
@@ -106,10 +115,12 @@ public class ModifyCustomerDialog extends JDialog {
             tfName.setText(customer.getName());
             tfPhone.setText(customer.getPhone());
             tfEmail.setText(customer.getEmail());
+            jsLentLimit.setValue(customer.getLentLimit());
         } else {
             tfName.setText("");
             tfPhone.setText("");
             tfEmail.setText("");
+            jsLentLimit.setValue(Constants.DEFAULT_LENT_LIMIT);
         }
     }
 }

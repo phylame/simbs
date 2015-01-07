@@ -34,7 +34,9 @@
                   <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties>
-                  <text resource-bundle="i18n/simbs" key="Book.ButtonOk"/>
+                  <font size="14"/>
+                  <text resource-bundle="i18n/simbs" key="Dialog.ModifyBook.ButtonOk"/>
+                  <toolTipText resource-bundle="i18n/simbs" key="Dialog.ModifyBook.ButtonOk.Tip"/>
                 </properties>
               </component>
               <component id="5723f" class="javax.swing.JButton" binding="buttonCancel">
@@ -42,7 +44,9 @@
                   <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties>
-                  <text resource-bundle="i18n/simbs" key="Book.ButtonCancel"/>
+                  <font size="14"/>
+                  <text resource-bundle="i18n/simbs" key="Dialog.ModifyBook.ButtonCancel"/>
+                  <toolTipText resource-bundle="i18n/simbs" key="Dialog.ModifyBook.ButtonCancel.Tip"/>
                 </properties>
               </component>
             </children>
@@ -62,7 +66,8 @@
               <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <text resource-bundle="i18n/simbs" key="Book.ISBN"/>
+              <font size="14"/>
+              <text resource-bundle="i18n/simbs" key="Dialog.ModifyBook.LabelISBN"/>
             </properties>
           </component>
           <component id="dd89e" class="javax.swing.JLabel">
@@ -70,7 +75,8 @@
               <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <text resource-bundle="i18n/simbs" key="Book.Name"/>
+              <font size="14"/>
+              <text resource-bundle="i18n/simbs" key="Dialog.ModifyBook.LabelName"/>
             </properties>
           </component>
           <component id="da3ee" class="javax.swing.JLabel">
@@ -78,7 +84,8 @@
               <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <text resource-bundle="i18n/simbs" key="Book.Version"/>
+              <font size="14"/>
+              <text resource-bundle="i18n/simbs" key="Dialog.ModifyBook.LabelVersion"/>
             </properties>
           </component>
           <component id="9be24" class="javax.swing.JLabel">
@@ -86,7 +93,8 @@
               <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <text resource-bundle="i18n/simbs" key="Book.Authors"/>
+              <font size="14"/>
+              <text resource-bundle="i18n/simbs" key="Dialog.ModifyBook.LabelAuthors"/>
             </properties>
           </component>
           <component id="a873f" class="javax.swing.JTextField" binding="tfISBN">
@@ -126,7 +134,8 @@
               <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <text resource-bundle="i18n/simbs" key="Book.Date"/>
+              <font size="14"/>
+              <text resource-bundle="i18n/simbs" key="Dialog.ModifyBook.LabelDate"/>
             </properties>
           </component>
           <component id="13d98" class="javax.swing.JLabel">
@@ -134,7 +143,8 @@
               <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <text resource-bundle="i18n/simbs" key="Book.Category"/>
+              <font size="14"/>
+              <text resource-bundle="i18n/simbs" key="Dialog.ModifyBook.LabelCategory"/>
             </properties>
           </component>
           <component id="ad668" class="javax.swing.JLabel">
@@ -142,7 +152,8 @@
               <grid row="6" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <text resource-bundle="i18n/simbs" key="Book.Publisher"/>
+              <font size="14"/>
+              <text resource-bundle="i18n/simbs" key="Dialog.ModifyBook.LabelPublisher"/>
             </properties>
           </component>
           <component id="75e1e" class="javax.swing.JLabel">
@@ -150,7 +161,8 @@
               <grid row="7" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <text resource-bundle="i18n/simbs" key="Book.Price"/>
+              <font size="14"/>
+              <text resource-bundle="i18n/simbs" key="Dialog.ModifyBook.LabelPrice"/>
             </properties>
           </component>
           <component id="80594" class="javax.swing.JLabel">
@@ -158,7 +170,8 @@
               <grid row="8" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <text resource-bundle="i18n/simbs" key="Book.Intro"/>
+              <font size="14"/>
+              <text resource-bundle="i18n/simbs" key="Dialog.ModifyBook.LabelIntro"/>
             </properties>
           </component>
           <component id="9ea78" class="javax.swing.JTextField" binding="tfCategory">
@@ -196,7 +209,7 @@
               </component>
             </children>
           </scrollpane>
-          <component id="5874f" class="javax.swing.JTextField" binding="tfPrice">
+          <component id="f7b63" class="javax.swing.JFormattedTextField" binding="tfPrice">
             <constraints>
               <grid row="7" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                 <preferred-size width="150" height="-1"/>

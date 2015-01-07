@@ -17,19 +17,26 @@
 package pw.phylame.simbs.ui.dialog;
 
 import pw.phylame.simbs.Constants;
+import pw.phylame.tools.sql.Profile;
 
 import javax.swing.*;
 import java.awt.event.*;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.util.Properties;
 import java.util.ResourceBundle;
 
 public class LoginDialog extends JDialog {
     private JPanel contentPane;
     private JButton buttonOK;
     private JButton buttonCancel;
-    private JTextField tfUN;
-    private JPasswordField tfPW;
+    private JTextField tfUserName;
+    private JPasswordField tfPassword;
+    private JComboBox<String> jcbSource;
 
-    private boolean isOk = false;
+    private Profile profile = null;
+
+    private boolean isReady = false;
 
     public LoginDialog() {
         super();
@@ -49,7 +56,6 @@ public class LoginDialog extends JDialog {
             }
         });
 
-// call onCancel() when cross is clicked
         setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
         addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent e) {
@@ -57,53 +63,80 @@ public class LoginDialog extends JDialog {
             }
         });
 
-// call onCancel() on ESCAPE
         contentPane.registerKeyboardAction(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 onCancel();
             }
         }, KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
 
-        setResizable(false);
-        setLocation(400, 200);
+        jcbSource.removeAllItems();
+        for (Profile profile: Constants.getDatabaseProfiles()) {
+            jcbSource.addItem(profile.getLabel());
+        }
+
+        loadConfig();
+
         pack();
+        setLocationRelativeTo(null);
+
+        if (! "".equals(tfUserName.getText().trim())) {
+            tfPassword.requestFocus();
+        }
+
+    }
+
+    private void loadConfig() {
+        Properties prop = new Properties();
+        FileInputStream in = null;
+        try {
+            in = new FileInputStream(Constants.SIMBS_HOME+"/login.prop");
+            prop.load(in);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            if (in != null) {
+                try {
+                    in.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+        String user = prop.getProperty("user");
+        if (user != null && ! "".equals(user)) {
+            tfUserName.setText(user.trim());
+        }
+        try {
+            jcbSource.setSelectedIndex(Integer.parseInt(prop.getProperty("profileId")));
+        } catch (NumberFormatException exp) {
+            exp.printStackTrace();
+        }
     }
 
     private void onOK() {
-// add your code here
         ResourceBundle rb = ResourceBundle.getBundle(Constants.I18N_PATH);
-        if ("".equals(tfUN.getText())) {
-            DialogFactory.showWarning(rb.getString("Login.NoUsername"), rb.getString("Login.Title"));
+        if ("".equals(tfUserName.getText())) {
+            DialogFactory.showWarning(this, rb.getString("Dialog.Login.NoUsername"), rb.getString("Dialog.Login.Title"));
             return;
         }
-        isOk = true;
+
+        profile = Constants.getDatabaseProfile(jcbSource.getSelectedIndex());
+        profile.setUserName(tfUserName.getText().trim());
+        profile.setPassword(new String(tfPassword.getPassword()));
+
+        isReady = true;
         dispose();
     }
 
     private void onCancel() {
-// add your code here if necessary
-        isOk = false;
+        isReady = false;
         dispose();
     }
 
-    public String getUserName() {
-        if (isOk) {
-            return tfUN.getText();
-        } else {
-            return null;
-        }
-    }
-
-    public void setUserName(String user) {
-        tfUN.setText(user);
-        if (user != null && ! "".equals(user)) {
-            tfPW.requestFocus();
-        }
-    }
-
-    public String getPassword() {
-        if (isOk) {
-            return new String(tfPW.getPassword());
+    public Profile getProfile() {
+        if (isReady) {
+            return profile;
         } else {
             return null;
         }

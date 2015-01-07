@@ -1,4 +1,7 @@
 #!/bin/bash
+# This file is part of SIMBS (The Simple Information Management of Book Store).
+# Run SIMBS application
+# Use database bookdb
 
 if [ -z "${SIMBS_HOME}" -o ! -d "${SIMBS_HOME}" ]; then
   PRG="$0"

@@ -17,21 +17,27 @@
 package pw.phylame.simbs;
 
 
-import pw.phylame.simbs.ui.dialog.DialogFactory;
-import pw.phylame.simbs.ui.SimbsBoard;
+import pw.phylame.simbs.ui.com.BookTablePane;
+import pw.phylame.simbs.ui.com.NavigatePane;
+import pw.phylame.simbs.ui.com.TableAdapter;
+import pw.phylame.simbs.ui.dialog.*;
+import pw.phylame.simbs.ui.MainFrame;
+import pw.phylame.tools.sql.PageResultSet;
+import pw.phylame.tools.sql.SQLAdmin;
+
 import static pw.phylame.simbs.Constants.*;
 
 import javax.swing.*;
+import java.sql.SQLException;
 
 /**
  * The UI and resource manager.
  */
 public class Manager {
-    public Manager(String[] args, SimbsApplication app) {
-        this.args = args;
+    public Manager(Application app) {
         this.app = app;
-        worker = Worker.getInstance();
-        ui = new SimbsBoard(this);
+        worker = new Worker(app.getSQLAdmin());
+        ui = new MainFrame(this);
         DialogFactory.setDialogParent(ui);
     }
 
@@ -41,13 +47,10 @@ public class Manager {
         ui.setStatusText(app.getString("App.Ready"));
         ui.setVisible(true);
 
-        System.out.println("Book info: "+worker.getBookNumber()+" customer info: "+worker.getCustomerNumber());
-        java.util.Map<String, Integer> res = worker.getExistingBooks();
-        for (String isbn: res.keySet()) {
-            System.out.printf("Book isbn=%s, number=%d\n", isbn, res.get(isbn));
+        String[] args = app.getSystemArguments();
+        if (args.length > 0) {
+            onCommand(args[0]);
         }
-
-        System.out.println("Max customer ID: "+worker.getMaxCustomerId());
     }
 
     /** Exit manager work loop */
@@ -58,36 +61,96 @@ public class Manager {
         System.exit(0);
     }
 
+    public JFrame getUI() {
+        return ui;
+    }
+
     public void showAbout() {
         StringBuilder sb = new StringBuilder();
         sb.append("<html>");
-        sb.append(String.format("%s v%s by %s", app.getString("App.Name"), APP_VERSION,
-                app.getString("App.Author")));
-        sb.append("<br/> the <i>&quot;").append(app.getString("App.FullName")).append("&quot;</i>");
+        sb.append(String.format("%s v%s by %s %s", app.getString("App.Name"), APP_VERSION,
+                app.getString("App.Author"), app.getString("App.Comment")));
+        sb.append("<br/><br/>JRE: ").append(System.getProperty("java.runtime.version")).append(" ");
+        sb.append(System.getProperty("os.arch")).append("<br/>");
+        sb.append("JVM: ").append(System.getProperty("java.vm.name")).append(" by ");
+        sb.append(System.getProperty("java.vm.vendor")).append("<br/>");
+        sb.append("<br/>").append(app.getString("App.License")).append("<br/>");
         sb.append("<br/>").append(app.getString("App.Rights"));
         sb.append("</html>");
-        JOptionPane.showMessageDialog(ui, sb.toString(), app.getString("About.Title"),
+        JOptionPane.showMessageDialog(ui, sb.toString(), app.getString("Dialog.AboutApp.Title"),
                 JOptionPane.INFORMATION_MESSAGE);
     }
 
-    private void addBook() {
-
+    private void registerBook() {
+        worker.newBook();
     }
 
-    private void addCustomer() {
+    private void registerCustomer() {
+        worker.newCustomer();
+    }
 
+    public void showStoreInfo() {
+        StoreInfoDialog dialog = new StoreInfoDialog();
+        dialog.setIconImage(ui.getIconImage());
+        dialog.setTitle(app.getString("Dialog.Info.Title"));
+        dialog.setInfo(worker.getRegisteredBookNumber(), worker.getTotalInventories(), worker.getTotalSales(),
+                worker.getLentNumber(), worker.getRegisteredCustomerCount());
+        dialog.setVisible(true);
+    }
+
+    private void viewBook() {
+        ui.setContentArea(new BookTablePane());
+    }
+
+    private void viewCustomer() {
+        SQLAdmin sqlAdmin = app.getSQLAdmin();
     }
 
     private void storeBook() {
-
+        StoreBookDialog dialog = new StoreBookDialog(app.getString("Dialog.Store.Title"));
+        dialog.setVisible(true);
+        String isbn = dialog.getISBN();
+        int number = dialog.getNumber();
+        if (isbn == null || number <= 0) {
+            return;
+        }
+        try {
+            worker.storeBook(isbn, number);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     private void sellBook() {
-
+        SellBookDialog dialog = new SellBookDialog(app.getString("Dialog.Sell.Title"));
+        dialog.setVisible(true);
+        String isbn = dialog.getISBN();
+        int customerId = dialog.getCustomer();
+        int sales = dialog.getSales();
+        if (isbn == null || customerId <= 0 || sales <= 0) {
+            return;
+        }
+        try {
+            worker.sellBook(isbn, customerId, sales);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     private void lendBook() {
-
+        LendBookDialog dialog = new LendBookDialog(app.getString("Dialog.Lend.Title"));
+        dialog.setVisible(true);
+        String isbn = dialog.getISBN();
+        int customerId = dialog.getCustomer();
+        int number = dialog.getNumber(), period = dialog.getPeriod();
+        if (isbn == null || customerId <= 0 || number <= 0 || period <= 0) {
+            return;
+        }
+        try {
+            worker.lendBook(isbn, customerId, number, period);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     private void returnBook() {
@@ -100,7 +163,37 @@ public class Manager {
             return;
         }
         switch ((String) cmdId) {
-            case FILE_EXIT:
+            case REGISTER_BOOK:
+                registerBook();
+                break;
+            case REGISTER_CUSTOMER:
+                registerCustomer();
+                break;
+            case STORE_PROPERTIES:
+                showStoreInfo();
+                break;
+            case VIEW_BOOK:
+                viewBook();
+                break;
+            case VIEW_CUSTOMER:
+                viewCustomer();
+                break;
+            case SHOW_NAVIGATE:
+                ui.setContentArea(new NavigatePane());
+                break;
+            case STORE_BOOK:
+                storeBook();
+                break;
+            case SELL_BOOK:
+                sellBook();
+                break;
+            case LEND_BOOK:
+                lendBook();
+                break;
+            case RETURN_BOOK:
+                returnBook();
+                break;
+            case EXIT_APP:
                 exit();
                 break;
             case HELP_ABOUT:
@@ -112,15 +205,11 @@ public class Manager {
         }
     }
 
-    /* The system arguments */
-    private String[] args = null;
-
     /** The application */
-    private SimbsApplication app;
+    private Application app;
 
     /* The main frame */
-    private SimbsBoard ui = null;
+    private MainFrame ui = null;
 
     private Worker worker = null;
-
 }

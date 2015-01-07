@@ -16,27 +16,29 @@
 
 package pw.phylame.simbs.ui;
 
+import pw.phylame.ixin.IToolkit;
 import pw.phylame.ixin.frame.SimpleFrame;
+import pw.phylame.simbs.Application;
 import pw.phylame.simbs.Constants;
 import pw.phylame.simbs.Manager;
-import pw.phylame.simbs.SimbsApplication;
+import pw.phylame.simbs.ui.com.NavigatePane;
+import pw.phylame.simbs.ui.com.PaneRender;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
 /**
  * Main frame of SIMBS.
  */
-public class SimbsBoard extends SimpleFrame {
+public class MainFrame extends SimpleFrame {
     static {
         SimpleFrame.setActionsModel(UIDesign.MENU_ACTIONS);
         SimpleFrame.setMenuBarModel(UIDesign.MENU_BAR_MODEL);
         SimpleFrame.setToolBarModel(UIDesign.TOOL_BAR_MODEL);
     }
 
-    public SimbsBoard(Manager manager) {
+    public MainFrame(Manager manager) {
         super();
         this.manager = manager;
 
@@ -46,7 +48,7 @@ public class SimbsBoard extends SimpleFrame {
     }
 
     private void createComponent() {
-        Container topPane = getContentPane();
+        setContentArea(new NavigatePane());
     }
 
     private void init() {
@@ -54,12 +56,22 @@ public class SimbsBoard extends SimpleFrame {
         addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
-                manager.onCommand(Constants.FILE_EXIT);
+                manager.onCommand(Constants.EXIT_APP);
             }
         });
 
-        setSize(600, 337);
+        setIconImage(IToolkit.createImage(app.getString("App.Icon")));
+
+        setSize(800, 450);
         setLocationRelativeTo(null);
+    }
+
+    public void setContentArea(PaneRender paneRender) {
+        JPanel contentArea = getContentArea();
+        contentArea.removeAll();
+        paneRender.setParent(this);
+        contentArea.add(paneRender.getPane());
+        contentArea.updateUI();
     }
 
     @Override
@@ -74,5 +86,5 @@ public class SimbsBoard extends SimpleFrame {
 
     private Manager manager;
 
-    private SimbsApplication app = SimbsApplication.getInstance();
+    private Application app = Application.getInstance();
 }

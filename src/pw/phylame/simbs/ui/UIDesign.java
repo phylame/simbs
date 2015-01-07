@@ -19,14 +19,15 @@ package pw.phylame.simbs.ui;
 import static pw.phylame.simbs.Constants.*;
 
 import pw.phylame.ixin.IMenuLabel;
-import pw.phylame.simbs.SimbsApplication;
+import pw.phylame.ixin.IMenuModel;
+import pw.phylame.simbs.Application;
 
 /**
  * UI designer.
  */
 public final class UIDesign {
 
-    private static SimbsApplication app = SimbsApplication.getInstance();
+    private static Application app = Application.getInstance();
 
     // *******************
     // ** Menu actions
@@ -34,7 +35,19 @@ public final class UIDesign {
 
     /* File */
     public static final Object[][] FILE_MENU_ACTIONS = {
-            {FILE_EXIT,
+            {REGISTER_BOOK,
+                    app.getString("Menu.File.Add.Book"), app.getString("Menu.File.Add.Book.Icon"),
+                    app.getString("Menu.File.Add.Book.Mnemonic"), app.getString("Menu.File.Add.Book.Shortcut"),
+                    app.getString("Menu.File.Add.Book.Tip")},
+            {REGISTER_CUSTOMER,
+                    app.getString("Menu.File.Add.Customer"), app.getString("Menu.File.Add.Customer.Icon"),
+                    app.getString("Menu.File.Add.Customer.Mnemonic"), app.getString("Menu.File.Add.Customer.Shortcut"),
+                    app.getString("Menu.File.Add.Customer.Tip")},
+            {STORE_PROPERTIES,
+                    app.getString("Menu.File.Properties"), app.getString("Menu.File.Properties.Icon"),
+                    app.getString("Menu.File.Properties.Mnemonic"), app.getString("Menu.File.Properties.Shortcut"),
+                    app.getString("Menu.File.Properties.Tip")},
+            {EXIT_APP,
                     app.getString("Menu.File.Exit"), app.getString("Menu.File.Exit.Icon"),
                     app.getString("Menu.File.Exit.Mnemonic"), app.getString("Menu.File.Exit.Shortcut"),
                     app.getString("Menu.File.Exit.Tip")}
@@ -45,24 +58,40 @@ public final class UIDesign {
 
     };
 
-    /* Operation */
-    public static final Object[][] OPERATION_MENU_ACTIONS = {
-            {OPERATION_STORE,
-                    app.getString("Menu.Operation.Store"), app.getString("Menu.Operation.Store.Icon"),
-                    app.getString("Menu.Operation.Store.Mnemonic"), app.getString("Menu.Operation.Store.Shortcut"),
-                    app.getString("Menu.Operation.Store.Tip")},
-            {OPERATION_SELL,
-                    app.getString("Menu.Operation.Sell"), app.getString("Menu.Operation.Sell.Icon"),
-                    app.getString("Menu.Operation.Sell.Mnemonic"), app.getString("Menu.Operation.Sell.Shortcut"),
-                    app.getString("Menu.Operation.Sell.Tip")},
-            {OPERATION_LEND,
-                    app.getString("Menu.Operation.Lend"), app.getString("Menu.Operation.Lend.Icon"),
-                    app.getString("Menu.Operation.Lend.Mnemonic"), app.getString("Menu.Operation.Lend.Shortcut"),
-                    app.getString("Menu.Operation.Lend.Tip")},
-            {OPERATION_RETURN,
-                    app.getString("Menu.Operation.Return"), app.getString("Menu.Operation.Return.Icon"),
-                    app.getString("Menu.Operation.Return.Mnemonic"), app.getString("Menu.Operation.Return.Shortcut"),
-                    app.getString("Menu.Operation.Return.Tip")},
+    /* View */
+    public static final Object[][] VIEW_MENU_ACTIONS = {
+            {VIEW_BOOK,
+                    app.getString("Menu.Search.View.Book"), app.getString("Menu.Search.View.Book.Icon"),
+                    app.getString("Menu.Search.View.Book.Mnemonic"), app.getString("Menu.Search.View.Book.Shortcut"),
+                    app.getString("Menu.Search.View.Book.Tip")},
+            {VIEW_CUSTOMER,
+                    app.getString("Menu.Search.View.Customer"), app.getString("Menu.Search.View.Customer.Icon"),
+                    app.getString("Menu.Search.View.Customer.Mnemonic"), app.getString("Menu.Search.View.Customer.Shortcut"),
+                    app.getString("Menu.Search.View.Customer.Tip")},
+            {SHOW_NAVIGATE,
+                    app.getString("Menu.Search.View.Navigate"), app.getString("Menu.Search.View.Navigate.Icon"),
+                    app.getString("Menu.Search.View.Navigate.Mnemonic"), app.getString("Menu.Search.View.Navigate.Shortcut"),
+                    app.getString("Menu.Search.View.Navigate.Tip")},
+    };
+
+    /* Options */
+    public static final Object[][] OPTIONS_MENU_ACTIONS = {
+            {STORE_BOOK,
+                    app.getString("Menu.Options.Store"), app.getString("Menu.Options.Store.Icon"),
+                    app.getString("Menu.Options.Store.Mnemonic"), app.getString("Menu.Options.Store.Shortcut"),
+                    app.getString("Menu.Options.Store.Tip")},
+            {SELL_BOOK,
+                    app.getString("Menu.Options.Sell"), app.getString("Menu.Options.Sell.Icon"),
+                    app.getString("Menu.Options.Sell.Mnemonic"), app.getString("Menu.Options.Sell.Shortcut"),
+                    app.getString("Menu.Options.Sell.Tip")},
+            {LEND_BOOK,
+                    app.getString("Menu.Options.Lend"), app.getString("Menu.Options.Lend.Icon"),
+                    app.getString("Menu.Options.Lend.Mnemonic"), app.getString("Menu.Options.Lend.Shortcut"),
+                    app.getString("Menu.Options.Lend.Tip")},
+            {RETURN_BOOK,
+                    app.getString("Menu.Options.Return"), app.getString("Menu.Options.Return.Icon"),
+                    app.getString("Menu.Options.Return.Mnemonic"), app.getString("Menu.Options.Return.Shortcut"),
+                    app.getString("Menu.Options.Return.Tip")},
 
     };
 
@@ -75,7 +104,8 @@ public final class UIDesign {
     };
 
     public static final Object[][][] MENU_ACTIONS = {
-            FILE_MENU_ACTIONS, EDIT_MENU_ACTIONS, OPERATION_MENU_ACTIONS, HELP_MENU_ACTIONS
+            FILE_MENU_ACTIONS, EDIT_MENU_ACTIONS, VIEW_MENU_ACTIONS, OPTIONS_MENU_ACTIONS,
+            HELP_MENU_ACTIONS
     };
 
     // ***************
@@ -84,10 +114,18 @@ public final class UIDesign {
 
 
     /* File */
+    private static final Object[] FILE_ADD_MENU = {
+            new IMenuLabel(app.getString("Menu.File.Add"), app.getString("Menu.File.Add.Icon"),
+                    app.getString("Menu.File.Add.Mnemonic")),
+            REGISTER_BOOK, REGISTER_CUSTOMER
+    };
     public static final Object[] FILE_MENU_MODEL = {
             new IMenuLabel(app.getString("Menu.File"), null, app.getString("Menu.File.Mnemonic")),
+            FILE_ADD_MENU,
             null,
-            FILE_EXIT
+            STORE_PROPERTIES,
+            null,
+            EXIT_APP
     };
 
     /* Edit */
@@ -95,13 +133,28 @@ public final class UIDesign {
             new IMenuLabel(app.getString("Menu.Edit"), null, app.getString("Menu.Edit.Mnemonic")),
     };
 
-    /* Operation */
-    public static final Object[] OPERATION_MENU_MODEL = {
-            new IMenuLabel(app.getString("Menu.Operation"), null, app.getString("Menu.Operation.Mnemonic")),
-            OPERATION_STORE,
-            OPERATION_SELL,
-            OPERATION_LEND,
-            OPERATION_RETURN
+    /* View */
+    private static final Object[] VIEW_MENU_MODEL = {
+            new IMenuLabel(app.getString("Menu.Search.View"), null,
+                    app.getString("Menu.Search.View.Mnemonic")),
+            new IMenuModel(VIEW_BOOK, IMenuModel.MenuType.RADIO, false),
+            new IMenuModel(VIEW_CUSTOMER, IMenuModel.MenuType.RADIO, false),
+            new IMenuModel(SHOW_NAVIGATE, IMenuModel.MenuType.RADIO, true),
+    };
+
+    /* Search */
+    public static final Object[] SEARCH_MENU_MODEL = {
+            new IMenuLabel(app.getString("Menu.Search"), null, app.getString("Menu.Search.Mnemonic")),
+
+    };
+
+    /* Options */
+    public static final Object[] OPTIONS_MENU_MODEL = {
+            new IMenuLabel(app.getString("Menu.Options"), null, app.getString("Menu.Options.Mnemonic")),
+            STORE_BOOK,
+            SELL_BOOK,
+            LEND_BOOK,
+            RETURN_BOOK
     };
 
 
@@ -113,11 +166,14 @@ public final class UIDesign {
 
     /* Menu bar */
     public static Object[][] MENU_BAR_MODEL = {
-            FILE_MENU_MODEL, EDIT_MENU_MODEL, OPERATION_MENU_MODEL, HELP_MENU_MODEL
+            FILE_MENU_MODEL, EDIT_MENU_MODEL,
+            OPTIONS_MENU_MODEL, VIEW_MENU_MODEL,  HELP_MENU_MODEL
     };
 
     /* Toolbar */
     public static Object[] TOOL_BAR_MODEL = {
-            OPERATION_STORE, OPERATION_SELL, OPERATION_LEND, OPERATION_RETURN
+            REGISTER_BOOK, REGISTER_CUSTOMER,
+            null,
+            STORE_BOOK, SELL_BOOK, LEND_BOOK, RETURN_BOOK
     };
 }

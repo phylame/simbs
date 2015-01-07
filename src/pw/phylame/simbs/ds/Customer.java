@@ -16,6 +16,8 @@
 
 package pw.phylame.simbs.ds;
 
+import pw.phylame.simbs.Constants;
+
 /**
  * Customer descriptor.
  */
@@ -24,16 +26,24 @@ public class Customer {
     private String name;
     private String phone;
     private String email;
+    private int level;
+    private int lentLimit;
 
     public Customer() {
         this(1, "", "", "");
     }
 
     public Customer(int id, String name, String phone, String email) {
-        this.id = id;
-        this.name = name;
-        this.phone = phone;
-        this.email = email;
+        this(id, name, phone, email, 0, Constants.DEFAULT_LENT_LIMIT);
+    }
+
+    public Customer(int id, String name, String phone, String email, int level, int lentLimit) {
+        setId(id);
+        setName(name);
+        setPhone(phone);
+        setEmail(email);
+        setLevel(level);
+        setLentLimit(lentLimit);
     }
 
     public int getId() {
@@ -71,9 +81,25 @@ public class Customer {
         this.email = email;
     }
 
+    public int getLevel() {
+        return level;
+    }
+
+    public void setLevel(int level) {
+        this.level = level;
+    }
+
+    public int getLentLimit() {
+        return lentLimit;
+    }
+
+    public void setLentLimit(int lentLimit) {
+        this.lentLimit = lentLimit;
+    }
+
     @Override
     public String toString() {
-        return String.format("Customer <ID=%d, name=%s, phone=%s, email=%s> @ 0x%X", getId(), getName(), getPhone(),
-                getEmail(), hashCode());
+        return String.format("Customer <ID=%d, name=%s, phone=%s, email=%s, level=%d> @ 0x%X",
+                getId(), getName(), getPhone(), getEmail(), getLevel(), hashCode());
     }
 }

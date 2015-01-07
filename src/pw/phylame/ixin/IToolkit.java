@@ -61,7 +61,7 @@ public final class IToolkit {
     }
 
     public static ImageIcon createImageIcon(String path) {
-        if (null == path) {
+        if (null == path || "".equals(path)) {
             return null;
         }
         InputStream in = null;
@@ -83,6 +83,20 @@ public final class IToolkit {
             }
         }
         return imageIcon;
+    }
+
+    public static Image createImage(Object source) {
+        ImageIcon imageIcon;
+        if (source instanceof Image) {
+            return (Image) source;
+        } else if (source instanceof ImageIcon) {
+            imageIcon = (ImageIcon) source;
+        } else if (source instanceof String) {
+            imageIcon = createImageIcon((String) source);
+        } else {
+            imageIcon = null;
+        }
+        return imageIcon == null ? null : imageIcon.getImage();
     }
 
     public static Icon getIcon(Object source) {

@@ -49,11 +49,11 @@ public class Book {
         this.intro = intro;
     }
 
-    public String getIsbn() {
+    public String getISBN() {
         return isbn;
     }
 
-    public void setIsbn(String isbn) {
+    public void setISBN(String isbn) {
         this.isbn = isbn;
     }
 
@@ -127,6 +127,6 @@ public class Book {
 
     @Override
     public String toString() {
-        return String.format("Book <ISBN=%s, name=%s> at 0x%X", getIsbn(), getName(), hashCode());
+        return String.format("Book <ISBN=%s, name=%s> at 0x%X", getISBN(), getName(), hashCode());
     }
 }

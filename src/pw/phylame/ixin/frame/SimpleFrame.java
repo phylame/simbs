@@ -176,18 +176,18 @@ public abstract class SimpleFrame extends JFrame implements IToolTipListener {
 
     private void createStatusBar() {
         statusLabel = new JLabel();
-        statusBar = new JPanel();
-        statusBar.add(statusLabel);
+        statusBar = new JPanel(new BorderLayout());
+        statusBar.add(statusLabel, BorderLayout.CENTER);
     }
 
     @Override
     public void showingTip(IToolTipEvent e) {
-        statusLabel.setText(e.getToolTip());
+        statusLabel.setText(" "+e.getToolTip());
     }
 
     @Override
     public void closingTip(IToolTipEvent e) {
-        statusLabel.setText(oldStatusText);
+        statusLabel.setText(" "+oldStatusText);
     }
 
     public abstract String getString(String key);
@@ -212,7 +212,7 @@ public abstract class SimpleFrame extends JFrame implements IToolTipListener {
 
     public void setStatusText(String text) {
         oldStatusText = text;
-        statusLabel.setText(text);
+        statusLabel.setText(" "+text);
     }
 
 

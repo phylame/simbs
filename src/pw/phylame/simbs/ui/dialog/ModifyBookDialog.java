@@ -16,7 +16,8 @@
 
 package pw.phylame.simbs.ui.dialog;
 
-import pw.phylame.simbs.SimbsApplication;
+import pw.phylame.ixin.IToolkit;
+import pw.phylame.simbs.Application;
 import pw.phylame.simbs.ds.Book;
 
 import javax.swing.*;
@@ -34,7 +35,7 @@ public class ModifyBookDialog extends JDialog {
     private JTextField tfPublisher;
     private JSpinner jsDate;
     private JTextArea taIntro;
-    private JTextField tfPrice;
+    private JFormattedTextField tfPrice;
 
     private Book book = null;
 
@@ -73,36 +74,41 @@ public class ModifyBookDialog extends JDialog {
         }, KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
 
         jsDate.setModel(new SpinnerDateModel());
-
+        tfPrice.setValue(0.0F);
         taIntro.setRows(5);
+
+        Application app = Application.getInstance();
+        setIconImage(IToolkit.createImage(app.getString("Book.Icon")));
 
         pack();
 
         setSize(500, getHeight()+20);
+
+        setLocationRelativeTo(null);
     }
 
     private void onOK() {
 // add your code here
-        SimbsApplication app = SimbsApplication.getInstance();
+        Application app = Application.getInstance();
         if (book == null) {
             book = new Book();
         }
         String s = tfISBN.getText().trim();
         if ("".equals(s)) {
-            DialogFactory.showError(app.getString("Book.NoISBN"), getTitle());
+            DialogFactory.showError(this, app.getString("Dialog.ModifyBook.NoISBN"), getTitle());
             return;
         }
-        book.setIsbn(s);
+        book.setISBN(s);
         s = tfName.getText().trim();
         if ("".equals(s)) {
-            DialogFactory.showError(app.getString("Book.NoName"), getTitle());
+            DialogFactory.showError(this, app.getString("Dialog.ModifyBook.NoName"), getTitle());
             return;
         }
         book.setName(s);
         book.setVersion(tfVersion.getText().trim());
         s = tfAuthors.getText().trim();
         if ("".equals(s)) {
-            DialogFactory.showError(app.getString("Book.NoAuthors"), getTitle());
+            DialogFactory.showError(this, app.getString("Dialog.ModifyBook.NoAuthors"), getTitle());
             return;
         }
         book.setAuthors(s);
@@ -110,22 +116,11 @@ public class ModifyBookDialog extends JDialog {
         book.setCategory(tfCategory.getText().trim());
         s = tfPublisher.getText().trim();
         if ("".equals(s)) {
-            DialogFactory.showError(app.getString("Book.NoPublisher"), getTitle());
+            DialogFactory.showError(this, app.getString("Dialog.ModifyBook.NoPublisher"), getTitle());
             return;
         }
         book.setPublisher(s);
-        s = tfPrice.getText().trim();
-        if ("".equals(s)) {
-            DialogFactory.showError(app.getString("Book.NoPrice"), getTitle());
-            return;
-        } else {
-            try {
-                book.setPrice(Double.parseDouble(s));
-            } catch (NumberFormatException exp) {
-                DialogFactory.showError(app.getString("Book.InvalidPrice"), getTitle());
-                return;
-            }
-        }
+        book.setPrice((float)tfPrice.getValue());
         book.setIntro(taIntro.getText().trim());
         isReady = true;
         dispose();
@@ -144,7 +139,7 @@ public class ModifyBookDialog extends JDialog {
     public void setBook(Book book) {
         this.book = book;
         if (book != null) {
-            tfISBN.setText(book.getIsbn());
+            tfISBN.setText(book.getISBN());
             tfName.setText(book.getName());
             tfVersion.setText(book.getVersion());
             tfAuthors.setText(book.getAuthors());

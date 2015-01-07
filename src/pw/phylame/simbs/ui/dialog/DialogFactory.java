@@ -31,41 +31,60 @@ public final class DialogFactory {
 
     /**
      * Show text input of line edit dialog.
+     * @param parent the parent component
      * @param title text of dialog title
      * @param tip tip text
      * @param initValue initialized value of editor
      * @return string value or {@code null} if user canceled operation.
      */
-    public static String inputText(String title, String tip, String initValue) {
+    public static String inputText(Component parent, String title, String tip, String initValue) {
         return (String) JOptionPane.showInputDialog(parent, tip, title,
                 JOptionPane.PLAIN_MESSAGE, null, null, initValue);
     }
 
+    public static String inputText(String title, String tip, String initValue) {
+        return inputText(parent, title, tip, initValue);
+    }
+
     /**
      * Show information message dialog.
+     * @param parent the parent component
      * @param text the text content
      * @param title text of dialog title
      */
-    public static void showInfo(String text, String title) {
+    public static void showInfo(Component parent, String text, String title) {
         JOptionPane.showMessageDialog(parent, text, title, JOptionPane.INFORMATION_MESSAGE);
+    }
+
+    public static void showInfo(String text, String title) {
+        showInfo(parent, text, title);
     }
 
     /**
      * Show error message dialog.
+     * @param parent the parent component
      * @param text the text content
      * @param title text of dialog title
      */
-    public static void showError(String text, String title) {
+    public static void showError(Component parent, String text, String title) {
         JOptionPane.showMessageDialog(parent, text, title, JOptionPane.ERROR_MESSAGE);
+    }
+
+    public static void showError(String text, String title) {
+        showError(parent, text, title);
     }
 
     /**
      * Show warning message dialog.
+     * @param parent the parent component
      * @param text the text content
      * @param title text of dialog title
      */
-    public static void showWarning(String text, String title) {
+    public static void showWarning(Component parent, String text, String title) {
         JOptionPane.showMessageDialog(parent, text, title, JOptionPane.WARNING_MESSAGE);
     }
 
+    public static void showWarning(String text, String title) {
+        showWarning(parent, text, title);
+    }
 }

@@ -1,4 +1,4 @@
 Manifest-Version: 1.0
 Class-Path: . hsqldb.jar jcalendar.jar
-Main-Class: pw.phylame.simbs.SimbsApplication
+Main-Class: pw.phylame.simbs.Application
 
