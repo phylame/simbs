@@ -1,7 +1,7 @@
 <component name="libraryTable">
-  <library name="PostgreSQL">
+  <library name="quaqua">
     <CLASSES>
-      <root url="jar://$PROJECT_DIR$/lib/pgsql.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/quaqua.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

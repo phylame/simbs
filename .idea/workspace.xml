@@ -7,40 +7,29 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2ebda3fe-8c21-4cf1-8658-10992e9c1086" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/Note.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/codeStyleSettings.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/JGoodies.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/quaqua.xml" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/jcalendar.jar" afterPath="" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/lib/postgresql.jar" afterPath="$PROJECT_DIR$/lib/pgsql.jar" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/pw/phylame/simbs/ui/dialog/ChooseBookDIalog.form" afterPath="$PROJECT_DIR$/src/pw/phylame/simbs/ui/dialog/ChooseBookDialog.form" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/pw/phylame/simbs/ui/dialog/ChooseBookDIalog.java" afterPath="$PROJECT_DIR$/src/pw/phylame/simbs/ui/dialog/ChooseBookDialog.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/data/bookdb.lck" afterPath="$PROJECT_DIR$/res/data/bookdb.lck" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/simbs.jar" afterPath="$PROJECT_DIR$/lib/simbs.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/pw/phylame/simbs/Application.java" afterPath="$PROJECT_DIR$/src/pw/phylame/simbs/Application.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/pw/phylame/simbs/ds/Book.java" afterPath="$PROJECT_DIR$/src/pw/phylame/simbs/ds/Book.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/pw/phylame/simbs/ui/dialog/ChooseCustomerDialog.form" afterPath="$PROJECT_DIR$/src/pw/phylame/simbs/ui/dialog/ChooseCustomerDialog.form" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/pw/phylame/simbs/ui/dialog/ChooseCustomerDialog.java" afterPath="$PROJECT_DIR$/src/pw/phylame/simbs/ui/dialog/ChooseCustomerDialog.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/pw/phylame/simbs/Constants.java" afterPath="$PROJECT_DIR$/src/pw/phylame/simbs/Constants.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/pw/phylame/simbs/ds/Customer.java" afterPath="$PROJECT_DIR$/src/pw/phylame/simbs/ds/Customer.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/pw/phylame/simbs/ui/com/BookTablePane.java" afterPath="$PROJECT_DIR$/src/pw/phylame/simbs/ui/com/BookTablePane.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/pw/phylame/simbs/ui/dialog/LendBookDialog.form" afterPath="$PROJECT_DIR$/src/pw/phylame/simbs/ui/dialog/LendBookDialog.form" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/pw/phylame/simbs/ui/dialog/LendBookDialog.java" afterPath="$PROJECT_DIR$/src/pw/phylame/simbs/ui/dialog/LendBookDialog.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/pw/phylame/simbs/Manager.java" afterPath="$PROJECT_DIR$/src/pw/phylame/simbs/Manager.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/pw/phylame/simbs/ui/dialog/ModifyBookDialog.form" afterPath="$PROJECT_DIR$/src/pw/phylame/simbs/ui/dialog/ModifyBookDialog.form" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/pw/phylame/simbs/ui/dialog/ModifyBookDialog.java" afterPath="$PROJECT_DIR$/src/pw/phylame/simbs/ui/dialog/ModifyBookDialog.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/pw/phylame/simbs/ui/dialog/ModifyCustomerDialog.form" afterPath="$PROJECT_DIR$/src/pw/phylame/simbs/ui/dialog/ModifyCustomerDialog.form" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/pw/phylame/simbs/ui/dialog/ModifyCustomerDialog.java" afterPath="$PROJECT_DIR$/src/pw/phylame/simbs/ui/dialog/ModifyCustomerDialog.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/pw/phylame/tools/sql/SQLAdmin.java" afterPath="$PROJECT_DIR$/src/pw/phylame/tools/sql/SQLAdmin.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/assert/META-INF/MANIFEST.MF" afterPath="$PROJECT_DIR$/res/assert/META-INF/MANIFEST.MF" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/PostgreSQL.xml" afterPath="$PROJECT_DIR$/.idea/libraries/PostgreSQL.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/pw/phylame/simbs/ui/dialog/SellBookDialog.form" afterPath="$PROJECT_DIR$/src/pw/phylame/simbs/ui/dialog/SellBookDialog.form" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/pw/phylame/simbs/ui/dialog/SellBookDialog.java" afterPath="$PROJECT_DIR$/src/pw/phylame/simbs/ui/dialog/SellBookDialog.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/pw/phylame/simbs/ui/dialog/StoreBookDialog.java" afterPath="$PROJECT_DIR$/src/pw/phylame/simbs/ui/dialog/StoreBookDialog.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/pw/phylame/simbs/Worker.java" afterPath="$PROJECT_DIR$/src/pw/phylame/simbs/Worker.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/assert/add_records.sql" afterPath="$PROJECT_DIR$/res/assert/add_records.sql" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/data/bookdb.log" afterPath="$PROJECT_DIR$/res/data/bookdb.log" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/data/bookdb.properties" afterPath="$PROJECT_DIR$/res/data/bookdb.properties" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/data/bookdb.script" afterPath="$PROJECT_DIR$/res/data/bookdb.script" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/assert/create_table.sql" afterPath="$PROJECT_DIR$/res/assert/create_table.sql" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/assert/drop_table.sql" afterPath="$PROJECT_DIR$/res/assert/drop_table.sql" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/assert/query_records.sql" afterPath="$PROJECT_DIR$/res/assert/query_records.sql" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/codeStyleSettings.xml" afterPath="$PROJECT_DIR$/.idea/codeStyleSettings.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/encodings.xml" afterPath="$PROJECT_DIR$/.idea/encodings.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/simbs.bat" afterPath="$PROJECT_DIR$/bin/simbs.bat" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/simbs.iml" afterPath="$PROJECT_DIR$/simbs.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/i18n/simbs.properties" afterPath="$PROJECT_DIR$/src/i18n/simbs.properties" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/i18n/simbs_zh_CN.properties" afterPath="$PROJECT_DIR$/src/i18n/simbs_zh_CN.properties" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MOVED" beforePath="D:\code\simbs\src\pw\phylame\simbs\ui\dialog\ChooseBookDIalog.form" afterPath="$PROJECT_DIR$/src/pw/phylame/simbs/ui/dialog/ChooseBookDialog.form" />
-      <change type="MOVED" beforePath="D:\code\simbs\src\pw\phylame\simbs\ui\dialog\ChooseBookDIalog.java" afterPath="$PROJECT_DIR$/src/pw/phylame/simbs/ui/dialog/ChooseBookDialog.java" />
     </list>
     <ignored path="simbs.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -69,19 +58,43 @@
       <file leaf-file-name="Constants.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/pw/phylame/simbs/Constants.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="1305" max-vertical-offset="2346">
-              <caret line="90" column="30" selection-start-line="90" selection-start-column="30" selection-end-line="90" selection-end-column="30" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="1770" max-vertical-offset="2346">
+              <caret line="113" column="0" selection-start-line="113" selection-start-column="0" selection-end-line="113" selection-end-column="0" />
+              <folding>
+                <marker date="1420708511552" expanded="true" signature="1416:1442" placeholder="/**...*/" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="UIDesign.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/pw/phylame/simbs/ui/UIDesign.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="3187" max-vertical-offset="3841">
+              <caret line="162" column="98" selection-start-line="162" selection-start-column="98" selection-end-line="162" selection-end-column="98" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Worker.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/pw/phylame/simbs/Worker.java">
+      <file leaf-file-name="BookTablePane.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/pw/phylame/simbs/ui/com/BookTablePane.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="2821" max-vertical-offset="14628">
-              <caret line="157" column="53" selection-start-line="157" selection-start-column="53" selection-end-line="157" selection-end-column="53" />
-              <folding />
+            <state vertical-scroll-proportion="0.6805556" vertical-offset="551" max-vertical-offset="1403">
+              <caret line="70" column="17" selection-start-line="70" selection-start-column="17" selection-end-line="70" selection-end-column="17" />
+              <folding>
+                <element signature="docComment;class#BookTablePane#0" expanded="false" />
+                <element signature="e#2439#2440#0" expanded="true" />
+                <element signature="e#2485#2486#0" expanded="true" />
+                <element signature="method#setParent#0;class#BookTablePane#0" expanded="false" />
+                <element signature="class#BookTableModel#0;class#BookTablePane#0" expanded="false" />
+                <element signature="method#getISBN#0;class#BookTableModel#0;class#BookTablePane#0" expanded="false" />
+                <element signature="method#setDataSource#0;class#BookTableModel#0;class#BookTablePane#0" expanded="false" />
+                <element signature="method#pageUpdated#0;class#BookTableModel#0;class#BookTablePane#0" expanded="false" />
+                <element signature="method#getColumnName#0;class#BookTableModel#0;class#BookTablePane#0" expanded="false" />
+                <element signature="method#getRowCount#0;class#BookTableModel#0;class#BookTablePane#0" expanded="false" />
+                <element signature="method#getValueAt#0;class#BookTableModel#0;class#BookTablePane#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -89,44 +102,9 @@
       <file leaf-file-name="Manager.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/pw/phylame/simbs/Manager.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="1622" max-vertical-offset="4370">
-              <caret line="109" column="0" selection-start-line="109" selection-start-column="0" selection-end-line="109" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="3716" max-vertical-offset="4370">
+              <caret line="200" column="22" selection-start-line="200" selection-start-column="22" selection-end-line="200" selection-end-column="22" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="StoreBookDialog.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/pw/phylame/simbs/ui/dialog/StoreBookDialog.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.6418919" vertical-offset="2225" max-vertical-offset="3427">
-              <caret line="150" column="9" selection-start-line="150" selection-start-column="9" selection-end-line="150" selection-end-column="9" />
-              <folding>
-                <element signature="e#1727#1728#0" expanded="true" />
-                <element signature="e#1771#1772#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SellBookDialog.form" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/pw/phylame/simbs/ui/dialog/SellBookDialog.form">
-          <provider selected="true" editor-type-id="ui-designer">
-            <state />
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SellBookDialog.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/pw/phylame/simbs/ui/dialog/SellBookDialog.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="3616" max-vertical-offset="4577">
-              <caret line="224" column="5" selection-start-line="224" selection-start-column="5" selection-end-line="224" selection-end-column="5" />
-              <folding>
-                <element signature="e#6870#6871#0" expanded="true" />
-                <element signature="e#6920#6921#0" expanded="true" />
-                <element signature="e#6954#6955#0" expanded="true" />
-                <element signature="e#7003#7004#0" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -138,6 +116,44 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="Application.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/pw/phylame/simbs/Application.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="861" max-vertical-offset="1955">
+              <caret line="169" column="42" selection-start-line="169" selection-start-column="42" selection-end-line="169" selection-end-column="42" />
+              <folding>
+                <element signature="docComment;class#Application#0" expanded="false" />
+                <element signature="method#Application#0;class#Application#0" expanded="false" />
+                <element signature="method#init#0;class#Application#0" expanded="false" />
+                <element signature="docComment;method#createApplication#0;class#Application#0" expanded="false" />
+                <element signature="method#createApplication#0;class#Application#0" expanded="false" />
+                <element signature="docComment;method#getInstance#0;class#Application#0" expanded="false" />
+                <element signature="docComment;method#getSystemArguments#0;class#Application#0" expanded="false" />
+                <element signature="docComment;method#getSQLAdmin#0;class#Application#0" expanded="false" />
+                <element signature="docComment;method#getManager#0;class#Application#0" expanded="false" />
+                <element signature="method#getManager#0;class#Application#0" expanded="false" />
+                <element signature="docComment;method#getUI#0;class#Application#0" expanded="false" />
+                <element signature="method#getUI#0;class#Application#0" expanded="false" />
+                <element signature="docComment;method#getString#0;class#Application#0" expanded="false" />
+                <element signature="method#onCommand#0;class#Application#0" expanded="false" />
+                <element signature="method#checkLogin#0;class#Application#0" expanded="false" />
+                <element signature="method#saveProfile#0;class#Application#0" expanded="false" />
+                <element signature="docComment;method#login#0;class#Application#0" expanded="false" />
+                <element signature="method#login#0;class#Application#0" expanded="false" />
+                <element signature="docComment;method#run#0;class#Application#0" expanded="false" />
+                <element signature="method#run#0;class#Application#0" expanded="false" />
+                <element signature="docComment;method#main#0;class#Application#0" expanded="false" />
+                <element signature="e#5386#5402#0" expanded="false" />
+                <element signature="docComment;field#instance#0;class#Application#0" expanded="false" />
+                <element signature="docComment;field#languageBundle#0;class#Application#0" expanded="false" />
+                <element signature="docComment;field#args#0;class#Application#0" expanded="false" />
+                <element signature="docComment;field#sqlAdmin#0;class#Application#0" expanded="false" />
+                <element signature="docComment;field#manager#0;class#Application#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
     </leaf>
   </component>
   <component name="Git.Settings">
@@ -146,11 +162,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/pw/phylame/simbs/ui/dialog/StoreBookDialog.form" />
-        <option value="$PROJECT_DIR$/src/pw/phylame/simbs/ui/dialog/StoreInfoDialog.form" />
-        <option value="$PROJECT_DIR$/src/pw/phylame/tools/sql/DbProfile.java" />
-        <option value="$PROJECT_DIR$/src/pw/phylame/simbs/SimbsApplication.java" />
-        <option value="$PROJECT_DIR$/src/pw/phylame/simbs/ui/dialog/LoginDialog.form" />
         <option value="$PROJECT_DIR$/src/pw/phylame/simbs/ui/com/BookInfoTableAdapter.java" />
         <option value="$PROJECT_DIR$/src/pw/phylame/simbs/ui/com/CustomerInfoTableAdapter.java" />
         <option value="$PROJECT_DIR$/src/pw/phylame/simbs/ui/com/ChooseBookPane.java" />
@@ -167,13 +178,10 @@
         <option value="$PROJECT_DIR$/src/pw/phylame/simbs/ui/com/PaneRender.java" />
         <option value="$PROJECT_DIR$/src/pw/phylame/simbs/ui/com/TablePane.java" />
         <option value="$PROJECT_DIR$/src/pw/phylame/simbs/ui/MainFrame.java" />
-        <option value="$PROJECT_DIR$/src/pw/phylame/simbs/ui/com/BookTablePane.java" />
-        <option value="$PROJECT_DIR$/src/pw/phylame/simbs/ui/UIDesign.java" />
         <option value="$PROJECT_DIR$/src/pw/phylame/simbs/ui/com/NavigatePane.form" />
         <option value="$PROJECT_DIR$/src/pw/phylame/simbs/ui/com/NavigatePane.java" />
         <option value="$PROJECT_DIR$/src/pw/phylame/simbs/ui/dialog/ChooseBookDialog.form" />
         <option value="$PROJECT_DIR$/src/pw/phylame/simbs/ui/dialog/ChooseCustomerDialog.form" />
-        <option value="$PROJECT_DIR$/src/i18n/simbs.properties" />
         <option value="$PROJECT_DIR$/res/Note.txt" />
         <option value="$PROJECT_DIR$/res/assert/create_table.sql" />
         <option value="$PROJECT_DIR$/res/assert/add_records.sql" />
@@ -181,9 +189,7 @@
         <option value="$PROJECT_DIR$/res/assert/query_records.sql" />
         <option value="$PROJECT_DIR$/src/pw/phylame/simbs/ds/Customer.java" />
         <option value="$PROJECT_DIR$/src/pw/phylame/simbs/ds/Book.java" />
-        <option value="$PROJECT_DIR$/src/pw/phylame/simbs/Application.java" />
         <option value="$PROJECT_DIR$/src/pw/phylame/tools/sql/SQLAdmin.java" />
-        <option value="$PROJECT_DIR$/src/pw/phylame/simbs/Constants.java" />
         <option value="$PROJECT_DIR$/src/pw/phylame/simbs/ui/dialog/ChooseCustomerDialog.java" />
         <option value="$PROJECT_DIR$/src/pw/phylame/simbs/ui/dialog/ChooseBookDialog.java" />
         <option value="$PROJECT_DIR$/src/pw/phylame/simbs/ui/dialog/ModifyBookDialog.form" />
@@ -191,12 +197,22 @@
         <option value="$PROJECT_DIR$/src/pw/phylame/simbs/ui/dialog/ModifyCustomerDialog.form" />
         <option value="$PROJECT_DIR$/src/pw/phylame/simbs/ui/dialog/ModifyCustomerDialog.java" />
         <option value="$PROJECT_DIR$/src/pw/phylame/simbs/ui/dialog/SellBookDialog.form" />
-        <option value="$PROJECT_DIR$/src/pw/phylame/simbs/ui/dialog/LendBookDialog.form" />
         <option value="$PROJECT_DIR$/src/pw/phylame/simbs/ui/dialog/LendBookDialog.java" />
-        <option value="$PROJECT_DIR$/src/pw/phylame/simbs/Manager.java" />
         <option value="$PROJECT_DIR$/src/pw/phylame/simbs/ui/dialog/SellBookDialog.java" />
         <option value="$PROJECT_DIR$/src/pw/phylame/simbs/Worker.java" />
         <option value="$PROJECT_DIR$/src/pw/phylame/simbs/ui/dialog/StoreBookDialog.java" />
+        <option value="$PROJECT_DIR$/bin/simbs.bat" />
+        <option value="$PROJECT_DIR$/bin/simbs.sh" />
+        <option value="$PROJECT_DIR$/src/pw/phylame/simbs/Application.java" />
+        <option value="$PROJECT_DIR$/src/i18n/simbs.properties" />
+        <option value="$PROJECT_DIR$/src/pw/phylame/simbs/ui/dialog/LendBookDialog.form" />
+        <option value="$PROJECT_DIR$/src/pw/phylame/simbs/ui/dialog/StoreRewardPolicyDialog.java" />
+        <option value="$PROJECT_DIR$/src/pw/phylame/simbs/ui/dialog/StoreRewardPolicyDialog.form" />
+        <option value="$PROJECT_DIR$/src/res/text/reeard-policy.html" />
+        <option value="$PROJECT_DIR$/src/pw/phylame/simbs/Manager.java" />
+        <option value="$PROJECT_DIR$/src/pw/phylame/simbs/Constants.java" />
+        <option value="$PROJECT_DIR$/src/pw/phylame/simbs/ui/UIDesign.java" />
+        <option value="$PROJECT_DIR$/src/pw/phylame/simbs/ui/com/BookTablePane.java" />
       </list>
     </option>
   </component>
@@ -204,8 +220,10 @@
     <detection-done>true</detection-done>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="width" value="1366" />
-    <option name="height" value="728" />
+    <option name="x" value="-1" />
+    <option name="y" value="26" />
+    <option name="width" value="1368" />
+    <option name="height" value="743" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <OptionsSetting value="true" id="Add" />
@@ -232,27 +250,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="ProjectPane">
-        <subPane>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="simbs" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="simbs" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="simbs" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
-      </pane>
       <pane id="PackagesPane">
         <subPane>
           <PATH>
@@ -367,72 +364,8 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="dialog" />
+              <option name="myItemId" value="com" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SellBookDialog" />
-              <option name="myItemType" value="com.intellij.uiDesigner.projectView.FormNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="simbs" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="simbs" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pw.phylame" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="simbs" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ui" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="dialog" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="LendBookDialog" />
-              <option name="myItemType" value="com.intellij.uiDesigner.projectView.FormNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="simbs" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="simbs" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pw.phylame" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="simbs" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ui" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="dialog" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ChooseCustomerDialog" />
-              <option name="myItemType" value="com.intellij.uiDesigner.projectView.FormNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
@@ -455,6 +388,135 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
+      <pane id="ProjectPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="simbs" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="simbs" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="simbs" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="simbs" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="simbs" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="simbs" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="simbs" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="phylame" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="simbs" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="simbs" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="phylame" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="simbs" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="simbs" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="simbs" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="i18n" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Resource Bundle 'simbs'" />
+              <option name="myItemType" value="com.intellij.lang.properties.projectView.ResourceBundleNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="simbs" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="simbs" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="res" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="simbs" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="simbs" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="res" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="assert" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -467,11 +529,11 @@
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="options.lastSelected" value="preferences.sourceCode" />
+    <property name="options.lastSelected" value="reference.settingsdialog.IDE.editor.colors.Font" />
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="options.splitter.details.proportions" value="0.2" />
     <property name="FullScreen" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/lib/postgresql.jar!/" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/lib/pgsql.jar!/" />
     <property name="recentsLimit" value="5" />
     <property name="dynamic.classpath" value="false" />
     <property name="restartRequiresConfirmation" value="true" />
@@ -480,14 +542,15 @@
     <property name="OverrideImplement.combined" value="true" />
     <property name="OverrideImplement.overriding.sorted" value="false" />
     <property name="UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.WIDTH" value="265" />
+    <property name="DefaultHtmlFileTemplate" value="Html5" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/lib" />
       <recent name="D:\code\simbs\src\res\img\dialog" />
       <recent name="D:\code\simbs\src\res\img\menu" />
       <recent name="D:\code\simbs\lib" />
       <recent name="D:\code\simbs\src\res\img" />
-      <recent name="$PROJECT_DIR$/src/res/img/menu" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\code\simbs\src\res\img" />
@@ -506,68 +569,28 @@
     </key>
   </component>
   <component name="RunManager" selected="Application.Simbs">
-    <configuration default="false" name="SellBookDialog" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
-        <pattern>
-          <option name="PATTERN" value="pw.phylame.simbs.ui.dialog.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="MAIN_CLASS_NAME" value="pw.phylame.simbs.ui.dialog.SellBookDialog" />
-      <option name="VM_PARAMETERS" />
-      <option name="PROGRAM_PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="ENABLE_SWING_INSPECTOR" value="false" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <module name="simbs" />
+    <configuration default="false" name="runServer.sh" type="BashConfigurationType" factoryName="Bash" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="INTERPRETER_PATH" value="/bin/bash" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/bin" />
+      <option name="PARENT_ENVS" value="true" />
       <envs />
+      <module name="simbs" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/bin/runServer.sh" />
+      <option name="PARAMETERS" value="" />
       <RunnerSettings RunnerId="Run" />
       <ConfigurationWrapper RunnerId="Run" />
       <method />
     </configuration>
-    <configuration default="false" name="ChooseCustomerDialog" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
-        <pattern>
-          <option name="PATTERN" value="pw.phylame.simbs.ui.dialog.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="MAIN_CLASS_NAME" value="pw.phylame.simbs.ui.dialog.ChooseCustomerDialog" />
-      <option name="VM_PARAMETERS" />
-      <option name="PROGRAM_PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="ENABLE_SWING_INSPECTOR" value="false" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <module name="simbs" />
+    <configuration default="false" name="simbs.sh" type="BashConfigurationType" factoryName="Bash" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="INTERPRETER_PATH" value="/bin/bash" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/bin" />
+      <option name="PARENT_ENVS" value="true" />
       <envs />
-      <RunnerSettings RunnerId="Run" />
-      <ConfigurationWrapper RunnerId="Run" />
-      <method />
-    </configuration>
-    <configuration default="false" name="LendBookDialog" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
-        <pattern>
-          <option name="PATTERN" value="pw.phylame.simbs.ui.dialog.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="MAIN_CLASS_NAME" value="pw.phylame.simbs.ui.dialog.LendBookDialog" />
-      <option name="VM_PARAMETERS" />
-      <option name="PROGRAM_PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="ENABLE_SWING_INSPECTOR" value="false" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
       <module name="simbs" />
-      <envs />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/bin/simbs.sh" />
+      <option name="PARAMETERS" value="" />
       <RunnerSettings RunnerId="Run" />
       <ConfigurationWrapper RunnerId="Run" />
       <method />
@@ -625,17 +648,6 @@
       <option name="PORT" value="5005" />
       <method />
     </configuration>
-    <configuration default="true" type="BashConfigurationType" factoryName="Bash">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="INTERPRETER_PATH" value="/bin/bash" />
-      <option name="WORKING_DIRECTORY" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs />
-      <module name="simbs" />
-      <option name="SCRIPT_NAME" value="" />
-      <option name="PARAMETERS" value="" />
-      <method />
-    </configuration>
     <configuration default="true" type="AndroidRunConfigurationType" factoryName="Android Application">
       <module name="" />
       <option name="ACTIVITY_CLASS" value="" />
@@ -666,64 +678,57 @@
       <option name="PARAMETERS" value="" />
       <method />
     </configuration>
-    <configuration default="true" type="AndroidTestRunConfigurationType" factoryName="Android Tests">
-      <module name="" />
-      <option name="TESTING_TYPE" value="0" />
-      <option name="INSTRUMENTATION_RUNNER_CLASS" value="" />
-      <option name="METHOD_NAME" value="" />
-      <option name="CLASS_NAME" value="" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="TARGET_SELECTION_MODE" value="EMULATOR" />
-      <option name="USE_LAST_SELECTED_DEVICE" value="false" />
-      <option name="PREFERRED_AVD" value="" />
-      <option name="USE_COMMAND_LINE" value="true" />
-      <option name="COMMAND_LINE" value="" />
-      <option name="WIPE_USER_DATA" value="false" />
-      <option name="DISABLE_BOOT_ANIMATION" value="false" />
-      <option name="NETWORK_SPEED" value="full" />
-      <option name="NETWORK_LATENCY" value="none" />
-      <option name="CLEAR_LOGCAT" value="false" />
-      <option name="SHOW_LOGCAT_AUTOMATICALLY" value="true" />
-      <option name="FILTER_LOGCAT_AUTOMATICALLY" value="true" />
-      <method />
-    </configuration>
-    <configuration default="true" type="GradleRunConfiguration" factoryName="Gradle">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list />
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <method />
-    </configuration>
     <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" factoryName="Plugin">
       <module name="" />
       <option name="VM_PARAMETERS" value="-Xmx512m -Xms256m -XX:MaxPermSize=250m -ea" />
       <option name="PROGRAM_PARAMETERS" />
       <method />
     </configuration>
-    <configuration default="true" type="Applet" factoryName="Applet">
+    <configuration default="true" type="GrailsRunConfigurationType" factoryName="Grails">
       <module name="" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="HTML_FILE_NAME" />
-      <option name="HTML_USED" value="false" />
-      <option name="WIDTH" value="400" />
-      <option name="HEIGHT" value="300" />
-      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
-      <option name="VM_PARAMETERS" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
+      <setting name="vmparams" value="" />
+      <setting name="cmdLine" value="run-app" />
+      <setting name="depsClasspath" value="false" />
+      <setting name="passParentEnv" value="true" />
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <setting name="launchBrowser" value="false" />
+      <method />
+    </configuration>
+    <configuration default="true" type="uTestRunConfiguration" factoryName="utest">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <extension name="scalaCoverage" />
+      <module name="" />
+      <setting name="path" value="" />
+      <setting name="package" value="" />
+      <setting name="vmparams" value="" />
+      <setting name="params" value="" />
+      <setting name="workingDirectory" value="$PROJECT_DIR$" />
+      <setting name="searchForTest" value="Across module dependencies" />
+      <setting name="testName" value="" />
+      <setting name="testKind" value="Class" />
+      <setting name="showProgressMessages" value="true" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="ScalaTestRunConfiguration" factoryName="ScalaTest">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <extension name="scalaCoverage" />
+      <module name="" />
+      <setting name="path" value="" />
+      <setting name="package" value="" />
+      <setting name="vmparams" value="" />
+      <setting name="params" value="" />
+      <setting name="workingDirectory" value="$PROJECT_DIR$" />
+      <setting name="searchForTest" value="Across module dependencies" />
+      <setting name="testName" value="" />
+      <setting name="testKind" value="Class" />
+      <setting name="showProgressMessages" value="true" />
+      <envs />
       <method />
     </configuration>
     <configuration default="true" type="JarApplication" factoryName="JAR Application">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <option name="JAR_PATH" value="$PROJECT_DIR$/lib/jcalendar.jar" />
       <envs />
       <method />
     </configuration>
@@ -770,6 +775,162 @@
       <listeners />
       <method />
     </configuration>
+    <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
+      <node-options />
+      <gulpfile />
+      <tasks />
+      <pass-parent-envs>true</pass-parent-envs>
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="BashConfigurationType" factoryName="Bash">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="INTERPRETER_PATH" value="/bin/bash" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <module name="simbs" />
+      <option name="SCRIPT_NAME" value="" />
+      <option name="PARAMETERS" value="" />
+      <method />
+    </configuration>
+    <configuration default="true" type="FlexUnitRunConfigurationType" factoryName="FlexUnit" appDescriptorForEmulator="Android" class_name="" emulatorAdlOptions="" method_name="" package_name="" scope="Class">
+      <option name="BCName" value="" />
+      <option name="launcherParameters">
+        <LauncherParameters>
+          <option name="browser" value="a7bb68e0-33c0-4d6f-a81a-aac1fdb870c8" />
+          <option name="launcherType" value="OSDefault" />
+          <option name="newPlayerInstance" value="false" />
+          <option name="playerPath" value="/usr/bin/flashplayerdebugger" />
+        </LauncherParameters>
+      </option>
+      <option name="moduleName" value="" />
+      <option name="trusted" value="true" />
+      <method />
+    </configuration>
+    <configuration default="true" type="AndroidTestRunConfigurationType" factoryName="Android Tests">
+      <module name="" />
+      <option name="TESTING_TYPE" value="0" />
+      <option name="INSTRUMENTATION_RUNNER_CLASS" value="" />
+      <option name="METHOD_NAME" value="" />
+      <option name="CLASS_NAME" value="" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="TARGET_SELECTION_MODE" value="EMULATOR" />
+      <option name="USE_LAST_SELECTED_DEVICE" value="false" />
+      <option name="PREFERRED_AVD" value="" />
+      <option name="USE_COMMAND_LINE" value="true" />
+      <option name="COMMAND_LINE" value="" />
+      <option name="WIPE_USER_DATA" value="false" />
+      <option name="DISABLE_BOOT_ANIMATION" value="false" />
+      <option name="NETWORK_SPEED" value="full" />
+      <option name="NETWORK_LATENCY" value="none" />
+      <option name="CLEAR_LOGCAT" value="false" />
+      <option name="SHOW_LOGCAT_AUTOMATICALLY" value="true" />
+      <option name="FILTER_LOGCAT_AUTOMATICALLY" value="true" />
+      <method />
+    </configuration>
+    <configuration default="true" type="FlashRunConfigurationType" factoryName="Flash App">
+      <option name="BCName" value="" />
+      <option name="IOSSimulatorSdkPath" value="" />
+      <option name="adlOptions" value="" />
+      <option name="airProgramParameters" value="" />
+      <option name="appDescriptorForEmulator" value="Android" />
+      <option name="debugTransport" value="USB" />
+      <option name="debuggerSdkRaw" value="BC SDK" />
+      <option name="emulator" value="NexusOne" />
+      <option name="emulatorAdlOptions" value="" />
+      <option name="fastPackaging" value="true" />
+      <option name="fullScreenHeight" value="0" />
+      <option name="fullScreenWidth" value="0" />
+      <option name="launchUrl" value="false" />
+      <option name="launcherParameters">
+        <LauncherParameters>
+          <option name="browser" value="a7bb68e0-33c0-4d6f-a81a-aac1fdb870c8" />
+          <option name="launcherType" value="OSDefault" />
+          <option name="newPlayerInstance" value="false" />
+          <option name="playerPath" value="/usr/bin/flashplayerdebugger" />
+        </LauncherParameters>
+      </option>
+      <option name="mobileRunTarget" value="Emulator" />
+      <option name="moduleName" value="" />
+      <option name="overriddenMainClass" value="" />
+      <option name="overriddenOutputFileName" value="" />
+      <option name="overrideMainClass" value="false" />
+      <option name="runTrusted" value="true" />
+      <option name="screenDpi" value="0" />
+      <option name="screenHeight" value="0" />
+      <option name="screenWidth" value="0" />
+      <option name="url" value="http://" />
+      <option name="usbDebugPort" value="7936" />
+      <method />
+    </configuration>
+    <configuration default="true" type="GradleRunConfiguration" factoryName="Gradle">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list />
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <method />
+    </configuration>
+    <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug">
+      <method />
+    </configuration>
+    <configuration default="true" type="Applet" factoryName="Applet">
+      <module name="" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="HTML_FILE_NAME" />
+      <option name="HTML_USED" value="false" />
+      <option name="WIDTH" value="400" />
+      <option name="HEIGHT" value="300" />
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <option name="VM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <method />
+    </configuration>
+    <configuration default="true" type="Specs2RunConfiguration" factoryName="Specs2">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <extension name="scalaCoverage" />
+      <module name="" />
+      <setting name="path" value="" />
+      <setting name="package" value="" />
+      <setting name="vmparams" value="" />
+      <setting name="params" value="" />
+      <setting name="workingDirectory" value="$PROJECT_DIR$" />
+      <setting name="searchForTest" value="Across module dependencies" />
+      <setting name="testName" value="" />
+      <setting name="testKind" value="Class" />
+      <setting name="showProgressMessages" value="true" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="CucumberJavaRunConfigurationType" factoryName="Cucumber java">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <option name="myFilePath" />
+      <option name="GLUE" />
+      <option name="myNameFilter" />
+      <option name="myGeneratedName" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="" />
+      <envs />
+      <method />
+    </configuration>
     <configuration default="false" name="Simbs" type="Application" factoryName="Application">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <option name="MAIN_CLASS_NAME" value="pw.phylame.simbs.Application" />
@@ -783,7 +944,7 @@
       <option name="PASS_PARENT_ENVS" value="true" />
       <module name="simbs" />
       <envs>
-        <env name="SIMBS_LOOK_AND_FEEL" value="javax.swing.plaf.nimbus.NimbusLookAndFeel" />
+        <env name="SIMBS_LOOK_AND_FEEL" value="" />
       </envs>
       <RunnerSettings RunnerId="Debug">
         <option name="DEBUG_PORT" value="" />
@@ -808,22 +969,20 @@
       <ConfigurationWrapper RunnerId="Run" />
       <method />
     </configuration>
-    <list size="7">
+    <list size="6">
       <item index="0" class="java.lang.String" itemvalue="Application.Simbs" />
       <item index="1" class="java.lang.String" itemvalue="Bash.runAdmin.sh" />
-      <item index="2" class="java.lang.String" itemvalue="Application.SellBookDialog" />
-      <item index="3" class="java.lang.String" itemvalue="Application.ChooseCustomerDialog" />
-      <item index="4" class="java.lang.String" itemvalue="Application.LendBookDialog" />
-      <item index="5" class="java.lang.String" itemvalue="Batch.runServer" />
-      <item index="6" class="java.lang.String" itemvalue="Batch.runAdmin" />
+      <item index="2" class="java.lang.String" itemvalue="Bash.runServer.sh" />
+      <item index="3" class="java.lang.String" itemvalue="Bash.simbs.sh" />
+      <item index="4" class="java.lang.String" itemvalue="Batch.runServer" />
+      <item index="5" class="java.lang.String" itemvalue="Batch.runAdmin" />
     </list>
     <recent_temporary>
-      <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Batch.runAdmin" />
-        <item index="1" class="java.lang.String" itemvalue="Batch.runServer" />
-        <item index="2" class="java.lang.String" itemvalue="Application.LendBookDialog" />
-        <item index="3" class="java.lang.String" itemvalue="Application.ChooseCustomerDialog" />
-        <item index="4" class="java.lang.String" itemvalue="Application.SellBookDialog" />
+      <list size="4">
+        <item index="0" class="java.lang.String" itemvalue="Bash.runServer.sh" />
+        <item index="1" class="java.lang.String" itemvalue="Bash.simbs.sh" />
+        <item index="2" class="java.lang.String" itemvalue="Batch.runAdmin" />
+        <item index="3" class="java.lang.String" itemvalue="Batch.runServer" />
       </list>
     </recent_temporary>
   </component>
@@ -847,11 +1006,13 @@
       <workItem from="1420418251672" duration="56000" />
       <workItem from="1420418413052" duration="7811000" />
       <workItem from="1420426826301" duration="16871000" />
+      <workItem from="1420702960172" duration="3730000" />
+      <workItem from="1420706738249" duration="2655000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="29079000" />
+    <option name="totallyTimeSpent" value="35464000" />
   </component>
   <component name="TodoView" selected-index="0">
     <todo-panel id="selected-file">
@@ -874,24 +1035,27 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1366" height="728" extended-state="0" />
+    <frame x="-1" y="26" width="1368" height="743" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32901135" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3241491" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.31942216" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4440843" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3241491" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.5072231" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32102728" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.19661267" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3241491" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.19619326" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32263243" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24889544" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -899,11 +1063,8 @@
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39708266" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -933,17 +1094,91 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://D:/devel/Java/jdk1.7.0_15/src.zip!/javax/swing/JComponent.java">
+    <entry file="file://$PROJECT_DIR$/src/pw/phylame/simbs/Application.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33333334" vertical-offset="2330" max-vertical-offset="112686">
-          <caret line="182" column="22" selection-start-line="182" selection-start-column="22" selection-end-line="182" selection-end-column="22" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1785">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="docComment;class#Application#0" expanded="false" />
+            <element signature="method#Application#0;class#Application#0" expanded="false" />
+            <element signature="method#init#0;class#Application#0" expanded="false" />
+            <element signature="docComment;method#createApplication#0;class#Application#0" expanded="false" />
+            <element signature="method#createApplication#0;class#Application#0" expanded="false" />
+            <element signature="docComment;method#getInstance#0;class#Application#0" expanded="false" />
+            <element signature="docComment;method#getSystemArguments#0;class#Application#0" expanded="false" />
+            <element signature="docComment;method#getSQLAdmin#0;class#Application#0" expanded="false" />
+            <element signature="docComment;method#getManager#0;class#Application#0" expanded="false" />
+            <element signature="method#getManager#0;class#Application#0" expanded="false" />
+            <element signature="docComment;method#getUI#0;class#Application#0" expanded="false" />
+            <element signature="method#getUI#0;class#Application#0" expanded="false" />
+            <element signature="docComment;method#getString#0;class#Application#0" expanded="false" />
+            <element signature="method#onCommand#0;class#Application#0" expanded="false" />
+            <element signature="method#checkLogin#0;class#Application#0" expanded="false" />
+            <element signature="method#saveProfile#0;class#Application#0" expanded="false" />
+            <element signature="docComment;method#login#0;class#Application#0" expanded="false" />
+            <element signature="method#login#0;class#Application#0" expanded="false" />
+            <element signature="docComment;method#run#0;class#Application#0" expanded="false" />
+            <element signature="method#run#0;class#Application#0" expanded="false" />
+            <element signature="docComment;method#main#0;class#Application#0" expanded="false" />
+            <element signature="e#5386#5402#0" expanded="false" />
+            <element signature="docComment;field#instance#0;class#Application#0" expanded="false" />
+            <element signature="docComment;field#languageBundle#0;class#Application#0" expanded="false" />
+            <element signature="docComment;field#args#0;class#Application#0" expanded="false" />
+            <element signature="docComment;field#sqlAdmin#0;class#Application#0" expanded="false" />
+            <element signature="docComment;field#manager#0;class#Application#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="jar://D:/devel/Java/jdk1.7.0_15/src.zip!/javax/swing/JPanel.java">
+    <entry file="file://$PROJECT_DIR$/src/pw/phylame/simbs/Constants.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33333334" vertical-offset="503" max-vertical-offset="4305">
-          <caret line="64" column="30" selection-start-line="64" selection-start-column="30" selection-end-line="64" selection-end-column="30" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="903" max-vertical-offset="1029">
+          <caret line="57" column="0" selection-start-line="57" selection-start-column="0" selection-end-line="57" selection-end-column="0" />
+          <folding>
+            <marker date="1420708511552" expanded="true" signature="1416:1442" placeholder="/**...*/" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pw/phylame/simbs/Worker.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="2667" max-vertical-offset="8358">
+          <caret line="157" column="48" selection-start-line="157" selection-start-column="48" selection-end-line="157" selection-end-column="48" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pw/phylame/simbs/Manager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1911" max-vertical-offset="2394">
+          <caret line="109" column="0" selection-start-line="109" selection-start-column="0" selection-end-line="109" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pw/phylame/simbs/ui/dialog/StoreBookDialog.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="3381">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pw/phylame/simbs/ui/dialog/SellBookDialog.form">
+      <provider selected="true" editor-type-id="ui-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pw/phylame/simbs/ui/dialog/SellBookDialog.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="3612" max-vertical-offset="4179">
+          <caret line="224" column="5" selection-start-line="224" selection-start-column="5" selection-end-line="224" selection-end-column="5" />
+          <folding>
+            <element signature="e#6870#6871#0" expanded="true" />
+            <element signature="e#6920#6921#0" expanded="true" />
+            <element signature="e#6954#6955#0" expanded="true" />
+            <element signature="e#7003#7004#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -954,25 +1189,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://D:/devel/Java/jdk1.7.0_15/src.zip!/java/awt/Component.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33333334" vertical-offset="1994" max-vertical-offset="202398">
-          <caret line="187" column="22" selection-start-line="187" selection-start-column="22" selection-end-line="187" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/pw/phylame/simbs/ui/com/TablePane.form">
-      <provider selected="true" editor-type-id="ui-designer">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/pw/phylame/simbs/ui/dialog/StoreInfoDialog.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5403088" vertical-offset="273" max-vertical-offset="1386">
-          <caret line="52" column="19" selection-start-line="52" selection-start-column="19" selection-end-line="52" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/pw/phylame/ixin/IMenuModel.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.32418525" vertical-offset="0" max-vertical-offset="924">
@@ -980,116 +1196,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/pw/phylame/simbs/ui/com/PaneRender.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5403088" vertical-offset="0" max-vertical-offset="583">
-          <caret line="29" column="0" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/pw/phylame/simbs/ui/com/TablePane.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.25214407" vertical-offset="0" max-vertical-offset="1071">
-          <caret line="29" column="38" selection-start-line="29" selection-start-column="38" selection-end-line="29" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/pw/phylame/simbs/ui/com/BookTablePane.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.45969126" vertical-offset="26" max-vertical-offset="609">
-          <caret line="41" column="45" selection-start-line="41" selection-start-column="45" selection-end-line="41" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/pw/phylame/simbs/ui/MainFrame.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.17667238" vertical-offset="422" max-vertical-offset="1365">
-          <caret line="49" column="36" selection-start-line="49" selection-start-column="36" selection-end-line="49" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/pw/phylame/simbs/ui/UIDesign.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="2351" max-vertical-offset="3507">
-          <caret line="143" column="0" selection-start-line="143" selection-start-column="0" selection-end-line="143" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/pw/phylame/simbs/ui/dialog/ChooseBookDialog.form">
-      <provider selected="true" editor-type-id="ui-designer">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/res/assert/drop_table.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.39451116" vertical-offset="0" max-vertical-offset="583">
-          <caret line="10" column="17" selection-start-line="10" selection-start-column="17" selection-end-line="10" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/res/assert/create_table.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.4350877" vertical-offset="1109" max-vertical-offset="1771">
-          <caret line="59" column="26" selection-start-line="59" selection-start-column="26" selection-end-line="59" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/res/assert/add_records.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.39473686" vertical-offset="373" max-vertical-offset="943">
-          <caret line="26" column="0" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/res/assert/query_records.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.78070176" vertical-offset="268" max-vertical-offset="851">
-          <caret line="31" column="15" selection-start-line="31" selection-start-column="15" selection-end-line="31" selection-end-column="15" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/i18n/simbs.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.35506004" vertical-offset="1127" max-vertical-offset="8004">
-          <caret line="58" column="21" selection-start-line="58" selection-start-column="21" selection-end-line="58" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/pw/phylame/simbs/ui/com/NavigatePane.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6843911" vertical-offset="107" max-vertical-offset="690">
-          <caret line="68" column="19" selection-start-line="68" selection-start-column="19" selection-end-line="68" selection-end-column="19" />
-          <folding>
-            <element signature="docComment;class#NavigatePane#0" expanded="false" />
-            <element signature="method#NavigatePane#0;class#NavigatePane#0" expanded="false" />
-            <element signature="e#1239#1241#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/pw/phylame/simbs/ui/com/NavigatePane.form">
-      <provider selected="true" editor-type-id="ui-designer">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/res/Note.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.07890223" vertical-offset="0" max-vertical-offset="583">
-          <caret line="2" column="10" selection-start-line="2" selection-start-column="10" selection-end-line="2" selection-end-column="10" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/pw/phylame/simbs/ds/Customer.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.49473685" vertical-offset="155" max-vertical-offset="1679">
           <caret line="35" column="24" selection-start-line="35" selection-start-column="24" selection-end-line="35" selection-end-column="24" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1098,53 +1208,12 @@
         <state vertical-scroll-proportion="-1.735849" vertical-offset="1587" max-vertical-offset="2185">
           <caret line="39" column="0" selection-start-line="39" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1013#1014#0" expanded="true" />
-            <element signature="e#1099#1100#0" expanded="true" />
-            <element signature="e#2883#2884#0" expanded="true" />
-            <element signature="e#2917#2918#0" expanded="true" />
+            <element signature="imports" expanded="false" />
+            <element signature="e#1013#1014#0" expanded="false" />
+            <element signature="e#1099#1100#0" expanded="false" />
+            <element signature="e#2883#2884#0" expanded="false" />
+            <element signature="e#2917#2918#0" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://D:/devel/Java/jdk1.7.0_15/src.zip!/java/lang/Number.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.17152658" vertical-offset="38" max-vertical-offset="759">
-          <caret line="49" column="4" selection-start-line="49" selection-start-column="4" selection-end-line="49" selection-end-column="4" />
-          <folding>
-            <element signature="docComment;class#Number#0" expanded="false" />
-            <element signature="docComment;method#intValue#0;class#Number#0" expanded="false" />
-            <element signature="docComment;method#longValue#0;class#Number#0" expanded="false" />
-            <element signature="docComment;method#floatValue#0;class#Number#0" expanded="false" />
-            <element signature="docComment;method#doubleValue#0;class#Number#0" expanded="false" />
-            <element signature="docComment;method#byteValue#0;class#Number#0" expanded="false" />
-            <element signature="docComment;method#shortValue#0;class#Number#0" expanded="false" />
-            <element signature="docComment;field#serialVersionUID#0;class#Number#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://D:/devel/Java/jdk1.7.0_15/src.zip!/java/lang/String.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.6649122" vertical-offset="61427" max-vertical-offset="69184">
-          <caret line="2795" column="25" selection-start-line="2795" selection-start-column="25" selection-end-line="2795" selection-end-column="25" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://D:/devel/Java/jdk1.7.0_15/src.zip!/java/sql/ResultSet.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.41403508" vertical-offset="2754" max-vertical-offset="94737">
-          <caret line="156" column="26" selection-start-line="156" selection-start-column="26" selection-end-line="156" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://D:/devel/Java/jdk1.7.0_15/src.zip!/java/sql/Connection.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7368421" vertical-offset="12138" max-vertical-offset="33764">
-          <caret line="570" column="7" selection-start-line="570" selection-start-column="7" selection-end-line="570" selection-end-column="7" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1168,55 +1237,6 @@
             <element signature="docComment;method#executeUpdate#1;class#SQLAdmin#0" expanded="false" />
             <element signature="method#executeUpdate#1;class#SQLAdmin#0" expanded="false" />
             <element signature="method#queryAndPaging#0;class#SQLAdmin#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://D:/devel/Java/jdk1.7.0_15/src.zip!/java/sql/PreparedStatement.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5754386" vertical-offset="5146" max-vertical-offset="27669">
-          <caret line="264" column="9" selection-start-line="264" selection-start-column="9" selection-end-line="264" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://D:/devel/Java/jdk1.7.0_15/src.zip!/java/sql/Date.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.6140652" vertical-offset="1048" max-vertical-offset="5083">
-          <caret line="53" column="11" selection-start-line="53" selection-start-column="11" selection-end-line="53" selection-end-column="11" />
-          <folding>
-            <element signature="e#1325#1326#0" expanded="false" />
-            <element signature="e#1364#1365#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://D:/devel/Java/jdk1.7.0_15/src.zip!/java/sql/Time.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.49056605" vertical-offset="772" max-vertical-offset="4899">
-          <caret line="71" column="7" selection-start-line="71" selection-start-column="7" selection-end-line="71" selection-end-column="7" />
-          <folding>
-            <element signature="e#1772#1773#0" expanded="false" />
-            <element signature="e#1799#1800#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/pw/phylame/simbs/Constants.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1305" max-vertical-offset="2346">
-          <caret line="90" column="30" selection-start-line="90" selection-start-column="30" selection-end-line="90" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/pw/phylame/simbs/Application.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.41403508" vertical-offset="2593" max-vertical-offset="4071">
-          <caret line="155" column="23" selection-start-line="155" selection-start-column="23" selection-end-line="155" selection-end-column="23" />
-          <folding>
-            <element signature="e#4471#4717#0" expanded="true" />
-            <element signature="e#4716#4717#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1274,11 +1294,6 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/pw/phylame/simbs/ui/dialog/LendBookDialog.form">
-      <provider selected="true" editor-type-id="ui-designer">
-        <state />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/pw/phylame/simbs/ui/dialog/LendBookDialog.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.677193" vertical-offset="3869" max-vertical-offset="4439">
@@ -1287,266 +1302,6 @@
             <element signature="e#7439#7440#0" expanded="true" />
             <element signature="e#7488#7489#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://D:/devel/Java/jdk1.7.0_15/src.zip!/java/lang/Object.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3327616" vertical-offset="4636" max-vertical-offset="12305">
-          <caret line="235" column="18" selection-start-line="235" selection-start-column="18" selection-end-line="235" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://D:/devel/Java/jdk1.7.0_15/src.zip!/java/math/BigDecimal.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="4337" max-vertical-offset="14927">
-          <caret line="1561" column="53" selection-start-line="1561" selection-start-column="53" selection-end-line="1561" selection-end-column="53" />
-          <folding>
-            <element signature="docComment;class#BigDecimal#0" expanded="false" />
-            <element signature="docComment;field#intVal#0;class#BigDecimal#0" expanded="false" />
-            <element signature="docComment;field#scale#0;class#BigDecimal#0" expanded="false" />
-            <element signature="docComment;field#precision#0;class#BigDecimal#0" expanded="false" />
-            <element signature="docComment;field#stringCache#0;class#BigDecimal#0" expanded="false" />
-            <element signature="docComment;field#INFLATED#0;class#BigDecimal#0" expanded="false" />
-            <element signature="docComment;field#intCompact#0;class#BigDecimal#0" expanded="false" />
-            <element signature="docComment;field#ZERO#0;class#BigDecimal#0" expanded="false" />
-            <element signature="docComment;field#ONE#0;class#BigDecimal#0" expanded="false" />
-            <element signature="docComment;field#TEN#0;class#BigDecimal#0" expanded="false" />
-            <element signature="docComment;method#BigDecimal#0;class#BigDecimal#0" expanded="false" />
-            <element signature="method#BigDecimal#0;class#BigDecimal#0" expanded="false" />
-            <element signature="docComment;method#BigDecimal#1;class#BigDecimal#0" expanded="false" />
-            <element signature="method#BigDecimal#1;class#BigDecimal#0" expanded="false" />
-            <element signature="e#15907#15967#0" expanded="false" />
-            <element signature="e#16508#16566#0" expanded="false" />
-            <element signature="e#17400#17464#0" expanded="false" />
-            <element signature="e#17823#17883#0" expanded="false" />
-            <element signature="e#21932#21959#0" expanded="false" />
-            <element signature="docComment;method#BigDecimal#2;class#BigDecimal#0" expanded="false" />
-            <element signature="method#BigDecimal#2;class#BigDecimal#0" expanded="false" />
-            <element signature="docComment;method#BigDecimal#3;class#BigDecimal#0" expanded="false" />
-            <element signature="docComment;method#BigDecimal#4;class#BigDecimal#0" expanded="false" />
-            <element signature="docComment;method#BigDecimal#5;class#BigDecimal#0" expanded="false" />
-            <element signature="docComment;method#BigDecimal#6;class#BigDecimal#0" expanded="false" />
-            <element signature="method#BigDecimal#6;class#BigDecimal#0" expanded="false" />
-            <element signature="docComment;method#BigDecimal#7;class#BigDecimal#0" expanded="false" />
-            <element signature="method#BigDecimal#7;class#BigDecimal#0" expanded="false" />
-            <element signature="e#33918#33988#0" expanded="false" />
-            <element signature="docComment;method#BigDecimal#8;class#BigDecimal#0" expanded="false" />
-            <element signature="method#BigDecimal#8;class#BigDecimal#0" expanded="false" />
-            <element signature="docComment;method#BigDecimal#9;class#BigDecimal#0" expanded="false" />
-            <element signature="method#BigDecimal#9;class#BigDecimal#0" expanded="false" />
-            <element signature="docComment;method#BigDecimal#10;class#BigDecimal#0" expanded="false" />
-            <element signature="method#BigDecimal#10;class#BigDecimal#0" expanded="false" />
-            <element signature="docComment;method#BigDecimal#11;class#BigDecimal#0" expanded="false" />
-            <element signature="method#BigDecimal#11;class#BigDecimal#0" expanded="false" />
-            <element signature="docComment;method#BigDecimal#12;class#BigDecimal#0" expanded="false" />
-            <element signature="method#BigDecimal#12;class#BigDecimal#0" expanded="false" />
-            <element signature="docComment;method#BigDecimal#13;class#BigDecimal#0" expanded="false" />
-            <element signature="docComment;method#BigDecimal#14;class#BigDecimal#0" expanded="false" />
-            <element signature="method#BigDecimal#14;class#BigDecimal#0" expanded="false" />
-            <element signature="docComment;method#BigDecimal#15;class#BigDecimal#0" expanded="false" />
-            <element signature="method#BigDecimal#15;class#BigDecimal#0" expanded="false" />
-            <element signature="docComment;method#BigDecimal#16;class#BigDecimal#0" expanded="false" />
-            <element signature="method#BigDecimal#16;class#BigDecimal#0" expanded="false" />
-            <element signature="docComment;method#valueOf#0;class#BigDecimal#0" expanded="false" />
-            <element signature="method#valueOf#0;class#BigDecimal#0" expanded="false" />
-            <element signature="docComment;method#valueOf#1;class#BigDecimal#0" expanded="false" />
-            <element signature="method#valueOf#1;class#BigDecimal#0" expanded="false" />
-            <element signature="docComment;method#valueOf#2;class#BigDecimal#0" expanded="false" />
-            <element signature="method#valueOf#2;class#BigDecimal#0" expanded="false" />
-            <element signature="e#43394#43457#0" expanded="false" />
-            <element signature="docComment;method#add#0;class#BigDecimal#0" expanded="false" />
-            <element signature="method#add#0;class#BigDecimal#0" expanded="false" />
-            <element signature="e#44994#45051#0" expanded="false" />
-            <element signature="docComment;method#add#1;class#BigDecimal#0" expanded="false" />
-            <element signature="method#add#1;class#BigDecimal#0" expanded="false" />
-            <element signature="e#46419#46481#0" expanded="false" />
-            <element signature="docComment;method#preAlign#0;class#BigDecimal#0" expanded="false" />
-            <element signature="method#preAlign#0;class#BigDecimal#0" expanded="false" />
-            <element signature="e#51313#51370#0" expanded="false" />
-            <element signature="docComment;method#subtract#0;class#BigDecimal#0" expanded="false" />
-            <element signature="docComment;method#subtract#1;class#BigDecimal#0" expanded="false" />
-            <element signature="method#subtract#1;class#BigDecimal#0" expanded="false" />
-            <element signature="docComment;method#multiply#0;class#BigDecimal#0" expanded="false" />
-            <element signature="method#multiply#0;class#BigDecimal#0" expanded="false" />
-            <element signature="e#53370#53430#0" expanded="false" />
-            <element signature="docComment;method#multiply#1;class#BigDecimal#0" expanded="false" />
-            <element signature="method#multiply#1;class#BigDecimal#0" expanded="false" />
-            <element signature="docComment;method#divide#0;class#BigDecimal#0" expanded="false" />
-            <element signature="method#divide#0;class#BigDecimal#0" expanded="false" />
-            <element signature="docComment;method#divideAndRound#0;class#BigDecimal#0" expanded="false" />
-            <element signature="method#divideAndRound#0;class#BigDecimal#0" expanded="false" />
-            <element signature="docComment;method#divide#1;class#BigDecimal#0" expanded="false" />
-            <element signature="method#divide#1;class#BigDecimal#0" expanded="false" />
-            <element signature="docComment;method#divide#2;class#BigDecimal#0" expanded="false" />
-            <element signature="docComment;method#divide#3;class#BigDecimal#0" expanded="false" />
-            <element signature="docComment;method#divide#4;class#BigDecimal#0" expanded="false" />
-            <element signature="e#68193#68250#0" expanded="false" />
-            <element signature="docComment;method#divide#5;class#BigDecimal#0" expanded="false" />
-            <element signature="method#divide#5;class#BigDecimal#0" expanded="false" />
-            <element signature="e#69465#69514#0" expanded="false" />
-            <element signature="e#71203#71273#0" expanded="false" />
-            <element signature="docComment;method#divideToIntegralValue#0;class#BigDecimal#0" expanded="false" />
-            <element signature="method#divideToIntegralValue#0;class#BigDecimal#0" expanded="false" />
-            <element signature="e#73131#73191#0" expanded="false" />
-            <element signature="docComment;method#divideToIntegralValue#1;class#BigDecimal#0" expanded="false" />
-            <element signature="method#divideToIntegralValue#1;class#BigDecimal#0" expanded="false" />
-            <element signature="e#76281#76326#0" expanded="false" />
-            <element signature="docComment;method#remainder#0;class#BigDecimal#0" expanded="false" />
-            <element signature="method#remainder#0;class#BigDecimal#0" expanded="false" />
-            <element signature="docComment;method#remainder#1;class#BigDecimal#0" expanded="false" />
-            <element signature="method#remainder#1;class#BigDecimal#0" expanded="false" />
-            <element signature="docComment;method#divideAndRemainder#0;class#BigDecimal#0" expanded="false" />
-            <element signature="method#divideAndRemainder#0;class#BigDecimal#0" expanded="false" />
-            <element signature="docComment;method#divideAndRemainder#1;class#BigDecimal#0" expanded="false" />
-            <element signature="method#divideAndRemainder#1;class#BigDecimal#0" expanded="false" />
-            <element signature="docComment;method#pow#0;class#BigDecimal#0" expanded="false" />
-            <element signature="method#pow#0;class#BigDecimal#0" expanded="false" />
-            <element signature="e#83413#83474#0" expanded="false" />
-            <element signature="docComment;method#pow#1;class#BigDecimal#0" expanded="false" />
-            <element signature="method#pow#1;class#BigDecimal#0" expanded="false" />
-            <element signature="docComment;method#abs#0;class#BigDecimal#0" expanded="false" />
-            <element signature="docComment;method#abs#1;class#BigDecimal#0" expanded="false" />
-            <element signature="docComment;method#negate#0;class#BigDecimal#0" expanded="false" />
-            <element signature="method#negate#0;class#BigDecimal#0" expanded="false" />
-            <element signature="docComment;method#negate#1;class#BigDecimal#0" expanded="false" />
-            <element signature="docComment;method#plus#0;class#BigDecimal#0" expanded="false" />
-            <element signature="docComment;method#plus#1;class#BigDecimal#0" expanded="false" />
-            <element signature="method#plus#1;class#BigDecimal#0" expanded="false" />
-            <element signature="docComment;method#signum#0;class#BigDecimal#0" expanded="false" />
-            <element signature="method#signum#0;class#BigDecimal#0" expanded="false" />
-            <element signature="docComment;method#scale#0;class#BigDecimal#0" expanded="false" />
-            <element signature="docComment;method#precision#0;class#BigDecimal#0" expanded="false" />
-            <element signature="method#precision#0;class#BigDecimal#0" expanded="false" />
-            <element signature="docComment;method#unscaledValue#0;class#BigDecimal#0" expanded="false" />
-            <element signature="docComment;field#ROUND_UP#0;class#BigDecimal#0" expanded="false" />
-            <element signature="docComment;field#ROUND_DOWN#0;class#BigDecimal#0" expanded="false" />
-            <element signature="docComment;field#ROUND_CEILING#0;class#BigDecimal#0" expanded="false" />
-            <element signature="docComment;field#ROUND_FLOOR#0;class#BigDecimal#0" expanded="false" />
-            <element signature="docComment;field#ROUND_HALF_UP#0;class#BigDecimal#0" expanded="false" />
-            <element signature="docComment;field#ROUND_HALF_DOWN#0;class#BigDecimal#0" expanded="false" />
-            <element signature="docComment;field#ROUND_HALF_EVEN#0;class#BigDecimal#0" expanded="false" />
-            <element signature="docComment;field#ROUND_UNNECESSARY#0;class#BigDecimal#0" expanded="false" />
-            <element signature="docComment;method#round#0;class#BigDecimal#0" expanded="false" />
-            <element signature="docComment;method#setScale#0;class#BigDecimal#0" expanded="false" />
-            <element signature="method#setScale#0;class#BigDecimal#0" expanded="false" />
-            <element signature="docComment;method#setScale#1;class#BigDecimal#0" expanded="false" />
-            <element signature="method#setScale#1;class#BigDecimal#0" expanded="false" />
-            <element signature="e#100928#100970#0" expanded="false" />
-            <element signature="docComment;method#setScale#2;class#BigDecimal#0" expanded="false" />
-            <element signature="docComment;method#movePointLeft#0;class#BigDecimal#0" expanded="false" />
-            <element signature="method#movePointLeft#0;class#BigDecimal#0" expanded="false" />
-            <element signature="docComment;method#movePointRight#0;class#BigDecimal#0" expanded="false" />
-            <element signature="method#movePointRight#0;class#BigDecimal#0" expanded="false" />
-            <element signature="docComment;method#scaleByPowerOfTen#0;class#BigDecimal#0" expanded="false" />
-            <element signature="method#scaleByPowerOfTen#0;class#BigDecimal#0" expanded="false" />
-            <element signature="docComment;method#stripTrailingZeros#0;class#BigDecimal#0" expanded="false" />
-            <element signature="method#stripTrailingZeros#0;class#BigDecimal#0" expanded="false" />
-            <element signature="docComment;method#compareTo#0;class#BigDecimal#0" expanded="false" />
-            <element signature="method#compareTo#0;class#BigDecimal#0" expanded="false" />
-            <element signature="docComment;method#compareMagnitude#0;class#BigDecimal#0" expanded="false" />
-            <element signature="method#compareMagnitude#0;class#BigDecimal#0" expanded="false" />
-            <element signature="docComment;method#equals#0;class#BigDecimal#0" expanded="false" />
-            <element signature="method#equals#0;class#BigDecimal#0" expanded="false" />
-            <element signature="docComment;method#min#0;class#BigDecimal#0" expanded="false" />
-            <element signature="docComment;method#max#0;class#BigDecimal#0" expanded="false" />
-            <element signature="docComment;method#hashCode#0;class#BigDecimal#0" expanded="false" />
-            <element signature="method#hashCode#0;class#BigDecimal#0" expanded="false" />
-            <element signature="docComment;method#toString#0;class#BigDecimal#0" expanded="false" />
-            <element signature="docComment;method#toEngineeringString#0;class#BigDecimal#0" expanded="false" />
-            <element signature="method#getValueString#0;class#BigDecimal#0" expanded="false" />
-            <element signature="docComment;method#toBigInteger#0;class#BigDecimal#0" expanded="false" />
-            <element signature="method#toBigInteger#0;class#BigDecimal#0" expanded="false" />
-            <element signature="docComment;method#toBigIntegerExact#0;class#BigDecimal#0" expanded="false" />
-            <element signature="method#toBigIntegerExact#0;class#BigDecimal#0" expanded="false" />
-            <element signature="docComment;method#longValue#0;class#BigDecimal#0" expanded="false" />
-            <element signature="method#longValue#0;class#BigDecimal#0" expanded="false" />
-            <element signature="docComment;method#longValueExact#0;class#BigDecimal#0" expanded="false" />
-            <element signature="method#longValueExact#0;class#BigDecimal#0" expanded="false" />
-            <element signature="e#126145#126208#0" expanded="false" />
-            <element signature="class#LongOverflow#0;class#BigDecimal#0" expanded="false" />
-            <element signature="docComment;field#LONGMIN#0;class#LongOverflow#0;class#BigDecimal#0" expanded="false" />
-            <element signature="docComment;field#LONGMAX#0;class#LongOverflow#0;class#BigDecimal#0" expanded="false" />
-            <element signature="method#check#0;class#LongOverflow#0;class#BigDecimal#0" expanded="false" />
-            <element signature="docComment;method#intValueExact#0;class#BigDecimal#0" expanded="false" />
-            <element signature="method#intValueExact#0;class#BigDecimal#0" expanded="false" />
-            <element signature="docComment;method#shortValueExact#0;class#BigDecimal#0" expanded="false" />
-            <element signature="method#shortValueExact#0;class#BigDecimal#0" expanded="false" />
-            <element signature="docComment;method#byteValueExact#0;class#BigDecimal#0" expanded="false" />
-            <element signature="method#byteValueExact#0;class#BigDecimal#0" expanded="false" />
-            <element signature="docComment;method#floatValue#0;class#BigDecimal#0" expanded="false" />
-            <element signature="method#floatValue#0;class#BigDecimal#0" expanded="false" />
-            <element signature="docComment;method#doubleValue#0;class#BigDecimal#0" expanded="false" />
-            <element signature="method#doubleValue#0;class#BigDecimal#0" expanded="false" />
-            <element signature="docComment;method#ulp#0;class#BigDecimal#0" expanded="false" />
-            <element signature="n#!!doc;n#StringBuilderHelper#0;n#BigDecimal#0" expanded="false" />
-            <element signature="class#StringBuilderHelper#0;class#BigDecimal#0" expanded="false" />
-            <element signature="method#StringBuilderHelper#0;class#StringBuilderHelper#0;class#BigDecimal#0" expanded="false" />
-            <element signature="method#getStringBuilder#0;class#StringBuilderHelper#0;class#BigDecimal#0" expanded="false" />
-            <element signature="docComment;method#putIntCompact#0;class#StringBuilderHelper#0;class#BigDecimal#0" expanded="false" />
-            <element signature="method#putIntCompact#0;class#StringBuilderHelper#0;class#BigDecimal#0" expanded="false" />
-            <element signature="e#134949#135018#0" expanded="false" />
-            <element signature="docComment;method#layoutChars#0;class#BigDecimal#0" expanded="false" />
-            <element signature="method#layoutChars#0;class#BigDecimal#0" expanded="false" />
-            <element signature="e#138530#138592#0" expanded="false" />
-            <element signature="docComment;method#bigTenToThe#0;class#BigDecimal#0" expanded="false" />
-            <element signature="method#bigTenToThe#0;class#BigDecimal#0" expanded="false" />
-            <element signature="e#142382#142440#0" expanded="false" />
-            <element signature="docComment;method#expandBigIntegerTenPowers#0;class#BigDecimal#0" expanded="false" />
-            <element signature="method#expandBigIntegerTenPowers#0;class#BigDecimal#0" expanded="false" />
-            <element signature="e#143238#143305#0" expanded="false" />
-            <element signature="e#143713#143745#0" expanded="false" />
-            <element signature="docComment;method#longMultiplyPowerTen#0;class#BigDecimal#0" expanded="false" />
-            <element signature="method#longMultiplyPowerTen#0;class#BigDecimal#0" expanded="false" />
-            <element signature="docComment;method#bigMultiplyPowerTen#0;class#BigDecimal#0" expanded="false" />
-            <element signature="method#bigMultiplyPowerTen#0;class#BigDecimal#0" expanded="false" />
-            <element signature="docComment;method#inflate#0;class#BigDecimal#0" expanded="false" />
-            <element signature="method#inflate#0;class#BigDecimal#0" expanded="false" />
-            <element signature="docComment;method#matchScale#0;class#BigDecimal#0" expanded="false" />
-            <element signature="method#matchScale#0;class#BigDecimal#0" expanded="false" />
-            <element signature="docComment;method#readObject#0;class#BigDecimal#0" expanded="false" />
-            <element signature="method#readObject#0;class#BigDecimal#0" expanded="false" />
-            <element signature="docComment;method#writeObject#0;class#BigDecimal#0" expanded="false" />
-            <element signature="method#writeObject#0;class#BigDecimal#0" expanded="false" />
-            <element signature="docComment;method#longDigitLength#0;class#BigDecimal#0" expanded="false" />
-            <element signature="method#longDigitLength#0;class#BigDecimal#0" expanded="false" />
-            <element signature="docComment;method#bigDigitLength#0;class#BigDecimal#0" expanded="false" />
-            <element signature="method#bigDigitLength#0;class#BigDecimal#0" expanded="false" />
-            <element signature="docComment;method#stripZerosToMatchScale#0;class#BigDecimal#0" expanded="false" />
-            <element signature="method#stripZerosToMatchScale#0;class#BigDecimal#0" expanded="false" />
-            <element signature="docComment;method#checkScale#0;class#BigDecimal#0" expanded="false" />
-            <element signature="method#checkScale#0;class#BigDecimal#0" expanded="false" />
-            <element signature="docComment;method#roundOp#0;class#BigDecimal#0" expanded="false" />
-            <element signature="method#roundOp#0;class#BigDecimal#0" expanded="false" />
-            <element signature="docComment;method#roundThis#0;class#BigDecimal#0" expanded="false" />
-            <element signature="method#roundThis#0;class#BigDecimal#0" expanded="false" />
-            <element signature="docComment;method#doRound#0;class#BigDecimal#0" expanded="false" />
-            <element signature="method#doRound#0;class#BigDecimal#0" expanded="false" />
-            <element signature="docComment;method#compactValFor#0;class#BigDecimal#0" expanded="false" />
-            <element signature="method#compactValFor#0;class#BigDecimal#0" expanded="false" />
-            <element signature="method#longCompareMagnitude#0;class#BigDecimal#0" expanded="false" />
-            <element signature="method#saturateLong#0;class#BigDecimal#0" expanded="false" />
-            <element signature="method#print#0;class#BigDecimal#0" expanded="false" />
-            <element signature="docComment;method#audit#0;class#BigDecimal#0" expanded="false" />
-            <element signature="method#audit#0;class#BigDecimal#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://D:/devel/Java/jdk1.7.0_15/src.zip!/java/math/RoundingMode.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.45438597" vertical-offset="1190" max-vertical-offset="7498">
-          <caret line="90" column="27" selection-start-line="90" selection-start-column="27" selection-end-line="90" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/pw/phylame/simbs/Manager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1622" max-vertical-offset="4370">
-          <caret line="109" column="0" selection-start-line="109" selection-start-column="0" selection-end-line="109" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1563,29 +1318,82 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/pw/phylame/tools/sql/PageResultSet.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.42881647" vertical-offset="1015" max-vertical-offset="2484">
+          <caret line="78" column="0" selection-start-line="78" selection-start-column="0" selection-end-line="78" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pw/phylame/simbs/Worker.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="4158" max-vertical-offset="13608">
+          <caret line="215" column="48" selection-start-line="215" selection-start-column="48" selection-end-line="215" selection-end-column="48" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bin/runServer.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.41042346" vertical-offset="127" max-vertical-offset="713">
+          <caret line="11" column="45" selection-start-line="11" selection-start-column="45" selection-end-line="11" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/pw/phylame/simbs/ui/dialog/SellBookDialog.form">
       <provider selected="true" editor-type-id="ui-designer">
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/pw/phylame/tools/sql/PageResultSet.java">
+    <entry file="file://$PROJECT_DIR$/res/Note.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.42881647" vertical-offset="1015" max-vertical-offset="2484">
-          <caret line="78" column="0" selection-start-line="78" selection-start-column="0" selection-end-line="78" selection-end-column="0" />
-          <folding />
+        <state vertical-scroll-proportion="0.07553366" vertical-offset="0" max-vertical-offset="609">
+          <caret line="2" column="12" selection-start-line="2" selection-start-column="12" selection-end-line="2" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/assert/add_records.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.45973155" vertical-offset="347" max-vertical-offset="943">
+          <caret line="27" column="23" selection-start-line="27" selection-start-column="23" selection-end-line="27" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/assert/create_table.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.4161074" vertical-offset="1109" max-vertical-offset="1771">
+          <caret line="59" column="26" selection-start-line="59" selection-start-column="26" selection-end-line="59" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/assert/drop_table.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.45320198" vertical-offset="0" max-vertical-offset="609">
+          <caret line="12" column="16" selection-start-line="12" selection-start-column="16" selection-end-line="12" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/assert/query_records.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.2912088" vertical-offset="48" max-vertical-offset="851">
+          <caret line="9" column="37" selection-start-line="9" selection-start-column="37" selection-end-line="9" selection-end-column="37" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/pw/phylame/simbs/ui/dialog/ChooseBookDialog.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5964912" vertical-offset="4398" max-vertical-offset="5175">
-          <caret line="394" column="25" selection-start-line="394" selection-start-column="25" selection-end-line="394" selection-end-column="25" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="11" max-vertical-offset="1242">
+          <caret line="35" column="0" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
           <folding>
+            <element signature="method#ChooseBookDialog#0;class#ChooseBookDialog#0" expanded="false" />
             <element signature="e#2807#2866#0" expanded="false" />
+            <element signature="method#ChooseBookDialog#1;class#ChooseBookDialog#0" expanded="false" />
             <element signature="method#onCancel#0;class#ChooseBookDialog#0" expanded="false" />
             <element signature="method#onNew#0;class#ChooseBookDialog#0" expanded="false" />
+            <element signature="method#onSearch#0;class#ChooseBookDialog#0" expanded="false" />
             <element signature="e#8205#8243#0" expanded="false" />
             <element signature="e#8659#8736#0" expanded="false" />
+            <element signature="class#BookTableModel#0;class#ChooseBookDialog#0" expanded="false" />
             <element signature="class#BookEntry#0;class#BookTableModel#0;class#ChooseBookDialog#0" expanded="false" />
             <element signature="method#BookEntry#0;class#BookEntry#0;class#BookTableModel#0;class#ChooseBookDialog#0" expanded="false" />
             <element signature="method#BookTableModel#0;class#BookTableModel#0;class#ChooseBookDialog#0" expanded="false" />
@@ -1593,26 +1401,478 @@
             <element signature="method#setDataSource#0;class#BookTableModel#0;class#ChooseBookDialog#0" expanded="false" />
             <element signature="method#pageUpdated#0;class#BookTableModel#0;class#ChooseBookDialog#0" expanded="false" />
             <element signature="method#getColumnName#0;class#BookTableModel#0;class#ChooseBookDialog#0" expanded="false" />
+            <element signature="method#getRowCount#0;class#BookTableModel#0;class#ChooseBookDialog#0" expanded="false" />
             <element signature="method#getValueAt#0;class#BookTableModel#0;class#ChooseBookDialog#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/pw/phylame/simbs/Worker.java">
+    <entry file="file://$PROJECT_DIR$/src/pw/phylame/simbs/ui/dialog/ChooseBookDialog.form">
+      <provider selected="true" editor-type-id="ui-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bin/simbs.sh">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="2821" max-vertical-offset="14628">
-          <caret line="157" column="53" selection-start-line="157" selection-start-column="53" selection-end-line="157" selection-end-column="53" />
-          <folding />
+        <state vertical-scroll-proportion="0.53140914" vertical-offset="101" max-vertical-offset="690">
+          <caret line="18" column="31" selection-start-line="18" selection-start-column="31" selection-end-line="18" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bin/simbs.bat">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.46859083" vertical-offset="0" max-vertical-offset="589">
+          <caret line="12" column="0" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/pw/phylame/simbs/ui/dialog/StoreBookDialog.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6418919" vertical-offset="2225" max-vertical-offset="3427">
-          <caret line="150" column="9" selection-start-line="150" selection-start-column="9" selection-end-line="150" selection-end-column="9" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="1647" max-vertical-offset="3381">
+          <caret line="121" column="24" selection-start-line="121" selection-start-column="24" selection-end-line="121" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pw/phylame/simbs/Application.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="861" max-vertical-offset="1955">
+          <caret line="169" column="42" selection-start-line="169" selection-start-column="42" selection-end-line="169" selection-end-column="42" />
           <folding>
-            <element signature="e#1727#1728#0" expanded="true" />
-            <element signature="e#1771#1772#0" expanded="true" />
+            <element signature="docComment;class#Application#0" expanded="false" />
+            <element signature="method#Application#0;class#Application#0" expanded="false" />
+            <element signature="method#init#0;class#Application#0" expanded="false" />
+            <element signature="docComment;method#createApplication#0;class#Application#0" expanded="false" />
+            <element signature="method#createApplication#0;class#Application#0" expanded="false" />
+            <element signature="docComment;method#getInstance#0;class#Application#0" expanded="false" />
+            <element signature="docComment;method#getSystemArguments#0;class#Application#0" expanded="false" />
+            <element signature="docComment;method#getSQLAdmin#0;class#Application#0" expanded="false" />
+            <element signature="docComment;method#getManager#0;class#Application#0" expanded="false" />
+            <element signature="method#getManager#0;class#Application#0" expanded="false" />
+            <element signature="docComment;method#getUI#0;class#Application#0" expanded="false" />
+            <element signature="method#getUI#0;class#Application#0" expanded="false" />
+            <element signature="docComment;method#getString#0;class#Application#0" expanded="false" />
+            <element signature="method#onCommand#0;class#Application#0" expanded="false" />
+            <element signature="method#checkLogin#0;class#Application#0" expanded="false" />
+            <element signature="method#saveProfile#0;class#Application#0" expanded="false" />
+            <element signature="docComment;method#login#0;class#Application#0" expanded="false" />
+            <element signature="method#login#0;class#Application#0" expanded="false" />
+            <element signature="docComment;method#run#0;class#Application#0" expanded="false" />
+            <element signature="method#run#0;class#Application#0" expanded="false" />
+            <element signature="docComment;method#main#0;class#Application#0" expanded="false" />
+            <element signature="e#5386#5402#0" expanded="false" />
+            <element signature="docComment;field#instance#0;class#Application#0" expanded="false" />
+            <element signature="docComment;field#languageBundle#0;class#Application#0" expanded="false" />
+            <element signature="docComment;field#args#0;class#Application#0" expanded="false" />
+            <element signature="docComment;field#sqlAdmin#0;class#Application#0" expanded="false" />
+            <element signature="docComment;field#manager#0;class#Application#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///usr/java/jdk1.7.0_71/src.zip!/java/awt/GraphicsConfiguration.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.3327674" vertical-offset="1621" max-vertical-offset="9913">
+          <caret line="108" column="22" selection-start-line="108" selection-start-column="22" selection-end-line="108" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///usr/java/jdk1.7.0_71/src.zip!/java/awt/image/ImageObserver.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.3327674" vertical-offset="80" max-vertical-offset="3519">
+          <caret line="35" column="17" selection-start-line="35" selection-start-column="17" selection-end-line="35" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///usr/java/jdk1.7.0_71/src.zip!/java/awt/Component.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.33333334" vertical-offset="2200" max-vertical-offset="222801">
+          <caret line="187" column="47" selection-start-line="187" selection-start-column="47" selection-end-line="187" selection-end-column="47" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///usr/java/jdk1.7.0_71/src.zip!/java/awt/Container.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.33333334" vertical-offset="475" max-vertical-offset="110124">
+          <caret line="90" column="34" selection-start-line="90" selection-start-column="34" selection-end-line="90" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///usr/java/jdk1.7.0_71/src.zip!/java/awt/Window.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.23958333" vertical-offset="0" max-vertical-offset="576">
+          <caret line="147" column="33" selection-start-line="147" selection-start-column="33" selection-end-line="147" selection-end-column="33" />
+          <folding>
+            <element signature="docComment;class#Window#0" expanded="false" />
+            <element signature="class#Window#0" expanded="false" />
+            <element signature="docComment;class#Type#0;class#Window#0" expanded="false" />
+            <element signature="class#Type#0;class#Window#0" expanded="false" />
+            <element signature="docComment;field#NORMAL#0;class#Type#0;class#Window#0" expanded="false" />
+            <element signature="docComment;field#UTILITY#0;class#Type#0;class#Window#0" expanded="false" />
+            <element signature="docComment;field#POPUP#0;class#Type#0;class#Window#0" expanded="false" />
+            <element signature="docComment;field#warningString#0;class#Window#0" expanded="false" />
+            <element signature="docComment;field#icons#0;class#Window#0" expanded="false" />
+            <element signature="docComment;field#temporaryLostComponent#0;class#Window#0" expanded="false" />
+            <element signature="docComment;field#state#0;class#Window#0" expanded="false" />
+            <element signature="docComment;field#alwaysOnTop#0;class#Window#0" expanded="false" />
+            <element signature="docComment;field#allWindows#0;class#Window#0" expanded="false" />
+            <element signature="docComment;field#ownedWindowList#0;class#Window#0" expanded="false" />
+            <element signature="docComment;field#modalBlocker#0;class#Window#0" expanded="false" />
+            <element signature="docComment;field#modalExclusionType#0;class#Window#0" expanded="false" />
+            <element signature="docComment;field#focusMgr#0;class#Window#0" expanded="false" />
+            <element signature="docComment;field#focusableWindowState#0;class#Window#0" expanded="false" />
+            <element signature="docComment;field#autoRequestFocus#0;class#Window#0" expanded="false" />
+            <element signature="docComment;field#securityWarningWidth#0;class#Window#0" expanded="false" />
+            <element signature="docComment;field#securityWarningPointX#0;class#Window#0" expanded="false" />
+            <element signature="initializer##0;class#Window#0" expanded="false" />
+            <element signature="docComment;method#initIDs#0;class#Window#0" expanded="false" />
+            <element signature="docComment;method#Window#0;class#Window#0" expanded="false" />
+            <element signature="class#WindowDisposerRecord#0;class#Window#0" expanded="false" />
+            <element signature="method#WindowDisposerRecord#0;class#WindowDisposerRecord#0;class#Window#0" expanded="false" />
+            <element signature="method#dispose#0;class#WindowDisposerRecord#0;class#Window#0" expanded="false" />
+            <element signature="method#initGC#0;class#Window#0" expanded="false" />
+            <element signature="method#init#0;class#Window#0" expanded="false" />
+            <element signature="docComment;method#Window#1;class#Window#0" expanded="false" />
+            <element signature="method#Window#1;class#Window#0" expanded="false" />
+            <element signature="docComment;method#Window#2;class#Window#0" expanded="false" />
+            <element signature="method#Window#2;class#Window#0" expanded="false" />
+            <element signature="docComment;method#Window#3;class#Window#0" expanded="false" />
+            <element signature="method#Window#3;class#Window#0" expanded="false" />
+            <element signature="docComment;method#Window#4;class#Window#0" expanded="false" />
+            <element signature="method#Window#4;class#Window#0" expanded="false" />
+            <element signature="method#ownedInit#0;class#Window#0" expanded="false" />
+            <element signature="e#22697#22763#0" expanded="false" />
+            <element signature="docComment;method#constructComponentName#0;class#Window#0" expanded="false" />
+            <element signature="method#constructComponentName#0;class#Window#0" expanded="false" />
+            <element signature="docComment;method#getIconImages#0;class#Window#0" expanded="false" />
+            <element signature="method#getIconImages#0;class#Window#0" expanded="false" />
+            <element signature="docComment;method#setIconImages#0;class#Window#0" expanded="false" />
+            <element signature="method#setIconImages#0;class#Window#0" expanded="false" />
+            <element signature="docComment;method#setIconImage#0;class#Window#0" expanded="false" />
+            <element signature="method#setIconImage#0;class#Window#0" expanded="false" />
+            <element signature="docComment;method#addNotify#0;class#Window#0" expanded="false" />
+            <element signature="method#addNotify#0;class#Window#0" expanded="false" />
+            <element signature="docComment;method#removeNotify#0;class#Window#0" expanded="false" />
+            <element signature="method#removeNotify#0;class#Window#0" expanded="false" />
+            <element signature="docComment;method#pack#0;class#Window#0" expanded="false" />
+            <element signature="method#pack#0;class#Window#0" expanded="false" />
+            <element signature="docComment;method#setMinimumSize#0;class#Window#0" expanded="false" />
+            <element signature="method#setMinimumSize#0;class#Window#0" expanded="false" />
+            <element signature="docComment;method#setSize#0;class#Window#0" expanded="false" />
+            <element signature="docComment;method#setSize#1;class#Window#0" expanded="false" />
+            <element signature="docComment;method#setLocation#0;class#Window#0" expanded="false" />
+            <element signature="docComment;method#setLocation#1;class#Window#0" expanded="false" />
+            <element signature="docComment;method#reshape#0;class#Window#0" expanded="false" />
+            <element signature="method#reshape#0;class#Window#0" expanded="false" />
+            <element signature="method#setClientSize#0;class#Window#0" expanded="false" />
+            <element signature="method#closeSplashScreen#0;class#Window#0" expanded="false" />
+            <element signature="e#34178#34247#0" expanded="false" />
+            <element signature="docComment;method#setVisible#0;class#Window#0" expanded="false" />
+            <element signature="docComment;method#show#0;class#Window#0" expanded="false" />
+            <element signature="method#show#0;class#Window#0" expanded="false" />
+            <element signature="e#37662#37721#0" expanded="false" />
+            <element signature="method#updateChildFocusableWindowState#0;class#Window#0" expanded="false" />
+            <element signature="method#postWindowEvent#0;class#Window#0" expanded="false" />
+            <element signature="docComment;method#hide#0;class#Window#0" expanded="false" />
+            <element signature="method#hide#0;class#Window#0" expanded="false" />
+            <element signature="method#clearMostRecentFocusOwnerOnHide#0;class#Window#0" expanded="false" />
+            <element signature="docComment;method#dispose#0;class#Window#0" expanded="false" />
+            <element signature="method#disposeImpl#0;class#Window#0" expanded="false" />
+            <element signature="method#doDispose#0;class#Window#0" expanded="false" />
+            <element signature="class#41568:43128" expanded="false" />
+            <element signature="method#run#0;class#41568:43128" expanded="false" />
+            <element signature="e#41702#41758#0" expanded="false" />
+            <element signature="e#43711#43769#0" expanded="false" />
+            <element signature="method#adjustListeningChildrenOnParent#0;class#Window#0" expanded="false" />
+            <element signature="method#adjustDecendantsOnParent#0;class#Window#0" expanded="false" />
+            <element signature="e#44300#44352#0" expanded="false" />
+            <element signature="docComment;method#toFront#0;class#Window#0" expanded="false" />
+            <element signature="method#toFront_NoClientCode#0;class#Window#0" expanded="false" />
+            <element signature="docComment;method#toBack#0;class#Window#0" expanded="false" />
+            <element signature="method#toBack_NoClientCode#0;class#Window#0" expanded="false" />
+            <element signature="docComment;method#getToolkit#0;class#Window#0" expanded="false" />
+            <element signature="docComment;method#getWarningString#0;class#Window#0" expanded="false" />
+            <element signature="method#setWarningString#0;class#Window#0" expanded="false" />
+            <element signature="e#50724#50766#0" expanded="false" />
+            <element signature="docComment;method#getLocale#0;class#Window#0" expanded="false" />
+            <element signature="method#getLocale#0;class#Window#0" expanded="false" />
+            <element signature="docComment;method#getInputContext#0;class#Window#0" expanded="false" />
+            <element signature="method#getInputContext#0;class#Window#0" expanded="false" />
+            <element signature="docComment;method#setCursor#0;class#Window#0" expanded="false" />
+            <element signature="method#setCursor#0;class#Window#0" expanded="false" />
+            <element signature="docComment;method#getOwner#0;class#Window#0" expanded="false" />
+            <element signature="docComment;method#getOwnedWindows#0;class#Window#0" expanded="false" />
+            <element signature="method#getOwnedWindows_NoClientCode#0;class#Window#0" expanded="false" />
+            <element signature="e#53436#53490#0" expanded="false" />
+            <element signature="method#setModalBlocked#0;class#Window#0" expanded="false" />
+            <element signature="method#getAllWindows#0;class#Window#0" expanded="false" />
+            <element signature="method#getAllUnblockedWindows#0;class#Window#0" expanded="false" />
+            <element signature="method#getWindows#0;class#Window#0" expanded="false" />
+            <element signature="docComment;method#getWindows#1;class#Window#0" expanded="false" />
+            <element signature="docComment;method#getOwnerlessWindows#0;class#Window#0" expanded="false" />
+            <element signature="method#getOwnerlessWindows#0;class#Window#0" expanded="false" />
+            <element signature="method#getDocumentRoot#0;class#Window#0" expanded="false" />
+            <element signature="docComment;method#setModalExclusionType#0;class#Window#0" expanded="false" />
+            <element signature="method#setModalExclusionType#0;class#Window#0" expanded="false" />
+            <element signature="e#60811#60877#0" expanded="false" />
+            <element signature="docComment;method#getModalExclusionType#0;class#Window#0" expanded="false" />
+            <element signature="method#isModalExcluded#0;class#Window#0" expanded="false" />
+            <element signature="method#updateChildrenBlocking#0;class#Window#0" expanded="false" />
+            <element signature="docComment;method#addWindowListener#0;class#Window#0" expanded="false" />
+            <element signature="method#addWindowListener#0;class#Window#0" expanded="false" />
+            <element signature="docComment;method#addWindowStateListener#0;class#Window#0" expanded="false" />
+            <element signature="method#addWindowStateListener#0;class#Window#0" expanded="false" />
+            <element signature="docComment;method#addWindowFocusListener#0;class#Window#0" expanded="false" />
+            <element signature="method#addWindowFocusListener#0;class#Window#0" expanded="false" />
+            <element signature="docComment;method#removeWindowListener#0;class#Window#0" expanded="false" />
+            <element signature="method#removeWindowListener#0;class#Window#0" expanded="false" />
+            <element signature="docComment;method#removeWindowStateListener#0;class#Window#0" expanded="false" />
+            <element signature="method#removeWindowStateListener#0;class#Window#0" expanded="false" />
+            <element signature="docComment;method#removeWindowFocusListener#0;class#Window#0" expanded="false" />
+            <element signature="method#removeWindowFocusListener#0;class#Window#0" expanded="false" />
+            <element signature="docComment;method#getWindowListeners#0;class#Window#0" expanded="false" />
+            <element signature="method#getWindowListeners#0;class#Window#0" expanded="false" />
+            <element signature="docComment;method#getWindowFocusListeners#0;class#Window#0" expanded="false" />
+            <element signature="method#getWindowFocusListeners#0;class#Window#0" expanded="false" />
+            <element signature="docComment;method#getWindowStateListeners#0;class#Window#0" expanded="false" />
+            <element signature="method#getWindowStateListeners#0;class#Window#0" expanded="false" />
+            <element signature="docComment;method#getListeners#0;class#Window#0" expanded="false" />
+            <element signature="method#getListeners#0;class#Window#0" expanded="false" />
+            <element signature="method#eventEnabled#0;class#Window#0" expanded="false" />
+            <element signature="docComment;method#processEvent#0;class#Window#0" expanded="false" />
+            <element signature="method#processEvent#0;class#Window#0" expanded="false" />
+            <element signature="docComment;method#processWindowEvent#0;class#Window#0" expanded="false" />
+            <element signature="method#processWindowEvent#0;class#Window#0" expanded="false" />
+            <element signature="docComment;method#processWindowFocusEvent#0;class#Window#0" expanded="false" />
+            <element signature="method#processWindowFocusEvent#0;class#Window#0" expanded="false" />
+            <element signature="docComment;method#processWindowStateEvent#0;class#Window#0" expanded="false" />
+            <element signature="method#processWindowStateEvent#0;class#Window#0" expanded="false" />
+            <element signature="docComment;method#preProcessKeyEvent#0;class#Window#0" expanded="false" />
+            <element signature="method#preProcessKeyEvent#0;class#Window#0" expanded="false" />
+            <element signature="method#postProcessKeyEvent#0;class#Window#0" expanded="false" />
+            <element signature="docComment;method#setAlwaysOnTop#0;class#Window#0" expanded="false" />
+            <element signature="method#setAlwaysOnTop#0;class#Window#0" expanded="false" />
+            <element signature="docComment;method#isAlwaysOnTopSupported#0;class#Window#0" expanded="false" />
+            <element signature="method#isAlwaysOnTopSupported#0;class#Window#0" expanded="false" />
+            <element signature="docComment;method#isAlwaysOnTop#0;class#Window#0" expanded="false" />
+            <element signature="docComment;method#getFocusOwner#0;class#Window#0" expanded="false" />
+            <element signature="method#getFocusOwner#0;class#Window#0" expanded="false" />
+            <element signature="docComment;method#getMostRecentFocusOwner#0;class#Window#0" expanded="false" />
+            <element signature="method#getMostRecentFocusOwner#0;class#Window#0" expanded="false" />
+            <element signature="docComment;method#isActive#0;class#Window#0" expanded="false" />
+            <element signature="method#isActive#0;class#Window#0" expanded="false" />
+            <element signature="docComment;method#isFocused#0;class#Window#0" expanded="false" />
+            <element signature="method#isFocused#0;class#Window#0" expanded="false" />
+            <element signature="docComment;method#getFocusTraversalKeys#0;class#Window#0" expanded="false" />
+            <element signature="method#getFocusTraversalKeys#0;class#Window#0" expanded="false" />
+            <element signature="docComment;method#setFocusCycleRoot#0;class#Window#0" expanded="false" />
+            <element signature="method#setFocusCycleRoot#0;class#Window#0" expanded="false" />
+            <element signature="docComment;method#isFocusCycleRoot#0;class#Window#0" expanded="false" />
+            <element signature="docComment;method#getFocusCycleRootAncestor#0;class#Window#0" expanded="false" />
+            <element signature="docComment;method#isFocusableWindow#0;class#Window#0" expanded="false" />
+            <element signature="method#isFocusableWindow#0;class#Window#0" expanded="false" />
+            <element signature="e#90668#90737#0" expanded="false" />
+            <element signature="e#91000#91062#0" expanded="false" />
+            <element signature="e#91227#91294#0" expanded="false" />
+            <element signature="docComment;method#getFocusableWindowState#0;class#Window#0" expanded="false" />
+            <element signature="docComment;method#setFocusableWindowState#0;class#Window#0" expanded="false" />
+            <element signature="method#setFocusableWindowState#0;class#Window#0" expanded="false" />
+            <element signature="docComment;method#setAutoRequestFocus#0;class#Window#0" expanded="false" />
+            <element signature="method#setAutoRequestFocus#0;class#Window#0" expanded="false" />
+            <element signature="docComment;method#isAutoRequestFocus#0;class#Window#0" expanded="false" />
+            <element signature="docComment;method#addPropertyChangeListener#0;class#Window#0" expanded="false" />
+            <element signature="method#addPropertyChangeListener#0;class#Window#0" expanded="false" />
+            <element signature="docComment;method#addPropertyChangeListener#1;class#Window#0" expanded="false" />
+            <element signature="method#addPropertyChangeListener#1;class#Window#0" expanded="false" />
+            <element signature="docComment;method#isValidateRoot#0;class#Window#0" expanded="false" />
+            <element signature="docComment;method#dispatchEventImpl#0;class#Window#0" expanded="false" />
+            <element signature="method#dispatchEventImpl#0;class#Window#0" expanded="false" />
+            <element signature="docComment;method#postEvent#0;class#Window#0" expanded="false" />
+            <element signature="method#postEvent#0;class#Window#0" expanded="false" />
+            <element signature="docComment;method#isShowing#0;class#Window#0" expanded="false" />
+            <element signature="docComment;method#applyResourceBundle#0;class#Window#0" expanded="false" />
+            <element signature="method#applyResourceBundle#0;class#Window#0" expanded="false" />
+            <element signature="docComment;method#applyResourceBundle#1;class#Window#0" expanded="false" />
+            <element signature="method#applyResourceBundle#1;class#Window#0" expanded="false" />
+            <element signature="method#addOwnedWindow#0;class#Window#0" expanded="false" />
+            <element signature="e#102697#102758#0" expanded="false" />
+            <element signature="method#removeOwnedWindow#0;class#Window#0" expanded="false" />
+            <element signature="e#103065#103122#0" expanded="false" />
+            <element signature="method#connectOwnedWindow#0;class#Window#0" expanded="false" />
+            <element signature="method#addToWindowList#0;class#Window#0" expanded="false" />
+            <element signature="method#removeFromWindowList#0;class#Window#0" expanded="false" />
+            <element signature="docComment;field#type#0;class#Window#0" expanded="false" />
+            <element signature="docComment;method#setType#0;class#Window#0" expanded="false" />
+            <element signature="method#setType#0;class#Window#0" expanded="false" />
+            <element signature="docComment;method#getType#0;class#Window#0" expanded="false" />
+            <element signature="method#getType#0;class#Window#0" expanded="false" />
+            <element signature="docComment;field#windowSerializedDataVersion#0;class#Window#0" expanded="false" />
+            <element signature="docComment;method#writeObject#0;class#Window#0" expanded="false" />
+            <element signature="method#writeObject#0;class#Window#0" expanded="false" />
+            <element signature="e#106861#106928#0" expanded="false" />
+            <element signature="method#initDeserializedWindow#0;class#Window#0" expanded="false" />
+            <element signature="method#deserializeResources#0;class#Window#0" expanded="false" />
+            <element signature="e#108916#108979#0" expanded="false" />
+            <element signature="e#109368#109435#0" expanded="false" />
+            <element signature="e#111174#111196#0" expanded="false" />
+            <element signature="docComment;method#readObject#0;class#Window#0" expanded="false" />
+            <element signature="method#readObject#0;class#Window#0" expanded="false" />
+            <element signature="docComment;method#getAccessibleContext#0;class#Window#0" expanded="false" />
+            <element signature="method#getAccessibleContext#0;class#Window#0" expanded="false" />
+            <element signature="docComment;class#AccessibleAWTWindow#0;class#Window#0" expanded="false" />
+            <element signature="class#AccessibleAWTWindow#0;class#Window#0" expanded="false" />
+            <element signature="docComment;method#getAccessibleRole#0;class#AccessibleAWTWindow#0;class#Window#0" expanded="false" />
+            <element signature="docComment;method#getAccessibleStateSet#0;class#AccessibleAWTWindow#0;class#Window#0" expanded="false" />
+            <element signature="method#getAccessibleStateSet#0;class#AccessibleAWTWindow#0;class#Window#0" expanded="false" />
+            <element signature="method#setGraphicsConfiguration#0;class#Window#0" expanded="false" />
+            <element signature="docComment;method#setLocationRelativeTo#0;class#Window#0" expanded="false" />
+            <element signature="method#setLocationRelativeTo#0;class#Window#0" expanded="false" />
+            <element signature="e#120703#120752#0" expanded="false" />
+            <element signature="docComment;method#deliverMouseWheelToAncestor#0;class#Window#0" expanded="false" />
+            <element signature="docComment;method#dispatchMouseWheelToAncestor#0;class#Window#0" expanded="false" />
+            <element signature="method#dispatchMouseWheelToAncestor#0;class#Window#0" expanded="false" />
+            <element signature="docComment;method#createBufferStrategy#0;class#Window#0" expanded="false" />
+            <element signature="docComment;method#createBufferStrategy#1;class#Window#0" expanded="false" />
+            <element signature="method#createBufferStrategy#1;class#Window#0" expanded="false" />
+            <element signature="docComment;method#getBufferStrategy#0;class#Window#0" expanded="false" />
+            <element signature="method#setTemporaryLostComponent#0;class#Window#0" expanded="false" />
+            <element signature="e#124518#124601#0" expanded="false" />
+            <element signature="docComment;method#canContainFocusOwner#0;class#Window#0" expanded="false" />
+            <element signature="method#canContainFocusOwner#0;class#Window#0" expanded="false" />
+            <element signature="docComment;method#setLocationByPlatform#0;class#Window#0" expanded="false" />
+            <element signature="method#setLocationByPlatform#0;class#Window#0" expanded="false" />
+            <element signature="docComment;method#isLocationByPlatform#0;class#Window#0" expanded="false" />
+            <element signature="method#isLocationByPlatform#0;class#Window#0" expanded="false" />
+            <element signature="docComment;method#setBounds#0;class#Window#0" expanded="false" />
+            <element signature="method#setBounds#0;class#Window#0" expanded="false" />
+            <element signature="docComment;method#setBounds#1;class#Window#0" expanded="false" />
+            <element signature="docComment;method#isRecursivelyVisible#0;class#Window#0" expanded="false" />
+            <element signature="method#isRecursivelyVisible#0;class#Window#0" expanded="false" />
+            <element signature="e#130721#130807#0" expanded="false" />
+            <element signature="docComment;method#getOpacity#0;class#Window#0" expanded="false" />
+            <element signature="method#getOpacity#0;class#Window#0" expanded="false" />
+            <element signature="docComment;method#setOpacity#0;class#Window#0" expanded="false" />
+            <element signature="method#setOpacity#0;class#Window#0" expanded="false" />
+            <element signature="docComment;method#getShape#0;class#Window#0" expanded="false" />
+            <element signature="method#getShape#0;class#Window#0" expanded="false" />
+            <element signature="docComment;method#setShape#0;class#Window#0" expanded="false" />
+            <element signature="method#setShape#0;class#Window#0" expanded="false" />
+            <element signature="docComment;method#getBackground#0;class#Window#0" expanded="false" />
+            <element signature="docComment;method#setBackground#0;class#Window#0" expanded="false" />
+            <element signature="method#setBackground#0;class#Window#0" expanded="false" />
+            <element signature="docComment;method#isOpaque#0;class#Window#0" expanded="false" />
+            <element signature="method#isOpaque#0;class#Window#0" expanded="false" />
+            <element signature="method#updateWindow#0;class#Window#0" expanded="false" />
+            <element signature="docComment;method#paint#0;class#Window#0" expanded="false" />
+            <element signature="method#paint#0;class#Window#0" expanded="false" />
+            <element signature="method#setLayersOpaque#0;class#Window#0" expanded="false" />
+            <element signature="e#146337#146395#0" expanded="false" />
+            <element signature="e#147095#147153#0" expanded="false" />
+            <element signature="e#147420#147467#0" expanded="false" />
+            <element signature="docComment;method#applyCompoundShape#0;class#Window#0" expanded="false" />
+            <element signature="method#applyCompoundShape#0;class#Window#0" expanded="false" />
+            <element signature="e#148153#148221#0" expanded="false" />
+            <element signature="method#applyCurrentShape#0;class#Window#0" expanded="false" />
+            <element signature="e#148320#148388#0" expanded="false" />
+            <element signature="method#mixOnReshaping#0;class#Window#0" expanded="false" />
+            <element signature="e#148484#148552#0" expanded="false" />
+            <element signature="docComment;method#limit#0;class#Window#0" expanded="false" />
+            <element signature="method#limit#0;class#Window#0" expanded="false" />
+            <element signature="docComment;method#calculateSecurityWarningPosition#0;class#Window#0" expanded="false" />
+            <element signature="method#calculateSecurityWarningPosition#0;class#Window#0" expanded="false" />
+            <element signature="initializer##1;class#Window#0" expanded="false" />
+            <element signature="class#150927:153780" expanded="false" />
+            <element signature="method#setOpaque#0;class#150927:153780" expanded="false" />
+            <element signature="method#getSecurityWarningSize#0;class#150927:153780" expanded="false" />
+            <element signature="method#setSecurityWarningSize#0;class#150927:153780" expanded="false" />
+            <element signature="method#setSecurityWarningPosition#0;class#150927:153780" expanded="false" />
+            <element signature="method#calculateSecurityWarningPosition#0;class#150927:153780" expanded="false" />
+            <element signature="method#setLWRequestStatus#0;class#150927:153780" expanded="false" />
+            <element signature="method#setTrayIconWindow#0;class#150927:153780" expanded="false" />
+            <element signature="docComment;class#FocusManager#0" expanded="false" />
+            <element signature="class#FocusManager#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///usr/java/jdk1.7.0_71/src.zip!/java/awt/Dialog.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.3732639" vertical-offset="13815" max-vertical-offset="38042">
+          <caret line="664" column="10" selection-start-line="664" selection-start-column="10" selection-end-line="664" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///usr/java/jdk1.7.0_71/src.zip!/javax/swing/JDialog.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.3732639" vertical-offset="5282" max-vertical-offset="28336">
+          <caret line="270" column="9" selection-start-line="270" selection-start-column="9" selection-end-line="270" selection-end-column="9" />
+          <folding>
+            <element signature="e#7156#7157#0" expanded="false" />
+            <element signature="e#7194#7195#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/i18n/simbs.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.7657046" vertical-offset="7829" max-vertical-offset="8418">
+          <caret line="360" column="0" selection-start-line="360" selection-start-column="0" selection-end-line="360" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pw/phylame/simbs/ui/dialog/LendBookDialog.form">
+      <provider selected="true" editor-type-id="ui-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pw/phylame/simbs/Manager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="3716" max-vertical-offset="4370">
+          <caret line="200" column="22" selection-start-line="200" selection-start-column="22" selection-end-line="200" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pw/phylame/simbs/Constants.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1770" max-vertical-offset="2346">
+          <caret line="113" column="0" selection-start-line="113" selection-start-column="0" selection-end-line="113" selection-end-column="0" />
+          <folding>
+            <marker date="1420708511552" expanded="true" signature="1416:1442" placeholder="/**...*/" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pw/phylame/simbs/ui/UIDesign.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="3187" max-vertical-offset="3841">
+          <caret line="162" column="98" selection-start-line="162" selection-start-column="98" selection-end-line="162" selection-end-column="98" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pw/phylame/simbs/ui/com/BookTablePane.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6805556" vertical-offset="551" max-vertical-offset="1403">
+          <caret line="70" column="17" selection-start-line="70" selection-start-column="17" selection-end-line="70" selection-end-column="17" />
+          <folding>
+            <element signature="docComment;class#BookTablePane#0" expanded="false" />
+            <element signature="e#2439#2440#0" expanded="true" />
+            <element signature="e#2485#2486#0" expanded="true" />
+            <element signature="method#setParent#0;class#BookTablePane#0" expanded="false" />
+            <element signature="class#BookTableModel#0;class#BookTablePane#0" expanded="false" />
+            <element signature="method#getISBN#0;class#BookTableModel#0;class#BookTablePane#0" expanded="false" />
+            <element signature="method#setDataSource#0;class#BookTableModel#0;class#BookTablePane#0" expanded="false" />
+            <element signature="method#pageUpdated#0;class#BookTableModel#0;class#BookTablePane#0" expanded="false" />
+            <element signature="method#getColumnName#0;class#BookTableModel#0;class#BookTablePane#0" expanded="false" />
+            <element signature="method#getRowCount#0;class#BookTableModel#0;class#BookTablePane#0" expanded="false" />
+            <element signature="method#getValueAt#0;class#BookTableModel#0;class#BookTablePane#0" expanded="false" />
           </folding>
         </state>
       </provider>

@@ -25,38 +25,60 @@ import pw.phylame.tools.sql.SQLAdmin;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
- * Created by Nanu on 2015-1-7.
+ * Created by Peng Wan on 2015-1-7.
  */
 public class BookTablePane extends TablePane {
-    public static final int BOOK_COLUMN_COUNT = 9;
-    public static final String SQL_SELECT_BOOK = "SELECT Bisbn, Bname, Bversion, Bauthors, Bdate, Bcategory," +
-            " Bpublisher, Bprice, Bintro FROM book_info ";
+    public static final int BOOK_COLUMN_COUNT = 5;
+    public static final String SQL_SELECT_BOOK = "SELECT Bisbn, Bname, Bauthors, Bpublisher, Bprice FROM book ";
 
-    private Component parentComp = null;
-
-    private Application app = Application.getInstance();
+    private BookTableModel tableModel = null;
+    private JTable table = null;
 
     public BookTablePane() {
-        SQLAdmin sqlAdmin = app.getSQLAdmin();
+        SQLAdmin sqlAdmin = Application.getInstance().getSQLAdmin();
         try {
             PageResultSet dataSet = sqlAdmin.queryAndPaging(SQL_SELECT_BOOK, Constants.MAX_ROW_COUNT);
-            final BookTableModel tableModel = new BookTableModel();
-            TableAdapter tableAdapter = new TableAdapter(dataSet, tableModel);
-//            final JTable table = tableAdapter.getTable();
+            this.tableModel = new BookTableModel();
+            TableAdapter tableAdapter = new TableAdapter(dataSet, this.tableModel);
+            this.table = tableAdapter.getTable();
             setTableAdapter(tableAdapter);
+            init();
         } catch (SQLException exp) {
             exp.printStackTrace();
         }
     }
 
+    private void init() {
+        table.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                if (e.getClickCount() != 2 || e.isMetaDown()) {
+                    return;
+                }
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                if (!e.isMetaDown()) {
+                    return;
+                }
+            }
+        });
+    }
+
+    public int[] getSelectedRows() {
+        return table.getSelectedRows();
+    }
+
     @Override
     public void setParent(Component parent) {
-        parentComp = parent;
     }
 
     private static class BookTableModel extends PaneTableModel {
@@ -95,7 +117,13 @@ public class BookTablePane extends TablePane {
             }
             try {
                 for (int i = 0; i < dataSet.getCurrentRows(); ++i) {
-                    rows.add(Worker.getBookFromResultSet(rs));
+                    Book book = new Book();
+                    book.setISBN(Worker.normalizeString(rs.getString(1)));
+                    book.setName(Worker.normalizeString(rs.getString(2)));
+                    book.setAuthors(Worker.normalizeString(rs.getString(3)));
+                    book.setPublisher(Worker.normalizeString(rs.getString(4)));
+                    book.setPrice(rs.getBigDecimal(5));
+                    rows.add(book);
                     rs.next();
                 }
             } catch (SQLException exp) {
@@ -118,19 +146,11 @@ public class BookTablePane extends TablePane {
                 case 1:
                     return app.getString("Book.Property.Name");
                 case 2:
-                    return app.getString("Book.Property.Version");
-                case 3:
                     return app.getString("Book.Property.Author");
-                case 4:
-                    return app.getString("Book.Property.Date");
-                case 5:
-                    return app.getString("Book.Property.Category");
-                case 6:
+                case 3:
                     return app.getString("Book.Property.Publisher");
-                case 7:
+                case 4:
                     return app.getString("Book.Property.Price");
-                case 8:
-                    return app.getString("Book.Property.Intro");
                 default:
                     return app.getString("Book.Property.Unknown");
             }
@@ -163,19 +183,11 @@ public class BookTablePane extends TablePane {
                     case 1:
                         return book.getName();
                     case 2:
-                        return book.getVersion();
-                    case 3:
                         return book.getAuthors();
-                    case 4:
-                        return book.getDate();
-                    case 5:
-                        return book.getCategory();
-                    case 6:
+                    case 3:
                         return book.getPublisher();
-                    case 7:
+                    case 4:
                         return book.getPrice();
-                    case 8:
-                        return book.getIntro();
                     default:
                         return null;
                 }

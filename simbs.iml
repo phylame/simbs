@@ -7,7 +7,6 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="JCalendar" level="project" />
     <orderEntry type="library" name="HypqerSQL" level="project" />
     <orderEntry type="library" name="PostgreSQL" level="project" />
   </component>

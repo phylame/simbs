@@ -178,7 +178,7 @@
             </constraints>
             <properties>
               <font size="14"/>
-              <text resource-bundle="i18n/simbs" key="Dialog.Sell.LebelTotal"/>
+              <text resource-bundle="i18n/simbs" key="Dialog.Sell.LabelTotal"/>
             </properties>
           </component>
           <component id="a7166" class="javax.swing.JLabel">

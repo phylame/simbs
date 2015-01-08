@@ -222,7 +222,7 @@
             </constraints>
             <properties>
               <font size="14"/>
-              <text resource-bundle="i18n/simbs" key="Dialog.Sell.LabelComment"/>
+              <text resource-bundle="i18n/simbs" key="Dialog.Lend.LabelTotal"/>
             </properties>
           </component>
           <component id="23802" class="javax.swing.JFormattedTextField" binding="tfTotal">
