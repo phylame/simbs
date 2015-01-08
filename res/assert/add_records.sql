@@ -1,30 +1,35 @@
-/* add some example records */
+ï»¿/*
+ * This file is part of SIMBS.
+ * (C) 2015 Peng Wan
+ *
+ * Add some example records to database for SIMBS.
+ */
 
-/* add book information */
-INSERT INTO book_info(Bisbn, Bname, Bversion, Bauthors, Bdate, Bcategory, Bpublisher, Bprice, Bintro)
- VALUES('978-7-04-019583-5', 'Êı¾İ¿âÏµÍ³¸ÅÂÛ', 'µÚ4°æ', 'ÍõÉº,ÈøÊ¦ìÓ', '2006-5-1', '½Ì²Ä', '¸ßµÈ½ÌÓı³ö°æÉç', 39.00, 'Êı¾İ¿â¸ÅÂÛµÚ 4 °æ');
-INSERT INTO book_info(Bisbn, Bname, Bversion, Bauthors, Bdate, Bcategory, Bpublisher, Bprice, Bintro)
- VALUES('978-7-115-28931-5', 'AndroidÒÆ¶¯Ó¦ÓÃ¿ª·¢£º¾íÒ»£¬»ù´¡Æª', 'µÚ3°æ', 'Lauren Darcey,Shane Conder', '2012-10-1', 'ÒÆ¶¯¿ª·¢', 'ÈËÃñÓÊµç³ö°æÉç', 59.00, 'Android ÒÆ¶¯¿ª·¢');
+/* Add book information */
+INSERT INTO book (Bisbn, Bname, Bversion, Bauthors, Bdate, Bcategory, Bpublisher, Bprice, Bintro)
+ VALUES ('978-7-04-019583-5', 'æ•°æ®åº“ç³»ç»Ÿæ¦‚è®º', 'ç¬¬4ç‰ˆ', 'ç‹çŠ,è¨å¸ˆç…Š', '2006-5-1', 'æ•™æ', 'é«˜ç­‰æ•™è‚²å‡ºç‰ˆç¤¾', 39.00, 'æ•°æ®åº“æ¦‚è®ºç¬¬ 4 ç‰ˆ');
+INSERT INTO book(Bisbn, Bname, Bversion, Bauthors, Bdate, Bcategory, Bpublisher, Bprice, Bintro)
+ VALUES ('978-7-115-28931-5', 'Android ç§»åŠ¨åº”ç”¨å¼€å‘ï¼šå·ä¸€ï¼ŒåŸºç¡€ç¯‡', 'ç¬¬3ç‰ˆ', 'Lauren Darcey,Shane Conder', '2012-10-1', 'ç§»åŠ¨å¼€å‘', 'äººæ°‘é‚®ç”µå‡ºç‰ˆç¤¾', 59.00, 'Android ç§»åŠ¨å¼€å‘');
 
-/* add customer information */
-INSERT INTO customer_info (Cid, Cname, Cphone) VALUES(1, 'ÀîÃ÷', '13878541125');
-INSERT INTO customer_info (Cid, Cname, Cphone) VALUES(2, '³ÂÁÁ', '13788956945');
-INSERT INTO customer_info (Cid, Cname, Cphone) VALUES(3, 'ÕÅÈı', '15539845612');
-INSERT INTO customer_info (Cid, Cname, Cphone) VALUES(4, 'ÀîËÄ', '18677722631');
+/* Add customer information */
+INSERT INTO customer (Cid, Cname, Cphone, Clevel, Climit) VALUES (1, 'ææ˜', '13878541125', 0, 10);
+INSERT INTO customer (Cid, Cname, Cphone, Clevel, Climit) VALUES (2, 'é™ˆäº®', '13788956945', 0, 10);
+INSERT INTO customer (Cid, Cname, Cphone, Clevel, Climit) VALUES (3, 'å¼ ä¸‰', '15539845612', 0, 10);
+INSERT INTO customer (Cid, Cname, Cphone, Clevel, Climit) VALUES (4, 'æå››', '18677722631', 0, 10);
 
-/* add book to book stock */
-INSERT INTO book_stock(Bisbn, Enumber) VALUES('978-7-04-019583-5', 10);
-INSERT INTO book_stock(Bisbn, Enumber) VALUES('978-7-115-28931-5', 30);
+/* Add book to book stock */
+INSERT INTO stock (Bisbn, Inumber) VALUES ('978-7-04-019583-5', 10);
+INSERT INTO stock (Bisbn, Inumber) VALUES ('978-7-115-28931-5', 30);
 
-/* add sold book record */
-INSERT INTO sold_book(Bisbn, Cid, Snumber, Sdate, Stime)
- VALUES('978-7-04-019583-5', 1, 1, '2015-1-3', '18:36:00');
+/* Add sale record */
+INSERT INTO sale (Bisbn, Cid, Snumber, Sdate, Stime, Stotal, Scomment)
+ VALUES ('978-7-04-019583-5', 1, 1, '2015-1-3', '18:36:00', 28.00, 'å–å‡ºçš„ç¬¬ä¸€æœ¬ä¹¦');
 
-/* add lent book record */
-INSERT INTO lent_book(Bisbn, Cid, Lnumber, Ldate, Ltime, Lperiod)
- VALUES('978-7-04-019583-5', 2, 1, '2014-12-14', '22:10:59', 12);
-INSERT INTO lent_book(Bisbn, Cid, Lnumber, Ldate, Ltime, Lperiod)
- VALUES('978-7-04-019583-5', 1, 1, '2014-12-14', '22:10:59', 12);
-INSERT INTO lent_book(Bisbn, Cid, Lnumber, Ldate, Ltime, Lperiod)
- VALUES('978-7-04-019583-5', 2, 1, '2014-12-24', '22:10:59', 12);
+/* Add rental record */
+INSERT INTO rental (Bisbn, Cid, Rnumber, Rdate, Rtime, Rperiod, Rtotal, Rcomment)
+ VALUES ('978-7-04-019583-5', 2, 1, '2014-12-14', '22:10:59', 12, 1.00, 'å€Ÿå‡ºçš„ç¬¬ä¸€æœ¬');
+INSERT INTO rental (Bisbn, Cid, Rnumber, Rdate, Rtime, Rperiod, Rtotal, Rcomment)
+ VALUES ('978-7-04-019583-5', 1, 1, '2014-12-15', '22:10:59', 12, 5.00, '');
+INSERT INTO rental (Bisbn, Cid, Rnumber, Rdate, Rtime, Rperiod, Rtotal, Rcomment)
+ VALUES ('978-7-04-019583-5', 2, 1, '2014-12-16', '22:10:59', 12, 5.00, '');
 

@@ -16,6 +16,7 @@
 
 package pw.phylame.simbs.ds;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 /**
@@ -26,27 +27,29 @@ public class Book {
     private String name;
     private String version;
     private String authors;
+    private String cover;
     private Date date;
     private String category;
     private String publisher;
-    private double price;
+    private BigDecimal price;
     private String intro;
 
     public Book() {
-        this("", "", "", "", new Date(), "", "", 0.0D, "");
+        this("", "", "", "", "", new Date(), "", "", new BigDecimal(0.0D), "");
     }
 
-    public Book(String isbn, String name, String version, String authors, Date date, String category,
-                String publisher, double price, String intro) {
-        this.isbn = isbn;
-        this.name = name;
-        this.version = version;
-        this.authors = authors;
-        this.date = date;
-        this.category = category;
-        this.publisher = publisher;
-        this.price = price;
-        this.intro = intro;
+    public Book(String isbn, String name, String version, String authors, String cover, Date date,
+                String category, String publisher, BigDecimal price, String intro) {
+        setISBN(isbn);
+        setName(name);
+        setVersion(version);
+        setAuthors(authors);
+        setCover(cover);
+        setDate(date);
+        setCategory(category);
+        setPublisher(publisher);
+        setPrice(price);
+        setIntro(intro);
     }
 
     public String getISBN() {
@@ -71,6 +74,14 @@ public class Book {
 
     public void setVersion(String version) {
         this.version = version;
+    }
+
+    public String getCover() {
+        return cover;
+    }
+
+    public void setCover(String cover) {
+        this.cover = cover;
     }
 
     public String getAuthors() {
@@ -109,11 +120,11 @@ public class Book {
         this.publisher = publisher;
     }
 
-    public double getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(BigDecimal price) {
         this.price = price;
     }
 

@@ -31,7 +31,8 @@ public class ModifyCustomerDialog extends JDialog {
     private JTextField tfName;
     private JTextField tfPhone;
     private JTextField tfEmail;
-    private JSpinner jsLentLimit;
+    private JSpinner jsLimit;
+    private JSpinner jsLevel;
     private JFormattedTextField tfLentLimit;
 
     private Customer customer = null;
@@ -76,7 +77,8 @@ public class ModifyCustomerDialog extends JDialog {
         pack();
         setLocationRelativeTo(null);
 
-        jsLentLimit.setModel(new SpinnerNumberModel(Constants.DEFAULT_LENT_LIMIT, 1, Constants.DEFAULT_LENT_LIMIT*3, 1));
+        jsLevel.setModel(new SpinnerNumberModel(0, 0, null, 1));
+        jsLimit.setModel(new SpinnerNumberModel(Constants.DEFAULT_LENT_LIMIT, 1, Constants.DEFAULT_LENT_LIMIT*3, 1));
     }
 
     private void onOK() {
@@ -94,7 +96,8 @@ public class ModifyCustomerDialog extends JDialog {
         customer.setName(s);
         customer.setPhone(tfPhone.getText().trim());
         customer.setEmail(tfEmail.getText().trim());
-        customer.setLentLimit((int) jsLentLimit.getValue());
+        customer.setLevel((int) jsLevel.getValue());
+        customer.setLimit((int) jsLimit.getValue());
         isReady = true;
         dispose();
     }
@@ -115,12 +118,14 @@ public class ModifyCustomerDialog extends JDialog {
             tfName.setText(customer.getName());
             tfPhone.setText(customer.getPhone());
             tfEmail.setText(customer.getEmail());
-            jsLentLimit.setValue(customer.getLentLimit());
+            jsLevel.setValue(customer.getLevel());
+            jsLimit.setValue(customer.getLimit());
         } else {
             tfName.setText("");
             tfPhone.setText("");
             tfEmail.setText("");
-            jsLentLimit.setValue(Constants.DEFAULT_LENT_LIMIT);
+            jsLevel.setValue(0);
+            jsLimit.setValue(Constants.DEFAULT_LENT_LIMIT);
         }
     }
 }

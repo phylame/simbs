@@ -123,6 +123,31 @@ public class SQLAdmin {
     }
 
     /**
+     * Create {@code PreparedStatement} object.
+     * @param sql the SQL statement
+     * @param resultSetType a result set type, see {@link java.sql.ResultSet}
+     * @param resultSetConcurrency a concurrency type, see {@link java.sql.ResultSet}
+     * @return the {@code PreparedStatement} object
+     * @throws SQLException if occur SQL errors
+     */
+    public PreparedStatement prepareStatement(String sql, int resultSetType, int resultSetConcurrency)
+            throws SQLException {
+        checkConnection();
+        System.out.println("SQL: "+sql);
+        return conn.prepareStatement(sql, resultSetType, resultSetConcurrency);
+    }
+
+    /**
+     * Create {@code PreparedStatement} object.
+     * @param sql the SQL statement
+     * @return the {@code PreparedStatement} object
+     * @throws SQLException if occur SQL errors
+     */
+    public PreparedStatement prepareStatement(String sql) throws SQLException {
+        return prepareStatement(sql, ResultSet.TYPE_FORWARD_ONLY, ResultSet.CONCUR_READ_ONLY);
+    }
+
+    /**
      * Query and paging results.
      * @param sql the SQL statement
      * @param pageSize size of page

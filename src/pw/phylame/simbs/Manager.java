@@ -19,15 +19,14 @@ package pw.phylame.simbs;
 
 import pw.phylame.simbs.ui.com.BookTablePane;
 import pw.phylame.simbs.ui.com.NavigatePane;
-import pw.phylame.simbs.ui.com.TableAdapter;
 import pw.phylame.simbs.ui.dialog.*;
 import pw.phylame.simbs.ui.MainFrame;
-import pw.phylame.tools.sql.PageResultSet;
 import pw.phylame.tools.sql.SQLAdmin;
 
 import static pw.phylame.simbs.Constants.*;
 
 import javax.swing.*;
+import java.math.BigDecimal;
 import java.sql.SQLException;
 
 /**
@@ -127,11 +126,13 @@ public class Manager {
         String isbn = dialog.getISBN();
         int customerId = dialog.getCustomer();
         int sales = dialog.getSales();
+        BigDecimal price = new BigDecimal(dialog.getTotalPrice());
+        String comm = dialog.getComment();
         if (isbn == null || customerId <= 0 || sales <= 0) {
             return;
         }
         try {
-            worker.sellBook(isbn, customerId, sales);
+            worker.sellBook(isbn, customerId, sales, price, comm);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -143,11 +144,13 @@ public class Manager {
         String isbn = dialog.getISBN();
         int customerId = dialog.getCustomer();
         int number = dialog.getNumber(), period = dialog.getPeriod();
+        BigDecimal total = new BigDecimal(dialog.getTotalPrice());
+        String comm = dialog.getComment();
         if (isbn == null || customerId <= 0 || number <= 0 || period <= 0) {
             return;
         }
         try {
-            worker.lendBook(isbn, customerId, number, period);
+            worker.lendBook(isbn, customerId, number, period, total, comm);
         } catch (SQLException e) {
             e.printStackTrace();
         }

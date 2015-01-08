@@ -36,8 +36,8 @@ import java.util.ArrayList;
 
 public class ChooseBookDialog extends JDialog {
     public static final int BOOK_COLUMN_COUNT = 5;
-    public static final String SQL_SELECT_BOOK = "SELECT book_info.Bisbn, Bname, Bpublisher, Bprice, Enumber " +
-            "FROM book_info LEFT OUTER JOIN book_stock ON (book_info.bisbn = book_stock.bisbn) ";
+    public static final String SQL_SELECT_BOOK = "SELECT book.Bisbn, Bname, Bpublisher, Bprice, Inumber " +
+            "FROM book LEFT OUTER JOIN stock ON (stock.bisbn = book.bisbn) ";
 
     private JPanel contentPane;
 //    private JButton buttonOk;
@@ -56,6 +56,9 @@ public class ChooseBookDialog extends JDialog {
     private JCheckBox cbDate;
     private JCheckBox cbPrice;
     private TablePane tablePane;
+    private JFormattedTextField tfInventoryBegin;
+    private JFormattedTextField tfInventoryEnd;
+    private JCheckBox cbInventory;
 
     private String isbn = null;
 
@@ -120,16 +123,14 @@ public class ChooseBookDialog extends JDialog {
         tfPriceBegin.setValue(0.0F);
         tfPriceEnd.setValue(100.0F);
 
+        tfInventoryBegin.setValue(1);
+        tfInventoryEnd.setValue(100);
+
     }
 
     public ChooseBookDialog(String title) {
         this();
         setTitle(title);
-    }
-
-    private void onOK() {
-// add your code here
-        dispose();
     }
 
     private void onCancel() {
@@ -167,12 +168,12 @@ public class ChooseBookDialog extends JDialog {
         if (cbDate.isSelected()) {
             java.util.Date begin = (java.util.Date) jsDateBegin.getValue(), end = (java.util.Date) jsDateEnd.getValue();
             if (begin.compareTo(end) > 0) {
-                DialogFactory.showError(this, app.getString("Pane.ChooseBook.InvalidPrice"),
-                        app.getString("Pane.ChooseBook.Title"));
+                DialogFactory.showError(this, app.getString("Dialog.ChooseBook.InvalidDate"),
+                        app.getString("Dialog.ChooseBook.Title"));
                 return;
             }
-            conditions.add(String.format("Bdate BETWEEN '%s' AND '%s'", Worker.toDateString(begin),
-                    Worker.toDateString(end)));
+            conditions.add(String.format("Bdate BETWEEN '%s' AND '%s'", Worker.toSQLDate(begin),
+                    Worker.toSQLDate(end)));
         }
         s = tfCategory.getText().trim();
         if (! "".equals(s)) {
@@ -185,11 +186,21 @@ public class ChooseBookDialog extends JDialog {
         if (cbPrice.isSelected()) {
             float begin = (float) tfPriceBegin.getValue(), end = (float) tfPriceEnd.getValue();
             if (end < begin) {
-                DialogFactory.showError(this, app.getString("Pane.ChooseBook.InvalidPrice"),
-                        app.getString("Pane.ChooseBook.Title"));
+                DialogFactory.showError(this, app.getString("Dialog.ChooseBook.InvalidPrice"),
+                        app.getString("Dialog.ChooseBook.Title"));
                 return;
             }
             conditions.add(String.format("Bprice BETWEEN %.2f AND %.2f", begin, end));
+        }
+        if (cbInventory.isSelected()) {
+            int begin = (int) tfInventoryBegin.getValue(), end = (int) tfInventoryEnd.getValue();
+            if (end < begin) {
+                DialogFactory.showError(this, app.getString("Dialog.ChooseBook.InvalidInventory"),
+                        app.getString("Dialog.ChooseBook.Title"));
+                return;
+            }
+            conditions.add(String.format("book_info.Bisbn = book_stock.Bisbn AND Enumber BETWEEN %d AND %d",
+                    begin, end));
         }
 
         String cond = StringUtility.join(conditions, " AND ");

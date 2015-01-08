@@ -27,7 +27,7 @@ public class Customer {
     private String phone;
     private String email;
     private int level;
-    private int lentLimit;
+    private int limit;
 
     public Customer() {
         this(1, "", "", "");
@@ -37,13 +37,13 @@ public class Customer {
         this(id, name, phone, email, 0, Constants.DEFAULT_LENT_LIMIT);
     }
 
-    public Customer(int id, String name, String phone, String email, int level, int lentLimit) {
+    public Customer(int id, String name, String phone, String email, int level, int limit) {
         setId(id);
         setName(name);
         setPhone(phone);
         setEmail(email);
         setLevel(level);
-        setLentLimit(lentLimit);
+        setLimit(limit);
     }
 
     public int getId() {
@@ -89,12 +89,12 @@ public class Customer {
         this.level = level;
     }
 
-    public int getLentLimit() {
-        return lentLimit;
+    public int getLimit() {
+        return limit;
     }
 
-    public void setLentLimit(int lentLimit) {
-        this.lentLimit = lentLimit;
+    public void setLimit(int limit) {
+        this.limit = limit;
     }
 
     @Override

@@ -24,6 +24,7 @@ import pw.phylame.tools.sql.SQLAdmin;
 
 //import javax.swing.*;
 import java.io.*;
+import java.math.BigDecimal;
 import java.sql.SQLException;
 import java.util.*;
 

@@ -35,8 +35,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class ChooseCustomerDialog extends JDialog {
-    public static final int CUSTOMER_COLUMN_COUNT = 4;
-    public static final String SQL_SELECT_CUSTOMER = "SELECT Cid, Cname, Cphone, Cemail FROM customer_info ";
+    public static final int CUSTOMER_COLUMN_COUNT = 6;
+    public static final String SQL_SELECT_CUSTOMER = "SELECT Cid, Cname, Cphone, Cemail, Clevel, Climit" +
+            " FROM customer ";
 
     private JPanel contentPane;
     private JButton buttonSearch;
@@ -47,6 +48,12 @@ public class ChooseCustomerDialog extends JDialog {
     private JTextField tfEmail;
 //    private JButton buttonOk;
     private TablePane tablePane;
+    private JFormattedTextField tfLevelBegin;
+    private JFormattedTextField tfLevelEnd;
+    private JCheckBox cbLevel;
+    private JCheckBox cbLimit;
+    private JFormattedTextField tfLimitBegin;
+    private JFormattedTextField tfLimitEnd;
 
     private int customerID = -1;
 
@@ -104,6 +111,11 @@ public class ChooseCustomerDialog extends JDialog {
 
         pack();
         setLocationRelativeTo(null);
+
+        tfLevelBegin.setValue(0);
+        tfLevelEnd.setValue(100);
+        tfLimitBegin.setValue(0);
+        tfLimitEnd.setValue(100);
     }
 
     public ChooseCustomerDialog(String title) {
@@ -136,6 +148,24 @@ public class ChooseCustomerDialog extends JDialog {
         s = tfEmail.getText().trim();
         if (! "".equals(s)) {
             conditions.add("Cemail LIKE '%" + s + "%'");
+        }
+        if (cbLevel.isSelected()) {
+            int begin = (int) tfLevelBegin.getValue(), end = (int) tfLevelEnd.getValue();
+            if (begin > end) {
+                DialogFactory.showError(this, app.getString("Dialog.ChooseCustomer.InvalidLevel"),
+                        app.getString("Dialog.ChooseCustomer.Title"));
+                return;
+            }
+            conditions.add(String.format("Clevel BETWEEN %d AND %d", begin, end));
+        }
+        if (cbLimit.isSelected()) {
+            int begin = (int) tfLimitBegin.getValue(), end = (int) tfLimitEnd.getValue();
+            if (begin > end) {
+                DialogFactory.showError(this, app.getString("Dialog.ChooseCustomer.InvalidLimit"),
+                        app.getString("Dialog.ChooseCustomer.Title"));
+                return;
+            }
+            conditions.add(String.format("Clent_limit BETWEEN %d AND %d", begin, end));
         }
         String cond = StringUtility.join(conditions, " AND ");
         String sql = SQL_SELECT_CUSTOMER;
@@ -184,10 +214,6 @@ public class ChooseCustomerDialog extends JDialog {
         }
     }
 
-    private void onOk() {
-        dispose();
-    }
-
     private void onCancel() {
 // add your code here if necessary
         customerID = -1;
@@ -203,52 +229,8 @@ public class ChooseCustomerDialog extends JDialog {
     }
 
     public static class CustomerTableModel extends PaneTableModel {
-        private static class CustomerEntry {
-            private int id;
-            private String name, phone, email;
-
-            public CustomerEntry(int id, String name, String phone, String email) {
-                setId(id);
-                setName(name);
-                setPhone(phone);
-                setEmail(email);
-            }
-
-            public int getId() {
-                return id;
-            }
-
-            public void setId(int id) {
-                this.id = id;
-            }
-
-            public String getName() {
-                return name;
-            }
-
-            public void setName(String name) {
-                this.name = name;
-            }
-
-            public String getPhone() {
-                return phone;
-            }
-
-            public void setPhone(String phone) {
-                this.phone = phone;
-            }
-
-            public String getEmail() {
-                return email;
-            }
-
-            public void setEmail(String email) {
-                this.email = email;
-            }
-        }
-
         private PageResultSet dataSet = null;
-        private ArrayList<CustomerEntry> rows = new ArrayList<>();
+        private ArrayList<Customer> rows = new ArrayList<>();
 
         public CustomerTableModel() {
         }
@@ -258,7 +240,7 @@ public class ChooseCustomerDialog extends JDialog {
                 return -1;
             }
             try {
-                CustomerEntry entry = rows.get(rowIndex);
+                Customer entry = rows.get(rowIndex);
                 return entry.getId();
             } catch (IndexOutOfBoundsException exp) {
                 exp.printStackTrace();
@@ -285,9 +267,7 @@ public class ChooseCustomerDialog extends JDialog {
             }
             try {
                 for (int i = 0; i < dataSet.getCurrentRows(); ++i) {
-                    CustomerEntry customerEntry = new CustomerEntry(rs.getInt(1), rs.getString(2).trim(),
-                            rs.getString(3).trim(), rs.getString(4).trim());
-                    rows.add(customerEntry);
+                    rows.add(Worker.getCustomerFromResultSet(rs));
                     rs.next();
                 }
             } catch (SQLException exp) {
@@ -313,6 +293,10 @@ public class ChooseCustomerDialog extends JDialog {
                     return app.getString("Customer.Property.Phone");
                 case 3:
                     return app.getString("Customer.Property.Email");
+                case 4:
+                    return app.getString("Customer.Property.Level");
+                case 5:
+                    return app.getString("Customer.Property.Limit");
                 default:
                     return app.getString("Customer.Property.Unknown");
             }
@@ -338,7 +322,7 @@ public class ChooseCustomerDialog extends JDialog {
                 return null;
             }
             try {
-                CustomerEntry entry = rows.get(rowIndex);
+                Customer entry = rows.get(rowIndex);
                 switch (columnIndex) {
                     case 0:
                         return entry.getId();
@@ -348,6 +332,10 @@ public class ChooseCustomerDialog extends JDialog {
                         return entry.getPhone();
                     case 3:
                         return entry.getEmail();
+                    case 4:
+                        return entry.getLevel();
+                    case 5:
+                        return entry.getLimit();
                     default:
                         return null;
                 }

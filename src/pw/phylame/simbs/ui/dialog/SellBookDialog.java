@@ -36,6 +36,8 @@ public class SellBookDialog extends JDialog {
     private JSpinner jsNumber;
     private JLabel labelInventory;
     private JTextField tfCustomerName;
+    private JFormattedTextField tfComment;
+    private JFormattedTextField tfTotal;
 
     private String oldISBN = null;
     private int customerID = -1;
@@ -133,6 +135,8 @@ public class SellBookDialog extends JDialog {
         pack();
         setLocationRelativeTo(null);
 
+        tfTotal.setValue(0D);
+
         updateISBN();
         checkSellCondition();
     }
@@ -180,12 +184,16 @@ public class SellBookDialog extends JDialog {
         if (n < 0 ) {
             jsNumber.setValue(0);
             jsNumber.setEnabled(false);
+            tfTotal.setEditable(false);
+            tfComment.setEditable(false);
             labelInventory.setText(String.format(app.getString("Dialog.Sell.LabelInventory"), 0));
             buttonOK.setEnabled(false);
             return;
         }
         jsNumber.setModel(new SpinnerNumberModel(1, 1, n, 1));
         jsNumber.setEnabled(true);
+        tfTotal.setEditable(true);
+        tfComment.setEditable(true);
         labelInventory.setText(String.format(app.getString("Dialog.Sell.LabelInventory"), n));
         checkSellCondition();
     }
@@ -222,6 +230,14 @@ public class SellBookDialog extends JDialog {
 
     public int getSales() {
         return (int) jsNumber.getValue();
+    }
+
+    public double getTotalPrice() {
+        return (double) tfTotal.getValue();
+    }
+
+    public String getComment() {
+        return tfComment.getText().trim();
     }
 
     public static void main(String[] args) {

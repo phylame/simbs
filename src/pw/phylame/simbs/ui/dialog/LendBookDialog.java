@@ -38,6 +38,8 @@ public class LendBookDialog extends JDialog {
     private JButton buttonChooseCustomer;
     private JLabel labelInventory;
     private JLabel labelMaxPeriod;
+    private JFormattedTextField tfTotal;
+    private JTextField tfComment;
 
     private String oldISBN = null;
     private int customerID = -1;
@@ -133,6 +135,8 @@ public class LendBookDialog extends JDialog {
         pack();
         setLocationRelativeTo(null);
 
+        tfTotal.setValue(0.0D);
+
         updateLentLimit();
         updateMaxPeriod(Constants.MAX_LENT_DAYS);
     }
@@ -166,19 +170,25 @@ public class LendBookDialog extends JDialog {
         Application app = Application.getInstance();
         Worker worker = Worker.getInstance();
 
-        int lentLimit = worker.getLentLimit(customerID);
+        int lentLimit = worker.geLimit(customerID);
         int inventory = worker.getInventory(tfISBN.getText().trim());
         if (lentLimit <= 0 || inventory <= 0) {
             jsNumber.setModel(new SpinnerNumberModel(0, 0, 0, 0));
             jsNumber.setEnabled(false);
+            jsPeriod.setValue(0);
             jsPeriod.setEnabled(false);
+            tfTotal.setEditable(false);
+            tfComment.setEditable(false);
             labelInventory.setText(String.format(app.getString("Dialog.Lend.LabelLimit"), 0));
             buttonOK.setEnabled(false);
         } else {
             int n = Math.min(lentLimit, inventory);
             jsNumber.setModel(new SpinnerNumberModel(1, 1, n, 1));
             jsNumber.setEnabled(true);
+            jsPeriod.setValue(30);  // one month
             jsPeriod.setEnabled(true);
+            tfTotal.setEditable(true);
+            tfComment.setEditable(true);
             labelInventory.setText(String.format(app.getString("Dialog.Lend.LabelLimit"), n));
             buttonOK.setEnabled(true);
         }
@@ -226,5 +236,13 @@ public class LendBookDialog extends JDialog {
 
     public int getPeriod() {
         return (int) jsPeriod.getValue();
+    }
+
+    public double getTotalPrice() {
+        return (double) tfTotal.getValue();
+    }
+
+    public String getComment() {
+        return tfComment.getText().trim();
     }
 }

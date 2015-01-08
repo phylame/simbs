@@ -83,7 +83,7 @@ public final class Constants {
     /** Number of book for customer can borrow each time */
     public static final int DEFAULT_LENT_LIMIT = 10;
 
-    public static final float PRICE_OF_INCRESE_LENT_LIMIT = 100.0F;
+    public static final float PRICE_OF_INCREASE_LIMIT = 100.0F;
 
     public static final float PRICE_OF_INCREASE_LEVEL = 200.0F;
 

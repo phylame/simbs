@@ -36,6 +36,8 @@ public class ModifyBookDialog extends JDialog {
     private JSpinner jsDate;
     private JTextArea taIntro;
     private JFormattedTextField tfPrice;
+    private JTextField tfCover;
+    private JButton btnChooseCover;
 
     private Book book = null;
 
@@ -45,6 +47,13 @@ public class ModifyBookDialog extends JDialog {
         setContentPane(contentPane);
         setModal(true);
         getRootPane().setDefaultButton(buttonOK);
+
+        btnChooseCover.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                onChooseCover();
+            }
+        });
 
         buttonOK.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -87,6 +96,10 @@ public class ModifyBookDialog extends JDialog {
         setLocationRelativeTo(null);
     }
 
+    private void onChooseCover() {
+        // TODO: add choose cover
+    }
+
     private void onOK() {
 // add your code here
         Application app = Application.getInstance();
@@ -106,6 +119,7 @@ public class ModifyBookDialog extends JDialog {
         }
         book.setName(s);
         book.setVersion(tfVersion.getText().trim());
+        book.setCover(tfCover.getText().trim());
         s = tfAuthors.getText().trim();
         if ("".equals(s)) {
             DialogFactory.showError(this, app.getString("Dialog.ModifyBook.NoAuthors"), getTitle());
@@ -120,7 +134,8 @@ public class ModifyBookDialog extends JDialog {
             return;
         }
         book.setPublisher(s);
-        book.setPrice((float)tfPrice.getValue());
+        // TODO
+//        book.setPrice((float)tfPrice.getValue());
         book.setIntro(taIntro.getText().trim());
         isReady = true;
         dispose();
@@ -142,21 +157,23 @@ public class ModifyBookDialog extends JDialog {
             tfISBN.setText(book.getISBN());
             tfName.setText(book.getName());
             tfVersion.setText(book.getVersion());
+            tfCover.setText(book.getCover());
             tfAuthors.setText(book.getAuthors());
             jsDate.setValue(book.getDate());
             tfCategory.setText(book.getCategory());
             tfPublisher.setText(book.getPublisher());
-            tfPrice.setText(Double.toString(book.getPrice()));
+            tfPrice.setValue(book.getPrice().doubleValue());
             taIntro.setText(book.getIntro());
         } else {
             tfISBN.setText("");
             tfName.setText("");
             tfVersion.setText("");
+            tfCover.setText("");
             tfAuthors.setText("");
             jsDate.setValue(new java.util.Date());
             tfCategory.setText("");
             tfPublisher.setText("");
-            tfPrice.setText("0.0");
+            tfPrice.setValue(0.0D);
             taIntro.setText("");
         }
     }

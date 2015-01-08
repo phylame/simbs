@@ -149,8 +149,7 @@ public class StoreBookDialog extends JDialog {
             buttonOK.setEnabled(false);
             return;
         }
-        Book book = Worker.getInstance().getBook(isbn);
-        if (book == null) {
+        if (! Worker.getInstance().isBookRegistered(isbn)) {
             buttonOK.setEnabled(false);
             return;
         }
@@ -162,7 +161,6 @@ public class StoreBookDialog extends JDialog {
             isbn = "";
         }
         tfISBN.setText(isbn.trim());
-        updateISBN();
     }
 
     public String getISBN() {

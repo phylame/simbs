@@ -1,25 +1,32 @@
-/* query all book information */
-SELECT Bisbn ÊéºÅ, Bname ÊéÃû, Bversion °æ±¾, Bauthors ×÷Õß, Bdate ÈÕÆÚ, Bcategory ·ÖÀà,
- Bpublisher ³ö°æÉç, Bprice ¼Û¸ñ, Bintro ¼ò½é
-FROM book_info;
+ï»¿/*
+ * This file is part of SIMBS.
+ * (C) 2015 Peng Wan
+ *
+ * Test database used in SIMBS.
+ */
 
-/* query all customer */
-SELECT Cid ±àºÅ, Cname ĞÕÃû, Cphone ÊÖ»ú
-FROM customer_info;
+/* Query all book information */
+SELECT Bisbn ä¹¦å·, Bname ä¹¦å, Bversion ç‰ˆæœ¬, Bauthors ä½œè€…, Bcover å°é¢, Bdate æ—¥æœŸ, Bcategory åˆ†ç±»,
+ Bpublisher å‡ºç‰ˆç¤¾, Bprice ä»·æ ¼, Bintro ç®€ä»‹
+FROM book;
 
-/* query book stock */
-SELECT book_info.Bisbn ÊéºÅ, Bname, Bversion °æ±¾, Bpublisher ³ö°æÉç, Enumber ¿â´æÁ¿
-FROM book_info, book_stock
-WHERE book_stock.Bisbn = book_info.Bisbn;
+/* Query all customer */
+SELECT Cid ç¼–å·, Cname å§“å, Cphone æ‰‹æœº, Clevel çº§åˆ«, Climit å€Ÿä¹¦ä¸Šé™
+FROM customer;
 
-/* query sold record */
-SELECT customer_info.Cid ¿Í»§ºÅ, Cname ĞÕÃû, Sdate Ê±¼ä, Stime Ê±¼ä, book_info.Bisbn ÊéºÅ, 
- Bname ÊéÃû, Snumber ÊıÄ¿
-FROM customer_info, book_info, sold_book
-WHERE sold_book.Cid = customer_info.Cid AND sold_book.Bisbn = book_info.Bisbn;
+/* Query book stock */
+SELECT book.Bisbn ä¹¦å·, Bname ä¹¦å, Bversion ç‰ˆæœ¬, Bpublisher å‡ºç‰ˆç¤¾, Inumber åº“å­˜é‡
+FROM book, stock
+WHERE stock.Bisbn = book.Bisbn;
 
-/* query lent record */
-SELECT customer_info.Cid ¿Í»§ºÅ, Cname ĞÕÃû, Ldate ÈÕÆÚ, Ltime Ê±¼ä, book_info.Bisbn ÊéºÅ,
- Bname ÊéÃû, Lnumber ÊıÄ¿, Lperiod ÆÚÏŞ
-FROM customer_info, book_info, lent_book
-WHERE lent_book.Cid = customer_info.Cid AND lent_book.Bisbn = book_info.Bisbn;
+/* Query sold book */
+SELECT customer.Cid å®¢æˆ·å·, Cname å§“å, Sdate æ—¥æœŸ, Stime æ—¶é—´, book.Bisbn ä¹¦å·,
+ Bname ä¹¦å, Snumber æ•°ç›®, Stotal æ€»ä»·, Scomment å¤‡æ³¨
+FROM customer, book, sale
+WHERE sale.Cid = customer.Cid AND sale.Bisbn = book.Bisbn;
+
+/* Query lent book */
+SELECT customer.Cid å®¢æˆ·å·, Cname å§“å, Rdate æ—¥æœŸ, Rtime æ—¶é—´, book.Bisbn ä¹¦å·,
+ Bname ä¹¦å, Rnumber æ•°ç›®, Rperiod æœŸé™, Rtotal æ€»ä»·, Rcomment å¤‡æ³¨
+FROM customer, book, rental
+WHERE rental.Cid = customer.Cid AND rental.Bisbn = book.Bisbn;
