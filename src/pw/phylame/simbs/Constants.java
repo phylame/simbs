@@ -105,7 +105,7 @@ public final class Constants {
     public static final String VIEW_BOOK = "view-book";
     public static final String VIEW_CUSTOMER = "view-customer";
     public static final String VIEW_INVENTORY = "view-inventory";
-    public static final String SHOW_NAVIGATE = "view-navigate";
+    public static final String VIEW_HOME = "view-navigate";
 
     public static final String STORE_BOOK = "store-book";
     public static final String SELL_BOOK = "sell-book";

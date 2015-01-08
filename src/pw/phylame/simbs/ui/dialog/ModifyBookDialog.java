@@ -96,6 +96,11 @@ public class ModifyBookDialog extends JDialog {
         setLocationRelativeTo(null);
     }
 
+    public ModifyBookDialog(String title) {
+        this();
+        setTitle(title);
+    }
+
     private void onChooseCover() {
         // TODO: add choose cover
     }
@@ -151,7 +156,7 @@ public class ModifyBookDialog extends JDialog {
         return isReady ? book : null;
     }
 
-    public void setBook(Book book) {
+    public void setBook(Book book, boolean isISBNEditable) {
         this.book = book;
         if (book != null) {
             tfISBN.setText(book.getISBN());
@@ -176,5 +181,6 @@ public class ModifyBookDialog extends JDialog {
             tfPrice.setValue(0.0D);
             taIntro.setText("");
         }
+        tfISBN.setEnabled(isISBNEditable);
     }
 }

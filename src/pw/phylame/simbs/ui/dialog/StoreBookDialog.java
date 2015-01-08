@@ -18,7 +18,6 @@ package pw.phylame.simbs.ui.dialog;
 
 import pw.phylame.simbs.Application;
 import pw.phylame.simbs.Worker;
-import pw.phylame.simbs.ds.Book;
 
 import javax.swing.*;
 import javax.swing.event.DocumentEvent;
@@ -109,7 +108,7 @@ public class StoreBookDialog extends JDialog {
 
         jsNumber.setModel(new SpinnerNumberModel(1, 1, null, 1));
 
-        setIconImage(app.getUI().getIconImage());
+        setIconImage(app.getFrame().getIconImage());
 
         pack();
         setLocationRelativeTo(null);

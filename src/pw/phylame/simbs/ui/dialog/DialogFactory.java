@@ -87,4 +87,13 @@ public final class DialogFactory {
     public static void showWarning(String text, String title) {
         showWarning(parent, text, title);
     }
+
+    public static boolean showConfirm(Component parent, String text, String title) {
+        int ret = JOptionPane.showConfirmDialog(parent, text, title, JOptionPane.YES_NO_OPTION);
+        return ret == JOptionPane.YES_OPTION;
+    }
+
+    public static boolean showConfirm(String text, String title) {
+        return showConfirm(parent, title, text);
+    }
 }

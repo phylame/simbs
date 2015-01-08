@@ -130,14 +130,14 @@ public class LendBookDialog extends JDialog {
             }
         }, KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
 
-        setIconImage(app.getUI().getIconImage());
+        setIconImage(app.getFrame().getIconImage());
 
         pack();
         setLocationRelativeTo(null);
 
         tfTotal.setValue(0.0D);
 
-        updateLentLimit();
+        updateLimit();
         updateMaxPeriod(Constants.MAX_LENT_DAYS);
     }
 
@@ -163,32 +163,39 @@ public class LendBookDialog extends JDialog {
             return;
         }
         oldISBN = s;
-        updateLentLimit();
+        updateLimit();
     }
 
-    private void updateLentLimit() {
+    private void updateLimit() {
         Application app = Application.getInstance();
         Worker worker = Worker.getInstance();
 
-        int lentLimit = worker.geLimit(customerID);
-        int inventory = worker.getInventory(tfISBN.getText().trim());
-        if (lentLimit <= 0 || inventory <= 0) {
+        int limit = -1;
+        if (customerID > 0) {
+            limit = worker.geLimit(customerID);
+        }
+        int inventory = -1;
+        String s = tfISBN.getText().trim();
+        if (! "".equals(s)) {
+            inventory = worker.getInventory(s);
+        }
+        if (limit <= 0 || inventory <= 0) {
             jsNumber.setModel(new SpinnerNumberModel(0, 0, 0, 0));
             jsNumber.setEnabled(false);
             jsPeriod.setValue(0);
             jsPeriod.setEnabled(false);
-            tfTotal.setEditable(false);
-            tfComment.setEditable(false);
+//            tfTotal.setEditable(false);
+//            tfComment.setEditable(false);
             labelInventory.setText(String.format(app.getString("Dialog.Lend.LabelLimit"), 0));
             buttonOK.setEnabled(false);
         } else {
-            int n = Math.min(lentLimit, inventory);
+            int n = Math.min(limit, inventory);
             jsNumber.setModel(new SpinnerNumberModel(1, 1, n, 1));
             jsNumber.setEnabled(true);
             jsPeriod.setValue(30);  // one month
             jsPeriod.setEnabled(true);
-            tfTotal.setEditable(true);
-            tfComment.setEditable(true);
+//            tfTotal.setEditable(true);
+//            tfComment.setEditable(true);
             labelInventory.setText(String.format(app.getString("Dialog.Lend.LabelLimit"), n));
             buttonOK.setEnabled(true);
         }
@@ -209,7 +216,6 @@ public class LendBookDialog extends JDialog {
             isbn = "";
         }
         tfISBN.setText(isbn.trim());
-        updateISBN();
     }
 
     public int getCustomer() {
@@ -225,7 +231,7 @@ public class LendBookDialog extends JDialog {
                 buttonOK.setEnabled(false);
             } else {
                 tfCustomerName.setText(customer.getName());
-                updateLentLimit();
+                updateLimit();
             }
         }
     }

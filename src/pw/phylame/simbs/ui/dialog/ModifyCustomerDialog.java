@@ -81,6 +81,11 @@ public class ModifyCustomerDialog extends JDialog {
         jsLimit.setModel(new SpinnerNumberModel(Constants.DEFAULT_LENT_LIMIT, 1, Constants.DEFAULT_LENT_LIMIT*3, 1));
     }
 
+    public ModifyCustomerDialog(String title) {
+        this();
+        setTitle(title);
+    }
+
     private void onOK() {
 // add your code here
         Application app = Application.getInstance();

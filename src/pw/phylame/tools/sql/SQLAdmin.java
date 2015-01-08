@@ -156,10 +156,6 @@ public class SQLAdmin {
      */
     public PageResultSet queryAndPaging(String sql, int pageSize) throws SQLException {
         checkConnection();
-        System.out.println("SQL: "+sql);
-        Statement stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
-        ResultSet rs = stmt.executeQuery(sql);
-        rs.last();
-        return new PageResultSet(rs, pageSize);
+        return new PageResultSet(this, sql, pageSize);
     }
 }

@@ -17,7 +17,7 @@
 package pw.phylame.simbs.ui;
 
 import pw.phylame.ixin.IToolkit;
-import pw.phylame.ixin.frame.SimpleFrame;
+import pw.phylame.ixin.frame.IFrame;
 import pw.phylame.simbs.Application;
 import pw.phylame.simbs.Constants;
 import pw.phylame.simbs.Manager;
@@ -31,11 +31,11 @@ import java.awt.event.WindowEvent;
 /**
  * Main frame of SIMBS.
  */
-public class MainFrame extends SimpleFrame {
+public class MainFrame extends IFrame {
     static {
-        SimpleFrame.setActionsModel(UIDesign.MENU_ACTIONS);
-        SimpleFrame.setMenuBarModel(UIDesign.MENU_BAR_MODEL);
-        SimpleFrame.setToolBarModel(UIDesign.TOOL_BAR_MODEL);
+        IFrame.setActionsModel(UIDesign.MENU_ACTIONS);
+        IFrame.setMenuBarModel(UIDesign.MENU_BAR_MODEL);
+        IFrame.setToolBarModel(UIDesign.TOOL_BAR_MODEL);
     }
 
     public MainFrame(Manager manager) {
@@ -69,7 +69,6 @@ public class MainFrame extends SimpleFrame {
     public void setContentArea(PaneRender paneRender) {
         JPanel contentArea = getContentArea();
         contentArea.removeAll();
-        paneRender.setParent(this);
         contentArea.add(paneRender.getPane());
         contentArea.updateUI();
     }

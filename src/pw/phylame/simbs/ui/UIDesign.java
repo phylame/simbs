@@ -55,23 +55,30 @@ public final class UIDesign {
 
     /* Edit */
     public static final Object[][] EDIT_MENU_ACTIONS = {
-
+            {EDIT_MODIFY,
+                    app.getString("Menu.Edit.Modify"), app.getString("Menu.Edit.Modify.Icon"),
+                    app.getString("Menu.Edit.Modify.Mnemonic"), app.getString("Menu.Edit.Modify.Shortcut"),
+                    app.getString("Menu.Edit.Modify.Tip"), false},
+            {EDIT_DELETE,
+                    app.getString("Menu.Edit.Delete"), app.getString("Menu.Edit.Delete.Icon"),
+                    app.getString("Menu.Edit.Delete.Mnemonic"), app.getString("Menu.Edit.Delete.Shortcut"),
+                    app.getString("Menu.Edit.Delete.Tip"), false}
     };
 
     /* View */
     public static final Object[][] VIEW_MENU_ACTIONS = {
             {VIEW_BOOK,
-                    app.getString("Menu.Search.View.Book"), app.getString("Menu.Search.View.Book.Icon"),
-                    app.getString("Menu.Search.View.Book.Mnemonic"), app.getString("Menu.Search.View.Book.Shortcut"),
-                    app.getString("Menu.Search.View.Book.Tip")},
+                    app.getString("Menu.View.Book"), app.getString("Menu.View.Book.Icon"),
+                    app.getString("Menu.View.Book.Mnemonic"), app.getString("Menu.View.Book.Shortcut"),
+                    app.getString("Menu.View.Book.Tip")},
             {VIEW_CUSTOMER,
-                    app.getString("Menu.Search.View.Customer"), app.getString("Menu.Search.View.Customer.Icon"),
-                    app.getString("Menu.Search.View.Customer.Mnemonic"), app.getString("Menu.Search.View.Customer.Shortcut"),
-                    app.getString("Menu.Search.View.Customer.Tip")},
-            {SHOW_NAVIGATE,
-                    app.getString("Menu.Search.View.Navigate"), app.getString("Menu.Search.View.Navigate.Icon"),
-                    app.getString("Menu.Search.View.Navigate.Mnemonic"), app.getString("Menu.Search.View.Navigate.Shortcut"),
-                    app.getString("Menu.Search.View.Navigate.Tip")},
+                    app.getString("Menu.View.Customer"), app.getString("Menu.View.Customer.Icon"),
+                    app.getString("Menu.View.Customer.Mnemonic"), app.getString("Menu.View.Customer.Shortcut"),
+                    app.getString("Menu.View.Customer.Tip")},
+            {VIEW_HOME,
+                    app.getString("Menu.View.Home"), app.getString("Menu.View.Home.Icon"),
+                    app.getString("Menu.View.Home.Mnemonic"), app.getString("Menu.View.Home.Shortcut"),
+                    app.getString("Menu.View.Home.Tip")},
     };
 
     /* Options */
@@ -131,20 +138,22 @@ public final class UIDesign {
     /* Edit */
     public static final Object[] EDIT_MENU_MODEL = {
             new IMenuLabel(app.getString("Menu.Edit"), null, app.getString("Menu.Edit.Mnemonic")),
+            EDIT_MODIFY,
+            EDIT_DELETE
     };
 
     /* View */
     private static final Object[] VIEW_MENU_MODEL = {
-            new IMenuLabel(app.getString("Menu.Search.View"), null,
-                    app.getString("Menu.Search.View.Mnemonic")),
+            new IMenuLabel(app.getString("Menu.View"), null,
+                    app.getString("Menu.View.Mnemonic")),
             new IMenuModel(VIEW_BOOK, IMenuModel.MenuType.RADIO, false),
             new IMenuModel(VIEW_CUSTOMER, IMenuModel.MenuType.RADIO, false),
-            new IMenuModel(SHOW_NAVIGATE, IMenuModel.MenuType.RADIO, true),
+            new IMenuModel(VIEW_HOME, IMenuModel.MenuType.RADIO, true),
     };
 
     /* Search */
     public static final Object[] SEARCH_MENU_MODEL = {
-            new IMenuLabel(app.getString("Menu.Search"), null, app.getString("Menu.Search.Mnemonic")),
+            new IMenuLabel(app.getString("Menu.View"), null, app.getString("Menu.View.Mnemonic")),
 
     };
 

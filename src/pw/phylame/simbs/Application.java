@@ -17,6 +17,7 @@
 package pw.phylame.simbs;
 
 import pw.phylame.ixin.IToolkit;
+import pw.phylame.ixin.frame.IFrame;
 import pw.phylame.simbs.ui.dialog.DialogFactory;
 import pw.phylame.simbs.ui.dialog.LoginDialog;
 import pw.phylame.tools.sql.Profile;
@@ -24,7 +25,6 @@ import pw.phylame.tools.sql.SQLAdmin;
 
 //import javax.swing.*;
 import java.io.*;
-import java.math.BigDecimal;
 import java.sql.SQLException;
 import java.util.*;
 
@@ -84,9 +84,9 @@ public class Application {
     }
 
     /** Get the main frame of application */
-    public javax.swing.JFrame getUI() {
+    public IFrame getFrame() {
         if (manager != null) {
-            return manager.getUI();
+            return manager.getFrame();
         } else {
             return null;
         }

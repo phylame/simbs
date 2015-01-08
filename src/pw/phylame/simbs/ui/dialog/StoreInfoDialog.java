@@ -27,6 +27,10 @@ public class StoreInfoDialog extends JDialog {
     private JTextField tfLent;
     private JTextField tfCnum;
     private JTextField tfReg;
+    private JTextField textField1;
+    private JTextField textField2;
+    private JTextField textField3;
+    private JTextField textField4;
 
     public StoreInfoDialog() {
         setContentPane(contentPane);

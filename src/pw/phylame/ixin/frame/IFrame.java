@@ -36,14 +36,14 @@ import java.util.Map;
 /**
  * Simple frame model.
  */
-public abstract class SimpleFrame extends JFrame implements IToolTipListener {
+public abstract class IFrame extends JFrame implements IToolTipListener {
 
     public static Object[][][] getActionsModel() {
         return actionsModel;
     }
 
     public static void setActionsModel(Object[][][] actionsModel) {
-        SimpleFrame.actionsModel = actionsModel;
+        IFrame.actionsModel = actionsModel;
     }
 
     public static Object[][] getMenuBarModel() {
@@ -51,7 +51,7 @@ public abstract class SimpleFrame extends JFrame implements IToolTipListener {
     }
 
     public static void setMenuBarModel(Object[][] menuBarModel) {
-        SimpleFrame.menuBarModel = menuBarModel;
+        IFrame.menuBarModel = menuBarModel;
     }
 
     public static Object[] getToolBarModel() {
@@ -59,15 +59,15 @@ public abstract class SimpleFrame extends JFrame implements IToolTipListener {
     }
 
     public static void setToolBarModel(Object[] toolBarModel) {
-        SimpleFrame.toolBarModel = toolBarModel;
+        IFrame.toolBarModel = toolBarModel;
     }
 
-    public SimpleFrame() {
+    public IFrame() {
         super();
         init();
     }
 
-    public SimpleFrame(String title) {
+    public IFrame(String title) {
         super(title);
         init();
     }
@@ -132,12 +132,20 @@ public abstract class SimpleFrame extends JFrame implements IToolTipListener {
         this.menuActions = menuActions;
     }
 
+    public IAction getMenuAction(Object id) {
+        return menuActions.get(id);
+    }
+
     public Map<Object, IAction> getToolBarActions() {
         return toolBarActions;
     }
 
     public void setToolBarActions(Map<Object, IAction> toolBarActions) {
         this.toolBarActions = toolBarActions;
+    }
+
+    public IAction getToolBarAction(Object id) {
+        return toolBarActions.get(id);
     }
 
     private void createToolBar() {

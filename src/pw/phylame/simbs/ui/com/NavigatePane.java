@@ -61,6 +61,11 @@ public class NavigatePane implements PaneRender {
     }
 
     @Override
+    public void destroy() {
+
+    }
+
+    @Override
     public void setParent(Component parent) {
         parentComp = parent;
     }

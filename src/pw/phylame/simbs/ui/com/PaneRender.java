@@ -23,6 +23,8 @@ import java.awt.*;
  * Container of UI pane.
  */
 public interface PaneRender {
+    void destroy();
+
     void setParent(Component parent);
 
     JPanel getPane();

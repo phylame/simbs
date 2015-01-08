@@ -16,6 +16,9 @@
 
 package pw.phylame.simbs.ui.com;
 
+import pw.phylame.ixin.IAction;
+import pw.phylame.ixin.IToolkit;
+import pw.phylame.ixin.frame.IFrame;
 import pw.phylame.simbs.Application;
 import pw.phylame.simbs.Constants;
 import pw.phylame.simbs.Worker;
@@ -38,13 +41,19 @@ public class BookTablePane extends TablePane {
     public static final int BOOK_COLUMN_COUNT = 5;
     public static final String SQL_SELECT_BOOK = "SELECT Bisbn, Bname, Bauthors, Bpublisher, Bprice FROM book ";
 
+    public static final int MAX_ROW_COUNT = 15;
+
     private BookTableModel tableModel = null;
     private JTable table = null;
+
+    private IAction deleteAction = null, modifyAction = null;
+    private JPopupMenu popupMenu = null;
+
 
     public BookTablePane() {
         SQLAdmin sqlAdmin = Application.getInstance().getSQLAdmin();
         try {
-            PageResultSet dataSet = sqlAdmin.queryAndPaging(SQL_SELECT_BOOK, Constants.MAX_ROW_COUNT);
+            PageResultSet dataSet = sqlAdmin.queryAndPaging(SQL_SELECT_BOOK, MAX_ROW_COUNT);
             this.tableModel = new BookTableModel();
             TableAdapter tableAdapter = new TableAdapter(dataSet, this.tableModel);
             this.table = tableAdapter.getTable();
@@ -55,30 +64,79 @@ public class BookTablePane extends TablePane {
         }
     }
 
+    private void showContextMenu(int x, int y) {
+        if (popupMenu.getComponentCount() > 0) {
+            popupMenu.show(table, x, y);
+        }
+    }
+
     private void init() {
+        final Application app = Application.getInstance();
+        popupMenu = new JPopupMenu();
+        IFrame frame = app.getFrame();
+        modifyAction = frame.getMenuAction(Constants.EDIT_MODIFY);
+        if (modifyAction != null) {
+            popupMenu.add(IToolkit.createMenuItem(modifyAction, null, frame));
+            if (tableModel.getRowCount() == 0) {
+                modifyAction.setEnabled(false);
+            } else {
+                modifyAction.setEnabled(true);
+            }
+        }
+        deleteAction = frame.getMenuAction(Constants.EDIT_DELETE);
+        if (deleteAction != null) {
+            popupMenu.add(IToolkit.createMenuItem(deleteAction, null, frame));
+            if (tableModel.getRowCount() == 0) {
+                deleteAction.setEnabled(false);
+            } else {
+                deleteAction.setEnabled(true);
+            }
+        }
+
         table.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                if (e.getClickCount() != 2 || e.isMetaDown()) {
-                    return;
+                if (e.getClickCount() == 2 && ! e.isMetaDown()) {
+                    app.onCommand(Constants.EDIT_MODIFY);
                 }
             }
 
             @Override
             public void mouseReleased(MouseEvent e) {
-                if (!e.isMetaDown()) {
+                if (!e.isMetaDown()) {  // only right key
                     return;
                 }
+                int row = table.rowAtPoint(e.getPoint());
+                if (row == -1) {
+                    return;
+                }
+                if (! table.isRowSelected(row)) {   // not selected
+                    table.setRowSelectionInterval(row, row);
+                }
+                showContextMenu(e.getX(), e.getY());
             }
         });
     }
 
-    public int[] getSelectedRows() {
-        return table.getSelectedRows();
+    public String getSelectedBook() {
+        return tableModel.getISBN(table.getSelectedRow());
     }
 
-    @Override
-    public void setParent(Component parent) {
+    public String[] getSelectedBooks() {
+        int[] rows = table.getSelectedRows();
+        if (rows == null) {
+            return null;
+        }
+        ArrayList<String> books = new ArrayList<>();
+        for (int row: rows) {
+            books.add(tableModel.getISBN(row));
+        }
+        return books.toArray(new String[0]);
+    }
+
+    /** Update book at row */
+    public void updateBook(int row, Book book) {
+        tableModel.updateBook(row, book);
     }
 
     private static class BookTableModel extends PaneTableModel {
@@ -86,7 +144,7 @@ public class BookTablePane extends TablePane {
         private ArrayList<Book> rows = new ArrayList<>();
 
         public String getISBN(int rowIndex) {
-            if (dataSet == null) {
+            if (dataSet == null || rowIndex < 0) {
                 return null;
             }
             try {
@@ -98,18 +156,16 @@ public class BookTablePane extends TablePane {
             }
         }
 
-        @Override
-        public void setDataSource(PageResultSet dataSet) {
-            this.dataSet = dataSet;
-            pageUpdated(dataSet);
+        public void updateBook(int row, Book book) {
+            rows.set(row, book);
+            fireTableDataChanged();
         }
 
-        @Override
-        public void pageUpdated(PageResultSet dataSet) {
+        /** Update current page from ResultSet */
+        public void updateCurrentPage() {
             if (dataSet == null) {
                 return;
             }
-            rows.clear();
             ResultSet rs = dataSet.getResultSet();
             if (rs == null) {
                 fireTableDataChanged();
@@ -130,6 +186,21 @@ public class BookTablePane extends TablePane {
                 exp.printStackTrace();
             }
             fireTableDataChanged();
+        }
+
+        @Override
+        public void setDataSource(PageResultSet dataSet) {
+            this.dataSet = dataSet;
+            pageUpdated(dataSet);
+        }
+
+        @Override
+        public void pageUpdated(PageResultSet dataSet) {
+            if (dataSet == null) {
+                return;
+            }
+            rows.clear();
+            updateCurrentPage();
         }
 
         @Override

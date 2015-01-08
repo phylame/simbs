@@ -146,6 +146,11 @@ public class TablePane implements PaneRender {
         updatePageStatus();
     }
 
+    public void gotoPage(int page) {
+        tableAdapter.gotoPage(page);
+        updatePageStatus();
+    }
+
     public void gotoPage() {
         if (tableAdapter == null) {
             return;
@@ -157,13 +162,49 @@ public class TablePane implements PaneRender {
                     app.getString("Pane.TableViewer.GotoPage.Title"));
             return;
         }
-        tableAdapter.gotoPage(page);
-        updatePageStatus();
+        gotoPage(page);
+    }
+
+    public int[] getSelectedRows() {
+        if (tableAdapter != null) {
+            return tableAdapter.getTable().getSelectedRows();
+        } else {
+            return null;
+        }
+    }
+
+    public int getSelectedRow() {
+        if (tableAdapter != null) {
+            return tableAdapter.getTable().getSelectedRow();
+        } else {
+            return -1;
+        }
+    }
+
+    public void reloadTable() {
+        if (tableAdapter != null) {
+            tableAdapter.refresh();
+        }
+    }
+
+    public void removeRow(int row) {
+        if (tableAdapter != null) {
+            tableAdapter.getTable().removeRowSelectionInterval(row, row);
+        }
+    }
+
+    @Override
+    public void destroy() {
+        tableAdapter.destroy();
     }
 
     @Override
     public void setParent(Component parent) {
         parentComp = parent;
+    }
+
+    public Component getParent() {
+        return parentComp;
     }
 
     @Override

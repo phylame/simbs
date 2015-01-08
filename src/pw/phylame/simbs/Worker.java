@@ -441,8 +441,8 @@ public final class Worker {
      * @param book the book
      */
     public void registerBook(Book book) throws SQLException {
-        String sql = "INSERT INTO book (Bisbn, Bname, Bversion, Bauthors, Bcover, Bdate, Bcategory," +
-                " Bpublisher, Bprice, Bintro) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?) ";
+        String sql = "INSERT INTO book (Bisbn, Bname, Bversion, Bauthors, Bcover, Bdate," +
+                " Bcategory, Bpublisher, Bprice, Bintro) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?) ";
         PreparedStatement ps = sqlAdmin.prepareStatement(sql);
 
         ps.setString(1, book.getISBN());
@@ -459,12 +459,47 @@ public final class Worker {
         ps.executeUpdate();
     }
 
+    public void updateBook(Book book) throws SQLException {
+        if (! isBookRegistered(book.getISBN())) {   // register if not
+            registerBook(book);
+            return;
+        }
+
+        String sql = "UPDATE book SET Bname=?, Bversion=?, Bauthors=?, Bcover=?, Bdate=?," +
+                " Bcategory=?, Bpublisher=?, Bprice=?, Bintro=?" +
+                " WHERE Bisbn=?";
+        PreparedStatement ps = sqlAdmin.prepareStatement(sql);
+
+        ps.setString(1, book.getName());
+        ps.setString(2, book.getVersion());
+        ps.setString(3, book.getAuthors());
+        ps.setString(4, book.getCover());
+        ps.setDate(5, toSQLDate(book.getDate()));
+        ps.setString(6, book.getCategory());
+        ps.setString(7, book.getPublisher());
+        ps.setBigDecimal(8, book.getPrice());
+        ps.setString(9, book.getIntro());
+        ps.setString(10, book.getISBN());
+
+        ps.executeUpdate();
+    }
+
+    public void removeBook(String isbn) throws SQLException {
+        String sql = "DELETE FROM book WHERE Bisbn=?";
+        PreparedStatement ps = sqlAdmin.prepareStatement(sql);
+
+        ps.setString(1, isbn);
+
+        ps.executeUpdate();
+    }
+
     /**
      * Register a customer
      * @param customer the customer.
      */
     public void registerCustomer(Customer customer) throws SQLException {
-        String sql = "INSERT INTO customer (Cid, Cname, Cphone, Cemail, Clevel, Climit) VALUES (?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO customer (Cid, Cname, Cphone, Cemail, Clevel, Climit)" +
+                " VALUES (?, ?, ?, ?, ?, ?)";
         PreparedStatement ps = sqlAdmin.prepareStatement(sql);
 
         ps.setInt(1, customer.getId());
@@ -473,6 +508,26 @@ public final class Worker {
         ps.setString(4, customer.getEmail());
         ps.setInt(5, customer.getLevel());
         ps.setInt(6, customer.getLimit());
+
+        ps.executeUpdate();
+    }
+
+    public void updateCustomer(Customer customer) throws SQLException {
+        if (! isCustomerRegistered(customer.getId())) {     // register if not
+            registerCustomer(customer);
+            return;
+        }
+
+        String sql = "UPDATE customer SET Cname=?, Cphone=?, Cemail=?, Clevel=?, Climit=?" +
+                " WHERE Cid=?";
+        PreparedStatement ps = sqlAdmin.prepareStatement(sql);
+
+        ps.setString(1, customer.getName());
+        ps.setString(2, customer.getPhone());
+        ps.setString(3, customer.getEmail());
+        ps.setInt(4, customer.getLevel());
+        ps.setInt(5, customer.getLimit());
+        ps.setInt(6, customer.getId());
 
         ps.executeUpdate();
     }
@@ -596,7 +651,6 @@ public final class Worker {
 
     }
 
-
     /**
      * Create new book and register to database.
      * @return the book, if {@code null} user cancel or register failed
@@ -628,7 +682,6 @@ public final class Worker {
         }
         return book;
     }
-
 
     /**
      * Create new customer and register to database.

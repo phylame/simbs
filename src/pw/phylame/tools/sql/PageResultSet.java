@@ -18,11 +18,15 @@ package pw.phylame.tools.sql;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 /**
  * ResultSet with page.
  */
 public class PageResultSet {
+    private SQLAdmin sqlAdmin = null;
+    private String sql = null;
+
     private ResultSet rs = null;
 
     /** Number of rows in each page */
@@ -37,14 +41,41 @@ public class PageResultSet {
     /** Current page, begin from 1 */
     private int currentPage = 1;
 
-    public PageResultSet(ResultSet rs, int pageSize) throws SQLException {
-        this.rs = rs;
+    public PageResultSet(SQLAdmin sqlAdmin, String sql, int pageSize) throws SQLException {
+        this.sqlAdmin = sqlAdmin;
+        this.sql = sql;
         this.pageSize = pageSize;
+        refresh();
+    }
+
+    /**
+     * Destroy and Release resource.
+     * @throws SQLException
+     */
+    public void close() throws SQLException {
+        rs.close();
+    }
+
+    /** Re-query from database */
+    public void refresh() throws SQLException {
+        if (rs != null) {
+            rs.close();
+            rs = null;
+        }
+
+        System.out.println("SQL: "+sql);
+        Statement stmt = sqlAdmin.getConnection().createStatement(
+                ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+        rs = stmt.executeQuery(sql);
+        rs.last();
+
         rowCount = rs.getRow();
         pageCount = (rowCount + pageSize - 1) / pageSize;
-        /* go to first page */
         if (pageCount > 0) {
-            gotoPage(1);
+            if (currentPage > pageCount) {  // data has been deleted in other way, move to last page
+                currentPage = pageCount - 1;
+            }
+            gotoPage(currentPage);
         }
     }
 

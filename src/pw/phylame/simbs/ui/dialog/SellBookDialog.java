@@ -130,7 +130,7 @@ public class SellBookDialog extends JDialog {
 
         jsNumber.setModel(new SpinnerNumberModel(1, 1, null, 1));
 
-        setIconImage(app.getUI().getIconImage());
+        setIconImage(app.getFrame().getIconImage());
 
         pack();
         setLocationRelativeTo(null);
@@ -203,7 +203,6 @@ public class SellBookDialog extends JDialog {
             isbn = "";
         }
         tfISBN.setText(isbn.trim());
-        updateISBN();
     }
 
     public String getISBN() {

@@ -45,6 +45,19 @@ public class TableAdapter {
         paneTableModel.setDataSource(prs);
     }
 
+    /**
+     * Destroy and release resource.
+     */
+    public void destroy() {
+        paneTableModel = null;
+        table = null;
+        try {
+            prs.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
     public void setDataSource(PageResultSet prs) {
         this.prs = prs;
         paneTableModel.setDataSource(prs);
@@ -90,6 +103,15 @@ public class TableAdapter {
             paneTableModel.pageUpdated(prs);
         } catch (SQLException e) {
 //            e.printStackTrace();
+        }
+    }
+
+    public void refresh() {
+        try {
+            prs.refresh();
+            paneTableModel.pageUpdated(prs);
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
 }
