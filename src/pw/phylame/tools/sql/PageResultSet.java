@@ -24,7 +24,7 @@ import java.sql.Statement;
  * ResultSet with page.
  */
 public class PageResultSet {
-    private SQLAdmin sqlAdmin = null;
+    private DbHelper dbHelper = null;
     private String sql = null;
 
     private ResultSet rs = null;
@@ -41,8 +41,8 @@ public class PageResultSet {
     /** Current page, begin from 1 */
     private int currentPage = 1;
 
-    public PageResultSet(SQLAdmin sqlAdmin, String sql, int pageSize) throws SQLException {
-        this.sqlAdmin = sqlAdmin;
+    public PageResultSet(DbHelper dbHelper, String sql, int pageSize) throws SQLException {
+        this.dbHelper = dbHelper;
         this.sql = sql;
         this.pageSize = pageSize;
         refresh();
@@ -64,7 +64,7 @@ public class PageResultSet {
         }
 
         System.out.println("SQL: "+sql);
-        Statement stmt = sqlAdmin.getConnection().createStatement(
+        Statement stmt = dbHelper.getConnection().createStatement(
                 ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
         rs = stmt.executeQuery(sql);
         rs.last();

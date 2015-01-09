@@ -20,8 +20,8 @@ import pw.phylame.ixin.IToolkit;
 import pw.phylame.ixin.frame.IFrame;
 import pw.phylame.simbs.ui.dialog.DialogFactory;
 import pw.phylame.simbs.ui.dialog.LoginDialog;
+import pw.phylame.tools.sql.DbHelper;
 import pw.phylame.tools.sql.Profile;
-import pw.phylame.tools.sql.SQLAdmin;
 
 //import javax.swing.*;
 import java.io.*;
@@ -71,8 +71,8 @@ public class Application {
     }
 
     /** Get SQL worker */
-    public SQLAdmin getSQLAdmin() {
-        return sqlAdmin;
+    public DbHelper getSQLAdmin() {
+        return dbHelper;
     }
 
     /** Returns the {@code Manager} instance */
@@ -108,7 +108,7 @@ public class Application {
             return false;
         }
         try {
-            sqlAdmin = new SQLAdmin(profile);
+            dbHelper = new DbHelper(profile);
             saveProfile(profile);
             return true;
         } catch (SQLException e) {
@@ -196,7 +196,7 @@ public class Application {
     private String[] args;
 
     /** SQL Administrator for SIMBS */
-    private SQLAdmin sqlAdmin = null;
+    private DbHelper dbHelper = null;
 
     /** The manage instance */
     private Manager manager = null;

@@ -26,18 +26,21 @@ import pw.phylame.simbs.ui.com.TableAdapter;
 import pw.phylame.simbs.ui.com.TablePane;
 import pw.phylame.tools.StringUtility;
 import pw.phylame.tools.sql.PageResultSet;
-import pw.phylame.tools.sql.SQLAdmin;
+import pw.phylame.tools.sql.DbHelper;
 
 import javax.swing.*;
 import java.awt.event.*;
+import java.math.BigDecimal;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class ChooseBookDialog extends JDialog {
-    public static final int BOOK_COLUMN_COUNT = 5;
-    public static final String SQL_SELECT_BOOK = "SELECT book.Bisbn, Bname, Bpublisher, Bprice, Inumber " +
-            "FROM book LEFT OUTER JOIN stock ON (stock.bisbn = book.bisbn) ";
+    public static final int BOOK_COLUMN_COUNT = 8;
+    public static final String SQL_SELECT_BOOK = "SELECT book.Bisbn, Bname, Bauthors, Bdate," +
+            " Bcategory, Bpublisher, Bprice, Inumber FROM book LEFT OUTER JOIN inventory" +
+            " ON (inventory.bisbn = book.bisbn) ";
 
     private JPanel contentPane;
 //    private JButton buttonOk;
@@ -199,7 +202,7 @@ public class ChooseBookDialog extends JDialog {
                         app.getString("Dialog.ChooseBook.Title"));
                 return;
             }
-            conditions.add(String.format("book_info.Bisbn = book_stock.Bisbn AND Enumber BETWEEN %d AND %d",
+            conditions.add(String.format("book.Bisbn = inventory.Bisbn AND Enumber BETWEEN %d AND %d",
                     begin, end));
         }
 
@@ -208,9 +211,9 @@ public class ChooseBookDialog extends JDialog {
         if (! "".equals(cond.trim())) {
             sql = sql +" WHERE "+cond;
         }
-        SQLAdmin sqlAdmin = app.getSQLAdmin();
+        DbHelper dbHelper = app.getSQLAdmin();
         try {
-            PageResultSet dataSet = sqlAdmin.queryAndPaging(sql, Constants.MAX_ROW_COUNT);
+            PageResultSet dataSet = dbHelper.queryAndPaging(sql, Constants.MAX_ROW_COUNT);
             TableAdapter tableAdapter = tablePane.getTableAdapter();
             if (tableAdapter == null) {     // first search
                 final BookTableModel tableModel = new BookTableModel();
@@ -240,6 +243,7 @@ public class ChooseBookDialog extends JDialog {
                 setLocationRelativeTo(null);
             } else {
                 tableAdapter.setDataSource(dataSet);
+                tablePane.updatePageStatus();
 //                if (dataSet.getRowCount() == 0) {       // not found result
 //                    buttonOk.setEnabled(false);
 //                }
@@ -249,62 +253,20 @@ public class ChooseBookDialog extends JDialog {
         }
     }
 
+    public void setISBN(String isbn) {
+        // nothing
+    }
+
     public String getISBN() {
         return isbn;
     }
 
     public static class BookTableModel extends PaneTableModel {
-        private static class BookEntry {
-            private String isbn, name, publisher;
-            private float price;
+        private static class BookX extends Book {
             private int inventory;
 
-            public BookEntry(String isbn, String name, String publisher, float price, int inventory) {
-                setISBN(isbn);
-                setName(name);
-                setPublisher(publisher);
-                setPrice(price);
-                setInventory(inventory);
-            }
-
-            public String getISBN() {
-                return isbn;
-            }
-
-            public void setISBN(String isbn) {
-                this.isbn = isbn;
-            }
-
-            public String getName() {
-                return name;
-            }
-
-            public void setName(String name) {
-                this.name = name;
-            }
-
-            public String getPublisher() {
-                return publisher;
-            }
-
-            public void setPublisher(String publisher) {
-                this.publisher = publisher;
-            }
-
-            public float getPrice() {
-                return price;
-            }
-
-            public void setPrice(float price) {
-                this.price = price;
-            }
-
-            public String getIsbn() {
-                return isbn;
-            }
-
-            public void setIsbn(String isbn) {
-                this.isbn = isbn;
+            public BookX() {
+                super();
             }
 
             public int getInventory() {
@@ -317,7 +279,7 @@ public class ChooseBookDialog extends JDialog {
         }
 
         private PageResultSet dataSet = null;
-        private ArrayList<BookEntry> rows = new ArrayList<>();
+        private ArrayList<BookX> rows = new ArrayList<>();
 
         public BookTableModel() {
         }
@@ -327,7 +289,7 @@ public class ChooseBookDialog extends JDialog {
                 return null;
             }
             try {
-                BookEntry entry = rows.get(rowIndex);
+                BookX entry = rows.get(rowIndex);
                 return entry.getISBN();
             } catch (IndexOutOfBoundsException exp) {
                 exp.printStackTrace();
@@ -354,9 +316,16 @@ public class ChooseBookDialog extends JDialog {
             }
             try {
                 for (int i = 0; i < dataSet.getCurrentRows(); ++i) {
-                    BookEntry bookEntry = new BookEntry(rs.getString(1).trim(), rs.getString(2).trim(),
-                            rs.getString(3).trim(), rs.getFloat(4), rs.getInt(5));
-                    rows.add(bookEntry);
+                    BookX book = new BookX();
+                    book.setISBN(rs.getString(1));
+                    book.setName(rs.getString(2));
+                    book.setAuthors(rs.getString(3));
+                    book.setDate(rs.getDate(4));
+                    book.setCategory(rs.getString(5));
+                    book.setPublisher(rs.getString(6));
+                    book.setPrice(rs.getBigDecimal(7));
+                    book.setInventory(rs.getInt(8));
+                    rows.add(book);
                     rs.next();
                 }
             } catch (SQLException exp) {
@@ -379,10 +348,16 @@ public class ChooseBookDialog extends JDialog {
                 case 1:
                     return app.getString("Book.Property.Name");
                 case 2:
-                    return app.getString("Book.Property.Publisher");
+                    return app.getString("Book.Property.Author");
                 case 3:
-                    return app.getString("Book.Property.Price");
+                    return app.getString("Book.Property.Date");
                 case 4:
+                    return app.getString("Book.Property.Category");
+                case 5:
+                    return app.getString("Book.Property.Publisher");
+                case 6:
+                    return app.getString("Book.Property.Price");
+                case 7:
                     return app.getString("Book.Property.Inventory");
                 default:
                     return app.getString("Book.Property.Unknown");
@@ -409,17 +384,23 @@ public class ChooseBookDialog extends JDialog {
                 return null;
             }
             try {
-                BookEntry entry = rows.get(rowIndex);
+                BookX entry = rows.get(rowIndex);
                 switch (columnIndex) {
                     case 0:
                         return entry.getISBN();
                     case 1:
                         return entry.getName();
                     case 2:
-                        return entry.getPublisher();
+                        return entry.getAuthors();
                     case 3:
-                        return entry.getPrice();
+                        return entry.getDate();
                     case 4:
+                        return entry.getCategory();
+                    case 5:
+                        return entry.getPublisher();
+                    case 6:
+                        return entry.getPrice();
+                    case 7:
                         return entry.getInventory();
                     default:
                         return null;

@@ -23,11 +23,10 @@ import pw.phylame.simbs.Application;
 import pw.phylame.simbs.Constants;
 import pw.phylame.simbs.Worker;
 import pw.phylame.simbs.ds.Book;
+import pw.phylame.tools.sql.DbHelper;
 import pw.phylame.tools.sql.PageResultSet;
-import pw.phylame.tools.sql.SQLAdmin;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.ResultSet;
@@ -51,9 +50,9 @@ public class BookTablePane extends TablePane {
 
 
     public BookTablePane() {
-        SQLAdmin sqlAdmin = Application.getInstance().getSQLAdmin();
+        DbHelper dbHelper = Application.getInstance().getSQLAdmin();
         try {
-            PageResultSet dataSet = sqlAdmin.queryAndPaging(SQL_SELECT_BOOK, MAX_ROW_COUNT);
+            PageResultSet dataSet = dbHelper.queryAndPaging(SQL_SELECT_BOOK, MAX_ROW_COUNT);
             this.tableModel = new BookTableModel();
             TableAdapter tableAdapter = new TableAdapter(dataSet, this.tableModel);
             this.table = tableAdapter.getTable();

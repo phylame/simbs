@@ -18,6 +18,7 @@ package pw.phylame.simbs;
 
 import pw.phylame.tools.sql.Profile;
 
+import java.math.BigDecimal;
 import java.util.ResourceBundle;
 
 /**
@@ -83,9 +84,11 @@ public final class Constants {
     /** Number of book for customer can borrow each time */
     public static final int DEFAULT_LENT_LIMIT = 10;
 
-    public static final float PRICE_OF_INCREASE_LIMIT = 100.0F;
+    public static final BigDecimal DEFAULT_RENTAL_PRICE = new BigDecimal("0.2");
 
-    public static final float PRICE_OF_INCREASE_LEVEL = 200.0F;
+    public static final float PRICE_OF_INCREASE_LIMIT = 50.0F;
+
+    public static final float PRICE_OF_INCREASE_LEVEL = 150.0F;
 
 
     // ***********************

@@ -18,8 +18,12 @@ INSERT INTO customer (Cid, Cname, Cphone, Clevel, Climit) VALUES (3, '张三', '
 INSERT INTO customer (Cid, Cname, Cphone, Clevel, Climit) VALUES (4, '李四', '18677722631', 0, 10);
 
 /* Add book to book stock */
-INSERT INTO stock (Bisbn, Inumber) VALUES ('978-7-04-019583-5', 10);
-INSERT INTO stock (Bisbn, Inumber) VALUES ('978-7-115-28931-5', 30);
+INSERT INTO stock(Bisbn, Tdate, Ttime, Tnumber, Ttotal, Tcomment)
+ VALUES ('978-7-04-019583-5'， '2014-12-15', '10:20:00', 10, 100.00, '');
+INSERT INTO stock(Bisbn, Tdate, Ttime, Tnumber, Ttotal, Tcomment)
+ VALUES ('978-7-115-28931-5'， '2014-12-15', '10:20:00', 30, 500.00, '');
+INSERT INTO inventory (Bisbn, Inumber) VALUES ('978-7-04-019583-5', 10);
+INSERT INTO inventory (Bisbn, Inumber) VALUES ('978-7-115-28931-5', 30);
 
 /* Add sale record */
 INSERT INTO sale (Bisbn, Cid, Snumber, Sdate, Stime, Stotal, Scomment)

@@ -181,6 +181,6 @@ public class ModifyBookDialog extends JDialog {
             tfPrice.setValue(0.0D);
             taIntro.setText("");
         }
-        tfISBN.setEnabled(isISBNEditable);
+        tfISBN.setEditable(isISBNEditable);
     }
 }

@@ -48,7 +48,7 @@ public class MainFrame extends IFrame {
     }
 
     private void createComponent() {
-        setContentArea(new NavigatePane());
+
     }
 
     private void init() {

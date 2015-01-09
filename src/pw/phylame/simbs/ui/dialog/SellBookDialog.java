@@ -17,13 +17,17 @@
 package pw.phylame.simbs.ui.dialog;
 
 import pw.phylame.simbs.Application;
+import pw.phylame.simbs.Constants;
 import pw.phylame.simbs.Worker;
 import pw.phylame.simbs.ds.Customer;
 
 import javax.swing.*;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import java.awt.event.*;
+import java.math.BigDecimal;
 
 public class SellBookDialog extends JDialog {
     private JPanel contentPane;
@@ -38,9 +42,13 @@ public class SellBookDialog extends JDialog {
     private JTextField tfCustomerName;
     private JFormattedTextField tfComment;
     private JFormattedTextField tfTotal;
+    private JLabel labelTip;
 
     private String oldISBN = null;
     private int customerID = -1;
+    private BigDecimal bookPrice = null;
+
+    private boolean isReady = false;
 
     public SellBookDialog() {
         setContentPane(contentPane);
@@ -48,6 +56,18 @@ public class SellBookDialog extends JDialog {
         getRootPane().setDefaultButton(buttonOK);
 
         final Application app = Application.getInstance();
+        final SellBookDialog dialog = this;
+
+        labelTip.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                String tip = String.format(app.getString("Dialog.Sell.SalePolicy"),
+                        Constants.PRICE_OF_INCREASE_LEVEL, Constants.PRICE_OF_INCREASE_LIMIT);
+                JOptionPane.showMessageDialog(dialog, tip,
+                        app.getString("Dialog.Sell.SalePolicy.Title"), JOptionPane.PLAIN_MESSAGE);
+
+            }
+        });
 
         tfISBN.addActionListener(new ActionListener() {
             @Override
@@ -55,30 +75,29 @@ public class SellBookDialog extends JDialog {
                 updateISBN();
             }
         });
-
         tfISBN.getDocument().addDocumentListener(new DocumentListener() {
             @Override
             public void insertUpdate(DocumentEvent e) {
                 updateISBN();
             }
-
             @Override
             public void removeUpdate(DocumentEvent e) {
                 updateISBN();
             }
-
             @Override
-            public void changedUpdate(DocumentEvent e) {
-
-            }
+            public void changedUpdate(DocumentEvent e) {}
         });
 
         buttonChooseBook.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 ChooseBookDialog dialog = new ChooseBookDialog(app.getString("Dialog.ChooseBook.Title"));
+                String isbn = tfISBN.getText().trim();
+                if (! "".equals(isbn)) {
+                    dialog.setISBN(isbn);
+                }
                 dialog.setVisible(true);
-                String isbn = dialog.getISBN();
+                isbn = dialog.getISBN();
                 if (isbn != null) {
                     setISBN(isbn);
                 }
@@ -89,15 +108,21 @@ public class SellBookDialog extends JDialog {
             @Override
             public void actionPerformed(ActionEvent e) {
                 ChooseCustomerDialog dialog = new ChooseCustomerDialog(app.getString("Dialog.ChooseCustomer.Title"));
-                int id = getCustomer();
-                if (id > 0) {
-                    dialog.setCustomerID(id);
+                if (customerID > 0) {
+                    dialog.setCustomerID(customerID);
                 }
                 dialog.setVisible(true);
-                id = dialog.getCustomerID();
+                int id = dialog.getCustomerID();
                 if (id > 0) {
                     setCustomer(id);
                 }
+            }
+        });
+
+        jsNumber.addChangeListener(new ChangeListener() {
+            @Override
+            public void stateChanged(ChangeEvent e) {
+                calculateTotal();
             }
         });
 
@@ -128,17 +153,12 @@ public class SellBookDialog extends JDialog {
             }
         }, KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
 
-        jsNumber.setModel(new SpinnerNumberModel(1, 1, null, 1));
-
         setIconImage(app.getFrame().getIconImage());
 
         pack();
         setLocationRelativeTo(null);
 
-        tfTotal.setValue(0D);
-
-        updateISBN();
-        checkSellCondition();
+        updateNumber();
     }
 
     public SellBookDialog(String title) {
@@ -147,56 +167,72 @@ public class SellBookDialog extends JDialog {
     }
 
     private void onOK() {
-// add your code here
+        isReady = true;
         dispose();
     }
 
     private void onCancel() {
-// add your code here if necessary
+        isReady = false;
         dispose();
     }
 
-    private void checkSellCondition() {
-        String s = tfCustomerName.getText().trim();
-        if ("".equals(s)) {
-            buttonOK.setEnabled(false);
+    private void updateISBN() {
+        String isbn = tfISBN.getText().trim();
+        if (isbn.equals(oldISBN)) {     // not changed
             return;
         }
-        if (! jsNumber.isEnabled()) {
-            buttonOK.setEnabled(false);
-            return;
-        }
-        buttonOK.setEnabled(true);
+        oldISBN = isbn;
+        updateNumber();
     }
 
-    private void updateISBN() {
-        Application app = Application.getInstance();
-        Worker worker = Worker.getInstance();
+    private void updateNumber() {
+
+        setNumberInfo(0, 0, 0);
+        jsNumber.setEnabled(false);
+        tfTotal.setValue(new BigDecimal("0.00"));
+        tfTotal.setEditable(false);
+        tfComment.setText("");
+        tfComment.setEditable(false);
+        buttonOK.setEnabled(false);
+
+        int inventory = -1;
         String s = tfISBN.getText().trim();
-        if (s.equals(oldISBN)) {
-            return;
-        }
-        oldISBN = s;
-        int n = -1;
         if (! "".equals(s)) {
-            n = worker.getInventory(s);
+            inventory = Worker.getInstance().getInventory(s);
         }
-        if (n < 0 ) {
-            jsNumber.setValue(0);
-            jsNumber.setEnabled(false);
-            tfTotal.setEditable(false);
-            tfComment.setEditable(false);
-            labelInventory.setText(String.format(app.getString("Dialog.Sell.LabelInventory"), 0));
-            buttonOK.setEnabled(false);
+        if (inventory <= 0) {    // no inventory
             return;
         }
-        jsNumber.setModel(new SpinnerNumberModel(1, 1, n, 1));
+        setNumberInfo(1, 1, inventory);
         jsNumber.setEnabled(true);
         tfTotal.setEditable(true);
         tfComment.setEditable(true);
-        labelInventory.setText(String.format(app.getString("Dialog.Sell.LabelInventory"), n));
-        checkSellCondition();
+        if (customerID > 0) {
+            buttonOK.setEnabled(true);
+        }
+        calculateTotal();
     }
+
+    private void calculateTotal() {
+        String s = tfISBN.getText().trim();
+        if ("".equals(s)) {     // no ISBN
+            return;
+        }
+        int number = (int) jsNumber.getValue();
+        if (bookPrice == null) {
+            bookPrice = Worker.getInstance().getSalePrice(s);    // get price
+        }
+        if (bookPrice != null) {
+            tfTotal.setValue(bookPrice.multiply(new BigDecimal(number)));
+        }
+    }
+
+    private void setNumberInfo(int number, int begin, int maxNumber) {
+        jsNumber.setModel(new SpinnerNumberModel(number, begin, maxNumber, 1));
+        labelInventory.setText(String.format(
+                Application.getInstance().getString("Dialog.Sell.LabelInventory"), maxNumber));
+    }
+
 
     public void setISBN(String isbn) {
         if (isbn == null) {
@@ -218,31 +254,40 @@ public class SellBookDialog extends JDialog {
                 buttonOK.setEnabled(false);
             } else {
                 tfCustomerName.setText(customer.getName());
-                checkSellCondition();
+                updateNumber();
             }
         }
     }
 
     public int getCustomer() {
-        return customerID;
+        if (isReady) {
+            return customerID;
+        } else {
+            return -1;
+        }
     }
 
-    public int getSales() {
-        return (int) jsNumber.getValue();
+    public int getNumber() {
+        if (isReady) {
+            return (int) jsNumber.getValue();
+        } else {
+            return -1;
+        }
     }
 
-    public double getTotalPrice() {
-        return (double) tfTotal.getValue();
+    public BigDecimal getTotalPrice() {
+        if (isReady) {
+            return (BigDecimal) tfTotal.getValue();
+        } else {
+            return null;
+        }
     }
 
     public String getComment() {
-        return tfComment.getText().trim();
-    }
-
-    public static void main(String[] args) {
-        SellBookDialog dialog = new SellBookDialog();
-        dialog.pack();
-        dialog.setVisible(true);
-        System.exit(0);
+        if (isReady) {
+            return tfComment.getText().trim();
+        } else {
+            return null;
+        }
     }
 }

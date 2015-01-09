@@ -25,7 +25,7 @@ import pw.phylame.simbs.ui.com.NavigatePane;
 import pw.phylame.simbs.ui.com.PaneRender;
 import pw.phylame.simbs.ui.dialog.*;
 import pw.phylame.simbs.ui.MainFrame;
-import pw.phylame.tools.sql.SQLAdmin;
+import pw.phylame.tools.sql.DbHelper;
 
 import static pw.phylame.simbs.Constants.*;
 
@@ -49,6 +49,8 @@ public class Manager {
         ui.setTitle(app.getString("App.Title"));
         ui.setStatusText(app.getString("App.Ready"));
         ui.setVisible(true);
+
+        viewHome();
 
         String[] args = app.getSystemArguments();
         if (args.length > 0) {
@@ -103,11 +105,7 @@ public class Manager {
     }
 
     public void showStoreInfo() {
-        StoreInfoDialog dialog = new StoreInfoDialog();
-        dialog.setIconImage(ui.getIconImage());
-        dialog.setTitle(app.getString("Dialog.Info.Title"));
-        dialog.setInfo(worker.getRegisteredBookNumber(), worker.getTotalInventories(), worker.getTotalSales(),
-                worker.getLentNumber(), worker.getRegisteredCustomerCount());
+        StoreInfoDialog dialog = new StoreInfoDialog(app.getString("Dialog.Info.Title"));
         dialog.setVisible(true);
     }
 
@@ -202,7 +200,7 @@ public class Manager {
     }
 
     private void viewCustomer() {
-        SQLAdmin sqlAdmin = app.getSQLAdmin();
+        DbHelper dbHelper = app.getSQLAdmin();
     }
 
     private void viewHome() {
@@ -233,11 +231,13 @@ public class Manager {
         dialog.setVisible(true);
         String isbn = dialog.getISBN();
         int number = dialog.getNumber();
+        BigDecimal total = dialog.getTotalPrice();
+        String comm = dialog.getComment();
         if (isbn == null || number <= 0) {
             return;
         }
         try {
-            worker.storeBook(isbn, number);
+            worker.storeBook(isbn, number, total, comm);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -250,8 +250,8 @@ public class Manager {
         dialog.setVisible(true);
         String isbn = dialog.getISBN();
         int customerId = dialog.getCustomer();
-        int sales = dialog.getSales();
-        BigDecimal price = new BigDecimal(dialog.getTotalPrice());
+        int sales = dialog.getNumber();
+        BigDecimal price = dialog.getTotalPrice();
         String comm = dialog.getComment();
         if (isbn == null || customerId <= 0 || sales <= 0) {
             return;
@@ -271,13 +271,13 @@ public class Manager {
         String isbn = dialog.getISBN();
         int customerId = dialog.getCustomer();
         int number = dialog.getNumber(), period = dialog.getPeriod();
-        BigDecimal total = new BigDecimal(dialog.getTotalPrice());
+        BigDecimal deposit = dialog.getDeposit(), price = dialog.getPrice();
         String comm = dialog.getComment();
         if (isbn == null || customerId <= 0 || number <= 0 || period <= 0) {
             return;
         }
         try {
-            worker.lendBook(isbn, customerId, number, period, total, comm);
+            worker.lendBook(isbn, customerId, number, period, price, deposit, comm);
         } catch (SQLException e) {
             e.printStackTrace();
         }

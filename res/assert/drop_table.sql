@@ -9,5 +9,6 @@
 DROP TABLE rental;
 DROP TABLE sale;
 DROP TABLE stock;
+DROP TABLE inventory;
 DROP TABLE customer;
 DROP TABLE book;

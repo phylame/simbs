@@ -16,6 +16,9 @@
 
 package pw.phylame.simbs.ui.dialog;
 
+import pw.phylame.simbs.Application;
+import pw.phylame.simbs.Worker;
+
 import javax.swing.*;
 import java.awt.event.*;
 
@@ -27,10 +30,10 @@ public class StoreInfoDialog extends JDialog {
     private JTextField tfLent;
     private JTextField tfCnum;
     private JTextField tfReg;
-    private JTextField textField1;
-    private JTextField textField2;
-    private JTextField textField3;
-    private JTextField textField4;
+    private JTextField tfStockMoney;
+    private JTextField tfSaleMoney;
+    private JTextField tfRentalMoney;
+    private JTextField tfTotalMoney;
 
     public StoreInfoDialog() {
         setContentPane(contentPane);
@@ -58,8 +61,17 @@ public class StoreInfoDialog extends JDialog {
             }
         }, KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
 
+        setIconImage(Application.getInstance().getFrame().getIconImage());
+
         pack();
         setLocationRelativeTo(null);
+
+        updateInfo();
+    }
+
+    public StoreInfoDialog(String title) {
+        this();
+        setTitle(title);
     }
 
     private void onOK() {
@@ -72,18 +84,18 @@ public class StoreInfoDialog extends JDialog {
         dispose();
     }
 
-    public void setInfo(int regNumber, int stockNumber, int soldNumber, int lentNumber, int customerNumber) {
-        tfReg.setText(Integer.toString(regNumber));
-        tfStock.setText(Integer.toString(stockNumber));
-        tfSold.setText(Integer.toString(soldNumber));
-        tfLent.setText(Integer.toString(lentNumber));
-        tfCnum.setText(Integer.toString(customerNumber));
-    }
+    private void updateInfo() {
+        Worker worker = Worker.getInstance();
 
-    public static void main(String[] args) {
-        StoreInfoDialog dialog = new StoreInfoDialog();
-        dialog.pack();
-        dialog.setVisible(true);
-        System.exit(0);
+        tfReg.setText(Integer.toString(worker.getRegisteredBookCount()));
+        tfStock.setText(Integer.toString(worker.getAllInventories()));
+        tfSold.setText(Integer.toString(worker.getSoldBookCount()));
+        tfLent.setText(Integer.toString(worker.getLentBookCount()));
+        tfCnum.setText(Integer.toString(worker.getRegisteredCustomerCount()));
+
+        tfStockMoney.setText(worker.getStockSpending().toString());
+        tfSaleMoney.setText(worker.getSaleRevenue().toString());
+        tfRentalMoney.setText(worker.getRentalRevenue().toString());
+        tfTotalMoney.setText(worker.getTotalRevenue().toString());
     }
 }

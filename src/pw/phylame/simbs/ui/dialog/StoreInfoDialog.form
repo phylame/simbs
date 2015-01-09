@@ -217,7 +217,7 @@
               <text resource-bundle="i18n/simbs" key="Dialog.Info.LabelRental"/>
             </properties>
           </component>
-          <component id="ebc11" class="javax.swing.JTextField" binding="textField1" default-binding="true">
+          <component id="ebc11" class="javax.swing.JTextField" binding="tfStockMoney">
             <constraints>
               <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                 <preferred-size width="150" height="-1"/>
@@ -227,7 +227,7 @@
               <editable value="false"/>
             </properties>
           </component>
-          <component id="44a7b" class="javax.swing.JTextField" binding="textField2" default-binding="true">
+          <component id="44a7b" class="javax.swing.JTextField" binding="tfSaleMoney">
             <constraints>
               <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                 <preferred-size width="150" height="-1"/>
@@ -237,7 +237,7 @@
               <editable value="false"/>
             </properties>
           </component>
-          <component id="b86d1" class="javax.swing.JTextField" binding="textField3" default-binding="true">
+          <component id="b86d1" class="javax.swing.JTextField" binding="tfRentalMoney">
             <constraints>
               <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                 <preferred-size width="150" height="-1"/>
@@ -256,7 +256,7 @@
               <text resource-bundle="i18n/simbs" key="Dialog.Info.LabelTotal"/>
             </properties>
           </component>
-          <component id="e4327" class="javax.swing.JTextField" binding="textField4" default-binding="true">
+          <component id="e4327" class="javax.swing.JTextField" binding="tfTotalMoney">
             <constraints>
               <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                 <preferred-size width="150" height="-1"/>

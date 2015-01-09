@@ -14,10 +14,10 @@ FROM book;
 SELECT Cid 编号, Cname 姓名, Cphone 手机, Clevel 级别, Climit 借书上限
 FROM customer;
 
-/* Query book stock */
+/* Query book inventory */
 SELECT book.Bisbn 书号, Bname 书名, Bversion 版本, Bpublisher 出版社, Inumber 库存量
-FROM book, stock
-WHERE stock.Bisbn = book.Bisbn;
+FROM book, inventory
+WHERE inventory.Bisbn = book.Bisbn;
 
 /* Query sold book */
 SELECT customer.Cid 客户号, Cname 姓名, Sdate 日期, Stime 时间, book.Bisbn 书号,

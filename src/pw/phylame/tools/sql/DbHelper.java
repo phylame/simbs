@@ -19,13 +19,13 @@ package pw.phylame.tools.sql;
 import java.sql.*;
 
 /**
- * Manager of database connection.
+ * Helper for database management.
  */
-public class SQLAdmin {
+public class DbHelper {
     private Profile profile = null;
     private Connection conn = null;
 
-    public SQLAdmin(Profile profile) throws SQLException {
+    public DbHelper(Profile profile) throws SQLException {
         if (profile == null) {
             throw new NullPointerException("Profile is null");
         }

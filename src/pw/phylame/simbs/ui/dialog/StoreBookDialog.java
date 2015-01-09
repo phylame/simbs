@@ -20,9 +20,12 @@ import pw.phylame.simbs.Application;
 import pw.phylame.simbs.Worker;
 
 import javax.swing.*;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import java.awt.event.*;
+import java.math.BigDecimal;
 
 public class StoreBookDialog extends JDialog {
     private JPanel contentPane;
@@ -31,8 +34,11 @@ public class StoreBookDialog extends JDialog {
     private JTextField tfISBN;
     private JButton buttonChooseBook;
     private JSpinner jsNumber;
+    private JFormattedTextField tfTotal;
+    private JTextField tfComment;
 
     private String oldISBN = null;
+    private BigDecimal bookPrice = null;
 
     private boolean isReady = false;
 
@@ -49,21 +55,23 @@ public class StoreBookDialog extends JDialog {
                 updateISBN();
             }
         });
-
         tfISBN.getDocument().addDocumentListener(new DocumentListener() {
             @Override
             public void insertUpdate(DocumentEvent e) {
                 updateISBN();
             }
-
             @Override
             public void removeUpdate(DocumentEvent e) {
                 updateISBN();
             }
-
             @Override
-            public void changedUpdate(DocumentEvent e) {
+            public void changedUpdate(DocumentEvent e) {}
+        });
 
+        jsNumber.addChangeListener(new ChangeListener() {
+            @Override
+            public void stateChanged(ChangeEvent e) {
+                calculateTotal();
             }
         });
 
@@ -122,37 +130,42 @@ public class StoreBookDialog extends JDialog {
     }
 
     private void onOK() {
-// add your code here
-        Application app = Application.getInstance();
-        if ("".equals(tfISBN.getText().trim())) {
-            DialogFactory.showError(this, app.getString("Dialog.Store.NoISBN"), app.getString("Dialog.Store.Title"));
-            return;
-        }
         isReady = true;
         dispose();
     }
 
     private void onCancel() {
-// add your code here if necessary
         isReady = false;
         dispose();
     }
 
     private void updateISBN() {
         String isbn = tfISBN.getText().trim();
-        if (isbn.equals(oldISBN)) {
+        if (isbn.equals(oldISBN)) {     // not changed
             return;
         }
+
+        jsNumber.setValue(1);
+        tfTotal.setValue(new BigDecimal("0.00"));
+        tfComment.setText("");
+
+        jsNumber.setEnabled(false);
+        tfTotal.setEditable(false);
+        tfComment.setEditable(false);
+        buttonOK.setEnabled(false);
+
         oldISBN = isbn;
         if ("".equals(isbn)) {
-            buttonOK.setEnabled(false);
             return;
         }
-        if (! Worker.getInstance().isBookRegistered(isbn)) {
-            buttonOK.setEnabled(false);
+        if (! Worker.getInstance().isBookRegistered(isbn)) {    // not registered
             return;
         }
+        jsNumber.setEnabled(true);
+        tfTotal.setEditable(true);
+        tfComment.setEditable(true);
         buttonOK.setEnabled(true);
+        calculateTotal();
     }
 
     public void setISBN(String isbn) {
@@ -160,6 +173,7 @@ public class StoreBookDialog extends JDialog {
             isbn = "";
         }
         tfISBN.setText(isbn.trim());
+        bookPrice = null;
     }
 
     public String getISBN() {
@@ -178,10 +192,41 @@ public class StoreBookDialog extends JDialog {
         }
     }
 
-    public static void main(String[] args) {
-        StoreBookDialog dialog = new StoreBookDialog();
-        dialog.pack();
-        dialog.setVisible(true);
-        System.exit(0);
+    private void calculateTotal() {
+        String s = tfISBN.getText().trim();
+        if ("".equals(s)) {     // no ISBN
+            return;
+        }
+        int number = (int) jsNumber.getValue();
+        if (bookPrice == null) {
+            bookPrice = Worker.getInstance().getPrice(s);    // get price
+        }
+        if (bookPrice != null) {
+            tfTotal.setValue(bookPrice.multiply(new BigDecimal(number)));
+        }
+    }
+
+    public BigDecimal getTotalPrice() {
+        if (isReady) {
+            return (BigDecimal) tfTotal.getValue();
+        } else {
+            return null;
+        }
+    }
+
+    public void setComment(String comment) {
+        if (comment == null) {
+            tfComment.setText("");
+        } else {
+            tfComment.setText(comment.trim());
+        }
+    }
+
+    public String getComment() {
+        if (isReady) {
+            return tfComment.getText().trim();
+        } else {
+            return null;
+        }
     }
 }

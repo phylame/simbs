@@ -25,8 +25,8 @@ import pw.phylame.simbs.ui.com.PaneTableModel;
 import pw.phylame.simbs.ui.com.TableAdapter;
 import pw.phylame.simbs.ui.com.TablePane;
 import pw.phylame.tools.StringUtility;
+import pw.phylame.tools.sql.DbHelper;
 import pw.phylame.tools.sql.PageResultSet;
-import pw.phylame.tools.sql.SQLAdmin;
 
 import javax.swing.*;
 import java.awt.event.*;
@@ -36,8 +36,8 @@ import java.util.ArrayList;
 
 public class ChooseCustomerDialog extends JDialog {
     public static final int CUSTOMER_COLUMN_COUNT = 6;
-    public static final String SQL_SELECT_CUSTOMER = "SELECT Cid, Cname, Cphone, Cemail, Clevel, Climit" +
-            " FROM customer ";
+    public static final String SQL_SELECT_CUSTOMER = "SELECT Cid, Cname, Cphone, Cemail, Clevel," +
+            " Climit FROM customer ";
 
     private JPanel contentPane;
     private JButton buttonSearch;
@@ -172,9 +172,9 @@ public class ChooseCustomerDialog extends JDialog {
         if (! "".equals(cond.trim())) {
             sql = sql +" WHERE "+cond;
         }
-        SQLAdmin sqlAdmin = app.getSQLAdmin();
+        DbHelper dbHelper = app.getSQLAdmin();
         try {
-            PageResultSet dataSet = sqlAdmin.queryAndPaging(sql, Constants.MAX_ROW_COUNT);
+            PageResultSet dataSet = dbHelper.queryAndPaging(sql, Constants.MAX_ROW_COUNT);
             TableAdapter tableAdapter = tablePane.getTableAdapter();
             if (tableAdapter == null) {     // first search
                 final CustomerTableModel tableModel = new CustomerTableModel();
@@ -267,7 +267,10 @@ public class ChooseCustomerDialog extends JDialog {
             }
             try {
                 for (int i = 0; i < dataSet.getCurrentRows(); ++i) {
-                    rows.add(Worker.getCustomerFromResultSet(rs));
+                    Customer customer = new Customer(rs.getInt(1), rs.getString(2).trim(),
+                            Worker.normalizeString(rs.getString(3)),
+                            Worker.normalizeString(rs.getString(4)), rs.getInt(5), rs.getInt(6), "");
+                    rows.add(customer);
                     rs.next();
                 }
             } catch (SQLException exp) {

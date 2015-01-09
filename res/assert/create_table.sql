@@ -5,67 +5,190 @@
  * Create database tables used in SIMBS.
  */
 
-/* create table of book information */
+/* Book information, field name starts with "B" */
 CREATE TABLE book
 (
-	Bisbn CHAR(17) PRIMARY KEY,											/* ISBN of the book */
-	Bname VARCHAR(128) NOT NULL,										/* book name */
-	Bversion VARCHAR(64),												/* version message */
-	Bauthors VARCHAR(128) NOT NULL,										/* authors, if more than one, split with "," */
-	Bcover VARCHAR(512),												/* path of cover image */
-	Bdate DATE NOT NULL,												/* published date */
-	Bcategory VARCHAR(128),												/* category, if more than one, split with "," */
-	Bpublisher VARCHAR(128) NOT NULL,									/* the publisher */
-	Bprice DECIMAL(10, 2) NOT NULL CHECK (Bprice >= 0.0),				/* book price */
-	Bintro VARCHAR(512)													/* a intro of the book */
+	/* The ISBN */
+	Bisbn CHAR(17) PRIMARY KEY,
+
+	/* The name */
+	Bname VARCHAR(128) NOT NULL,
+
+	/* Version message */
+	Bversion VARCHAR(64),
+
+	/* Authors, split names with "," if more than one author */
+	Bauthors VARCHAR(128) NOT NULL,
+
+	/* Path of cover image */
+	Bcover VARCHAR(512),
+
+	/* Publication date */
+	Bdate DATE NOT NULL,
+
+	/* Category, split value with "," if more than one item */
+	Bcategory VARCHAR(128),
+
+	/* The publisher */
+	Bpublisher VARCHAR(128) NOT NULL,
+
+	/* The price */
+	Bprice DECIMAL(10, 2) NOT NULL CHECK (Bprice >= 0.0),
+
+	/* Introduction of the book */
+	Bintro VARCHAR(512)
 );
 
-/* create table of customer information */
+/* Customer information, field name starts with "C" */
 CREATE TABLE customer
 (
-	Cid INT PRIMARY KEY CHECK (Cid > 0),								/* customer ID, begin from 1 */
-	Cname VARCHAR(64) NOT NULL,											/* customer name */
-	Cphone VARCHAR(16),													/* cell-phone count */
-	Cemail VARCHAR(48),													/* email */
-	Clevel SMALLINT NOT NULL CHECK (Clevel >= 0),						/* customer level */
-	Climit SMALLINT NOT NULL CHECK (Climit >= 0)						/* max number of book that customer can borrowed each time */
+	/* Customer ID, begin from 1 */
+	Cid INT PRIMARY KEY CHECK (Cid > 0),
+
+	/* Customer name */
+	Cname VARCHAR(64) NOT NULL,
+
+	/* Phone number */
+	Cphone VARCHAR(16),
+
+	/* Email address */
+	Cemail VARCHAR(48),
+
+	/* Customer level, default is 0 */
+	Clevel SMALLINT DEFAULT 0 NOT NULL CHECK (Clevel >= 0),
+
+	/* Limits for borrowing books, default is 10 */
+	Climit SMALLINT DEFAULT 10 NOT NULL CHECK (Climit >= 0)
+
+	/* The comments */
+	Ccomment VARCHAR(512),
 );
 
-/* create table of book stock */
+/* Inventory listing, field name starts with "I" */
+CREATE TABLE inventory
+(
+	/* ISBN of book */
+	Bisbn CHAR(17) PRIMARY KEY,
+
+	/* Inventory number */
+	Inumber INT NOT NULL CHECK (Inumber >= 0),
+
+	FOREIGN KEY (Bisbn) REFERENCES book(Bisbn)
+);
+
+/* Stock listing, field name starts with "T" */
 CREATE TABLE stock
 (
-	Bisbn CHAR(17) PRIMARY KEY,											/* book ISBN */
-	Inumber INT NOT NULL CHECK (Inumber >= 0),							/* inventory number */
-	FOREIGN KEY (Bisbn) REFERENCES book(Bisbn)							/* use ISBN in book */
+	/* ID of record, begin from 1 */
+	Tid INT PRIMARY KEY CHECK (Tid > 0),
+
+	/* ISBN of book */
+	Bisbn CHAR(17),
+
+	/* The date */
+	Tdate DATE NOT NULL,
+
+	/* The time */
+	Ttime TIME NOT NULL,
+
+	/* The Number of those books */
+	Tnumber INT NOT NULL CHECK (Tnumber > 0),
+
+	/* Total price of those books */
+    Ttotal DECIMAL(10, 2) NOT NULL CHECK (Ttotal >= 0),
+
+    /* The comments */
+	Tcomment VARCHAR(512),
+
+    FOREIGN KEY (Bisbn) REFERENCES book(Bisbn),
 );
 
-/* create table of sale list */
+/* Sale listing, field name starts with "S" */
 CREATE TABLE sale
 (
-	Bisbn CHAR(17) NOT NULL,											/* book ISBN */
-	Cid INT NOT NULL,													/* the ID of this customer */
-	Sdate DATE NOT NULL,												/* the sold date */
-	Stime TIME NOT NULL,												/* the sold time */
-	Snumber INT NOT NULL CHECK (Snumber > 0),							/* the count of customer bought book */
-	Stotal DECIMAL(10, 2) NOT NULL CHECK (Stotal >= 0),					/* total price of those book */
-	Scomment VARCHAR(128),												/* the comments */
-	PRIMARY KEY (Bisbn, Cid, Sdate, Stime),								/* the primary key */
-	FOREIGN KEY (Bisbn) REFERENCES book(Bisbn),							/* use ISBN in book */
-	FOREIGN KEY (Cid) REFERENCES customer(Cid)							/* use ID in customer */
+	/* ID of record, begin from 1 */
+	Sid INT PRIMARY KEY CHECK (Sid > 0),
+
+	/* ISBN of the book */
+	Bisbn CHAR(17) NOT NULL,
+
+	/* ID of the customer */
+	Cid INT NOT NULL,
+
+	/* The date */
+	Sdate DATE NOT NULL,
+
+	/* The time */
+	Stime TIME NOT NULL,
+
+	/* The number of this bought book */
+	Snumber INT NOT NULL CHECK (Snumber > 0),
+
+	/* Total price of those books */
+	Stotal DECIMAL(10, 2) NOT NULL CHECK (Stotal >= 0),
+
+	/* The comments */
+	Scomment VARCHAR(128),
+
+	FOREIGN KEY (Bisbn) REFERENCES book(Bisbn),
+	FOREIGN KEY (Cid) REFERENCES customer(Cid)
 );
 
-/* create table of rental list */
+/* Rental list, field name starts with "R" */
 CREATE TABLE rental
 (
-	Bisbn CHAR(17) NOT NULL,											/* book ISBN */
-	Cid INT NOT NULL,													/* the ID of this customer */
-	Rdate DATE NOT NULL,												/* the date when lend the book */
-	Rtime TIME NOT NULL,												/* the time when lend the book */
-	Rnumber INT NOT NULL CHECK (Rnumber > 0),							/* the count of customer borrowed book */
-	Rperiod SMALLINT NOT NULL CHECK (Rperiod > 0),						/* the days of customer borrowed book */
-	Rtotal DECIMAL(10, 2) NOT NULL CHECK (Rtotal >= 0),					/* total price of those book */
-	Rcomment VARCHAR(128),												/* the comments */
-	PRIMARY KEY (Bisbn, Cid, Rdate),									/* the primary key */
-	FOREIGN KEY (Bisbn) REFERENCES book(Bisbn),							/* use ISBN in book */
-	FOREIGN KEY (Cid) REFERENCES customer(Cid)							/* use ID in customer */
+	/* ID of record, begin from 1 */
+	Rid INT PRIMARY KEY CHECK (Rid > 0),
+
+	/* ISBN of the book */
+	Bisbn CHAR(17) NOT NULL,
+
+	/* ID of the customer */
+	Cid INT NOT NULL,
+
+	/* The date */
+	Rdate DATE NOT NULL,
+
+	/* The time */
+	Rtime TIME NOT NULL,
+
+	/* The number of book that customer borrowed, when 0 that customer returned */
+	Rnumber INT NOT NULL CHECK (Rnumber >= 0),
+
+	/* The days of customer borrowed book */
+	Rperiod SMALLINT NOT NULL CHECK (Rperiod > 0),
+
+	/* The rental price of each book */
+	Rprice DECIMAL(10, 2) DEFAULT 0 NOT NULL CHECK ( Rprice >= 0),
+
+	/* Deposit price of those book */
+	Rdeposit DECIMAL(10, 2) NOT NULL CHECK (Rdeposit >= 0),
+
+	/* The revenue money of this rental task */
+	Rrevenue DECIMAL(10, 2) NOT NULL CHECK (Rrevenue >= 0),
+
+	/* The comments */
+	Rcomment VARCHAR(128),
+
+	FOREIGN KEY (Bisbn) REFERENCES book(Bisbn),
+	FOREIGN KEY (Cid) REFERENCES customer(Cid)
+);
+
+/* The bill, field name starts with "L" */
+CREATE TABLE bill
+(
+	/* Record number, begin from 1 */
+	Lno INT PRIMARY KEY CHECK (Lno > 0),
+
+	/* The date */
+	Ldate DATE NOT NULL,
+
+	/* The time */
+	Ltime TIME NOT NULL,
+
+	/* Event of the bill, maybe 1:stock, 2:sale, 3:rental, 4:return */
+	Levent INT NOT NULL CHECK (Levent IN (1, 2, 3, 4)),
+
+	/* Task ID in its table, such as Tid, Sid, Rid, Rid */
+	Lid INT NOT NULL CHECK (Lid > 0),
 );

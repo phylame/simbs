@@ -28,22 +28,25 @@ public class Customer {
     private String email;
     private int level;
     private int limit;
+    private String comment;
 
     public Customer() {
         this(1, "", "", "");
     }
 
     public Customer(int id, String name, String phone, String email) {
-        this(id, name, phone, email, 0, Constants.DEFAULT_LENT_LIMIT);
+        this(id, name, phone, email, 0, Constants.DEFAULT_LENT_LIMIT, "");
     }
 
-    public Customer(int id, String name, String phone, String email, int level, int limit) {
+    public Customer(int id, String name, String phone, String email, int level, int limit,
+                    String comment) {
         setId(id);
         setName(name);
         setPhone(phone);
         setEmail(email);
         setLevel(level);
         setLimit(limit);
+        setComment(comment);
     }
 
     public int getId() {
@@ -95,6 +98,14 @@ public class Customer {
 
     public void setLimit(int limit) {
         this.limit = limit;
+    }
+
+    public String getComment() {
+        return comment;
+    }
+
+    public void setComment(String comment) {
+        this.comment = comment;
     }
 
     @Override

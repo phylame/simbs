@@ -32,7 +32,6 @@ public class NavigatePane implements PaneRender {
     private Component parentComp = null;
 
     private JPanel rootPane;
-    private JPanel labelCustomer;
     private JButton btnViewBook;
     private JButton btnViewInventory;
     private JButton btnViewCustomer;
