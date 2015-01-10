@@ -16,11 +16,14 @@
 
 package pw.phylame.simbs;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 import pw.phylame.ixin.frame.IFrame;
 import pw.phylame.simbs.ds.Book;
 import pw.phylame.simbs.ds.Customer;
 import pw.phylame.simbs.ui.com.BookTablePane;
+import pw.phylame.simbs.ui.com.CustomerTablePane;
 import pw.phylame.simbs.ui.com.NavigatePane;
 import pw.phylame.simbs.ui.com.PaneRender;
 import pw.phylame.simbs.ui.dialog.*;
@@ -37,9 +40,11 @@ import java.sql.SQLException;
  * The UI and resource manager.
  */
 public class Manager {
+    private static Log log = LogFactory.getLog(Manager.class);
+
     public Manager(Application app) {
         this.app = app;
-        worker = new Worker(app.getSQLAdmin());
+        worker = new Worker(app.getDbHelper());
         ui = new MainFrame(this);
         DialogFactory.setDialogParent(ui);
     }
@@ -105,15 +110,41 @@ public class Manager {
     }
 
     public void showStoreInfo() {
-        StoreInfoDialog dialog = new StoreInfoDialog(app.getString("Dialog.Info.Title"));
+        StoreInfoDialog dialog = new StoreInfoDialog(getFrame(),
+                app.getString("Dialog.Info.Title"));
         dialog.setVisible(true);
+    }
+
+    private void onViewDetails() {
+        String isbn = getSelectedBook();
+        if (isbn != null) {
+            BookDetailsDialog dialog = new BookDetailsDialog(getFrame(),
+                    app.getString("Dialog.BookDetails.Title"));
+            dialog.setBook(isbn);
+            dialog.setVisible(true);
+            System.gc();
+            return;
+        }
+        int id = getSelectedCustomer();
+        if (id > 0) {
+            CustomerDetailsDialog dialog = new CustomerDetailsDialog(getFrame(),
+                    app.getString("Dialog.CustomerDetails.Title"));
+            dialog.setCustomer(id);
+            dialog.setVisible(true);
+            System.gc();
+        }
     }
 
     private void onModify() {
         BookTablePane tablePane = getBookTablePane();
         if (tablePane != null) {
-            ModifyBookDialog dialog = new ModifyBookDialog(app.getString("Dialog.ModifyBook.Title"));
-            Book book = worker.getBook(tablePane.getSelectedBook());
+            String isbn = tablePane.getSelectedBook();
+            if (isbn == null) {
+                return;
+            }
+            ModifyBookDialog dialog = new ModifyBookDialog(getFrame(),
+                    app.getString("Dialog.ModifyBook.Title"));
+            Book book = worker.getBook(isbn);
             dialog.setBook(book, false);
             dialog.setVisible(true);
             book = dialog.getBook();
@@ -121,17 +152,20 @@ public class Manager {
                 try {
                     worker.updateBook(book);
                     tablePane.updateBook(tablePane.getSelectedRow(), book);
+//                    tablePane.reloadTable();
                 } catch (SQLException e) {
                     System.out.println(e.getSQLState());
-                    e.printStackTrace();
+                    log.debug("Cannot update book", e);
                 }
             }
+            System.gc();
             return;
         }
 
         int id = getSelectedCustomer();
         if (id != -1) {
-            ModifyCustomerDialog dialog = new ModifyCustomerDialog(app.getString("Dialog.ModifyCustomer.Title"));
+            ModifyCustomerDialog dialog = new ModifyCustomerDialog(getFrame(),
+                    app.getString("Dialog.ModifyCustomer.Title"));
             Customer customer = worker.getCustomer(id);
             dialog.setCustomer(customer);
             dialog.setVisible(true);
@@ -141,9 +175,10 @@ public class Manager {
                     worker.updateCustomer(customer);
                 } catch (SQLException e) {
                     System.out.println(e.getSQLState());
-                    e.printStackTrace();
+                    log.debug("Cannot update customer", e);
                 }
             }
+            System.gc();
         }
     }
 
@@ -151,7 +186,7 @@ public class Manager {
         BookTablePane tablePane = getBookTablePane();
         if (tablePane != null) {
             String[] books = tablePane.getSelectedBooks();
-            if (books == null) {
+            if (books == null || books.length == 0) {
                 return;
             }
             if (! DialogFactory.showConfirm(getFrame(), String.format(
@@ -171,16 +206,16 @@ public class Manager {
                                         worker.getBook(isbn).getName()),
                                 app.getString("Dialog.DeleteBook.Title"));
                     } else {
-                        e.printStackTrace();
+                        log.debug("Cannot delete book", e);
                     }
                 }
             }
             if (deletedRows > 0) {
                 tablePane.reloadTable();
             }
+            System.gc();
             return;
         }
-
     }
 
     private BookTablePane getBookTablePane() {
@@ -190,6 +225,13 @@ public class Manager {
         return (BookTablePane) paneRender;
     }
 
+    private CustomerTablePane getCustomerTablePane() {
+        if (paneRender == null || ! (paneRender instanceof CustomerTablePane)) {
+            return null;
+        }
+        return (CustomerTablePane) paneRender;
+    }
+
     private void viewBook() {
         if (paneRender != null) {
             paneRender.destroy();
@@ -197,10 +239,17 @@ public class Manager {
         }
         paneRender = new BookTablePane();
         ui.setContentArea(paneRender);
+        System.gc();
     }
 
     private void viewCustomer() {
-        DbHelper dbHelper = app.getSQLAdmin();
+        if (paneRender != null) {
+            paneRender.destroy();
+            paneRender = null;
+        }
+        paneRender = new CustomerTablePane();
+        ui.setContentArea(paneRender);
+        System.gc();
     }
 
     private void viewHome() {
@@ -210,8 +259,13 @@ public class Manager {
         }
         paneRender = new NavigatePane();
         ui.setContentArea(paneRender);
+        System.gc();
     }
 
+    /**
+     * Get selected book if the book table is shown.
+     * @return the ISBN of the book otherwise {@code null} if no table is shown
+     */
     private String getSelectedBook() {
         BookTablePane tablePane = getBookTablePane();
         if (tablePane == null) {
@@ -221,69 +275,92 @@ public class Manager {
         }
     }
 
+    /**
+     * Get selected customer if the book table is shown.
+     * @return the ID of the book otherwise {@code -1} if no table is shown
+     */
     private int getSelectedCustomer() {
-        return -1;
+        CustomerTablePane tablePane = getCustomerTablePane();
+        if (tablePane == null) {
+            return -1;
+        } else {
+            return tablePane.getSelectedCustomer();
+        }
     }
 
     private void storeBook() {
-        StoreBookDialog dialog = new StoreBookDialog(app.getString("Dialog.Store.Title"));
-        dialog.setISBN(getSelectedBook());
+        StoreBookDialog dialog = new StoreBookDialog(getFrame(), app.getString("Dialog.Store.Title"));
+        dialog.setBook(getSelectedBook());
         dialog.setVisible(true);
-        String isbn = dialog.getISBN();
+        String isbn = dialog.getBook();
         int number = dialog.getNumber();
         BigDecimal total = dialog.getTotalPrice();
         String comm = dialog.getComment();
+        System.gc();
         if (isbn == null || number <= 0) {
             return;
         }
         try {
             worker.storeBook(isbn, number, total, comm);
         } catch (SQLException e) {
-            e.printStackTrace();
+            log.debug("Cannot save store-book record", e);
         }
     }
 
     private void sellBook() {
-        SellBookDialog dialog = new SellBookDialog(app.getString("Dialog.Sell.Title"));
-        dialog.setISBN(getSelectedBook());
+        SellBookDialog dialog = new SellBookDialog(getFrame(), app.getString("Dialog.Sell.Title"));
+        dialog.setBook(getSelectedBook());
         dialog.setCustomer(getSelectedCustomer());
         dialog.setVisible(true);
-        String isbn = dialog.getISBN();
+        String isbn = dialog.getBook();
         int customerId = dialog.getCustomer();
         int sales = dialog.getNumber();
         BigDecimal price = dialog.getTotalPrice();
         String comm = dialog.getComment();
+        System.gc();
         if (isbn == null || customerId <= 0 || sales <= 0) {
             return;
         }
         try {
             worker.sellBook(isbn, customerId, sales, price, comm);
         } catch (SQLException e) {
-            e.printStackTrace();
+            log.debug("Cannot save sell-book record", e);
         }
     }
 
     private void lendBook() {
-        LendBookDialog dialog = new LendBookDialog(app.getString("Dialog.Lend.Title"));
-        dialog.setISBN(getSelectedBook());
+        LendBookDialog dialog = new LendBookDialog(getFrame(), app.getString("Dialog.Lend.Title"));
+        dialog.setBook(getSelectedBook());
         dialog.setCustomer(getSelectedCustomer());
         dialog.setVisible(true);
-        String isbn = dialog.getISBN();
+        String isbn = dialog.getBook();
         int customerId = dialog.getCustomer();
         int number = dialog.getNumber(), period = dialog.getPeriod();
         BigDecimal deposit = dialog.getDeposit(), price = dialog.getPrice();
         String comm = dialog.getComment();
+        System.gc();
         if (isbn == null || customerId <= 0 || number <= 0 || period <= 0) {
             return;
         }
         try {
             worker.lendBook(isbn, customerId, number, period, price, deposit, comm);
         } catch (SQLException e) {
-            e.printStackTrace();
+            log.debug("Cannot save lend-book record", e);
         }
     }
 
     private void returnBook() {
+        ReturnBookDialog dialog = new ReturnBookDialog(getFrame(),
+                app.getString("Dialog.Return.Title"));
+        dialog.setBook(getSelectedBook());
+        dialog.setCustomer(getSelectedCustomer());
+        dialog.setVisible(true);
+        String isbn = dialog.getBook();
+        int customerId = dialog.getCustomer(), number = dialog.getNumber();
+        System.gc();
+        if (isbn == null || customerId <= 0 || number <= 0) {
+            return;
+        }
 
     }
 
@@ -301,6 +378,9 @@ public class Manager {
                 break;
             case STORE_PROPERTIES:
                 showStoreInfo();
+                break;
+            case EDIT_VIEW:
+                onViewDetails();
                 break;
             case EDIT_MODIFY:
                 onModify();

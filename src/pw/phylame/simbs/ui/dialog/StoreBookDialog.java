@@ -43,6 +43,21 @@ public class StoreBookDialog extends JDialog {
     private boolean isReady = false;
 
     public StoreBookDialog() {
+        super();
+        init();
+    }
+
+    public StoreBookDialog(java.awt.Dialog owner, String title) {
+        super(owner, title);
+        init();
+    }
+
+    public StoreBookDialog(java.awt.Frame owner, String title) {
+        super(owner, title);
+        init();
+    }
+
+    private void init() {
         setContentPane(contentPane);
         setModal(true);
         getRootPane().setDefaultButton(buttonOK);
@@ -75,14 +90,18 @@ public class StoreBookDialog extends JDialog {
             }
         });
 
+        final StoreBookDialog parent = this;
+
         buttonChooseBook.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                ChooseBookDialog dialog = new ChooseBookDialog(app.getString("Dialog.ChooseBook.Title"));
+                ChooseBookDialog dialog = new ChooseBookDialog(parent,
+                        app.getString("Dialog.ChooseBook.Title"));
                 dialog.setVisible(true);
                 String isbn = dialog.getISBN();
+                System.gc();
                 if (isbn != null) {
-                    setISBN(isbn);
+                    setBook(isbn);
                 }
             }
         });
@@ -116,17 +135,12 @@ public class StoreBookDialog extends JDialog {
 
         jsNumber.setModel(new SpinnerNumberModel(1, 1, null, 1));
 
-        setIconImage(app.getFrame().getIconImage());
+        setIconImage(pw.phylame.ixin.IToolkit.createImage(app.getString("Dialog.Store.Icon")));
 
         pack();
-        setLocationRelativeTo(null);
+        setLocationRelativeTo(getOwner());
 
-        setISBN(null);
-    }
-
-    public StoreBookDialog(String title) {
-        this();
-        setTitle(title);
+        setBook(null);
     }
 
     private void onOK() {
@@ -168,7 +182,7 @@ public class StoreBookDialog extends JDialog {
         calculateTotal();
     }
 
-    public void setISBN(String isbn) {
+    public void setBook(String isbn) {
         if (isbn == null) {
             isbn = "";
         }
@@ -176,7 +190,7 @@ public class StoreBookDialog extends JDialog {
         bookPrice = null;
     }
 
-    public String getISBN() {
+    public String getBook() {
         if (isReady) {
             return tfISBN.getText().trim();
         } else {

@@ -21,21 +21,37 @@ import pw.phylame.simbs.Worker;
 
 import javax.swing.*;
 import java.awt.event.*;
+import java.math.BigDecimal;
 
 public class StoreInfoDialog extends JDialog {
     private JPanel contentPane;
     private JButton buttonOK;
-    private JTextField tfStock;
-    private JTextField tfSold;
-    private JTextField tfLent;
-    private JTextField tfCnum;
-    private JTextField tfReg;
-    private JTextField tfStockMoney;
-    private JTextField tfSaleMoney;
-    private JTextField tfRentalMoney;
-    private JTextField tfTotalMoney;
+    private JFormattedTextField tfStockMoney;
+    private JFormattedTextField tfSaleMoney;
+    private JFormattedTextField tfRentalMoney;
+    private JFormattedTextField tfTotalMoney;
+    private JFormattedTextField tfCnum;
+    private JFormattedTextField tfReg;
+    private JFormattedTextField tfStock;
+    private JFormattedTextField tfSold;
+    private JFormattedTextField tfLent;
 
     public StoreInfoDialog() {
+        super();
+        init();
+    }
+
+    public StoreInfoDialog(java.awt.Frame owner, String title) {
+        super(owner, title);
+        init();
+    }
+
+    public StoreInfoDialog(java.awt.Dialog owner, String title) {
+        super(owner, title);
+        init();
+    }
+
+    private void init() {
         setContentPane(contentPane);
         setModal(true);
         getRootPane().setDefaultButton(buttonOK);
@@ -61,17 +77,14 @@ public class StoreInfoDialog extends JDialog {
             }
         }, KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
 
-        setIconImage(Application.getInstance().getFrame().getIconImage());
+        setIconImage(pw.phylame.ixin.IToolkit.createImage(
+                Application.getInstance().getString("Dialog.Info.Icon")));
 
         pack();
-        setLocationRelativeTo(null);
+        setSize((int) (getWidth()*1.3), getHeight());
+        setLocationRelativeTo(getOwner());
 
         updateInfo();
-    }
-
-    public StoreInfoDialog(String title) {
-        this();
-        setTitle(title);
     }
 
     private void onOK() {
@@ -87,15 +100,31 @@ public class StoreInfoDialog extends JDialog {
     private void updateInfo() {
         Worker worker = Worker.getInstance();
 
-        tfReg.setText(Integer.toString(worker.getRegisteredBookCount()));
-        tfStock.setText(Integer.toString(worker.getAllInventories()));
-        tfSold.setText(Integer.toString(worker.getSoldBookCount()));
-        tfLent.setText(Integer.toString(worker.getLentBookCount()));
-        tfCnum.setText(Integer.toString(worker.getRegisteredCustomerCount()));
+        tfReg.setValue(worker.getRegisteredBookCount());
+        tfStock.setValue(worker.getAllInventories());
+        tfSold.setValue(worker.getSoldBookCount());
+        tfLent.setValue(worker.getRentalNumber());
+        tfCnum.setValue(worker.getRegisteredCustomerCount());
 
-        tfStockMoney.setText(worker.getStockSpending().toString());
-        tfSaleMoney.setText(worker.getSaleRevenue().toString());
-        tfRentalMoney.setText(worker.getRentalRevenue().toString());
-        tfTotalMoney.setText(worker.getTotalRevenue().toString());
+        BigDecimal n = worker.getStockSpending();
+        if (n == null) {
+            n = new BigDecimal(0);
+        }
+        tfStockMoney.setValue(n);
+        n = worker.getSaleRevenue();
+        if (n == null) {
+            n = new BigDecimal(0);
+        }
+        tfSaleMoney.setValue(n);
+        n = worker.getRentalRevenue();
+        if (n == null) {
+            n = new BigDecimal(0);
+        }
+        tfRentalMoney.setValue(n);
+        n = worker.getTotalRevenue();
+        if (n == null) {
+            n = new BigDecimal(0);
+        }
+        tfTotalMoney.setValue(n);
     }
 }

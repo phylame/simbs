@@ -38,6 +38,25 @@ import java.util.Map;
  * Created by Peng Wan on 2014/10/8.
  */
 public final class IToolkit {
+
+    public static String getLookAndFeel(String name) {
+        String lookAndFeel;
+        if (name == null) {
+            lookAndFeel = UIManager.getSystemLookAndFeelClassName();
+        } else if ("java".equalsIgnoreCase(name)) {
+            lookAndFeel = UIManager.getCrossPlatformLookAndFeelClassName();
+        } else if ("system".equalsIgnoreCase(name)) {
+            lookAndFeel = UIManager.getSystemLookAndFeelClassName();
+        } else if ("motif".equalsIgnoreCase(name)) {
+            lookAndFeel = "com.sun.java.swing.plaf.motif.MotifLookAndFeel";
+        } else if ("nimbus".equalsIgnoreCase(name)) {
+            lookAndFeel = "javax.swing.plaf.nimbus.NimbusLookAndFeel";
+        } else {
+            lookAndFeel = name;
+        }
+        return lookAndFeel;
+    }
+
     private static byte[] readFully(InputStream in) throws IOException {
         if (in == null) {
             return null;

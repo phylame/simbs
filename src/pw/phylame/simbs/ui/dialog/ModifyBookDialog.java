@@ -21,7 +21,9 @@ import pw.phylame.simbs.Application;
 import pw.phylame.simbs.ds.Book;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.*;
+import java.math.BigDecimal;
 
 public class ModifyBookDialog extends JDialog {
     private JPanel contentPane;
@@ -44,6 +46,21 @@ public class ModifyBookDialog extends JDialog {
     private boolean isReady = false;
 
     public ModifyBookDialog() {
+        super();
+        init();
+    }
+
+    public ModifyBookDialog(Dialog owner, String title) {
+        super(owner, title);
+        init();
+    }
+
+    public ModifyBookDialog(Frame owner, String title) {
+        super(owner, title);
+        init();
+    }
+
+    private void init() {
         setContentPane(contentPane);
         setModal(true);
         getRootPane().setDefaultButton(buttonOK);
@@ -83,7 +100,10 @@ public class ModifyBookDialog extends JDialog {
         }, KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
 
         jsDate.setModel(new SpinnerDateModel());
-        tfPrice.setValue(0.0F);
+        tfPrice.setValue(new BigDecimal(0));
+
+        taIntro.setLineWrap(true);
+        taIntro.setWrapStyleWord(true);
         taIntro.setRows(5);
 
         Application app = Application.getInstance();
@@ -93,16 +113,20 @@ public class ModifyBookDialog extends JDialog {
 
         setSize(500, getHeight()+20);
 
-        setLocationRelativeTo(null);
-    }
-
-    public ModifyBookDialog(String title) {
-        this();
-        setTitle(title);
+        setLocationRelativeTo(getOwner());
     }
 
     private void onChooseCover() {
-        // TODO: add choose cover
+        String s = tfCover.getText().trim(), initDir = null;
+        if (s != null) {
+            initDir = s;
+        }
+        java.io.File file = DialogFactory.selectOpenImage(
+                Application.getInstance().getString("Dialog.ModifyBook.SelectImage.Title"), true,
+                initDir);
+        if (file != null) {
+            tfCover.setText(file.getPath());
+        }
     }
 
     private void onOK() {
@@ -139,8 +163,7 @@ public class ModifyBookDialog extends JDialog {
             return;
         }
         book.setPublisher(s);
-        // TODO
-//        book.setPrice((float)tfPrice.getValue());
+        book.setPrice((BigDecimal) tfPrice.getValue());
         book.setIntro(taIntro.getText().trim());
         isReady = true;
         dispose();
@@ -167,7 +190,7 @@ public class ModifyBookDialog extends JDialog {
             jsDate.setValue(book.getDate());
             tfCategory.setText(book.getCategory());
             tfPublisher.setText(book.getPublisher());
-            tfPrice.setValue(book.getPrice().doubleValue());
+            tfPrice.setValue(book.getPrice());
             taIntro.setText(book.getIntro());
         } else {
             tfISBN.setText("");
@@ -178,7 +201,7 @@ public class ModifyBookDialog extends JDialog {
             jsDate.setValue(new java.util.Date());
             tfCategory.setText("");
             tfPublisher.setText("");
-            tfPrice.setValue(0.0D);
+            tfPrice.setValue(new BigDecimal(0));
             taIntro.setText("");
         }
         tfISBN.setEditable(isISBNEditable);

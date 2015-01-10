@@ -70,8 +70,8 @@ public class Application {
         return args;
     }
 
-    /** Get SQL worker */
-    public DbHelper getSQLAdmin() {
+    /** Get SQL Helper */
+    public DbHelper getDbHelper() {
         return dbHelper;
     }
 
@@ -170,9 +170,7 @@ public class Application {
     public static void main(String[] args) {
         // set look and feel
         String lookAndFeel = System.getenv("SIMBS_LOOK_AND_FEEL");
-        if (lookAndFeel == null || "".equals(lookAndFeel)) {
-            lookAndFeel = javax.swing.UIManager.getSystemLookAndFeelClassName();
-        }
+        lookAndFeel = pw.phylame.ixin.IToolkit.getLookAndFeel(lookAndFeel);
         try {
             javax.swing.UIManager.setLookAndFeel(lookAndFeel);
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException |

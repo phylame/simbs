@@ -16,16 +16,28 @@
 
 package pw.phylame.simbs.ui.com;
 
+import java.awt.Component;
 import javax.swing.JPanel;
-import java.awt.*;
 
 /**
  * Container of UI pane.
  */
-public interface PaneRender {
-    void destroy();
+public abstract class PaneRender {
+    private Component parent = null;
 
-    void setParent(Component parent);
+    protected PaneRender() {
 
-    JPanel getPane();
+    }
+
+    public abstract void destroy();
+
+    public Component getParent() {
+        return parent;
+    }
+
+    public void setParent(Component parent) {
+        this.parent = parent;
+    }
+
+    public abstract JPanel getPane();
 }

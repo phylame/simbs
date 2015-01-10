@@ -21,20 +21,19 @@ import pw.phylame.simbs.Application;
 import pw.phylame.simbs.Constants;
 import pw.phylame.simbs.Worker;
 import pw.phylame.simbs.ds.Book;
-import pw.phylame.simbs.ui.com.PaneTableModel;
-import pw.phylame.simbs.ui.com.TableAdapter;
+import pw.phylame.simbs.ui.com.BookConditionPane;
+import pw.phylame.simbs.ui.com.PagingResultTableModel;
+import pw.phylame.simbs.ui.com.PagingResultAdapter;
 import pw.phylame.simbs.ui.com.TablePane;
-import pw.phylame.tools.StringUtility;
-import pw.phylame.tools.sql.PageResultSet;
+import pw.phylame.tools.sql.PagingResultSet;
 import pw.phylame.tools.sql.DbHelper;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.*;
-import java.math.BigDecimal;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Date;
 
 public class ChooseBookDialog extends JDialog {
     public static final int BOOK_COLUMN_COUNT = 8;
@@ -44,31 +43,37 @@ public class ChooseBookDialog extends JDialog {
 
     private JPanel contentPane;
 //    private JButton buttonOk;
-    private JButton buttonCancel;
-    private JButton buttonSearch;
     private JButton buttonNew;
-    private JTextField tfISBN;
-    private JTextField tfName;
-    private JTextField tfAuthor;
-    private JTextField tfCategory;
-    private JTextField tfPublisher;
-    private JSpinner jsDateBegin;
-    private JSpinner jsDateEnd;
-    private JFormattedTextField tfPriceBegin;
-    private JFormattedTextField tfPriceEnd;
-    private JCheckBox cbDate;
-    private JCheckBox cbPrice;
+    private JButton buttonCancel;
+
     private TablePane tablePane;
-    private JFormattedTextField tfInventoryBegin;
-    private JFormattedTextField tfInventoryEnd;
-    private JCheckBox cbInventory;
+    private BookConditionPane condPane;
 
     private String isbn = null;
 
     public ChooseBookDialog() {
+        super();
+        init();
+    }
+
+    public ChooseBookDialog(Dialog owner, String title) {
+        super(owner, title);
+        init();
+    }
+
+    public ChooseBookDialog(Frame owner, String title) {
+        super(owner, title);
+        init();
+    }
+
+    private void init() {
+
         setContentPane(contentPane);
         setModal(true);
-//        getRootPane().setDefaultButton(buttonOk);
+
+        JButton buttonSearch = condPane.getSearchButton();
+
+        getRootPane().setDefaultButton(buttonSearch);
 
         Application app = Application.getInstance();
 
@@ -116,30 +121,20 @@ public class ChooseBookDialog extends JDialog {
 
         setIconImage(IToolkit.createImage(app.getString("Book.Icon")));
 
+        condPane.setParent(this);
         tablePane.setParent(this);
 
         pack();
-        setLocationRelativeTo(null);
+        setLocationRelativeTo(getOwner());
 
-        jsDateBegin.setModel(new SpinnerDateModel());
-        jsDateEnd.setModel(new SpinnerDateModel());
-        tfPriceBegin.setValue(0.0F);
-        tfPriceEnd.setValue(100.0F);
-
-        tfInventoryBegin.setValue(1);
-        tfInventoryEnd.setValue(100);
-
-    }
-
-    public ChooseBookDialog(String title) {
-        this();
-        setTitle(title);
     }
 
     private void onCancel() {
 // add your code here if necessary
         isbn = null;
         dispose();
+        condPane.destroy();
+        tablePane.destroy();
     }
 
     private void onNew() {
@@ -148,78 +143,46 @@ public class ChooseBookDialog extends JDialog {
             return;
         }
         isbn = book.getISBN();
+        System.gc();
         dispose();
     }
 
     private void onSearch() {
-        Application app = Application.getInstance();
-
-        ArrayList<String> conditions = new ArrayList<>();
-
-        String s = tfISBN.getText().trim();
-        if (! "".equals(s)) {
-            conditions.add("Bisbn LIKE '%"+s+"%'");
-        }
-        s = tfName.getText().trim();
-        if (! "".equals(s)) {
-            conditions.add("Bname LIKE '%" + s + "%'");
-        }
-        s = tfAuthor.getText().trim();
-        if (! "".equals(s)) {
-            conditions.add("Bauthors LIKE '%" + s + "%'");
-        }
-        if (cbDate.isSelected()) {
-            java.util.Date begin = (java.util.Date) jsDateBegin.getValue(), end = (java.util.Date) jsDateEnd.getValue();
-            if (begin.compareTo(end) > 0) {
-                DialogFactory.showError(this, app.getString("Dialog.ChooseBook.InvalidDate"),
-                        app.getString("Dialog.ChooseBook.Title"));
-                return;
-            }
-            conditions.add(String.format("Bdate BETWEEN '%s' AND '%s'", Worker.toSQLDate(begin),
-                    Worker.toSQLDate(end)));
-        }
-        s = tfCategory.getText().trim();
-        if (! "".equals(s)) {
-            conditions.add("Bcategory LIKE '%" + s + "%'");
-        }
-        s = tfPublisher.getText().trim();
-        if (! "".equals(s)) {
-            conditions.add("Bpublisher LIKE '%" + s + "%'");
-        }
-        if (cbPrice.isSelected()) {
-            float begin = (float) tfPriceBegin.getValue(), end = (float) tfPriceEnd.getValue();
-            if (end < begin) {
-                DialogFactory.showError(this, app.getString("Dialog.ChooseBook.InvalidPrice"),
-                        app.getString("Dialog.ChooseBook.Title"));
-                return;
-            }
-            conditions.add(String.format("Bprice BETWEEN %.2f AND %.2f", begin, end));
-        }
-        if (cbInventory.isSelected()) {
-            int begin = (int) tfInventoryBegin.getValue(), end = (int) tfInventoryEnd.getValue();
-            if (end < begin) {
-                DialogFactory.showError(this, app.getString("Dialog.ChooseBook.InvalidInventory"),
-                        app.getString("Dialog.ChooseBook.Title"));
-                return;
-            }
-            conditions.add(String.format("book.Bisbn = inventory.Bisbn AND Enumber BETWEEN %d AND %d",
-                    begin, end));
-        }
-
-        String cond = StringUtility.join(conditions, " AND ");
+        String cond = condPane.getQueryCondition();
         String sql = SQL_SELECT_BOOK;
         if (! "".equals(cond.trim())) {
             sql = sql +" WHERE "+cond;
         }
-        DbHelper dbHelper = app.getSQLAdmin();
+        final Application app = Application.getInstance();
+        DbHelper dbHelper = app.getDbHelper();
+        final ChooseBookDialog parent = this;
         try {
-            PageResultSet dataSet = dbHelper.queryAndPaging(sql, Constants.MAX_ROW_COUNT);
-            TableAdapter tableAdapter = tablePane.getTableAdapter();
-            if (tableAdapter == null) {     // first search
+            PagingResultSet dataSource = dbHelper.queryAndPaging(sql, Constants.MAX_ROW_COUNT);
+            PagingResultAdapter pagingResultAdapter = (PagingResultAdapter) tablePane.getTableAdapter();
+            if (pagingResultAdapter == null) {     // first search
                 final BookTableModel tableModel = new BookTableModel();
-                tableAdapter = new TableAdapter(dataSet, tableModel);
-                final JTable table = tableAdapter.getTable();
+                pagingResultAdapter = new PagingResultAdapter(dataSource, tableModel);
+                final JTable table = pagingResultAdapter.getTable();
                 table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+
+                // add details popup menu
+                final JPopupMenu popupMenu = new JPopupMenu();
+                JMenuItem menuItem = new JMenuItem(app.getString("Dialog.ChooseBook.Menu.Details"));
+                menuItem.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        int row = table.getSelectedRow();
+                        if (row < 0) {
+                            return;
+                        }
+                        String isbn = tableModel.getISBN(row);
+                        BookDetailsDialog dialog = new BookDetailsDialog(parent,
+                                app.getString("Dialog.BookDetails.Title"));
+                        dialog.setBook(isbn);
+                        dialog.setVisible(true);
+                    }
+                });
+                popupMenu.add(menuItem);
                 table.addMouseListener(new MouseAdapter() {
                     @Override
                     public void mouseClicked(MouseEvent e) {
@@ -231,22 +194,31 @@ public class ChooseBookDialog extends JDialog {
                         if (isbn != null) {
                             if (e.getClickCount() == 2) {
                                 dispose();
+                                condPane.destroy();
+                                tablePane.destroy();
                             }
-//                            } else {
-//                                buttonOk.setEnabled(true);
-//                            }
                         }
                     }
+                    @Override
+                    public void mouseReleased(MouseEvent e) {
+                        if (! e.isMetaDown()) {
+                            return;
+                        }
+                        int row = table.rowAtPoint(e.getPoint());
+                        if (row == -1) {
+                            return;
+                        }
+                        if (! table.isRowSelected(row)) {   // not selected
+                            table.setRowSelectionInterval(row, row);
+                        }
+                        popupMenu.show(tablePane.getPane(), e.getX(), e.getY());
+                    }
                 });
-                tablePane.setTableAdapter(tableAdapter);
+                tablePane.setTableAdapter(pagingResultAdapter);
                 setSize((int) (getWidth() * 1.3), (int) (getHeight() * 1.3));
-                setLocationRelativeTo(null);
+                setLocationRelativeTo(getOwner());
             } else {
-                tableAdapter.setDataSource(dataSet);
-                tablePane.updatePageStatus();
-//                if (dataSet.getRowCount() == 0) {       // not found result
-//                    buttonOk.setEnabled(false);
-//                }
+                pagingResultAdapter.setDataSource(dataSource);
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -261,7 +233,7 @@ public class ChooseBookDialog extends JDialog {
         return isbn;
     }
 
-    public static class BookTableModel extends PaneTableModel {
+    public static class BookTableModel extends PagingResultTableModel {
         private static class BookX extends Book {
             private int inventory;
 
@@ -278,14 +250,14 @@ public class ChooseBookDialog extends JDialog {
             }
         }
 
-        private PageResultSet dataSet = null;
+        private PagingResultSet dataSource = null;
         private ArrayList<BookX> rows = new ArrayList<>();
 
         public BookTableModel() {
         }
 
         public String getISBN(int rowIndex) {
-            if (dataSet == null) {
+            if (dataSource == null) {
                 return null;
             }
             try {
@@ -298,24 +270,20 @@ public class ChooseBookDialog extends JDialog {
         }
 
         @Override
-        public void setDataSource(PageResultSet dataSet) {
-            this.dataSet = dataSet;
-            pageUpdated(dataSet);
-        }
-
-        @Override
-        public void pageUpdated(PageResultSet dataSet) {
-            if (dataSet == null) {
+        public void pageUpdated(PagingResultSet dataSource) {
+            this.dataSource = dataSource;
+            rows.clear();
+            if (dataSource == null) {
+                fireTableDataChanged();
                 return;
             }
-            rows.clear();
-            ResultSet rs = dataSet.getResultSet();
+            ResultSet rs = dataSource.getResultSet();
             if (rs == null) {
                 fireTableDataChanged();
                 return;
             }
             try {
-                for (int i = 0; i < dataSet.getCurrentRows(); ++i) {
+                for (int i = 0; i < dataSource.getCurrentRows(); ++i) {
                     BookX book = new BookX();
                     book.setISBN(rs.getString(1));
                     book.setName(rs.getString(2));
@@ -366,10 +334,10 @@ public class ChooseBookDialog extends JDialog {
 
         @Override
         public int getRowCount() {
-            if (dataSet == null) {
+            if (dataSource == null) {
                 return 0;
             } else {
-                return dataSet.getCurrentRows();
+                return dataSource.getCurrentRows();
             }
         }
 
@@ -380,7 +348,7 @@ public class ChooseBookDialog extends JDialog {
 
         @Override
         public Object getValueAt(int rowIndex, int columnIndex) {
-            if (dataSet == null) {
+            if (dataSource == null) {
                 return null;
             }
             try {

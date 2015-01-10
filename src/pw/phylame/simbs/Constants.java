@@ -102,6 +102,7 @@ public final class Constants {
 
     public static final String STORE_PROPERTIES = "store-prop";
 
+    public static final String EDIT_VIEW = "edit-view";
     public static final String EDIT_MODIFY = "edit-modify";
     public static final String EDIT_DELETE = "edit-delete";
 

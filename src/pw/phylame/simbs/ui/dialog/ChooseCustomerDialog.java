@@ -21,14 +21,15 @@ import pw.phylame.simbs.Application;
 import pw.phylame.simbs.Constants;
 import pw.phylame.simbs.Worker;
 import pw.phylame.simbs.ds.Customer;
-import pw.phylame.simbs.ui.com.PaneTableModel;
-import pw.phylame.simbs.ui.com.TableAdapter;
+import pw.phylame.simbs.ui.com.CustomerConditionPane;
+import pw.phylame.simbs.ui.com.PagingResultTableModel;
+import pw.phylame.simbs.ui.com.PagingResultAdapter;
 import pw.phylame.simbs.ui.com.TablePane;
-import pw.phylame.tools.StringUtility;
 import pw.phylame.tools.sql.DbHelper;
-import pw.phylame.tools.sql.PageResultSet;
+import pw.phylame.tools.sql.PagingResultSet;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.*;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -40,26 +41,37 @@ public class ChooseCustomerDialog extends JDialog {
             " Climit FROM customer ";
 
     private JPanel contentPane;
-    private JButton buttonSearch;
+
     private JButton buttonNew;
     private JButton buttonCancel;
-    private JTextField tfName;
-    private JTextField tfPhone;
-    private JTextField tfEmail;
-//    private JButton buttonOk;
+
     private TablePane tablePane;
-    private JFormattedTextField tfLevelBegin;
-    private JFormattedTextField tfLevelEnd;
-    private JCheckBox cbLevel;
-    private JCheckBox cbLimit;
-    private JFormattedTextField tfLimitBegin;
-    private JFormattedTextField tfLimitEnd;
+    private CustomerConditionPane condPane;
+
 
     private int customerID = -1;
 
     public ChooseCustomerDialog() {
+        super();
+        init();
+    }
+
+    public ChooseCustomerDialog(Dialog owner, String title) {
+        super(owner, title);
+        init();
+    }
+
+    public ChooseCustomerDialog(Frame owner, String title) {
+        super(owner, title);
+        init();
+    }
+
+    private void init() {
         setContentPane(contentPane);
         setModal(true);
+
+        JButton buttonSearch = condPane.getSearchButton();
+
         getRootPane().setDefaultButton(buttonSearch);
 
         Application app = Application.getInstance();
@@ -107,20 +119,11 @@ public class ChooseCustomerDialog extends JDialog {
 
         setIconImage(IToolkit.createImage(app.getString("Customer.Icon")));
 
+        condPane.setParent(this);
         tablePane.setParent(this);
 
         pack();
-        setLocationRelativeTo(null);
-
-        tfLevelBegin.setValue(0);
-        tfLevelEnd.setValue(100);
-        tfLimitBegin.setValue(0);
-        tfLimitEnd.setValue(100);
-    }
-
-    public ChooseCustomerDialog(String title) {
-        this();
-        setTitle(title);
+        setLocationRelativeTo(getOwner());
     }
 
     private void onNew() {
@@ -129,58 +132,52 @@ public class ChooseCustomerDialog extends JDialog {
             return;
         }
         customerID = customer.getId();
+        System.gc();
         dispose();
     }
 
     private void onSearch() {
-        Application app = Application.getInstance();
+        String cond = condPane.getQueryCondition();
 
-        ArrayList<String> conditions = new ArrayList<>();
-
-        String s = tfName.getText().trim();
-        if (! "".equals(s)) {
-            conditions.add("Cname LIKE '%"+s+"%'");
-        }
-        s = tfPhone.getText().trim();
-        if (! "".equals(s)) {
-            conditions.add("Cphone LIKE '%" + s + "%'");
-        }
-        s = tfEmail.getText().trim();
-        if (! "".equals(s)) {
-            conditions.add("Cemail LIKE '%" + s + "%'");
-        }
-        if (cbLevel.isSelected()) {
-            int begin = (int) tfLevelBegin.getValue(), end = (int) tfLevelEnd.getValue();
-            if (begin > end) {
-                DialogFactory.showError(this, app.getString("Dialog.ChooseCustomer.InvalidLevel"),
-                        app.getString("Dialog.ChooseCustomer.Title"));
-                return;
-            }
-            conditions.add(String.format("Clevel BETWEEN %d AND %d", begin, end));
-        }
-        if (cbLimit.isSelected()) {
-            int begin = (int) tfLimitBegin.getValue(), end = (int) tfLimitEnd.getValue();
-            if (begin > end) {
-                DialogFactory.showError(this, app.getString("Dialog.ChooseCustomer.InvalidLimit"),
-                        app.getString("Dialog.ChooseCustomer.Title"));
-                return;
-            }
-            conditions.add(String.format("Clent_limit BETWEEN %d AND %d", begin, end));
-        }
-        String cond = StringUtility.join(conditions, " AND ");
         String sql = SQL_SELECT_CUSTOMER;
         if (! "".equals(cond.trim())) {
             sql = sql +" WHERE "+cond;
         }
-        DbHelper dbHelper = app.getSQLAdmin();
+        final Application app = Application.getInstance();
+        final ChooseCustomerDialog parent = this;
+        DbHelper dbHelper = app.getDbHelper();
         try {
-            PageResultSet dataSet = dbHelper.queryAndPaging(sql, Constants.MAX_ROW_COUNT);
-            TableAdapter tableAdapter = tablePane.getTableAdapter();
-            if (tableAdapter == null) {     // first search
+            PagingResultSet dataSet = dbHelper.queryAndPaging(sql, Constants.MAX_ROW_COUNT);
+            System.out.printf("current page: %d, current rows: %d, page count: %d, page size: %d," +
+                            " row count: %d\n", dataSet.getCurrentPage(), dataSet.getCurrentRows(),
+                    dataSet.getPageCount(), dataSet.getPageSize(), dataSet.getRowCount());
+            PagingResultAdapter pagingResultAdapter = (PagingResultAdapter) tablePane.getTableAdapter();
+            if (pagingResultAdapter == null) {     // first search
                 final CustomerTableModel tableModel = new CustomerTableModel();
-                tableAdapter = new TableAdapter(dataSet, tableModel);
-                final JTable table = tableAdapter.getTable();
+                pagingResultAdapter = new PagingResultAdapter(dataSet, tableModel);
+
+                // add action to table
+                final JTable table = pagingResultAdapter.getTable();
                 table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+
+                // add details popup menu
+                final JPopupMenu popupMenu = new JPopupMenu();
+                JMenuItem menuItem = new JMenuItem(app.getString("Dialog.ChooseCustomer.Menu.Details"));
+                menuItem.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        int row = table.getSelectedRow();
+                        if (row < 0) {
+                            return;
+                        }
+                        int id = tableModel.getCustomerID(row);
+                        CustomerDetailsDialog dialog = new CustomerDetailsDialog(parent,
+                                app.getString("Dialog.CustomerDetails.Title"));
+                        dialog.setCustomer(id);
+                        dialog.setVisible(true);
+                    }
+                });
+                popupMenu.add(menuItem);
                 table.addMouseListener(new MouseAdapter() {
                     @Override
                     public void mouseClicked(MouseEvent e) {
@@ -192,22 +189,31 @@ public class ChooseCustomerDialog extends JDialog {
                         if (customerID > 0) {
                             if (e.getClickCount() == 2) {
                                 dispose();
+                                condPane.destroy();
+                                tablePane.destroy();
                             }
-//                            } else {
-//                                buttonOk.setEnabled(true);
-//                            }
                         }
                     }
+                    @Override
+                    public void mouseReleased(MouseEvent e) {
+                        if (!e.isMetaDown()) {
+                            return;
+                        }
+                        int row = table.rowAtPoint(e.getPoint());
+                        if (row == -1) {
+                            return;
+                        }
+                        if (!table.isRowSelected(row)) {   // not selected
+                            table.setRowSelectionInterval(row, row);
+                        }
+                        popupMenu.show(tablePane.getPane(), e.getX(), e.getY());
+                    }
                 });
-                tablePane.setTableAdapter(tableAdapter);
+                tablePane.setTableAdapter(pagingResultAdapter);
                 setSize((int) (getWidth() * 1.2), (int) (getHeight() * 1.4));
-                setLocationRelativeTo(null);
+                setLocationRelativeTo(getOwner());
             } else {
-                tableAdapter.setDataSource(dataSet);
-                tablePane.updatePageStatus();
-//                if (dataSet.getRowCount() == 0) {       // not found result
-//                    buttonOk.setEnabled(false);
-//                }
+                pagingResultAdapter.setDataSource(dataSet);
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -218,6 +224,8 @@ public class ChooseCustomerDialog extends JDialog {
 // add your code here if necessary
         customerID = -1;
         dispose();
+        condPane.destroy();
+        tablePane.destroy();
     }
 
     public void setCustomerID(int id) {
@@ -228,15 +236,15 @@ public class ChooseCustomerDialog extends JDialog {
         return customerID;
     }
 
-    public static class CustomerTableModel extends PaneTableModel {
-        private PageResultSet dataSet = null;
+    public static class CustomerTableModel extends PagingResultTableModel {
+        private PagingResultSet dataSource = null;
         private ArrayList<Customer> rows = new ArrayList<>();
 
         public CustomerTableModel() {
         }
 
         public int getCustomerID(int rowIndex) {
-            if (dataSet == null) {
+            if (rows.size() == 0) {
                 return -1;
             }
             try {
@@ -249,27 +257,24 @@ public class ChooseCustomerDialog extends JDialog {
         }
 
         @Override
-        public void setDataSource(PageResultSet dataSet) {
-            this.dataSet = dataSet;
-            pageUpdated(dataSet);
-        }
-
-        @Override
-        public void pageUpdated(PageResultSet dataSet) {
-            if (dataSet == null) {
+        public void pageUpdated(PagingResultSet dataSource) {
+            this.dataSource = dataSource;
+            rows.clear();
+            if (dataSource == null) {
+                fireTableDataChanged();
                 return;
             }
-            rows.clear();
-            ResultSet rs = dataSet.getResultSet();
+            ResultSet rs = dataSource.getResultSet();
             if (rs == null) {
                 fireTableDataChanged();
                 return;
             }
             try {
-                for (int i = 0; i < dataSet.getCurrentRows(); ++i) {
+                for (int i = 0; i < dataSource.getCurrentRows(); ++i) {
                     Customer customer = new Customer(rs.getInt(1), rs.getString(2).trim(),
                             Worker.normalizeString(rs.getString(3)),
-                            Worker.normalizeString(rs.getString(4)), rs.getInt(5), rs.getInt(6), "");
+                            Worker.normalizeString(rs.getString(4)),
+                            new java.util.Date(), rs.getInt(5), rs.getInt(6), "");
                     rows.add(customer);
                     rs.next();
                 }
@@ -307,10 +312,10 @@ public class ChooseCustomerDialog extends JDialog {
 
         @Override
         public int getRowCount() {
-            if (dataSet == null) {
+            if (dataSource == null) {
                 return 0;
             } else {
-                return dataSet.getCurrentRows();
+                return dataSource.getCurrentRows();
             }
         }
 
@@ -321,7 +326,7 @@ public class ChooseCustomerDialog extends JDialog {
 
         @Override
         public Object getValueAt(int rowIndex, int columnIndex) {
-            if (dataSet == null) {
+            if (dataSource == null) {
                 return null;
             }
             try {

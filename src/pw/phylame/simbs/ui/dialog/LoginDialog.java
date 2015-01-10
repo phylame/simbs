@@ -40,6 +40,20 @@ public class LoginDialog extends JDialog {
 
     public LoginDialog() {
         super();
+        init();
+    }
+
+    public LoginDialog(java.awt.Dialog owner, String title) {
+        super(owner, title);
+        init();
+    }
+
+    public LoginDialog(java.awt.Frame owner, String title) {
+        super(owner, title);
+        init();
+    }
+
+    private void init() {
         setContentPane(contentPane);
         setModal(true);
         getRootPane().setDefaultButton(buttonOK);
@@ -82,7 +96,6 @@ public class LoginDialog extends JDialog {
         if (! "".equals(tfUserName.getText().trim())) {
             tfPassword.requestFocus();
         }
-
     }
 
     private void loadConfig() {

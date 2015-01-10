@@ -151,11 +151,26 @@ public class DbHelper {
      * Query and paging results.
      * @param sql the SQL statement
      * @param pageSize size of page
-     * @return {@code PageResultSet} object
+     * @param resultSetType a result set type, see {@link java.sql.ResultSet}
+     * @param resultSetConcurrency a concurrency type, see {@link java.sql.ResultSet}
+     * @return {@code PagingResultSet} object
      * @throws SQLException if occur errors when querying or paging
      */
-    public PageResultSet queryAndPaging(String sql, int pageSize) throws SQLException {
+    public PagingResultSet queryAndPaging(String sql, int pageSize, int resultSetType,
+                                        int resultSetConcurrency) throws SQLException {
         checkConnection();
-        return new PageResultSet(this, sql, pageSize);
+        return new PagingResultSet(this, sql, pageSize, resultSetType, resultSetConcurrency);
+    }
+
+    /**
+     * Query and paging results.
+     * @param sql the SQL statement
+     * @param pageSize size of page
+     * @return {@code PagingResultSet} object
+     * @throws SQLException if occur errors when querying or paging
+     */
+    public PagingResultSet queryAndPaging(String sql, int pageSize) throws SQLException {
+        return queryAndPaging(sql, pageSize, ResultSet.TYPE_SCROLL_INSENSITIVE,
+                ResultSet.CONCUR_READ_ONLY);
     }
 }

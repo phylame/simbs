@@ -23,9 +23,11 @@ import java.sql.Statement;
 /**
  * ResultSet with page.
  */
-public class PageResultSet {
+public class PagingResultSet {
     private DbHelper dbHelper = null;
     private String sql = null;
+
+    private int resultSetType, resultSetConcurrency;
 
     private ResultSet rs = null;
 
@@ -41,10 +43,13 @@ public class PageResultSet {
     /** Current page, begin from 1 */
     private int currentPage = 1;
 
-    public PageResultSet(DbHelper dbHelper, String sql, int pageSize) throws SQLException {
+    public PagingResultSet(DbHelper dbHelper, String sql, int pageSize, int resultSetType,
+                           int resultSetConcurrency) throws SQLException {
         this.dbHelper = dbHelper;
         this.sql = sql;
         this.pageSize = pageSize;
+        this.resultSetType = resultSetType;
+        this.resultSetConcurrency = resultSetConcurrency;
         refresh();
     }
 
@@ -64,8 +69,7 @@ public class PageResultSet {
         }
 
         System.out.println("SQL: "+sql);
-        Statement stmt = dbHelper.getConnection().createStatement(
-                ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+        Statement stmt = dbHelper.getConnection().createStatement(resultSetType, resultSetConcurrency);
         rs = stmt.executeQuery(sql);
         rs.last();
 

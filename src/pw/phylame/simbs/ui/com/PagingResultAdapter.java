@@ -16,38 +16,36 @@
 
 package pw.phylame.simbs.ui.com;
 
-import pw.phylame.tools.sql.PageResultSet;
+import pw.phylame.tools.sql.PagingResultSet;
 import pw.phylame.tools.sql.PageSwitchException;
 
-import javax.swing.*;
-import java.sql.ResultSet;
+import javax.swing.JTable;
 import java.sql.SQLException;
 
 /**
- * Adapter for {@code TablePane}.
+ * Adapter for showing data in {@code PagingResultSet}.
  */
-public class TableAdapter {
-    private PaneTableModel paneTableModel = null;
+public class PagingResultAdapter extends TablePaneAdapter {
+    private PagingResultTableModel paneTableModel;
     private JTable table = null;
-    private PageResultSet prs = null;
+    private PagingResultSet prs = null;
 
-    public TableAdapter(PageResultSet prs, PaneTableModel paneTableModel) {
+    public PagingResultAdapter(PagingResultSet prs, PagingResultTableModel paneTableModel) {
+        super();
         if (prs == null) {
             throw new NullPointerException("prs");
         }
         if (paneTableModel == null) {
             throw new NullPointerException("tableModel");
         }
-        this.prs = prs;
-        this.paneTableModel = paneTableModel;
 
+        this.paneTableModel = paneTableModel;
         table = new JTable(paneTableModel);
-        paneTableModel.setDataSource(prs);
+
+        setDataSource(prs);
     }
 
-    /**
-     * Destroy and release resource.
-     */
+    @Override
     public void destroy() {
         paneTableModel = null;
         table = null;
@@ -58,54 +56,67 @@ public class TableAdapter {
         }
     }
 
-    public void setDataSource(PageResultSet prs) {
+    public void setDataSource(PagingResultSet prs) {
         this.prs = prs;
-        paneTableModel.setDataSource(prs);
+        paneTableModel.pageUpdated(prs);
+        /* update page status */
+        TablePane tablePane = getOwner();
+        if (tablePane != null) {
+            tablePane.updatePageStatus();
+        }
     }
 
+    @Override
     public JTable getTable() {
         return table;
     }
 
+    @Override
     public int getPageCount() {
         return prs.getPageCount();
     }
 
+    @Override
     public int getCurrentRows() {
         return prs.getCurrentRows();
     }
 
+    @Override
     public int getCurrentPage() {
         return prs.getCurrentPage();
     }
 
+    @Override
     public void previousPage() {
         try {
             prs.previousPage();
             paneTableModel.pageUpdated(prs);
         } catch (SQLException | PageSwitchException e) {
-//            e.printStackTrace();
+            e.printStackTrace();
         }
     }
 
+    @Override
     public void nextPage() {
         try {
             prs.nextPage();
             paneTableModel.pageUpdated(prs);
         } catch (SQLException | PageSwitchException e) {
-//            e.printStackTrace();
+            e.printStackTrace();
         }
     }
 
+    @Override
     public void gotoPage(int page) {
         try {
             prs.gotoPage(page);
             paneTableModel.pageUpdated(prs);
         } catch (SQLException e) {
-//            e.printStackTrace();
+            e.printStackTrace();
         }
     }
 
+    @Override
     public void refresh() {
         try {
             prs.refresh();

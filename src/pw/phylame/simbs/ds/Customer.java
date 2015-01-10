@@ -18,6 +18,8 @@ package pw.phylame.simbs.ds;
 
 import pw.phylame.simbs.Constants;
 
+import java.util.Date;
+
 /**
  * Customer descriptor.
  */
@@ -28,6 +30,7 @@ public class Customer {
     private String email;
     private int level;
     private int limit;
+    private Date date;
     private String comment;
 
     public Customer() {
@@ -35,15 +38,16 @@ public class Customer {
     }
 
     public Customer(int id, String name, String phone, String email) {
-        this(id, name, phone, email, 0, Constants.DEFAULT_LENT_LIMIT, "");
+        this(id, name, phone, email, new Date(), 0, Constants.DEFAULT_LENT_LIMIT, "");
     }
 
-    public Customer(int id, String name, String phone, String email, int level, int limit,
+    public Customer(int id, String name, String phone, String email, Date date, int level, int limit,
                     String comment) {
         setId(id);
         setName(name);
         setPhone(phone);
         setEmail(email);
+        setDate(date);
         setLevel(level);
         setLimit(limit);
         setComment(comment);
@@ -82,6 +86,14 @@ public class Customer {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
     }
 
     public int getLevel() {

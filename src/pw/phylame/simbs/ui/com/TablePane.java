@@ -19,35 +19,39 @@ package pw.phylame.simbs.ui.com;
 import pw.phylame.simbs.Application;
 import pw.phylame.simbs.ui.dialog.DialogFactory;
 
-import javax.swing.*;
 import java.awt.*;
+import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 /**
- * Created by Peng Wan on 2015-1-5.
+ * Pane for showing multi-page data.
  */
-public class TablePane implements PaneRender {
-    private Component parentComp = null;
+public class TablePane extends PaneRender {
+    private JPanel rootPane;
 
+    private JPanel contentArea;
+
+    private JLabel labelStatus;
     private JButton btnPrev;
     private JButton btnNext;
+    private JFormattedTextField tfPage;
     private JButton btnGoto;
-    private JLabel pageStatus;
-    private JPanel rootPane;
-    private JFormattedTextField tfPageNumber;
 
-    private JPanel tableArea;
-
-    private TableAdapter tableAdapter = null;
+    private TablePaneAdapter tableAdapter = null;
 
     public TablePane() {
         this(null);
     }
 
-    public TablePane(TableAdapter tableAdapter) {
-        tableArea.setLayout(new BorderLayout());
+    public TablePane(TablePaneAdapter tableAdapter) {
+        super();
+        init();
+        setTableAdapter(tableAdapter);
+    }
 
+    private void init() {
+        contentArea.setLayout(new BorderLayout());
         btnPrev.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -60,7 +64,7 @@ public class TablePane implements PaneRender {
                 nextPage();
             }
         });
-        tfPageNumber.addActionListener(new ActionListener() {
+        tfPage.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 gotoPage();
@@ -72,30 +76,27 @@ public class TablePane implements PaneRender {
                 gotoPage();
             }
         });
-
-        tfPageNumber.setValue(1);
-
-        setTableAdapter(tableAdapter);
+        tfPage.setValue(1);
     }
 
-    public TableAdapter getTableAdapter() {
+    public TablePaneAdapter getTableAdapter() {
         return tableAdapter;
     }
 
-    public void setTableAdapter(TableAdapter tableAdapter) {
+    public void setTableAdapter(TablePaneAdapter tableAdapter) {
         this.tableAdapter = tableAdapter;
-        updatePane();
-    }
-
-    private void updatePane() {
+        contentArea.removeAll();
         if (tableAdapter != null) {
+            tableAdapter.setOwner(this);
             JTable table = tableAdapter.getTable();
-            tableArea.add(table.getTableHeader(), BorderLayout.NORTH);
-            tableArea.add(new JScrollPane(table), BorderLayout.CENTER);
+            contentArea.add(table.getTableHeader(), BorderLayout.NORTH);
+            contentArea.add(new JScrollPane(table), BorderLayout.CENTER);
         }
+        contentArea.updateUI();
         updatePageStatus();
     }
 
+    /** Update page status to the label */
     public void updatePageStatus() {
         int currentRows = 0, pageCount = 0, currentPage = 0;
         if (tableAdapter != null) {
@@ -106,13 +107,11 @@ public class TablePane implements PaneRender {
             if (pageCount <= 1) {   // 0 or 1 page
                 btnPrev.setEnabled(false);
                 btnNext.setEnabled(false);
-                tfPageNumber.setEditable(false);
+                tfPage.setEditable(false);
                 btnGoto.setEnabled(false);
             } else {
-                if (pageCount > 1) {
-                    tfPageNumber.setEditable(true);
-                    btnGoto.setEnabled(true);
-                }
+                tfPage.setEditable(true);
+                btnGoto.setEnabled(true);
                 if (currentPage == 1) {     // first page
                     btnPrev.setEnabled(false);
                     btnNext.setEnabled(true);
@@ -125,9 +124,10 @@ public class TablePane implements PaneRender {
                 }
             }
         }
-        pageStatus.setText(String.format(Application.getInstance().getString("Pane.TableViewer.LabelPageInfo"),
+        labelStatus.setText(String.format(
+                Application.getInstance().getString("Pane.TableViewer.LabelPageInfo"),
                 currentRows, pageCount));
-        tfPageNumber.setValue(currentPage);
+        tfPage.setValue(currentPage);
     }
 
     public void previousPage() {
@@ -155,10 +155,10 @@ public class TablePane implements PaneRender {
         if (tableAdapter == null) {
             return;
         }
-        int page = (int) tfPageNumber.getValue();
+        int page = (int) tfPage.getValue();
         if (page < 1 || page > tableAdapter.getPageCount()) {
             Application app = Application.getInstance();
-            DialogFactory.showError(parentComp, app.getString( "Pane.TableViewer.PageOutOfRange"),
+            DialogFactory.showError(getParent(), app.getString("Pane.TableViewer.PageOutOfRange"),
                     app.getString("Pane.TableViewer.GotoPage.Title"));
             return;
         }
@@ -195,16 +195,9 @@ public class TablePane implements PaneRender {
 
     @Override
     public void destroy() {
-        tableAdapter.destroy();
-    }
-
-    @Override
-    public void setParent(Component parent) {
-        parentComp = parent;
-    }
-
-    public Component getParent() {
-        return parentComp;
+        if (tableAdapter != null) {
+            tableAdapter.destroy();
+        }
     }
 
     @Override

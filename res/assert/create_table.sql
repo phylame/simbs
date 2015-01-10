@@ -64,6 +64,9 @@ CREATE TABLE customer
 	Ccomment VARCHAR(512),
 );
 
+/* The date of register customer */
+ALTER TABLE customer ADD Cdate DATE DEFAULT NOW() NOT NULL;
+
 /* Inventory listing, field name starts with "I" */
 CREATE TABLE inventory
 (

@@ -16,15 +16,15 @@
 
 package pw.phylame.simbs.ui.com;
 
-import pw.phylame.tools.sql.PageResultSet;
+import pw.phylame.tools.sql.PagingResultSet;
 
 import javax.swing.table.AbstractTableModel;
 
 /**
- * Created by Peng Wan on 2015-1-6.
+ * {@code TableModel} for {@code PagingResultAdapter}.
  */
-public abstract class PaneTableModel extends AbstractTableModel {
-    public abstract void setDataSource(PageResultSet prs);
+public abstract class PagingResultTableModel extends AbstractTableModel {
 
-    public abstract void pageUpdated(PageResultSet prs);
+    /** Update table when page number is changed */
+    public abstract void pageUpdated(PagingResultSet prs);
 }

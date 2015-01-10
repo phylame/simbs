@@ -26,6 +26,7 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
+
 import java.awt.event.*;
 import java.math.BigDecimal;
 
@@ -51,6 +52,21 @@ public class SellBookDialog extends JDialog {
     private boolean isReady = false;
 
     public SellBookDialog() {
+        super();
+        init();
+    }
+
+    public SellBookDialog(java.awt.Dialog owner, String title) {
+        super(owner, title);
+        init();
+    }
+
+    public SellBookDialog(java.awt.Frame owner, String title) {
+        super(owner, title);
+        init();
+    }
+
+    private void init() {
         setContentPane(contentPane);
         setModal(true);
         getRootPane().setDefaultButton(buttonOK);
@@ -88,18 +104,22 @@ public class SellBookDialog extends JDialog {
             public void changedUpdate(DocumentEvent e) {}
         });
 
+        final SellBookDialog parent = this;
+
         buttonChooseBook.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                ChooseBookDialog dialog = new ChooseBookDialog(app.getString("Dialog.ChooseBook.Title"));
+                ChooseBookDialog dialog = new ChooseBookDialog(parent,
+                        app.getString("Dialog.ChooseBook.Title"));
                 String isbn = tfISBN.getText().trim();
                 if (! "".equals(isbn)) {
                     dialog.setISBN(isbn);
                 }
                 dialog.setVisible(true);
                 isbn = dialog.getISBN();
+                System.gc();
                 if (isbn != null) {
-                    setISBN(isbn);
+                    setBook(isbn);
                 }
             }
         });
@@ -107,12 +127,14 @@ public class SellBookDialog extends JDialog {
         buttonChooseCustomer.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                ChooseCustomerDialog dialog = new ChooseCustomerDialog(app.getString("Dialog.ChooseCustomer.Title"));
+                ChooseCustomerDialog dialog = new ChooseCustomerDialog(parent,
+                        app.getString("Dialog.ChooseCustomer.Title"));
                 if (customerID > 0) {
                     dialog.setCustomerID(customerID);
                 }
                 dialog.setVisible(true);
                 int id = dialog.getCustomerID();
+                System.gc();
                 if (id > 0) {
                     setCustomer(id);
                 }
@@ -153,17 +175,12 @@ public class SellBookDialog extends JDialog {
             }
         }, KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
 
-        setIconImage(app.getFrame().getIconImage());
+        setIconImage(pw.phylame.ixin.IToolkit.createImage(app.getString("Dialog.Sell.Icon")));
 
         pack();
-        setLocationRelativeTo(null);
+        setLocationRelativeTo(getOwner());
 
         updateNumber();
-    }
-
-    public SellBookDialog(String title) {
-        this();
-        setTitle(title);
     }
 
     private void onOK() {
@@ -234,14 +251,14 @@ public class SellBookDialog extends JDialog {
     }
 
 
-    public void setISBN(String isbn) {
+    public void setBook(String isbn) {
         if (isbn == null) {
             isbn = "";
         }
         tfISBN.setText(isbn.trim());
     }
 
-    public String getISBN() {
+    public String getBook() {
         return tfISBN.getText().trim();
     }
 

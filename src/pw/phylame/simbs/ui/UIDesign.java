@@ -55,6 +55,10 @@ public final class UIDesign {
 
     /* Edit */
     public static final Object[][] EDIT_MENU_ACTIONS = {
+            {EDIT_VIEW,
+                    app.getString("Menu.Edit.Details"), app.getString("Menu.Edit.Details.Icon"),
+                    app.getString("Menu.Edit.Details.Mnemonic"), app.getString("Menu.Edit.Details.Shortcut"),
+                    app.getString("Menu.Edit.Details.Tip"), false},
             {EDIT_MODIFY,
                     app.getString("Menu.Edit.Modify"), app.getString("Menu.Edit.Modify.Icon"),
                     app.getString("Menu.Edit.Modify.Mnemonic"), app.getString("Menu.Edit.Modify.Shortcut"),
@@ -139,7 +143,8 @@ public final class UIDesign {
     public static final Object[] EDIT_MENU_MODEL = {
             new IMenuLabel(app.getString("Menu.Edit"), null, app.getString("Menu.Edit.Mnemonic")),
             EDIT_MODIFY,
-            EDIT_DELETE
+            EDIT_DELETE,
+            EDIT_VIEW
     };
 
     /* View */

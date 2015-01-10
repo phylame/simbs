@@ -67,7 +67,7 @@ public final class Worker {
 
     /**
      * Get book from {@code ResultSet}.
-     * <p>The SQL query statement must be {@code SQL_SELECT_BOOK}.</p>
+     * <p>The SQL query statement must be {@code SQL_SELECT_CUSTOMER}.</p>
      */
     public static Book gainBook(ResultSet rs) throws SQLException {
         return new Book(normalizeString(rs.getString(1)), normalizeString(rs.getString(2)),
@@ -78,8 +78,8 @@ public final class Worker {
     }
 
     /** SQL statement for selecting customer */
-    public static final String SQL_SELECT_CUSTOMER = "SELECT Cid, Cname, Cphone, Cemail, Clevel," +
-            " Climit, Ccomment FROM customer ";
+    public static final String SQL_SELECT_CUSTOMER = "SELECT Cid, Cname, Cphone, Cemail, Cdate," +
+            " Clevel, Climit, Ccomment FROM customer ";
 
     /**
      * Get customer from {@code ResultSet}.
@@ -87,10 +87,9 @@ public final class Worker {
      */
     public static Customer gainCustomer(ResultSet rs) throws SQLException {
         return new Customer(rs.getInt(1), normalizeString(rs.getString(2)),
-                normalizeString(rs.getString(3)), normalizeString(rs.getString(4)),
-                rs.getInt(5), rs.getInt(6), normalizeString(rs.getString(7)));
+                normalizeString(rs.getString(3)), normalizeString(rs.getString(4)), rs.getDate(5),
+                rs.getInt(6), rs.getInt(7), normalizeString(rs.getString(8)));
     }
-
 
     // *************
     // ** Event ID
@@ -183,6 +182,11 @@ public final class Worker {
     // ** Book operations
     // *******************
 
+    /** Save cover image file to database */
+    private void saveCoverImage(String path) {
+
+    }
+
     /**
      * Register a book
      * @param book the {@code Book} object
@@ -197,6 +201,7 @@ public final class Worker {
         ps.setString(2, book.getName());
         ps.setString(3, book.getVersion());
         ps.setString(4, book.getAuthors());
+        saveCoverImage(book.getCover());
         ps.setString(5, book.getCover());
         ps.setDate(6, toSQLDate(book.getDate()));
         ps.setString(7, book.getCategory());
@@ -226,6 +231,7 @@ public final class Worker {
         ps.setString(1, book.getName());
         ps.setString(2, book.getVersion());
         ps.setString(3, book.getAuthors());
+        saveCoverImage(book.getCover());
         ps.setString(4, book.getCover());
         ps.setDate(5, toSQLDate(book.getDate()));
         ps.setString(6, book.getCategory());
@@ -355,8 +361,8 @@ public final class Worker {
      * @param customer the customer.
      */
     public void registerCustomer(Customer customer) throws SQLException {
-        String sql = "INSERT INTO customer (Cid, Cname, Cphone, Cemail, Clevel, Climit, Ccommnet)" +
-                " VALUES (?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO customer (Cid, Cname, Cphone, Cemail, Clevel, Climit, Ccommnet," +
+                " Cdate) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         PreparedStatement ps = dbHelper.prepareStatement(sql);
 
         ps.setInt(1, customer.getId());
@@ -366,6 +372,7 @@ public final class Worker {
         ps.setInt(5, customer.getLevel());
         ps.setInt(6, customer.getLimit());
         ps.setString(7, customer.getComment());
+        ps.setDate(8, toSQLDate(customer.getDate()));
 
         ps.executeUpdate();
     }
@@ -382,7 +389,7 @@ public final class Worker {
             return;
         }
 
-        String sql = "UPDATE customer SET Cname=?, Cphone=?, Cemail=?, Clevel=?, Climit=?" +
+        String sql = "UPDATE customer SET Cname=?, Cphone=?, Cemail=?, Clevel=?, Climit=?, Cdate=?" +
                 " WHERE Cid=?";
         PreparedStatement ps = dbHelper.prepareStatement(sql);
 
@@ -391,7 +398,8 @@ public final class Worker {
         ps.setString(3, customer.getEmail());
         ps.setInt(4, customer.getLevel());
         ps.setInt(5, customer.getLimit());
-        ps.setInt(6, customer.getId());
+        ps.setDate(6, toSQLDate(customer.getDate()));
+        ps.setInt(7, customer.getId());
 
         ps.executeUpdate();
     }
@@ -562,6 +570,44 @@ public final class Worker {
         return newLimit;
     }
 
+    public int getBoughtNumber(int id) {
+        String sql = String.format("SELECT SUM(Snumber) FROM sale WHERE Cid=%d", id);
+        return selectInteger(sql);
+    }
+
+    public int getBorrowedNumber(int id) {
+        String sql = String.format("SELECT SUM(Rnumber) FROM rental WHERE Cid=%d", id);
+        return selectInteger(sql);
+    }
+
+    public int getOverdueNumber(int id) {
+//        String sql = String.format("%d", id);
+//        return selectInteger(sql);
+        return -1;
+    }
+
+    public BigDecimal getTotalSpending(int id) {
+        String sql = "SELECT SUM(Stotal) FROM sale WHERE Cid=? UNION SELECT" +
+                " SUM(Rdeposit)+SUM(Rrevenue) FROM rental WHERE Cid=?";
+        try {
+            PreparedStatement ps = dbHelper.prepareStatement(sql);
+            ps.setInt(1, id);
+            ps.setInt(2, id);
+            ResultSet rs = ps.executeQuery();
+            BigDecimal v = new BigDecimal(0), n;
+            while (rs.next()) {
+                n = rs.getBigDecimal(1);
+                if (n != null) {    // if null, one table no record of the customer
+                    v = v.add(n);
+                }
+            }
+            return v;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
     // ********************
     // ** Store operations
     // ********************
@@ -642,8 +688,33 @@ public final class Worker {
         return selectInteger(sql);
     }
 
-    public int getLentBookCount() {
+    /**
+     * Get total number of all lent books.
+     */
+    public int getRentalNumber() {
         String sql = "SELECT SUM(Rnumber) FROM rental";
+        return selectInteger(sql);
+    }
+
+    /**
+     * Get number of lent book
+     * @param isbn ISBN of the book
+     * @return the number
+     */
+    public int getRentalNumber(String isbn) {
+        String sql = String.format("SELECT SUM(Rnumber) FROM rental WHERE Bisbn='%s'", isbn);
+        return selectInteger(sql);
+    }
+
+    /**
+     * Get number of lent book
+     * @param isbn ISBN of the lent book
+     * @param id ID of the customer
+     * @return the number
+     */
+    public int getRentalNumber(String isbn, int id) {
+        String sql = String.format("SELECT SUM(Rnumber) FROM rental WHERE Bisbn='%s' AND Cid=%d",
+                isbn, id);
         return selectInteger(sql);
     }
 
@@ -875,11 +946,14 @@ public final class Worker {
     }
 
     public BigDecimal getRentalRevenue() {
-        return new BigDecimal(0);
+        String sql = "SELECT SUM(Rdeposit)+SUM(Rrevenue) FROM rental";
+        return selectDecimal(sql);
     }
 
     public BigDecimal getTotalRevenue() {
-        return new BigDecimal(0);
+        String sql = "SELECT SUM(Stotal)+SUM(Rdeposit)+SUM(Rrevenue)-SUM(Ttotal) FROM sale," +
+                " rental, stock";
+        return selectDecimal(sql);
     }
 
     /**

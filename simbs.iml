@@ -8,6 +8,6 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="HypqerSQL" level="project" />
-    <orderEntry type="library" name="PostgreSQL" level="project" />
+    <orderEntry type="library" name="Commons Logging" level="project" />
   </component>
 </module>

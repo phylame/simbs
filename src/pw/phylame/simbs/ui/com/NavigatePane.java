@@ -26,10 +26,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 /**
- * Created by Nanu on 2015-1-6.
+ * Created by Peng Wan on 2015-1-6.
  */
-public class NavigatePane implements PaneRender {
-    private Component parentComp = null;
+public class NavigatePane extends PaneRender {
 
     private JPanel rootPane;
     private JButton btnViewBook;
@@ -37,6 +36,7 @@ public class NavigatePane implements PaneRender {
     private JButton btnViewCustomer;
 
     public NavigatePane() {
+        super();
         final Application app = Application.getInstance();
 //
 //        btnViewBook.addActionListener(new ActionListener() {
@@ -62,11 +62,6 @@ public class NavigatePane implements PaneRender {
     @Override
     public void destroy() {
 
-    }
-
-    @Override
-    public void setParent(Component parent) {
-        parentComp = parent;
     }
 
     @Override

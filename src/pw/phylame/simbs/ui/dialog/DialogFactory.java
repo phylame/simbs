@@ -16,8 +16,14 @@
 
 package pw.phylame.simbs.ui.dialog;
 
+import pw.phylame.simbs.Application;
+
 import java.awt.Component;
-import javax.swing.JOptionPane;
+import java.io.File;
+import java.util.*;
+import javax.swing.*;
+import javax.swing.filechooser.FileFilter;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
  * Make dialogs.
@@ -27,6 +33,115 @@ public final class DialogFactory {
 
     public static void setDialogParent(Component parent) {
         DialogFactory.parent = parent;
+    }
+
+    private static HashMap<String, String> ImageFormatNames = new HashMap<>();
+    static {
+        String[] formats = new String[]{"jpg", "jpeg", "png", "gif", "bmp"};
+        for (String fmt: formats) {
+            String desc = Application.getInstance().getString("File.Format."+fmt.toUpperCase());
+            ImageFormatNames.put(fmt, String.format("%s (*.%s)", desc, fmt));
+        }
+    }
+
+    private static JFileChooser fileChooser = new JFileChooser();
+
+    public static void initFileChooser(String title, List<FileFilter> filters, FileFilter initFilter,
+                                       boolean acceptAll, String initDir) {
+        fileChooser.setDialogTitle(title);
+        fileChooser.setAcceptAllFileFilterUsed(acceptAll);
+        /* remove all file filters */
+        fileChooser.resetChoosableFileFilters();
+        fileChooser.removeChoosableFileFilter(fileChooser.getAcceptAllFileFilter());
+        if (filters != null) {
+            for (FileFilter filter : filters) {
+                fileChooser.addChoosableFileFilter(filter);
+            }
+        }
+        if (initFilter != null) {
+            fileChooser.setFileFilter(initFilter);
+        }
+        if (initDir != null) {
+            fileChooser.setCurrentDirectory(new File(initDir));
+        }
+    }
+
+    public static List<FileFilter> makeFileFilters(Collection<String> formats,
+                                                   Map<String, String> formatDesc,
+                                                   boolean acceptAll) {
+        List<FileFilter> filters = new java.util.ArrayList<>();
+        if (acceptAll) {
+            filters.add(new FileNameExtensionFilter(
+                    String.format("%s (*.%s)",
+                            Application.getInstance().getString("File.Format.AllFile"),
+                            pw.phylame.tools.StringUtility.join(formats, " *.")),
+                    formats.toArray(new String[0])));
+        }
+        for (String format: formats) {
+            filters.add(new FileNameExtensionFilter(formatDesc.get(format), format));
+        }
+        return filters;
+    }
+
+    public static File selectOpenFile(Component parent, String title,
+                                      List<FileFilter> filters,
+                                      FileFilter initFilter, boolean acceptAll, String initDir) {
+        initFileChooser(title, filters, initFilter, acceptAll, initDir);
+        fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
+        if (fileChooser.showOpenDialog(parent) != JFileChooser.APPROVE_OPTION) {
+            return null;
+        }
+        return fileChooser.getSelectedFile();
+    }
+
+    /**
+     * Get the extension name of file.
+     * @param name name of file
+     * @return string of extension. If not contain extension return {@code ""}.
+     */
+    private static String getExtension(String name) {
+        name = Objects.requireNonNull(name, "name");
+        int index = name.lastIndexOf(".");
+        if (index > 0) {
+            return name.substring(index + 1);
+        } else {
+            return "";
+        }
+
+    }
+
+    public static File selectSaveFile(Component parent, String title,
+                                      List<FileFilter> filters,
+                                      FileFilter initFilter, boolean acceptAll, String initDir) {
+        initFileChooser(title, filters, initFilter, acceptAll, initDir);
+        fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
+        if (fileChooser.showSaveDialog(parent) != JFileChooser.APPROVE_OPTION) {
+            return null;
+        }
+        File file = fileChooser.getSelectedFile();
+        /* Add file extension name if not given */
+        FileNameExtensionFilter filter = (FileNameExtensionFilter) fileChooser.getFileFilter();
+        if (filter.getExtensions().length == 1) {
+            if ("".equals(getExtension(file.getPath()))) {
+                file = new File(file.getPath() + "." + filter.getExtensions()[0]);
+            }
+        }
+        return file;
+    }
+
+    public static File selectDirectory(Component parent, String title, String initDir) {
+        initFileChooser(title, null, null, false, initDir);
+        fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+        if (fileChooser.showOpenDialog(parent) != JFileChooser.APPROVE_OPTION) {
+            return null;
+        }
+        return fileChooser.getSelectedFile();
+    }
+
+    public static File selectOpenImage(String dialogTitle, boolean acceptAll, String initDir) {
+        return selectOpenFile(parent, dialogTitle,
+                makeFileFilters(ImageFormatNames.keySet(), ImageFormatNames, acceptAll),
+                null, acceptAll, initDir);
     }
 
     /**

@@ -67,6 +67,7 @@ public class MainFrame extends IFrame {
     }
 
     public void setContentArea(PaneRender paneRender) {
+        paneRender.setParent(this);
         JPanel contentArea = getContentArea();
         contentArea.removeAll();
         contentArea.add(paneRender.getPane());

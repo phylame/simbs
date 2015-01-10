@@ -24,7 +24,7 @@ import pw.phylame.simbs.Constants;
 import pw.phylame.simbs.Worker;
 import pw.phylame.simbs.ds.Book;
 import pw.phylame.tools.sql.DbHelper;
-import pw.phylame.tools.sql.PageResultSet;
+import pw.phylame.tools.sql.PagingResultSet;
 
 import javax.swing.*;
 import java.awt.event.MouseAdapter;
@@ -45,18 +45,16 @@ public class BookTablePane extends TablePane {
     private BookTableModel tableModel = null;
     private JTable table = null;
 
-    private IAction deleteAction = null, modifyAction = null;
     private JPopupMenu popupMenu = null;
 
-
     public BookTablePane() {
-        DbHelper dbHelper = Application.getInstance().getSQLAdmin();
+        DbHelper dbHelper = Application.getInstance().getDbHelper();
         try {
-            PageResultSet dataSet = dbHelper.queryAndPaging(SQL_SELECT_BOOK, MAX_ROW_COUNT);
+            PagingResultSet dataSource = dbHelper.queryAndPaging(SQL_SELECT_BOOK, MAX_ROW_COUNT);
             this.tableModel = new BookTableModel();
-            TableAdapter tableAdapter = new TableAdapter(dataSet, this.tableModel);
-            this.table = tableAdapter.getTable();
-            setTableAdapter(tableAdapter);
+            PagingResultAdapter pagingResultAdapter = new PagingResultAdapter(dataSource, this.tableModel);
+            this.table = pagingResultAdapter.getTable();
+            setTableAdapter(pagingResultAdapter);
             init();
         } catch (SQLException exp) {
             exp.printStackTrace();
@@ -73,6 +71,7 @@ public class BookTablePane extends TablePane {
         final Application app = Application.getInstance();
         popupMenu = new JPopupMenu();
         IFrame frame = app.getFrame();
+        IAction deleteAction = null, modifyAction = null, viewAction;
         modifyAction = frame.getMenuAction(Constants.EDIT_MODIFY);
         if (modifyAction != null) {
             popupMenu.add(IToolkit.createMenuItem(modifyAction, null, frame));
@@ -89,6 +88,15 @@ public class BookTablePane extends TablePane {
                 deleteAction.setEnabled(false);
             } else {
                 deleteAction.setEnabled(true);
+            }
+        }
+        viewAction = frame.getMenuAction(Constants.EDIT_VIEW);
+        if (viewAction != null) {
+            popupMenu.add(IToolkit.createMenuItem(viewAction, null, frame));
+            if (tableModel.getRowCount() == 0) {
+                viewAction.setEnabled(false);
+            } else {
+                viewAction.setEnabled(true);
             }
         }
 
@@ -126,11 +134,12 @@ public class BookTablePane extends TablePane {
         if (rows == null) {
             return null;
         }
-        ArrayList<String> books = new ArrayList<>();
+        String[] books = new String[rows.length];
+        int i = 0;
         for (int row: rows) {
-            books.add(tableModel.getISBN(row));
+            books[i++] = tableModel.getISBN(row);
         }
-        return books.toArray(new String[0]);
+        return books;
     }
 
     /** Update book at row */
@@ -138,12 +147,12 @@ public class BookTablePane extends TablePane {
         tableModel.updateBook(row, book);
     }
 
-    private static class BookTableModel extends PaneTableModel {
-        private PageResultSet dataSet = null;
+    private static class BookTableModel extends PagingResultTableModel {
+        private PagingResultSet dataSource = null;
         private ArrayList<Book> rows = new ArrayList<>();
 
         public String getISBN(int rowIndex) {
-            if (dataSet == null || rowIndex < 0) {
+            if (dataSource == null || rowIndex < 0) {
                 return null;
             }
             try {
@@ -162,16 +171,16 @@ public class BookTablePane extends TablePane {
 
         /** Update current page from ResultSet */
         public void updateCurrentPage() {
-            if (dataSet == null) {
+            if (dataSource == null) {
                 return;
             }
-            ResultSet rs = dataSet.getResultSet();
+            ResultSet rs = dataSource.getResultSet();
             if (rs == null) {
                 fireTableDataChanged();
                 return;
             }
             try {
-                for (int i = 0; i < dataSet.getCurrentRows(); ++i) {
+                for (int i = 0; i < dataSource.getCurrentRows(); ++i) {
                     Book book = new Book();
                     book.setISBN(Worker.normalizeString(rs.getString(1)));
                     book.setName(Worker.normalizeString(rs.getString(2)));
@@ -188,16 +197,8 @@ public class BookTablePane extends TablePane {
         }
 
         @Override
-        public void setDataSource(PageResultSet dataSet) {
-            this.dataSet = dataSet;
-            pageUpdated(dataSet);
-        }
-
-        @Override
-        public void pageUpdated(PageResultSet dataSet) {
-            if (dataSet == null) {
-                return;
-            }
+        public void pageUpdated(PagingResultSet dataSource) {
+            this.dataSource = dataSource;
             rows.clear();
             updateCurrentPage();
         }
@@ -228,10 +229,10 @@ public class BookTablePane extends TablePane {
 
         @Override
         public int getRowCount() {
-            if (dataSet == null) {
+            if (dataSource == null) {
                 return 0;
             } else {
-                return dataSet.getCurrentRows();
+                return dataSource.getCurrentRows();
             }
         }
 
@@ -242,7 +243,7 @@ public class BookTablePane extends TablePane {
 
         @Override
         public Object getValueAt(int rowIndex, int columnIndex) {
-            if (dataSet == null) {
+            if (dataSource == null) {
                 return null;
             }
             try {

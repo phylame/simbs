@@ -22,6 +22,7 @@ import pw.phylame.simbs.Constants;
 import pw.phylame.simbs.ds.Customer;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.*;
 
 public class ModifyCustomerDialog extends JDialog {
@@ -40,6 +41,21 @@ public class ModifyCustomerDialog extends JDialog {
     private boolean isReady = false;
 
     public ModifyCustomerDialog() {
+        super();
+        init();
+    }
+
+    public ModifyCustomerDialog(Dialog owner, String title) {
+        super(owner, title);
+        init();
+    }
+
+    public ModifyCustomerDialog(Frame owner, String title) {
+        super(owner, title);
+        init();
+    }
+    
+    private void init() {
         setContentPane(contentPane);
         setModal(true);
         getRootPane().setDefaultButton(buttonOK);
@@ -75,15 +91,11 @@ public class ModifyCustomerDialog extends JDialog {
         setIconImage(IToolkit.createImage(app.getString("Customer.Icon")));
 
         pack();
-        setLocationRelativeTo(null);
+        setLocationRelativeTo(getOwner());
 
         jsLevel.setModel(new SpinnerNumberModel(0, 0, null, 1));
-        jsLimit.setModel(new SpinnerNumberModel(Constants.DEFAULT_LENT_LIMIT, 1, Constants.DEFAULT_LENT_LIMIT*3, 1));
-    }
-
-    public ModifyCustomerDialog(String title) {
-        this();
-        setTitle(title);
+        jsLimit.setModel(new SpinnerNumberModel(Constants.DEFAULT_LENT_LIMIT, 1,
+                Constants.DEFAULT_LENT_LIMIT*3, 1));
     }
 
     private void onOK() {
