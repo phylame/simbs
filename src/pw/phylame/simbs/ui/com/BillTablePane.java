@@ -20,6 +20,7 @@ import pw.phylame.simbs.Application;
 import pw.phylame.simbs.Worker;
 import pw.phylame.tools.sql.PagingResultSet;
 
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.ArrayList;
 
@@ -46,12 +47,14 @@ public class BillTablePane extends ViewerTablePane {
             private int no;
             private Date date;
             private int event, eventId;
+            private BigDecimal money;
 
-            public Entry(int no, Date date, int event, int eventId) {
+            public Entry(int no, Date date, int event, int eventId, BigDecimal money) {
                 setNo(no);
                 setDate(date);
                 setEvent(event);
                 setEventId(eventId);
+                setMoney(money);
             }
 
             public int getNo() {
@@ -85,6 +88,14 @@ public class BillTablePane extends ViewerTablePane {
             public void setEventId(int eventId) {
                 this.eventId = eventId;
             }
+
+            public BigDecimal getMoney() {
+                return money;
+            }
+
+            public void setMoney(BigDecimal money) {
+                this.money = money;
+            }
         }
 
         private PagingResultSet dataSource = null;
@@ -102,8 +113,8 @@ public class BillTablePane extends ViewerTablePane {
             }
             try {
                 for (int i = 0; i < dataSource.getCurrentRows(); ++i) {
-                    Entry entry = new Entry(rs.getInt(1),
-                            Worker.toDate(rs.getDate(2), rs.getTime(3)), rs.getInt(4), rs.getInt(5));
+                    Entry entry = new Entry(rs.getInt(1), Worker.toDate(rs.getDate(2),
+                            rs.getTime(3)), rs.getInt(4), rs.getInt(5), null);
                     rows.add(entry);
                     rs.next();
                 }
@@ -130,15 +141,13 @@ public class BillTablePane extends ViewerTablePane {
             Application app = Application.getInstance();
             switch (column) {
                 case 0:
-                    return app.getString("Bill.Property.NO");
+                    return app.getString("Pane.Bill.Column.NO");
                 case 1:
-                    return app.getString("Bill.Property.Phone");
+                    return app.getString("Pane.Bill.Column.Date");
                 case 2:
-                    return app.getString("Bill.Property.Email");
-                case 3:
-                    return app.getString("Bill.Property.Date");
+                    return app.getString("Pane.Bill.Column.Event");
                 default:
-                    return app.getString("Bill.Property.Unknown");
+                    return app.getString("Pane.Bill.Column.Unknown");
             }
         }
 
@@ -161,6 +170,7 @@ public class BillTablePane extends ViewerTablePane {
             if (dataSource == null) {
                 return null;
             }
+            Application app = Application.getInstance();
             try {
                 Entry entry = rows.get(rowIndex);
                 switch (columnIndex) {
@@ -169,6 +179,19 @@ public class BillTablePane extends ViewerTablePane {
                     case 1:
                         java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                         return sdf.format(entry.getDate());
+                    case 2:
+                        switch (entry.getEvent()) {
+                            case Worker.EVENT_STOCK:
+                                return app.getString("Pane.Bill.Event.Stock");
+                            case Worker.EVENT_SALE:
+                                return app.getString("Pane.Bill.Event.Sale");
+                            case Worker.EVENT_RENTAL:
+                                return app.getString("Pane.Bill.Event.Rental");
+                            case Worker.EVENT_RETURN:
+                                return app.getString("Pane.Bill.Event.Return");
+                            default:
+                                return app.getString("Pane.Bill.Event.Unknown");
+                        }
                     default:
                         return null;
                 }

@@ -1,4 +1,5 @@
 Manifest-Version: 1.0
-Class-Path: . hsqldb.jar commons-logging.jar
+Class-Path: . hsqldb.jar quaqua.jar jgoodies-looks.jar jgoodies-common
+ .jar
 Main-Class: pw.phylame.simbs.Application
 

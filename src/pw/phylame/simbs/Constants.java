@@ -81,6 +81,8 @@ public final class Constants {
     /** Days limit for customer borrow book */
     public static final int MAX_LENT_DAYS = 100;
 
+    public static final int DAYS_OF_LEVEL = 20;
+
     /** Number of book for customer can borrow each time */
     public static final int DEFAULT_LENT_LIMIT = 10;
 

@@ -64,7 +64,7 @@ public final class Worker {
         Calendar dest = Calendar.getInstance(), src = Calendar.getInstance();
         dest.setTime(date);
         src.setTime(time);
-        dest.set(Calendar.HOUR, src.get(Calendar.HOUR));
+        dest.set(Calendar.HOUR_OF_DAY, src.get(Calendar.HOUR_OF_DAY));
         dest.set(Calendar.MINUTE, src.get(Calendar.MINUTE));
         dest.set(Calendar.SECOND, src.get(Calendar.SECOND));
         return dest.getTime();
@@ -981,7 +981,7 @@ public final class Worker {
         }
         no++;
 
-        if (id == 0) {
+        if (id == 0 && ! isCustomerRegistered(0)) {
             insertZeroCustomer();
         }
 

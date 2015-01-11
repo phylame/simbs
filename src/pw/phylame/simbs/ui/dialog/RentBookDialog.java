@@ -81,7 +81,7 @@ public class RentBookDialog extends JDialog {
             public void mouseClicked(MouseEvent e) {
                 String tip = String.format(app.getString("Dialog.Lend.RentalPolicy"),
                         Constants.DEFAULT_LENT_LIMIT, Constants.PRICE_OF_INCREASE_LIMIT,
-                        DEFAULT_DAYS, Constants.MAX_LENT_DAYS);
+                        DEFAULT_DAYS, Constants.MAX_LENT_DAYS, Constants.DAYS_OF_LEVEL);
                 JOptionPane.showMessageDialog(dialog, tip,
                         app.getString("Dialog.Lend.RentalPolicy.Title"), JOptionPane.PLAIN_MESSAGE);
             }
@@ -257,7 +257,8 @@ public class RentBookDialog extends JDialog {
 
         int maxNumber = Math.min(limit, inventory);
         setNumberInfo(1, 1, maxNumber);
-        setPeriodInfo(DEFAULT_DAYS, 1, Constants.MAX_LENT_DAYS);
+        setPeriodInfo(DEFAULT_DAYS, 1,
+                Constants.MAX_LENT_DAYS+Constants.DAYS_OF_LEVEL*worker.getCustomerLevel(customerID));
         updatePrice();
         jsNumber.setEnabled(true);
         jsPeriod.setEnabled(true);
