@@ -41,7 +41,7 @@ public class BookDetailsPane extends PaneRender {
     private JTextField tfDate;
     private JTextField tfCategory;
     private JTextField tfPublisher;
-    private JFormattedTextField tfStockPrice;
+    private JFormattedTextField tfPurchasePrice;
     private JFormattedTextField tfSalePrice;
     private JFormattedTextField tfRentalPrice;
     private JFormattedTextField tfInventoryNumber;
@@ -49,6 +49,7 @@ public class BookDetailsPane extends PaneRender {
     private JFormattedTextField tfRentalNumber;
     private JTextArea taIntro;
     private JButton btnViewCover;
+    private JFormattedTextField tfMarkedPrice;
 
     public BookDetailsPane() {
         super();
@@ -101,7 +102,8 @@ public class BookDetailsPane extends PaneRender {
         tfInventoryNumber.setValue(0);
         tfSaleNumber.setValue(0);
         tfRentalNumber.setValue(0);
-        tfStockPrice.setValue(new BigDecimal(0));
+        tfPurchasePrice.setValue(new BigDecimal(0));
+        tfMarkedPrice.setValue(new BigDecimal(0));
         tfSalePrice.setValue(new BigDecimal(0));
         tfRentalPrice.setValue(new BigDecimal(0));
         taIntro.setText("");
@@ -150,11 +152,16 @@ public class BookDetailsPane extends PaneRender {
             v = 0;
         }
         tfRentalNumber.setValue(v);
-        BigDecimal n = worker.getPrice(isbn);
+        BigDecimal n = worker.getPurchasePrice(isbn);
         if (n == null) {
             n = new BigDecimal(0);
         }
-        tfStockPrice.setValue(n);
+        tfPurchasePrice.setValue(n);
+        n = worker.getMarkedPrice(isbn);
+        if (n == null) {
+            n = new BigDecimal(0);
+        }
+        tfMarkedPrice.setValue(n);
         n = worker.getSalePrice(isbn);
         if (n == null) {
             n = new BigDecimal(0);

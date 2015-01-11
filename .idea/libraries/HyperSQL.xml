@@ -1,7 +1,7 @@
 <component name="libraryTable">
-  <library name="quaqua">
+  <library name="HyperSQL">
     <CLASSES>
-      <root url="jar://$PROJECT_DIR$/lib/quaqua.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/hsqldb.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

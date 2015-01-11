@@ -40,9 +40,13 @@ public class CustomerDetailsPane extends PaneRender {
     private JFormattedTextField tfTotalSpending;
     private JPanel rootPane;
     private JTextField tfDate;
+    private JTextArea taComment;
 
     public CustomerDetailsPane() {
         super();
+        taComment.setRows(5);
+        taComment.setLineWrap(true);
+        taComment.setWrapStyleWord(true);
         reset();
     }
 
@@ -58,6 +62,7 @@ public class CustomerDetailsPane extends PaneRender {
         tfBorrowedNumber.setValue(new BigDecimal(0));
         tfOverdueNumber.setValue(new BigDecimal(0));
         tfTotalSpending.setValue(new BigDecimal(0));
+        taComment.setText("");
     }
 
     public void setCustomer(int id) {
@@ -100,6 +105,7 @@ public class CustomerDetailsPane extends PaneRender {
             n = new BigDecimal(0);
         }
         tfTotalSpending.setValue(n);
+        taComment.setText(customer.getComment());
     }
 
     @Override

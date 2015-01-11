@@ -77,7 +77,7 @@ public class PagingResultSet {
         pageCount = (rowCount + pageSize - 1) / pageSize;
         if (pageCount > 0) {
             if (currentPage > pageCount) {  // data has been deleted in other way, move to last page
-                currentPage = pageCount - 1;
+                currentPage = pageCount;
             }
             gotoPage(currentPage);
         }

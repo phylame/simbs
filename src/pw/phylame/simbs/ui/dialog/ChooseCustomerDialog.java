@@ -38,7 +38,7 @@ import java.util.ArrayList;
 public class ChooseCustomerDialog extends JDialog {
     public static final int CUSTOMER_COLUMN_COUNT = 6;
     public static final String SQL_SELECT_CUSTOMER = "SELECT Cid, Cname, Cphone, Cemail, Clevel," +
-            " Climit FROM customer ";
+            " Climit FROM customer WHERE Cid<>0 ";
 
     private JPanel contentPane;
 
@@ -123,6 +123,7 @@ public class ChooseCustomerDialog extends JDialog {
         tablePane.setParent(this);
 
         pack();
+        setSize((int) (getWidth() * 1.2), (int) (getHeight() * 1.4));
         setLocationRelativeTo(getOwner());
     }
 
@@ -141,16 +142,13 @@ public class ChooseCustomerDialog extends JDialog {
 
         String sql = SQL_SELECT_CUSTOMER;
         if (! "".equals(cond.trim())) {
-            sql = sql +" WHERE "+cond;
+            sql = sql + cond;
         }
         final Application app = Application.getInstance();
         final ChooseCustomerDialog parent = this;
         DbHelper dbHelper = app.getDbHelper();
         try {
             PagingResultSet dataSet = dbHelper.queryAndPaging(sql, Constants.MAX_ROW_COUNT);
-            System.out.printf("current page: %d, current rows: %d, page count: %d, page size: %d," +
-                            " row count: %d\n", dataSet.getCurrentPage(), dataSet.getCurrentRows(),
-                    dataSet.getPageCount(), dataSet.getPageSize(), dataSet.getRowCount());
             PagingResultAdapter pagingResultAdapter = (PagingResultAdapter) tablePane.getTableAdapter();
             if (pagingResultAdapter == null) {     // first search
                 final CustomerTableModel tableModel = new CustomerTableModel();
@@ -210,7 +208,6 @@ public class ChooseCustomerDialog extends JDialog {
                     }
                 });
                 tablePane.setTableAdapter(pagingResultAdapter);
-                setSize((int) (getWidth() * 1.2), (int) (getHeight() * 1.4));
                 setLocationRelativeTo(getOwner());
             } else {
                 pagingResultAdapter.setDataSource(dataSet);

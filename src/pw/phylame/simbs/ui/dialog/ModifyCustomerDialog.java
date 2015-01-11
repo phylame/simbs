@@ -34,6 +34,7 @@ public class ModifyCustomerDialog extends JDialog {
     private JTextField tfEmail;
     private JSpinner jsLimit;
     private JSpinner jsLevel;
+    private JTextArea taComment;
     private JFormattedTextField tfLentLimit;
 
     private Customer customer = null;
@@ -90,7 +91,12 @@ public class ModifyCustomerDialog extends JDialog {
         Application app = Application.getInstance();
         setIconImage(IToolkit.createImage(app.getString("Customer.Icon")));
 
+        taComment.setLineWrap(true);
+        taComment.setWrapStyleWord(true);
+        taComment.setRows(5);
+
         pack();
+        setSize((int)(getWidth()*1.4), (int)(getHeight()*1.2));
         setLocationRelativeTo(getOwner());
 
         jsLevel.setModel(new SpinnerNumberModel(0, 0, null, 1));
@@ -99,7 +105,6 @@ public class ModifyCustomerDialog extends JDialog {
     }
 
     private void onOK() {
-// add your code here
         Application app = Application.getInstance();
         String s = tfName.getText().trim();
         if ("".equals(s)) {
@@ -108,19 +113,18 @@ public class ModifyCustomerDialog extends JDialog {
         }
         if (customer == null) {
             customer = new Customer();
-//            customer.setId(Worker.getInstance().getAvailableCustomerId()+1);
         }
         customer.setName(s);
         customer.setPhone(tfPhone.getText().trim());
         customer.setEmail(tfEmail.getText().trim());
         customer.setLevel((int) jsLevel.getValue());
         customer.setLimit((int) jsLimit.getValue());
+        customer.setComment(taComment.getText().trim());
         isReady = true;
         dispose();
     }
 
     private void onCancel() {
-// add your code here if necessary
         isReady = false;
         dispose();
     }
@@ -137,12 +141,14 @@ public class ModifyCustomerDialog extends JDialog {
             tfEmail.setText(customer.getEmail());
             jsLevel.setValue(customer.getLevel());
             jsLimit.setValue(customer.getLimit());
+            taComment.setText(customer.getComment());
         } else {
             tfName.setText("");
             tfPhone.setText("");
             tfEmail.setText("");
             jsLevel.setValue(0);
             jsLimit.setValue(Constants.DEFAULT_LENT_LIMIT);
+            taComment.setText("");
         }
     }
 }

@@ -47,6 +47,8 @@ public final class IToolkit {
             lookAndFeel = UIManager.getCrossPlatformLookAndFeelClassName();
         } else if ("system".equalsIgnoreCase(name)) {
             lookAndFeel = UIManager.getSystemLookAndFeelClassName();
+        } else if ("metal".equalsIgnoreCase(name)) {
+            lookAndFeel = "javax.swing.plaf.metal.MetalLookAndFeel";
         } else if ("motif".equalsIgnoreCase(name)) {
             lookAndFeel = "com.sun.java.swing.plaf.motif.MotifLookAndFeel";
         } else if ("nimbus".equalsIgnoreCase(name)) {

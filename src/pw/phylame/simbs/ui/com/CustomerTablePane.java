@@ -21,6 +21,7 @@ import pw.phylame.ixin.IToolkit;
 import pw.phylame.ixin.frame.IFrame;
 import pw.phylame.simbs.Application;
 import pw.phylame.simbs.Constants;
+import pw.phylame.simbs.ds.Book;
 import pw.phylame.simbs.ds.Customer;
 import pw.phylame.tools.sql.DbHelper;
 import pw.phylame.tools.sql.PagingResultSet;
@@ -35,106 +36,30 @@ import java.util.ArrayList;
 /**
  * Created by Peng Wan on 2015-1-10.
  */
-public class CustomerTablePane extends TablePane {
+public class CustomerTablePane extends ViewerTablePane {
     public static final int CUSTOMER_COLUMN_COUNT = 6;
     public static final String SQL_SELECT_CUSTOMER = "SELECT Cid, Cname, Cphone, Cemail, Cdate, " +
-            "Clevel, Climit FROM customer ";
+            "Clevel, Climit FROM customer WHERE Cid<>0 ";
 
-    public static final int MAX_ROW_COUNT = 15;
-
-    private CustomerTableModel tableModel = null;
-    private JTable table = null;
-
-    private JPopupMenu popupMenu = null;
+    public static final int MAX_ROW_COUNT = 20;
 
     public CustomerTablePane() {
-        DbHelper dbHelper = Application.getInstance().getDbHelper();
-        try {
-            PagingResultSet dataSource = dbHelper.queryAndPaging(SQL_SELECT_CUSTOMER, MAX_ROW_COUNT);
-            this.tableModel = new CustomerTableModel();
-            PagingResultAdapter pagingResultAdapter = new PagingResultAdapter(dataSource, this.tableModel);
-            this.table = pagingResultAdapter.getTable();
-            setTableAdapter(pagingResultAdapter);
-            init();
-        } catch (SQLException exp) {
-            exp.printStackTrace();
-        }
-    }
-
-    private void showContextMenu(int x, int y) {
-        if (popupMenu.getComponentCount() > 0) {
-            popupMenu.show(table, x, y);
-        }
-    }
-
-    private void init() {
-        final Application app = Application.getInstance();
-        popupMenu = new JPopupMenu();
-        IFrame frame = app.getFrame();
-        IAction deleteAction, modifyAction, viewAction;
-        modifyAction = frame.getMenuAction(Constants.EDIT_MODIFY);
-        if (modifyAction != null) {
-            popupMenu.add(IToolkit.createMenuItem(modifyAction, null, frame));
-            if (tableModel.getRowCount() == 0) {
-                modifyAction.setEnabled(false);
-            } else {
-                modifyAction.setEnabled(true);
-            }
-        }
-        deleteAction = frame.getMenuAction(Constants.EDIT_DELETE);
-        if (deleteAction != null) {
-            popupMenu.add(IToolkit.createMenuItem(deleteAction, null, frame));
-            if (tableModel.getRowCount() == 0) {
-                deleteAction.setEnabled(false);
-            } else {
-                deleteAction.setEnabled(true);
-            }
-        }
-        viewAction = frame.getMenuAction(Constants.EDIT_VIEW);
-        if (viewAction != null) {
-            popupMenu.add(IToolkit.createMenuItem(viewAction, null, frame));
-            if (tableModel.getRowCount() == 0) {
-                viewAction.setEnabled(false);
-            } else {
-                viewAction.setEnabled(true);
-            }
-        }
-
-        table.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                if (e.getClickCount() == 2 && ! e.isMetaDown()) {
-                    app.onCommand(Constants.EDIT_MODIFY);
-                }
-            }
-            @Override
-            public void mouseReleased(MouseEvent e) {
-                if (!e.isMetaDown()) {  // only right key
-                    return;
-                }
-                int row = table.rowAtPoint(e.getPoint());
-                if (row == -1) {
-                    return;
-                }
-                if (! table.isRowSelected(row)) {   // not selected
-                    table.setRowSelectionInterval(row, row);
-                }
-                showContextMenu(e.getX(), e.getY());
-            }
-        });
+        super(new CustomerTableModel(), SQL_SELECT_CUSTOMER, MAX_ROW_COUNT);
     }
 
     public int getSelectedCustomer() {
-        return tableModel.getID(table.getSelectedRow());
+        CustomerTableModel tableModel = (CustomerTableModel) getTableModel();
+        return tableModel.getID(getSelectedRow());
     }
 
     public int[] getSelectedCustomers() {
-        int[] rows = table.getSelectedRows();
+        int[] rows = getSelectedRows();
         if (rows == null) {
             return null;
         }
         int[] customers = new int[rows.length];
         int i = 0;
+        CustomerTableModel tableModel = (CustomerTableModel) getTableModel();
         for (int row: rows) {
             customers[i++] = tableModel.getID(row);
         }
@@ -142,7 +67,8 @@ public class CustomerTablePane extends TablePane {
     }
 
     /** Update customer at row */
-    public void updateBook(int row, Customer customer) {
+    public void updateCustomer(int row, Customer customer) {
+        CustomerTableModel tableModel = (CustomerTableModel) getTableModel();
         tableModel.updateCustomer(row, customer);
     }
 

@@ -33,12 +33,12 @@ public class StoreBookDialog extends JDialog {
     private JButton buttonCancel;
     private JTextField tfISBN;
     private JButton buttonChooseBook;
+    private JFormattedTextField tfPurchase;
     private JSpinner jsNumber;
     private JFormattedTextField tfTotal;
     private JTextField tfComment;
 
     private String oldISBN = null;
-    private BigDecimal bookPrice = null;
 
     private boolean isReady = false;
 
@@ -75,14 +75,34 @@ public class StoreBookDialog extends JDialog {
             public void insertUpdate(DocumentEvent e) {
                 updateISBN();
             }
+
             @Override
             public void removeUpdate(DocumentEvent e) {
                 updateISBN();
             }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+            }
+        });
+        tfPurchase.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                calculateTotal();
+            }
+        });
+        tfPurchase.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                calculateTotal();
+            }
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                calculateTotal();
+            }
             @Override
             public void changedUpdate(DocumentEvent e) {}
         });
-
         jsNumber.addChangeListener(new ChangeListener() {
             @Override
             public void stateChanged(ChangeEvent e) {
@@ -140,7 +160,7 @@ public class StoreBookDialog extends JDialog {
         pack();
         setLocationRelativeTo(getOwner());
 
-        setBook(null);
+        updateISBN();
     }
 
     private void onOK() {
@@ -159,13 +179,18 @@ public class StoreBookDialog extends JDialog {
             return;
         }
 
-        jsNumber.setValue(1);
-        tfTotal.setValue(new BigDecimal("0.00"));
-        tfComment.setText("");
+        tfPurchase.setValue(new BigDecimal(0));
+        tfPurchase.setEditable(false);
 
+        jsNumber.setValue(1);
         jsNumber.setEnabled(false);
+
+        tfTotal.setValue(new BigDecimal(0));
         tfTotal.setEditable(false);
+
+        tfComment.setText("");
         tfComment.setEditable(false);
+
         buttonOK.setEnabled(false);
 
         oldISBN = isbn;
@@ -175,6 +200,7 @@ public class StoreBookDialog extends JDialog {
         if (! Worker.getInstance().isBookRegistered(isbn)) {    // not registered
             return;
         }
+        tfPurchase.setEditable(true);
         jsNumber.setEnabled(true);
         tfTotal.setEditable(true);
         tfComment.setEditable(true);
@@ -187,7 +213,6 @@ public class StoreBookDialog extends JDialog {
             isbn = "";
         }
         tfISBN.setText(isbn.trim());
-        bookPrice = null;
     }
 
     public String getBook() {
@@ -211,12 +236,22 @@ public class StoreBookDialog extends JDialog {
         if ("".equals(s)) {     // no ISBN
             return;
         }
-        int number = (int) jsNumber.getValue();
-        if (bookPrice == null) {
-            bookPrice = Worker.getInstance().getPrice(s);    // get price
+        BigDecimal price = (BigDecimal) tfPurchase.getValue();
+        Application app = Application.getInstance();
+        if (price.compareTo(new BigDecimal(0)) < 0) {
+            DialogFactory.showError(getOwner(), app.getString("Dialog.Store.InvalidPurchase"),
+                    app.getString("Dialog.Store.Title"));
+            return;
         }
-        if (bookPrice != null) {
-            tfTotal.setValue(bookPrice.multiply(new BigDecimal(number)));
+        int number = (int) jsNumber.getValue();
+        tfTotal.setValue(price.multiply(new BigDecimal(number)));
+    }
+
+    public BigDecimal getPurchasePrice() {
+        if (isReady) {
+            return (BigDecimal) tfPurchase.getValue();
+        } else {
+            return null;
         }
     }
 

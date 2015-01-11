@@ -58,8 +58,8 @@ public class Customer {
     }
 
     public void setId(int id) {
-        if (id <= 0) {
-            throw new IllegalArgumentException("customer ID must more than 0");
+        if (id < 0) {
+            throw new IllegalArgumentException("require customer ID >= 0");
         }
         this.id = id;
     }

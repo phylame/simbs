@@ -23,7 +23,7 @@ import javax.swing.*;
 import java.awt.event.*;
 import java.math.BigDecimal;
 
-public class StoreInfoDialog extends JDialog {
+public class StoreDetailsDialog extends JDialog {
     private JPanel contentPane;
     private JButton buttonOK;
     private JFormattedTextField tfStockMoney;
@@ -36,17 +36,17 @@ public class StoreInfoDialog extends JDialog {
     private JFormattedTextField tfSold;
     private JFormattedTextField tfLent;
 
-    public StoreInfoDialog() {
+    public StoreDetailsDialog() {
         super();
         init();
     }
 
-    public StoreInfoDialog(java.awt.Frame owner, String title) {
+    public StoreDetailsDialog(java.awt.Frame owner, String title) {
         super(owner, title);
         init();
     }
 
-    public StoreInfoDialog(java.awt.Dialog owner, String title) {
+    public StoreDetailsDialog(java.awt.Dialog owner, String title) {
         super(owner, title);
         init();
     }
@@ -106,25 +106,21 @@ public class StoreInfoDialog extends JDialog {
         tfLent.setValue(worker.getRentalNumber());
         tfCnum.setValue(worker.getRegisteredCustomerCount());
 
-        BigDecimal n = worker.getStockSpending();
-        if (n == null) {
-            n = new BigDecimal(0);
+        BigDecimal stockTotal = worker.getStockSpending(), saleTotal, rentalTotal;
+        if (stockTotal == null) {
+            stockTotal = new BigDecimal(0);
         }
-        tfStockMoney.setValue(n);
-        n = worker.getSaleRevenue();
-        if (n == null) {
-            n = new BigDecimal(0);
+        tfStockMoney.setValue(stockTotal);
+        saleTotal = worker.getSaleRevenue();
+        if (saleTotal == null) {
+            saleTotal = new BigDecimal(0);
         }
-        tfSaleMoney.setValue(n);
-        n = worker.getRentalRevenue();
-        if (n == null) {
-            n = new BigDecimal(0);
+        tfSaleMoney.setValue(saleTotal);
+        rentalTotal = worker.getRentalRevenue();
+        if (rentalTotal == null) {
+            rentalTotal = new BigDecimal(0);
         }
-        tfRentalMoney.setValue(n);
-        n = worker.getTotalRevenue();
-        if (n == null) {
-            n = new BigDecimal(0);
-        }
-        tfTotalMoney.setValue(n);
+        tfRentalMoney.setValue(rentalTotal);
+        tfTotalMoney.setValue(saleTotal.add(rentalTotal).subtract(stockTotal));
     }
 }

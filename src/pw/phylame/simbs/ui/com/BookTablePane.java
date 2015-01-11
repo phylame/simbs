@@ -16,19 +16,11 @@
 
 package pw.phylame.simbs.ui.com;
 
-import pw.phylame.ixin.IAction;
-import pw.phylame.ixin.IToolkit;
-import pw.phylame.ixin.frame.IFrame;
 import pw.phylame.simbs.Application;
-import pw.phylame.simbs.Constants;
 import pw.phylame.simbs.Worker;
 import pw.phylame.simbs.ds.Book;
-import pw.phylame.tools.sql.DbHelper;
 import pw.phylame.tools.sql.PagingResultSet;
 
-import javax.swing.*;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -36,106 +28,35 @@ import java.util.ArrayList;
 /**
  * Created by Peng Wan on 2015-1-7.
  */
-public class BookTablePane extends TablePane {
+public class BookTablePane extends ViewerTablePane {
     public static final int BOOK_COLUMN_COUNT = 5;
-    public static final String SQL_SELECT_BOOK = "SELECT Bisbn, Bname, Bauthors, Bpublisher, Bprice FROM book ";
+    public static final String SQL_SELECT_BOOK = "SELECT Bisbn, Bname, Bauthors, Bpublisher, " +
+            "Bprice FROM book ";
 
-    public static final int MAX_ROW_COUNT = 15;
-
-    private BookTableModel tableModel = null;
-    private JTable table = null;
-
-    private JPopupMenu popupMenu = null;
+    public static final int MAX_ROW_COUNT = 20;
 
     public BookTablePane() {
-        DbHelper dbHelper = Application.getInstance().getDbHelper();
-        try {
-            PagingResultSet dataSource = dbHelper.queryAndPaging(SQL_SELECT_BOOK, MAX_ROW_COUNT);
-            this.tableModel = new BookTableModel();
-            PagingResultAdapter pagingResultAdapter = new PagingResultAdapter(dataSource, this.tableModel);
-            this.table = pagingResultAdapter.getTable();
-            setTableAdapter(pagingResultAdapter);
-            init();
-        } catch (SQLException exp) {
-            exp.printStackTrace();
-        }
+        super(new BookTableModel(), SQL_SELECT_BOOK, MAX_ROW_COUNT);
     }
 
-    private void showContextMenu(int x, int y) {
-        if (popupMenu.getComponentCount() > 0) {
-            popupMenu.show(table, x, y);
-        }
-    }
+    @Override
+    public void headerClicked(int columnIndex) {
 
-    private void init() {
-        final Application app = Application.getInstance();
-        popupMenu = new JPopupMenu();
-        IFrame frame = app.getFrame();
-        IAction deleteAction = null, modifyAction = null, viewAction;
-        modifyAction = frame.getMenuAction(Constants.EDIT_MODIFY);
-        if (modifyAction != null) {
-            popupMenu.add(IToolkit.createMenuItem(modifyAction, null, frame));
-            if (tableModel.getRowCount() == 0) {
-                modifyAction.setEnabled(false);
-            } else {
-                modifyAction.setEnabled(true);
-            }
-        }
-        deleteAction = frame.getMenuAction(Constants.EDIT_DELETE);
-        if (deleteAction != null) {
-            popupMenu.add(IToolkit.createMenuItem(deleteAction, null, frame));
-            if (tableModel.getRowCount() == 0) {
-                deleteAction.setEnabled(false);
-            } else {
-                deleteAction.setEnabled(true);
-            }
-        }
-        viewAction = frame.getMenuAction(Constants.EDIT_VIEW);
-        if (viewAction != null) {
-            popupMenu.add(IToolkit.createMenuItem(viewAction, null, frame));
-            if (tableModel.getRowCount() == 0) {
-                viewAction.setEnabled(false);
-            } else {
-                viewAction.setEnabled(true);
-            }
-        }
-
-        table.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                if (e.getClickCount() == 2 && ! e.isMetaDown()) {
-                    app.onCommand(Constants.EDIT_MODIFY);
-                }
-            }
-
-            @Override
-            public void mouseReleased(MouseEvent e) {
-                if (!e.isMetaDown()) {  // only right key
-                    return;
-                }
-                int row = table.rowAtPoint(e.getPoint());
-                if (row == -1) {
-                    return;
-                }
-                if (! table.isRowSelected(row)) {   // not selected
-                    table.setRowSelectionInterval(row, row);
-                }
-                showContextMenu(e.getX(), e.getY());
-            }
-        });
     }
 
     public String getSelectedBook() {
-        return tableModel.getISBN(table.getSelectedRow());
+        BookTableModel tableModel = (BookTableModel) getTableModel();
+        return tableModel.getISBN(getSelectedRow());
     }
 
     public String[] getSelectedBooks() {
-        int[] rows = table.getSelectedRows();
+        int[] rows = getSelectedRows();
         if (rows == null) {
             return null;
         }
         String[] books = new String[rows.length];
         int i = 0;
+        BookTableModel tableModel = (BookTableModel) getTableModel();
         for (int row: rows) {
             books[i++] = tableModel.getISBN(row);
         }
@@ -144,6 +65,7 @@ public class BookTablePane extends TablePane {
 
     /** Update book at row */
     public void updateBook(int row, Book book) {
+        BookTableModel tableModel = (BookTableModel) getTableModel();
         tableModel.updateBook(row, book);
     }
 

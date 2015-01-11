@@ -16,19 +16,12 @@
 
 package pw.phylame.simbs;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-
 import pw.phylame.ixin.frame.IFrame;
 import pw.phylame.simbs.ds.Book;
 import pw.phylame.simbs.ds.Customer;
-import pw.phylame.simbs.ui.com.BookTablePane;
-import pw.phylame.simbs.ui.com.CustomerTablePane;
-import pw.phylame.simbs.ui.com.NavigatePane;
-import pw.phylame.simbs.ui.com.PaneRender;
+import pw.phylame.simbs.ui.com.*;
 import pw.phylame.simbs.ui.dialog.*;
 import pw.phylame.simbs.ui.MainFrame;
-import pw.phylame.tools.sql.DbHelper;
 
 import static pw.phylame.simbs.Constants.*;
 
@@ -40,8 +33,6 @@ import java.sql.SQLException;
  * The UI and resource manager.
  */
 public class Manager {
-    private static Log log = LogFactory.getLog(Manager.class);
-
     public Manager(Application app) {
         this.app = app;
         worker = new Worker(app.getDbHelper());
@@ -68,7 +59,7 @@ public class Manager {
         ui.setVisible(false);
         ui.dispose();
         worker.destroy();
-        System.exit(0);
+        app.exit();
     }
 
     public IFrame getFrame() {
@@ -93,24 +84,18 @@ public class Manager {
 
     private void registerBook() {
         if (worker.newBook() != null) {
-            BookTablePane tablePane = getBookTablePane();
-            if (tablePane != null) {
-                tablePane.reloadTable();
-            }
+            updateBookPane();
         }
     }
 
     private void registerCustomer() {
         if (worker.newCustomer() != null) {
-//            BookTablePane tablePane = getBookTablePane();
-//            if (tablePane != null) {
-//                tablePane.reloadTable();
-//            }
+            updateCustomerPane();
         }
     }
 
     public void showStoreInfo() {
-        StoreInfoDialog dialog = new StoreInfoDialog(getFrame(),
+        StoreDetailsDialog dialog = new StoreDetailsDialog(getFrame(),
                 app.getString("Dialog.Info.Title"));
         dialog.setVisible(true);
     }
@@ -135,124 +120,224 @@ public class Manager {
         }
     }
 
-    private void onModify() {
+    /** Modify selected book */
+    private void modifyBook() {
         BookTablePane tablePane = getBookTablePane();
-        if (tablePane != null) {
-            String isbn = tablePane.getSelectedBook();
-            if (isbn == null) {
-                return;
-            }
-            ModifyBookDialog dialog = new ModifyBookDialog(getFrame(),
-                    app.getString("Dialog.ModifyBook.Title"));
-            Book book = worker.getBook(isbn);
-            dialog.setBook(book, false);
-            dialog.setVisible(true);
-            book = dialog.getBook();
-            if (book != null) {
-                try {
-                    worker.updateBook(book);
-                    tablePane.updateBook(tablePane.getSelectedRow(), book);
-//                    tablePane.reloadTable();
-                } catch (SQLException e) {
-                    System.out.println(e.getSQLState());
-                    log.debug("Cannot update book", e);
-                }
-            }
-            System.gc();
+        if (tablePane == null) {
             return;
         }
-
-        int id = getSelectedCustomer();
-        if (id != -1) {
-            ModifyCustomerDialog dialog = new ModifyCustomerDialog(getFrame(),
-                    app.getString("Dialog.ModifyCustomer.Title"));
-            Customer customer = worker.getCustomer(id);
-            dialog.setCustomer(customer);
-            dialog.setVisible(true);
-            customer = dialog.getCustomer();
-            if (customer != null) {
-                try {
-                    worker.updateCustomer(customer);
-                } catch (SQLException e) {
-                    System.out.println(e.getSQLState());
-                    log.debug("Cannot update customer", e);
-                }
+        String isbn = tablePane.getSelectedBook();
+        if (isbn == null) {
+            return;
+        }
+        ModifyBookDialog dialog = new ModifyBookDialog(getFrame(),
+                app.getString("Dialog.ModifyBook.Title"));
+        Book book = worker.getBook(isbn);
+        dialog.setBook(book, false);
+        dialog.setVisible(true);
+        book = dialog.getBook();
+        if (book != null) {
+            try {
+                worker.updateBook(book);
+                tablePane.updateBook(tablePane.getSelectedRow(), book);
+            } catch (SQLException e) {
+                System.out.println(e.getSQLState());
+                e.printStackTrace();
             }
-            System.gc();
+        }
+        System.gc();
+    }
+
+    /** Modify selected customer */
+    private void modifyCustomer() {
+        CustomerTablePane tablePane = getCustomerTablePane();
+        if (tablePane == null) {
+            return;
+        }
+        int id = tablePane.getSelectedCustomer();
+        if (id <= 0) {
+            return;
+        }
+        ModifyCustomerDialog dialog = new ModifyCustomerDialog(getFrame(),
+                app.getString("Dialog.ModifyCustomer.Title"));
+        Customer customer = worker.getCustomer(id);
+        dialog.setCustomer(customer);
+        dialog.setVisible(true);
+        customer = dialog.getCustomer();
+        if (customer != null) {
+            try {
+                worker.updateCustomer(customer);
+                tablePane.updateCustomer(tablePane.getSelectedRow(), customer);
+            } catch (SQLException e) {
+                System.out.println(e.getSQLState());
+                e.printStackTrace();
+            }
+        }
+        System.gc();
+    }
+
+    private void onModify() {
+        if (isBookShown()) {
+            modifyBook();
+        } else if (isCustomerShown()) {
+            modifyCustomer();
         }
     }
 
-    private void onDelete() {
+    /** Delete selected books */
+    private void deleteBooks() {
         BookTablePane tablePane = getBookTablePane();
-        if (tablePane != null) {
-            String[] books = tablePane.getSelectedBooks();
-            if (books == null || books.length == 0) {
-                return;
-            }
-            if (! DialogFactory.showConfirm(getFrame(), String.format(
-                            app.getString("Dialog.DeleteBook.Tip"), books.length),
-                    app.getString("Dialog.DeleteBook.Title"))) {
-                return;
-            }
-            int deletedRows = 0;
-            for (String isbn: books) {
-                try {
-                    worker.removeBook(isbn);
-                    deletedRows++;
-                } catch (SQLException e) {
-                    if ("23504".equals(e.getSQLState())) {  // book is used
-                        DialogFactory.showWarning(getFrame(),
-                                String.format(app.getString("Dialog.DeleteBook.BookUsed"),
-                                        worker.getBook(isbn).getName()),
-                                app.getString("Dialog.DeleteBook.Title"));
-                    } else {
-                        log.debug("Cannot delete book", e);
-                    }
+        if (tablePane == null) {
+            return;
+        }
+        String[] books = tablePane.getSelectedBooks();
+        if (books == null || books.length == 0) {
+            return;
+        }
+        if (! DialogFactory.showConfirm(getFrame(), String.format(
+                        app.getString("Dialog.DeleteBook.Tip"), books.length),
+                app.getString("Dialog.DeleteBook.Title"))) {
+            return;
+        }
+        int deletedRows = 0;
+        for (String isbn: books) {
+            try {
+                worker.removeBook(isbn);
+                deletedRows++;
+            } catch (SQLException e) {
+                if ("23504".equals(e.getSQLState())) {  // book is used
+                    DialogFactory.showWarning(getFrame(),
+                            String.format(app.getString("Dialog.DeleteBook.BookUsed"),
+                                    worker.getBook(isbn).getName()),
+                            app.getString("Dialog.DeleteBook.Title"));
+                } else {
+                    e.printStackTrace();
                 }
             }
-            if (deletedRows > 0) {
-                tablePane.reloadTable();
-            }
-            System.gc();
+        }
+        if (deletedRows > 0) {
+            tablePane.reloadTable();
+        }
+        System.gc();
+    }
+
+    /** Delete selected customers */
+    private void deleteCustomers() {
+        CustomerTablePane tablePane = getCustomerTablePane();
+        if (tablePane == null) {
             return;
+        }
+        int[] customers = tablePane.getSelectedCustomers();
+        if (customers == null || customers.length ==0) {    // no choices
+            return;
+        }
+        if (! DialogFactory.showConfirm(getFrame(), String.format(
+                        app.getString("Dialog.DeleteCustomer.Tip"), customers.length),
+                app.getString("Dialog.DeleteCustomer.Title"))) {
+            return;
+        }
+        int deletedRows = 0;
+        for (int id: customers) {
+            try {
+                worker.removeCustomer(id);
+                deletedRows++;
+            } catch (SQLException e) {
+                if ("23504".equals(e.getSQLState())) {  // book is used
+                    DialogFactory.showWarning(getFrame(),
+                            String.format(app.getString("Dialog.DeleteCustomer.CustomerUsed"),
+                                    worker.getCustomer(id).getName()),
+                            app.getString("Dialog.DeleteCustomer.Title"));
+                } else {
+                    e.printStackTrace();
+                }
+            }
+        }
+        if (deletedRows > 0) {
+            tablePane.reloadTable();
+        }
+        System.gc();
+    }
+
+    private void onDelete() {
+        if (isBookShown()) {
+            deleteBooks();
+        } else if (isCustomerShown()) {
+            deleteCustomers();
         }
     }
 
     private BookTablePane getBookTablePane() {
-        if (paneRender == null || ! (paneRender instanceof BookTablePane)) {
+        if (! (paneRender instanceof BookTablePane)) {
             return null;
         }
         return (BookTablePane) paneRender;
     }
 
-    private CustomerTablePane getCustomerTablePane() {
-        if (paneRender == null || ! (paneRender instanceof CustomerTablePane)) {
-            return null;
-        }
-        return (CustomerTablePane) paneRender;
+    private boolean isBookShown() {
+        return paneRender instanceof BookTablePane;
     }
 
     private void viewBook() {
+        if (isBookShown()) {
+            return;
+        }
         if (paneRender != null) {
             paneRender.destroy();
             paneRender = null;
         }
         paneRender = new BookTablePane();
         ui.setContentArea(paneRender);
+        ((BookTablePane) paneRender).focusTable();
         System.gc();
     }
 
+    private void updateBookPane() {
+        BookTablePane tablePane = getBookTablePane();
+        if (tablePane != null) {
+            tablePane.reloadTable();
+        }
+    }
+
+    private CustomerTablePane getCustomerTablePane() {
+        if (! (paneRender instanceof CustomerTablePane)) {
+            return null;
+        }
+        return (CustomerTablePane) paneRender;
+    }
+
+    private boolean isCustomerShown() {
+        return paneRender instanceof CustomerTablePane;
+    }
+
     private void viewCustomer() {
+        if (isCustomerShown()) {
+            return;
+        }
         if (paneRender != null) {
             paneRender.destroy();
             paneRender = null;
         }
         paneRender = new CustomerTablePane();
         ui.setContentArea(paneRender);
+        ((CustomerTablePane) paneRender).focusTable();
         System.gc();
     }
 
+    private void updateCustomerPane() {
+        CustomerTablePane tablePane = getCustomerTablePane();
+        if (tablePane != null) {
+            tablePane.reloadTable();
+        }
+    }
+
+    private boolean isHomeShown() {
+        return paneRender instanceof NavigatePane;
+    }
+
     private void viewHome() {
+        if (isHomeShown()) {
+            return;
+        }
         if (paneRender != null) {
             paneRender.destroy();
             paneRender = null;
@@ -260,6 +345,37 @@ public class Manager {
         paneRender = new NavigatePane();
         ui.setContentArea(paneRender);
         System.gc();
+    }
+
+    private BillTablePane getBillTablePane() {
+        if (! (paneRender instanceof BillTablePane)) {
+            return null;
+        }
+        return (BillTablePane) paneRender;
+    }
+
+    private boolean isBillShown() {
+        return paneRender instanceof BillTablePane;
+    }
+
+    private void viewBill() {
+        if (isBillShown()) {
+            return;
+        }
+        if (paneRender != null) {
+            paneRender.destroy();
+            paneRender = null;
+        }
+        paneRender = new BillTablePane();
+        ui.setContentArea(paneRender);
+        System.gc();
+    }
+
+    private void updateBillPane() {
+        BillTablePane tablePane = getBillTablePane();
+        if (tablePane != null) {
+            tablePane.reloadTable();
+        }
     }
 
     /**
@@ -288,22 +404,33 @@ public class Manager {
         }
     }
 
+    private void setPromote() {
+        StartPromotionDialog dialog = new StartPromotionDialog(getFrame(),
+                app.getString("Dialog.Promotion.Title"));
+        dialog.setVisible(true);
+        System.gc();
+    }
+
     private void storeBook() {
         StoreBookDialog dialog = new StoreBookDialog(getFrame(), app.getString("Dialog.Store.Title"));
         dialog.setBook(getSelectedBook());
         dialog.setVisible(true);
         String isbn = dialog.getBook();
         int number = dialog.getNumber();
-        BigDecimal total = dialog.getTotalPrice();
+        BigDecimal total = dialog.getTotalPrice(), price = dialog.getPurchasePrice();
         String comm = dialog.getComment();
         System.gc();
         if (isbn == null || number <= 0) {
             return;
         }
         try {
-            worker.storeBook(isbn, number, total, comm);
+            worker.storeBook(isbn, number, price, total, comm);
+            BillTablePane tablePane = getBillTablePane();
+            if (tablePane != null) {
+                tablePane.reloadTable();
+            }
         } catch (SQLException e) {
-            log.debug("Cannot save store-book record", e);
+            e.printStackTrace();
         }
     }
 
@@ -318,18 +445,25 @@ public class Manager {
         BigDecimal price = dialog.getTotalPrice();
         String comm = dialog.getComment();
         System.gc();
-        if (isbn == null || customerId <= 0 || sales <= 0) {
+        if (isbn == null || sales <= 0) {
             return;
+        }
+        if (customerId < 0) {
+            customerId = 0;     // anonymous customer
         }
         try {
             worker.sellBook(isbn, customerId, sales, price, comm);
+            BillTablePane tablePane = getBillTablePane();
+            if (tablePane != null) {
+                tablePane.reloadTable();
+            }
         } catch (SQLException e) {
-            log.debug("Cannot save sell-book record", e);
+            e.printStackTrace();
         }
     }
 
-    private void lendBook() {
-        LendBookDialog dialog = new LendBookDialog(getFrame(), app.getString("Dialog.Lend.Title"));
+    private void rentBook() {
+        RentBookDialog dialog = new RentBookDialog(getFrame(), app.getString("Dialog.Lend.Title"));
         dialog.setBook(getSelectedBook());
         dialog.setCustomer(getSelectedCustomer());
         dialog.setVisible(true);
@@ -343,9 +477,13 @@ public class Manager {
             return;
         }
         try {
-            worker.lendBook(isbn, customerId, number, period, price, deposit, comm);
+            worker.rentBook(isbn, customerId, number, period, price, deposit, comm);
+            BillTablePane tablePane = getBillTablePane();
+            if (tablePane != null) {
+                tablePane.reloadTable();
+            }
         } catch (SQLException e) {
-            log.debug("Cannot save lend-book record", e);
+            e.printStackTrace();
         }
     }
 
@@ -370,6 +508,9 @@ public class Manager {
             return;
         }
         switch ((String) cmdId) {
+            case EXIT_APP:
+                exit();
+                break;
             case REGISTER_BOOK:
                 registerBook();
                 break;
@@ -397,6 +538,12 @@ public class Manager {
             case VIEW_HOME:
                 viewHome();
                 break;
+            case VIEW_BILL:
+                viewBill();
+                break;
+            case SET_PROMOTE:
+                setPromote();
+                break;
             case STORE_BOOK:
                 storeBook();
                 break;
@@ -404,13 +551,19 @@ public class Manager {
                 sellBook();
                 break;
             case LEND_BOOK:
-                lendBook();
+                rentBook();
                 break;
             case RETURN_BOOK:
                 returnBook();
                 break;
-            case EXIT_APP:
-                exit();
+            case UPDATE_BOOK_TABLE:
+                updateBookPane();
+                break;
+            case UPDATE_CUSTOMER_TABLE:
+                updateCustomerPane();
+                break;
+            case UPDATE_BILL_TABLE:
+                updateBillPane();
                 break;
             case HELP_ABOUT:
                 showAbout();

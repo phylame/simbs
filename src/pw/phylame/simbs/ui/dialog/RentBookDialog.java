@@ -29,7 +29,7 @@ import java.awt.*;
 import java.awt.event.*;
 import java.math.BigDecimal;
 
-public class LendBookDialog extends JDialog {
+public class RentBookDialog extends JDialog {
     public static final int DEFAULT_DAYS = 30;
 
     private JPanel contentPane;
@@ -54,17 +54,17 @@ public class LendBookDialog extends JDialog {
 
     private boolean isReady = false;
 
-    public LendBookDialog() {
+    public RentBookDialog() {
         super();
         init();
     }
 
-    public LendBookDialog(Frame owner, String title) {
+    public RentBookDialog(Frame owner, String title) {
         super(owner, title);
         init();
     }
 
-    public LendBookDialog(Dialog owner, String title) {
+    public RentBookDialog(Dialog owner, String title) {
         super(owner, title);
     }
 
@@ -75,7 +75,7 @@ public class LendBookDialog extends JDialog {
 
         final Application app = Application.getInstance();
 
-        final LendBookDialog dialog = this;
+        final RentBookDialog dialog = this;
         labelTip.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -120,7 +120,7 @@ public class LendBookDialog extends JDialog {
             }
         });
 
-        final LendBookDialog parent = this;
+        final RentBookDialog parent = this;
 
         buttonChooseBook.addActionListener(new ActionListener() {
             @Override
@@ -287,7 +287,7 @@ public class LendBookDialog extends JDialog {
         int number = (int) jsNumber.getValue();
         Worker worker = Worker.getInstance();
         if (bookPrice == null) {
-            bookPrice = worker.getPrice(s);;
+            bookPrice = worker.getMarkedPrice(s);;
         }
         if (bookPrice != null) {
             tfDeposit.setValue(bookPrice.multiply(new BigDecimal(number)));

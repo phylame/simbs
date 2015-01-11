@@ -21,17 +21,19 @@ import pw.phylame.simbs.ui.dialog.DialogFactory;
 
 import java.awt.*;
 import javax.swing.*;
+import javax.swing.table.JTableHeader;
+import javax.swing.table.TableModel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 /**
  * Pane for showing multi-page data.
  */
 public class TablePane extends PaneRender {
     private JPanel rootPane;
-
     private JPanel contentArea;
-
     private JLabel labelStatus;
     private JButton btnPrev;
     private JButton btnNext;
@@ -89,7 +91,14 @@ public class TablePane extends PaneRender {
         if (tableAdapter != null) {
             tableAdapter.setOwner(this);
             JTable table = tableAdapter.getTable();
-            contentArea.add(table.getTableHeader(), BorderLayout.NORTH);
+            final JTableHeader header = table.getTableHeader();
+            header.addMouseListener(new MouseAdapter() {
+                @Override
+                public void mouseClicked(MouseEvent e) {
+                    headerClicked(header.columnAtPoint(e.getPoint()));
+                }
+            });
+            contentArea.add(header, BorderLayout.NORTH);
             contentArea.add(new JScrollPane(table), BorderLayout.CENTER);
         }
         contentArea.updateUI();
@@ -181,17 +190,54 @@ public class TablePane extends PaneRender {
         }
     }
 
+    public int getRowCount() {
+        if (tableAdapter != null) {
+            return getTable().getRowCount();
+        } else {
+            return 0;
+        }
+    }
+
     public void reloadTable() {
         if (tableAdapter != null) {
             tableAdapter.refresh();
+            updatePageStatus();
+            tableUpdated();
         }
     }
 
     public void removeRow(int row) {
         if (tableAdapter != null) {
             tableAdapter.getTable().removeRowSelectionInterval(row, row);
+            tableUpdated();
         }
     }
+
+    public JTable getTable() {
+        if (tableAdapter != null) {
+            return tableAdapter.getTable();
+        } else {
+            return null;
+        }
+    }
+
+    public TableModel getTableModel() {
+        if (tableAdapter != null) {
+            return getTable().getModel();
+        } else {
+            return null;
+        }
+    }
+
+    public void focusTable() {
+        if (tableAdapter != null) {
+            tableAdapter.getTable().requestFocus();
+        }
+    }
+
+    public void tableUpdated() {}
+
+    public void headerClicked(int columnIndex) {}
 
     @Override
     public void destroy() {

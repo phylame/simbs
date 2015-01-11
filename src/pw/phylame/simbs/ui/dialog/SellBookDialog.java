@@ -203,7 +203,6 @@ public class SellBookDialog extends JDialog {
     }
 
     private void updateNumber() {
-
         setNumberInfo(0, 0, 0);
         jsNumber.setEnabled(false);
         tfTotal.setValue(new BigDecimal("0.00"));
@@ -224,9 +223,7 @@ public class SellBookDialog extends JDialog {
         jsNumber.setEnabled(true);
         tfTotal.setEditable(true);
         tfComment.setEditable(true);
-        if (customerID > 0) {
-            buttonOK.setEnabled(true);
-        }
+        buttonOK.setEnabled(true);
         calculateTotal();
     }
 
@@ -249,7 +246,6 @@ public class SellBookDialog extends JDialog {
         labelInventory.setText(String.format(
                 Application.getInstance().getString("Dialog.Sell.LabelInventory"), maxNumber));
     }
-
 
     public void setBook(String isbn) {
         if (isbn == null) {

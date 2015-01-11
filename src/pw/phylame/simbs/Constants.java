@@ -102,14 +102,24 @@ public final class Constants {
 
     public static final String STORE_PROPERTIES = "store-prop";
 
+    public static final String VIEW_BILL = "view-bill";
+
+    /* Update TablePane in main Frame if the pane is shown */
+    public static final String UPDATE_BOOK_TABLE = "update-book";
+    public static final String UPDATE_CUSTOMER_TABLE = "update-customer";
+    public static final String UPDATE_BILL_TABLE = "update-bill";
+
     public static final String EDIT_VIEW = "edit-view";
     public static final String EDIT_MODIFY = "edit-modify";
     public static final String EDIT_DELETE = "edit-delete";
+
+    public static final String SET_PROMOTE = "set-promote";
 
     public static final String VIEW_BOOK = "view-book";
     public static final String VIEW_CUSTOMER = "view-customer";
     public static final String VIEW_INVENTORY = "view-inventory";
     public static final String VIEW_HOME = "view-navigate";
+    public static final String VIEW_PROMOTION = "view-promotion";
 
     public static final String STORE_BOOK = "store-book";
     public static final String SELL_BOOK = "sell-book";

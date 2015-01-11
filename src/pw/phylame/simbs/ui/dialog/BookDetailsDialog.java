@@ -16,6 +16,7 @@
 
 package pw.phylame.simbs.ui.dialog;
 
+import pw.phylame.simbs.Application;
 import pw.phylame.simbs.ui.com.BookDetailsPane;
 
 import javax.swing.*;
@@ -68,6 +69,7 @@ public class BookDetailsDialog extends JDialog {
         }, KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
 
         detailsPane.setParent(this);
+        setIconImage(pw.phylame.ixin.IToolkit.createImage(Application.getInstance().getString("Book.Icon")));
 
         pack();
         setLocationRelativeTo(getOwner());

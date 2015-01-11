@@ -32,6 +32,9 @@ CREATE TABLE book
 	/* The publisher */
 	Bpublisher VARCHAR(128) NOT NULL,
 
+	/* The purchase price, when insert record set to 0 */
+	Bpurchase DECIMAL(10, 2) DEFAULT 0 NOT NULL CHECK (Bpurchase >= 0),
+
 	/* The price */
 	Bprice DECIMAL(10, 2) NOT NULL CHECK (Bprice >= 0.0),
 
@@ -42,8 +45,8 @@ CREATE TABLE book
 /* Customer information, field name starts with "C" */
 CREATE TABLE customer
 (
-	/* Customer ID, begin from 1 */
-	Cid INT PRIMARY KEY CHECK (Cid > 0),
+	/* Customer ID, valid ID begin from 1， the ID 0 indicate no user */
+	Cid INT PRIMARY KEY CHECK (Cid >= 0),
 
 	/* Customer name */
 	Cname VARCHAR(64) NOT NULL,
@@ -54,29 +57,27 @@ CREATE TABLE customer
 	/* Email address */
 	Cemail VARCHAR(48),
 
+	/* The date of register customer */
+	Cdate DATE NOT NULL,
+
 	/* Customer level, default is 0 */
 	Clevel SMALLINT DEFAULT 0 NOT NULL CHECK (Clevel >= 0),
 
 	/* Limits for borrowing books, default is 10 */
-	Climit SMALLINT DEFAULT 10 NOT NULL CHECK (Climit >= 0)
+	Climit SMALLINT DEFAULT 10 NOT NULL CHECK (Climit >= 0),
 
 	/* The comments */
 	Ccomment VARCHAR(512),
 );
 
-/* The date of register customer */
-ALTER TABLE customer ADD Cdate DATE DEFAULT NOW() NOT NULL;
-
 /* Inventory listing, field name starts with "I" */
 CREATE TABLE inventory
 (
 	/* ISBN of book */
-	Bisbn CHAR(17) PRIMARY KEY,
+	Bisbn CHAR(17) PRIMARY KEY FOREIGN KEY REFERENCES book(Bisbn),
 
 	/* Inventory number */
 	Inumber INT NOT NULL CHECK (Inumber >= 0),
-
-	FOREIGN KEY (Bisbn) REFERENCES book(Bisbn)
 );
 
 /* Stock listing, field name starts with "T" */
@@ -86,7 +87,7 @@ CREATE TABLE stock
 	Tid INT PRIMARY KEY CHECK (Tid > 0),
 
 	/* ISBN of book */
-	Bisbn CHAR(17),
+	Bisbn CHAR(17) NOT NULL FOREIGN KEY REFERENCES book(Bisbn),
 
 	/* The date */
 	Tdate DATE NOT NULL,
@@ -97,13 +98,14 @@ CREATE TABLE stock
 	/* The Number of those books */
 	Tnumber INT NOT NULL CHECK (Tnumber > 0),
 
+	/* The purchase price of each book */
+	Tpurchase DECIMAL(10, 2) NOT NULL CHECK (Tpurchase >= 0),
+
 	/* Total price of those books */
     Ttotal DECIMAL(10, 2) NOT NULL CHECK (Ttotal >= 0),
 
     /* The comments */
 	Tcomment VARCHAR(512),
-
-    FOREIGN KEY (Bisbn) REFERENCES book(Bisbn),
 );
 
 /* Sale listing, field name starts with "S" */
@@ -113,10 +115,10 @@ CREATE TABLE sale
 	Sid INT PRIMARY KEY CHECK (Sid > 0),
 
 	/* ISBN of the book */
-	Bisbn CHAR(17) NOT NULL,
+	Bisbn CHAR(17) NOT NULL FOREIGN KEY REFERENCES book(Bisbn),
 
 	/* ID of the customer */
-	Cid INT NOT NULL,
+	Cid INT NOT NULL FOREIGN KEY REFERENCES customer(Cid),
 
 	/* The date */
 	Sdate DATE NOT NULL,
@@ -132,9 +134,6 @@ CREATE TABLE sale
 
 	/* The comments */
 	Scomment VARCHAR(128),
-
-	FOREIGN KEY (Bisbn) REFERENCES book(Bisbn),
-	FOREIGN KEY (Cid) REFERENCES customer(Cid)
 );
 
 /* Rental list, field name starts with "R" */
@@ -144,10 +143,10 @@ CREATE TABLE rental
 	Rid INT PRIMARY KEY CHECK (Rid > 0),
 
 	/* ISBN of the book */
-	Bisbn CHAR(17) NOT NULL,
+	Bisbn CHAR(17) NOT NULL FOREIGN KEY REFERENCES book(Bisbn),
 
 	/* ID of the customer */
-	Cid INT NOT NULL,
+	Cid INT NOT NULL FOREIGN KEY REFERENCES customer(Cid),
 
 	/* The date */
 	Rdate DATE NOT NULL,
@@ -162,7 +161,7 @@ CREATE TABLE rental
 	Rperiod SMALLINT NOT NULL CHECK (Rperiod > 0),
 
 	/* The rental price of each book */
-	Rprice DECIMAL(10, 2) DEFAULT 0 NOT NULL CHECK ( Rprice >= 0),
+	Rprice DECIMAL(10, 2) NOT NULL CHECK ( Rprice >= 0),
 
 	/* Deposit price of those book */
 	Rdeposit DECIMAL(10, 2) NOT NULL CHECK (Rdeposit >= 0),
@@ -172,9 +171,6 @@ CREATE TABLE rental
 
 	/* The comments */
 	Rcomment VARCHAR(128),
-
-	FOREIGN KEY (Bisbn) REFERENCES book(Bisbn),
-	FOREIGN KEY (Cid) REFERENCES customer(Cid)
 );
 
 /* The bill, field name starts with "L" */
@@ -194,4 +190,29 @@ CREATE TABLE bill
 
 	/* Task ID in its table, such as Tid, Sid, Rid, Rid */
 	Lid INT NOT NULL CHECK (Lid > 0),
+);
+
+/* Promotion activity, field name starts with "P" */
+CREATE TABLE promotion
+(
+	/* Record number, begin from 1 */
+	Pid INT PRIMARY KEY CHECK (Pid > 0),
+
+	/* Promotion object, maybe 1:sale, 2:rental */
+	Pobject SMALLINT NOT NULL CHECK (Pobject IN (1, 2)),
+
+	/* Promotion value */
+	Pvalue DECIMAL(10, 2) NOT NULL CHECK (Pvalue > 0),
+
+	/* Start date */
+	Pstart DATE NOT NULL,
+
+	/* End date */
+	Pend DATE NOT NULL,
+
+	/* The comments */
+	Pcomment VARCHAR(512),
+
+	/* End date must be more than start date */
+	CONSTRAINT chk_date CHECK (Pend > Pstart)
 );

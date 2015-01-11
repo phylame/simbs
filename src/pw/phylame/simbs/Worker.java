@@ -29,6 +29,7 @@ import java.math.RoundingMode;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.PreparedStatement;
+import java.util.Calendar;
 
 /**
  * Function of SIMBS.
@@ -54,6 +55,22 @@ public final class Worker {
     }
 
     /**
+     * Join SQL date and time to normal date
+     * @param date the SQL date
+     * @param time the SQL time
+     * @return the normal date
+     */
+    public static java.util.Date toDate(java.sql.Date date, java.sql.Time time) {
+        Calendar dest = Calendar.getInstance(), src = Calendar.getInstance();
+        dest.setTime(date);
+        src.setTime(time);
+        dest.set(Calendar.HOUR, src.get(Calendar.HOUR));
+        dest.set(Calendar.MINUTE, src.get(Calendar.MINUTE));
+        dest.set(Calendar.SECOND, src.get(Calendar.SECOND));
+        return dest.getTime();
+    }
+
+    /**
      * Strip space of SQL string s both begin and end.
      */
     public static String normalizeString(String s) {
@@ -63,18 +80,18 @@ public final class Worker {
 
     /** SQL statement for selecting book */
     public static final String SQL_SELECT_BOOK = "SELECT Bisbn, Bname, Bversion, Bauthors," +
-            " Bcover, Bdate, Bcategory, Bpublisher, Bprice, Bintro FROM book ";
+            " Bcover, Bdate, Bcategory, Bpublisher, Bpurchase, Bprice, Bintro FROM book ";
 
     /**
      * Get book from {@code ResultSet}.
-     * <p>The SQL query statement must be {@code SQL_SELECT_CUSTOMER}.</p>
+     * <p>The SQL query statement must be {@code SQL_SELECT_BILL}.</p>
      */
     public static Book gainBook(ResultSet rs) throws SQLException {
         return new Book(normalizeString(rs.getString(1)), normalizeString(rs.getString(2)),
                 normalizeString(rs.getString(3)), normalizeString(rs.getString(4)),
                 normalizeString(rs.getString(5)), rs.getDate(6), normalizeString(rs.getString(7)),
-                normalizeString(rs.getString(8)), rs.getBigDecimal(9),
-                normalizeString(rs.getString(10)));
+                normalizeString(rs.getString(8)), rs.getBigDecimal(9), rs.getBigDecimal(10),
+                normalizeString(rs.getString(11)));
     }
 
     /** SQL statement for selecting customer */
@@ -83,7 +100,7 @@ public final class Worker {
 
     /**
      * Get customer from {@code ResultSet}.
-     * <p>The SQL query statement must be {@code SQL_SELECT_CUSTOMER}.</p>
+     * <p>The SQL query statement must be {@code SQL_SELECT_BILL}.</p>
      */
     public static Customer gainCustomer(ResultSet rs) throws SQLException {
         return new Customer(rs.getInt(1), normalizeString(rs.getString(2)),
@@ -102,6 +119,14 @@ public final class Worker {
     public static final int EVENT_RENTAL = 3;
     /** Return book */
     public static final int EVENT_RETURN = 4;
+
+    // ********************
+    // ** Promotion object
+    // ********************
+    /** For sale */
+    public static final int PROMOTION_SALE = 1;
+    /** For rental */
+    public static final int PROMOTION_RENTAL = 2;
 
 
     public Worker(DbHelper dbHelper) {
@@ -194,7 +219,8 @@ public final class Worker {
      */
     public void registerBook(Book book) throws SQLException {
         String sql = "INSERT INTO book (Bisbn, Bname, Bversion, Bauthors, Bcover, Bdate," +
-                " Bcategory, Bpublisher, Bprice, Bintro) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?) ";
+                " Bcategory, Bpublisher, Bpurchase, Bprice, Bintro)" +
+                " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) ";
         PreparedStatement ps = dbHelper.prepareStatement(sql);
 
         ps.setString(1, book.getISBN());
@@ -206,8 +232,9 @@ public final class Worker {
         ps.setDate(6, toSQLDate(book.getDate()));
         ps.setString(7, book.getCategory());
         ps.setString(8, book.getPublisher());
-        ps.setBigDecimal(9, book.getPrice());
-        ps.setString(10, book.getIntro());
+        ps.setBigDecimal(9, new BigDecimal(0)); // initial purchase price is 0
+        ps.setBigDecimal(10, book.getPrice());
+        ps.setString(11, book.getIntro());
 
         ps.executeUpdate();
     }
@@ -314,42 +341,80 @@ public final class Worker {
     // ** Book fields functions
     // **************************
 
-    public BigDecimal getSalePromote(String isbn) {
-        return new BigDecimal(1);   // not promote
+    public BigDecimal getSalePromotion(String isbn) {
+        BigDecimal bookPromotion = new BigDecimal(1), storePromotion = getSalePromotion();
+        // return the min one
+        return bookPromotion.compareTo(storePromotion) > 0 ? storePromotion : bookPromotion;
     }
 
-    public BigDecimal getRentalPromote(String isbn) {
-        return new BigDecimal(1);   // not promote
+    public BigDecimal getRentalPromotion(String isbn) {
+        BigDecimal bookPromotion = new BigDecimal(1), storePromotion = getRentalPromotion();
+        // return the min one
+        return bookPromotion.compareTo(storePromotion) > 0 ? storePromotion : bookPromotion;
     }
 
     /**
-     * Get the price of book.
+     * Get the purchase price of book.
      * @param isbn ISBN of the book
      * @return price, if price < 0 occur errors
      */
-    public BigDecimal getPrice(String isbn) {
+    public BigDecimal getPurchasePrice(String isbn) {
+        String sql = String.format("SELECT Bpurchase from book WHERE Bisbn='%s'", isbn);
+        return selectDecimal(sql);
+    }
+
+    /**
+     * Get the marked price of book.
+     * @param isbn ISBN of the book
+     * @return price, if price < 0 occur errors
+     */
+    public BigDecimal getMarkedPrice(String isbn) {
         String sql = String.format("SELECT Bprice from book WHERE Bisbn='%s'", isbn);
         return selectDecimal(sql);
     }
 
+    /**
+     * Get the price for sale.
+     * Calculation way: salePrice = markedPrice * salePromotion
+     * @param isbn ISBN of the book
+     * @return price, if price < 0 occur errors
+     */
     public BigDecimal getSalePrice(String isbn) {
-        BigDecimal originPrice = getPrice(isbn);
+        BigDecimal originPrice = getMarkedPrice(isbn);
         if (originPrice == null) {      // not found the book
             return null;
         }
-        return originPrice.multiply(getSalePromote(isbn));
+        return originPrice.multiply(getSalePromotion(isbn));
     }
 
+    /**
+     * Get the price for rental.
+     * <p>Calculation way: rentalPrice = originRentalPrice * rentalPromotion.</p>
+     * <p>In common, all books has same originRentalPrice.</p>
+     * @param isbn ISBN of the book
+     * @return price, if price < 0 occur errors
+     */
     public BigDecimal getRentalPrice(String isbn) {
-//        BigDecimal originPrice = getPrice(isbn);
-//        if (originPrice == null) {      // not found the book
-//            return null;
-//        }
-//        return originPrice.multiply(getRentalPromote(isbn));
         if (! isBookRegistered(isbn)) {
             return null;
         }
-        return Constants.DEFAULT_RENTAL_PRICE.multiply(getRentalPromote(isbn));
+        return Constants.DEFAULT_RENTAL_PRICE.multiply(getRentalPromotion(isbn));
+    }
+
+    /**
+     * Update purchase price.
+     * @param isbn ISBN of book
+     * @param newPurchase the new purchase price
+     */
+    private void updatePurchasePrice(String isbn, BigDecimal newPurchase) throws SQLException {
+        String sql = "UPDATE book SET Bpurchase=? WHERE Bisbn=?";
+
+        PreparedStatement ps = dbHelper.prepareStatement(sql);
+
+        ps.setBigDecimal(1, newPurchase);
+        ps.setString(2, isbn);
+
+        ps.executeUpdate();
     }
 
     // ************************
@@ -357,11 +422,12 @@ public final class Worker {
     // ************************
 
     /**
-     * Register a customer
-     * @param customer the customer.
+     * Save customer to database.
+     * @param customer the customer
+     * @throws SQLException if occur errors when modify database
      */
-    public void registerCustomer(Customer customer) throws SQLException {
-        String sql = "INSERT INTO customer (Cid, Cname, Cphone, Cemail, Clevel, Climit, Ccommnet," +
+    private void writeCustomer(Customer customer) throws SQLException {
+        String sql = "INSERT INTO customer (Cid, Cname, Cphone, Cemail, Clevel, Climit, Ccomment," +
                 " Cdate) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         PreparedStatement ps = dbHelper.prepareStatement(sql);
 
@@ -378,6 +444,26 @@ public final class Worker {
     }
 
     /**
+     * Insert a customer with ID is 0
+     */
+    private void insertZeroCustomer() throws SQLException {
+        Customer customer = new Customer(0, "ZeroCustomer", "", "", new java.util.Date(), 0, 0,
+                "This customer is not existed");
+        writeCustomer(customer);
+    }
+
+    /**
+     * Register a customer
+     * @param customer the customer.
+     */
+    public void registerCustomer(Customer customer) throws SQLException {
+        if (customer.getId() < 0) { // not set ID
+            customer.setId(getAvailableCustomerId());
+        }
+        writeCustomer(customer);
+    }
+
+    /**
      * Update customer information.
      * <p>If customer is registered then update it otherwise register this customer.</p>
      * @param customer the {@code Customer} object
@@ -389,8 +475,8 @@ public final class Worker {
             return;
         }
 
-        String sql = "UPDATE customer SET Cname=?, Cphone=?, Cemail=?, Clevel=?, Climit=?, Cdate=?" +
-                " WHERE Cid=?";
+        String sql = "UPDATE customer SET Cname=?, Cphone=?, Cemail=?, Clevel=?, Climit=?, Cdate=?," +
+                " Ccomment=? WHERE Cid=?";
         PreparedStatement ps = dbHelper.prepareStatement(sql);
 
         ps.setString(1, customer.getName());
@@ -399,7 +485,8 @@ public final class Worker {
         ps.setInt(4, customer.getLevel());
         ps.setInt(5, customer.getLimit());
         ps.setDate(6, toSQLDate(customer.getDate()));
-        ps.setInt(7, customer.getId());
+        ps.setString(7, customer.getComment());
+        ps.setInt(8, customer.getId());
 
         ps.executeUpdate();
     }
@@ -480,7 +567,11 @@ public final class Worker {
      */
     public int getAvailableCustomerId() {
         String sql = "SELECT MAX(Cid) FROM customer";
-        return selectInteger(sql) + 1;
+        int n = selectInteger(sql);
+        if (n < 0) {    // empty list
+            n = 0;
+        }
+        return n + 1;
     }
 
 
@@ -689,7 +780,7 @@ public final class Worker {
     }
 
     /**
-     * Get total number of all lent books.
+     * Get total number of all rented books.
      */
     public int getRentalNumber() {
         String sql = "SELECT SUM(Rnumber) FROM rental";
@@ -697,7 +788,7 @@ public final class Worker {
     }
 
     /**
-     * Get number of lent book
+     * Get number of rented book
      * @param isbn ISBN of the book
      * @return the number
      */
@@ -707,8 +798,8 @@ public final class Worker {
     }
 
     /**
-     * Get number of lent book
-     * @param isbn ISBN of the lent book
+     * Get number of rented book
+     * @param isbn ISBN of the rented book
      * @param id ID of the customer
      * @return the number
      */
@@ -737,6 +828,66 @@ public final class Worker {
 //    }
 
     /**
+     * Add a promotion record.
+     * @param obj promotion object, maybe {@code PROMOTION_SALE}: sale,
+     *              {@code PROMOTION_RENTAL}: rental
+     * @param value the promotion value
+     * @param begin begin date
+     * @param end end date
+     * @param comment the comments
+     */
+    public void addPromotion(int obj, BigDecimal value, java.util.Date begin, java.util.Date end,
+                             String comment) throws SQLException {
+        // get a available number
+        int id = selectInteger("SELECT MAX(Pid) FROM promotion");
+        if (id < 0) {   // empty promotion
+            id = 0;
+        }
+        id++;
+
+        String sql = "INSERT INTO promotion (Pid, Pobject, Pvalue, Pstart, Pend, Pcomment)" +
+                " VALUES (?, ?, ?, ?, ?, ?)";
+        PreparedStatement ps = dbHelper.prepareStatement(sql);
+
+        ps.setInt(1, id);
+        ps.setInt(2, obj);
+        ps.setBigDecimal(3, value);
+        ps.setDate(4, toSQLDate(begin));
+        ps.setDate(5, toSQLDate(end));
+        ps.setString(6, comment);
+
+        ps.executeUpdate();
+    }
+
+    public BigDecimal getSalePromotion() {
+        if (salePromote != null) {
+            return salePromote;
+        }
+        // get a min promotion
+        String sql = "SELECT MIN(Pvalue) FROM promotion WHERE Pend>NOW() AND Pobject="+PROMOTION_SALE;
+        BigDecimal v = selectDecimal(sql);
+        return v != null ? v : new BigDecimal(1);
+    }
+
+    public void setSalePromotion(BigDecimal salePromote) {
+        this.salePromote = salePromote;
+    }
+
+    public BigDecimal getRentalPromotion() {
+        if (rentalPromote != null) {
+            return rentalPromote;
+        }
+        // get a min promotion
+        String sql = "SELECT MIN(Pvalue) FROM promotion WHERE Pend>NOW() AND Pobject="+PROMOTION_RENTAL;
+        BigDecimal v = selectDecimal(sql);
+        return v != null ? v : new BigDecimal(1);
+    }
+
+    public void setRentalPromotion(BigDecimal rentalPromote) {
+        this.rentalPromote = rentalPromote;
+    }
+
+    /**
      * Fill a record to bill
      * @param date the date
      * @param event the event, maybe 1:stock, 2:sale, 3:rental, 4:return
@@ -750,7 +901,7 @@ public final class Worker {
         }
         no++;
 
-        String sql = "INSERT INTO bill(Lno, Ldate, Ltime, Levent, Lid) VALUES (?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO bill (Lno, Ldate, Ltime, Levent, Lid) VALUES (?, ?, ?, ?, ?)";
         PreparedStatement ps = dbHelper.prepareStatement(sql);
 
         ps.setInt(1, no);
@@ -766,14 +917,18 @@ public final class Worker {
      * Store book to book stock.
      * @param isbn the ISBN of book to stored
      * @param number the number of the book
-     * @param price total price of those book
+     * @param price purchase price of book
+     * @param total total price of those books
      * @param comment the comment
      */
-    public void storeBook(String isbn, int number, BigDecimal price, String comment)
+    public void storeBook(String isbn, int number, BigDecimal price, BigDecimal total, String comment)
             throws SQLException {
 
         // increase inventory
         modifyInventory(isbn, number);
+
+        // modify purchase price
+        updatePurchasePrice(isbn, price);
 
         // get a available ID
         int id = selectInteger("SELECT MAX(Tid) FROM stock");
@@ -786,8 +941,8 @@ public final class Worker {
         java.util.Date today = new java.util.Date();
 
         // fill stock listing
-        String sql = "INSERT INTO stock (Tid, Bisbn, Tdate, Ttime, Tnumber, Ttotal, Tcomment)" +
-                " VALUES (?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO stock (Tid, Bisbn, Tdate, Ttime, Tnumber, Tpurchase, Ttotal," +
+                " Tcomment) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         PreparedStatement ps = dbHelper.prepareStatement(sql);
 
         ps.setInt(1, id);
@@ -796,7 +951,8 @@ public final class Worker {
         ps.setTime(4, toSQLTime(today));
         ps.setInt(5, number);
         ps.setBigDecimal(6, price);
-        ps.setString(7, comment);
+        ps.setBigDecimal(7, total);
+        ps.setString(8, comment);
 
         ps.executeUpdate();
 
@@ -807,7 +963,7 @@ public final class Worker {
     /**
      * Sell book(s) to customer on today.
      * @param isbn the ISBN of sold book
-     * @param id the ID of customer who buy the book
+     * @param id the ID of customer who buy the book, 0 indicate anonymous customer
      * @param number number of the book to sold
      * @param price total price of those book
      * @param comment the comment
@@ -824,6 +980,10 @@ public final class Worker {
             no = 0;
         }
         no++;
+
+        if (id == 0) {
+            insertZeroCustomer();
+        }
 
         // get today
         java.util.Date today = new java.util.Date();
@@ -847,7 +1007,8 @@ public final class Worker {
         // fill bill
         fillBill(today, EVENT_SALE, no);
 
-        if (price.compareTo(new BigDecimal(0)) > 0) {  // price more than 0
+        // not anonymous customer and price more than 0
+        if (id > 0 && price.compareTo(new BigDecimal(0)) > 0) {
             // increase level, totalPrice / PRICE_OF_INCREASE_LEVEL
             BigDecimal val = price.divide(new BigDecimal(Constants.PRICE_OF_INCREASE_LEVEL),
                     RoundingMode.FLOOR);
@@ -860,8 +1021,8 @@ public final class Worker {
     }
 
     /**
-     * Lend book(s) to customer on today.
-     * @param isbn the ISBN of lent book
+     * Rent book(s) to customer on today.
+     * @param isbn the ISBN of rented book
      * @param id the ID of customer who borrow the book
      * @param number number of the book to lend
      * @param period days if the customer borrow the book
@@ -869,7 +1030,7 @@ public final class Worker {
      * @param deposit the deposit price of those book
      * @param comment the comment
      */
-    public void lendBook(String isbn, int id, int number, int period, BigDecimal price,
+    public void rentBook(String isbn, int id, int number, int period, BigDecimal price,
                          BigDecimal deposit, String comment)
             throws SQLException {
 
@@ -903,7 +1064,7 @@ public final class Worker {
 
         ps.executeUpdate();
 
-        // reduce lent limit
+        // reduce rented limit
         modifyCustomerLimit(id, -number);
 
         // fill bill
@@ -935,25 +1096,34 @@ public final class Worker {
 
     }
 
+    /**
+     * Get spending on stocking books
+     * @return the amount
+     */
     public BigDecimal getStockSpending() {
         String sql = "SELECT SUM(Ttotal) FROM stock";
-        return selectDecimal(sql);
+        BigDecimal n = selectDecimal(sql);
+        return n != null ? n : new BigDecimal(0);
     }
 
+    /**
+     * Get total revenue of selling book
+     * @return the amount
+     */
     public BigDecimal getSaleRevenue() {
         String sql = "SELECT SUM(Stotal) FROM sale";
-        return selectDecimal(sql);
+        BigDecimal n = selectDecimal(sql);
+        return n != null ? n : new BigDecimal(0);
     }
 
+    /**
+     * Get total revenue of renting book
+     * @return the amount
+     */
     public BigDecimal getRentalRevenue() {
         String sql = "SELECT SUM(Rdeposit)+SUM(Rrevenue) FROM rental";
-        return selectDecimal(sql);
-    }
-
-    public BigDecimal getTotalRevenue() {
-        String sql = "SELECT SUM(Stotal)+SUM(Rdeposit)+SUM(Rrevenue)-SUM(Ttotal) FROM sale," +
-                " rental, stock";
-        return selectDecimal(sql);
+        BigDecimal n = selectDecimal(sql);
+        return n != null ? n : new BigDecimal(0);
     }
 
     /**
@@ -1011,6 +1181,10 @@ public final class Worker {
     }
 
     private DbHelper dbHelper = null;
+
+    private BigDecimal salePromote = null;
+
+    private BigDecimal rentalPromote = null;
 
     /** Unique Work instance */
     private static Worker instance = null;

@@ -71,6 +71,10 @@ public final class UIDesign {
 
     /* View */
     public static final Object[][] VIEW_MENU_ACTIONS = {
+            {VIEW_HOME,
+                    app.getString("Menu.View.Home"), app.getString("Menu.View.Home.Icon"),
+                    app.getString("Menu.View.Home.Mnemonic"), app.getString("Menu.View.Home.Shortcut"),
+                    app.getString("Menu.View.Home.Tip")},
             {VIEW_BOOK,
                     app.getString("Menu.View.Book"), app.getString("Menu.View.Book.Icon"),
                     app.getString("Menu.View.Book.Mnemonic"), app.getString("Menu.View.Book.Shortcut"),
@@ -79,31 +83,34 @@ public final class UIDesign {
                     app.getString("Menu.View.Customer"), app.getString("Menu.View.Customer.Icon"),
                     app.getString("Menu.View.Customer.Mnemonic"), app.getString("Menu.View.Customer.Shortcut"),
                     app.getString("Menu.View.Customer.Tip")},
-            {VIEW_HOME,
-                    app.getString("Menu.View.Home"), app.getString("Menu.View.Home.Icon"),
-                    app.getString("Menu.View.Home.Mnemonic"), app.getString("Menu.View.Home.Shortcut"),
-                    app.getString("Menu.View.Home.Tip")},
+            {VIEW_BILL,
+                    app.getString("Menu.View.Bill"), app.getString("Menu.View.Bill.Icon"),
+                    app.getString("Menu.View.Bill.Mnemonic"), app.getString("Menu.View.Bill.Shortcut"),
+                    app.getString("Menu.View.Bill.Tip")},
     };
 
     /* Options */
     public static final Object[][] OPTIONS_MENU_ACTIONS = {
+            {SET_PROMOTE,
+                    app.getString("Menu.Options.Promotion"), app.getString("Menu.Options.Promotion.Icon"),
+                    app.getString("Menu.Options.Promotion.Mnemonic"), app.getString("Menu.Options.Promotion.Shortcut"),
+                    app.getString("Menu.Options.Promotion.Tip")},
             {STORE_BOOK,
                     app.getString("Menu.Options.Store"), app.getString("Menu.Options.Store.Icon"),
                     app.getString("Menu.Options.Store.Mnemonic"), app.getString("Menu.Options.Store.Shortcut"),
                     app.getString("Menu.Options.Store.Tip")},
             {SELL_BOOK,
-                    app.getString("Menu.Options.Sell"), app.getString("Menu.Options.Sell.Icon"),
-                    app.getString("Menu.Options.Sell.Mnemonic"), app.getString("Menu.Options.Sell.Shortcut"),
-                    app.getString("Menu.Options.Sell.Tip")},
+                    app.getString("Menu.Options.Sale"), app.getString("Menu.Options.Sale.Icon"),
+                    app.getString("Menu.Options.Sale.Mnemonic"), app.getString("Menu.Options.Sale.Shortcut"),
+                    app.getString("Menu.Options.Sale.Tip")},
             {LEND_BOOK,
-                    app.getString("Menu.Options.Lend"), app.getString("Menu.Options.Lend.Icon"),
-                    app.getString("Menu.Options.Lend.Mnemonic"), app.getString("Menu.Options.Lend.Shortcut"),
-                    app.getString("Menu.Options.Lend.Tip")},
+                    app.getString("Menu.Options.Rent"), app.getString("Menu.Options.Rent.Icon"),
+                    app.getString("Menu.Options.Rent.Mnemonic"), app.getString("Menu.Options.Rent.Shortcut"),
+                    app.getString("Menu.Options.Rent.Tip")},
             {RETURN_BOOK,
                     app.getString("Menu.Options.Return"), app.getString("Menu.Options.Return.Icon"),
                     app.getString("Menu.Options.Return.Mnemonic"), app.getString("Menu.Options.Return.Shortcut"),
                     app.getString("Menu.Options.Return.Tip")},
-
     };
 
     /* Help */
@@ -151,9 +158,11 @@ public final class UIDesign {
     private static final Object[] VIEW_MENU_MODEL = {
             new IMenuLabel(app.getString("Menu.View"), null,
                     app.getString("Menu.View.Mnemonic")),
+            new IMenuModel(VIEW_HOME, IMenuModel.MenuType.RADIO, true),
             new IMenuModel(VIEW_BOOK, IMenuModel.MenuType.RADIO, false),
             new IMenuModel(VIEW_CUSTOMER, IMenuModel.MenuType.RADIO, false),
-            new IMenuModel(VIEW_HOME, IMenuModel.MenuType.RADIO, true),
+            new IMenuModel(VIEW_BILL, IMenuModel.MenuType.RADIO, false)
+
     };
 
     /* Search */
@@ -165,6 +174,8 @@ public final class UIDesign {
     /* Options */
     public static final Object[] OPTIONS_MENU_MODEL = {
             new IMenuLabel(app.getString("Menu.Options"), null, app.getString("Menu.Options.Mnemonic")),
+            SET_PROMOTE,
+            null,
             STORE_BOOK,
             SELL_BOOK,
             LEND_BOOK,
@@ -188,6 +199,9 @@ public final class UIDesign {
     public static Object[] TOOL_BAR_MODEL = {
             REGISTER_BOOK, REGISTER_CUSTOMER,
             null,
-            STORE_BOOK, SELL_BOOK, LEND_BOOK, RETURN_BOOK
+            STORE_BOOK, SELL_BOOK, LEND_BOOK, RETURN_BOOK, SET_PROMOTE,
+            null,
+            EDIT_MODIFY, EDIT_DELETE
+
     };
 }

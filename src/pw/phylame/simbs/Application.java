@@ -16,41 +16,117 @@
 
 package pw.phylame.simbs;
 
+import pw.phylame.tools.sql.Profile;
+import pw.phylame.tools.sql.DbHelper;
 import pw.phylame.ixin.IToolkit;
 import pw.phylame.ixin.frame.IFrame;
-import pw.phylame.simbs.ui.dialog.DialogFactory;
 import pw.phylame.simbs.ui.dialog.LoginDialog;
-import pw.phylame.tools.sql.DbHelper;
-import pw.phylame.tools.sql.Profile;
-
-//import javax.swing.*;
-import java.io.*;
+import pw.phylame.simbs.ui.dialog.DialogFactory;
 import java.sql.SQLException;
-import java.util.*;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.Map;
+import java.util.Locale;
+import java.util.Properties;
 
 /**
  * The entry of application.
  */
 public class Application {
+    public static final String LOGIN_FILE = Constants.SIMBS_HOME+"/login.prop";
+    public static final String SETTINGS_FILE = Constants.SIMBS_HOME+"/settings.prop";
 
     public Application(String[] args) {
         this.args = args;
-        try {
-            languageBundle = ResourceBundle.getBundle(Constants.I18N_PATH, Locale.getDefault());
-        } catch (MissingResourceException exp) {
-            System.err.println(exp.getMessage());
-            System.exit(0);
-        }
-        init();
+        checkHome();
+        loadSettings();
+        initApp();
     }
 
-    private void init() {
-        File homeDir = new File(Constants.SIMBS_HOME);
+    private void checkHome() {
+        java.io.File homeDir = new java.io.File(Constants.SIMBS_HOME);
         if (! homeDir.exists()) {
             homeDir.mkdirs();
         }
         if (! homeDir.exists()) {
             throw new RuntimeException("Cannot create SIMBS home directory");
+        }
+    }
+
+    /** Load settings */
+    private void loadSettings() {
+        Properties prop = new Properties();
+        FileInputStream in = null;
+        try {
+            in = new FileInputStream(SETTINGS_FILE);
+            prop.load(in);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            if (in != null) {
+                try {
+                    in.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        String s = prop.getProperty("theme");
+        if (s == null || "".equals(s)) {
+            s = "system";
+        }
+        settings.put("theme", s);
+        Locale locale;
+        s = prop.getProperty("language");
+        if (s == null || "".equals(s)) {
+            locale = Locale.getDefault();
+        } else {
+            locale = Locale.forLanguageTag(s);
+        }
+        settings.put("language", locale);
+    }
+
+    private void saveSettings() {
+        Properties prop = new Properties();
+        prop.put("theme", javax.swing.UIManager.getLookAndFeel().getClass().getCanonicalName());
+        prop.put("language", Locale.getDefault().toLanguageTag());
+        FileOutputStream out = null;
+        try {
+            out = new FileOutputStream(SETTINGS_FILE);
+            prop.store(out, "Application settings fro Simbs");
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            if (out != null) {
+                try {
+                    out.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
+    private void initApp() {
+        try {
+            languageBundle = java.util.ResourceBundle.getBundle(Constants.I18N_PATH,
+                    (Locale) settings.get("language"));
+        } catch (java.util.MissingResourceException exp) {
+            System.err.println(exp.getMessage());
+            System.exit(0);
+        }
+        setTheme((String) settings.get("theme"));
+    }
+
+    /** Set SWING Look And Feel */
+    private void setTheme(String theme) {
+        theme = pw.phylame.ixin.IToolkit.getLookAndFeel(theme);
+        try {
+            javax.swing.UIManager.setLookAndFeel(theme);
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException |
+                javax.swing.UnsupportedLookAndFeelException e) {
+            e.printStackTrace();
         }
     }
 
@@ -68,6 +144,11 @@ public class Application {
     /** Get system arguments */
     public String[] getSystemArguments() {
         return args;
+    }
+
+    /** Get settings */
+    public Map<String, Object> getSettings() {
+        return settings;
     }
 
     /** Get SQL Helper */
@@ -97,6 +178,7 @@ public class Application {
         return languageBundle.getString(key);
     }
 
+    /** Execute a command */
     public void onCommand(Object cmdId) {
         if (manager != null) {
             manager.onCommand(cmdId);
@@ -122,11 +204,10 @@ public class Application {
         Properties prop = new Properties();
         prop.put("user", profile.getUserName());
         prop.put("profileId", Integer.toString(profile.getId()));
-        prop.put("date", new Date().toString());
         FileOutputStream out = null;
         try {
-            out = new FileOutputStream(Constants.SIMBS_HOME+"/login.prop");
-            prop.store(out, "SIMBS login user name");
+            out = new FileOutputStream(LOGIN_FILE);
+            prop.store(out, "Login configuration for Simbs");
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
@@ -158,6 +239,7 @@ public class Application {
             @Override
             public void run() {
                 if (login()) {
+                    System.gc();
                     getManager().start();
                 } else {
                     System.exit(1);
@@ -166,17 +248,14 @@ public class Application {
         });
     }
 
+    /** Exit application */
+    public void exit() {
+        saveSettings();
+        System.exit(0);
+    }
+
     /**The application entry method */
     public static void main(String[] args) {
-        // set look and feel
-        String lookAndFeel = System.getenv("SIMBS_LOOK_AND_FEEL");
-        lookAndFeel = pw.phylame.ixin.IToolkit.getLookAndFeel(lookAndFeel);
-        try {
-            javax.swing.UIManager.setLookAndFeel(lookAndFeel);
-        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException |
-                javax.swing.UnsupportedLookAndFeelException e) {
-            e.printStackTrace();
-        }
         createApplication(args).run();
     }
 
@@ -188,10 +267,13 @@ public class Application {
     private static Application instance = null;
 
     /** Language resource */
-    private static ResourceBundle languageBundle = null;
+    private static java.util.ResourceBundle languageBundle = null;
 
     /** Console arguments */
     private String[] args;
+
+    /** Settings */
+    private Map<String, Object> settings = new java.util.HashMap<>();
 
     /** SQL Administrator for SIMBS */
     private DbHelper dbHelper = null;

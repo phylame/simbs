@@ -38,8 +38,8 @@ import java.util.ArrayList;
 public class ChooseBookDialog extends JDialog {
     public static final int BOOK_COLUMN_COUNT = 8;
     public static final String SQL_SELECT_BOOK = "SELECT book.Bisbn, Bname, Bauthors, Bdate," +
-            " Bcategory, Bpublisher, Bprice, Inumber FROM book LEFT OUTER JOIN inventory" +
-            " ON (inventory.bisbn = book.bisbn) ";
+            " Bcategory, Bpublisher, Bprice, Inumber FROM book LEFT JOIN inventory" +
+            " ON inventory.bisbn = book.bisbn ";
 
     private JPanel contentPane;
 //    private JButton buttonOk;
@@ -125,6 +125,7 @@ public class ChooseBookDialog extends JDialog {
         tablePane.setParent(this);
 
         pack();
+        setSize((int) (getWidth() * 1.3), (int) (getHeight() * 1.3));
         setLocationRelativeTo(getOwner());
 
     }
@@ -215,7 +216,6 @@ public class ChooseBookDialog extends JDialog {
                     }
                 });
                 tablePane.setTableAdapter(pagingResultAdapter);
-                setSize((int) (getWidth() * 1.3), (int) (getHeight() * 1.3));
                 setLocationRelativeTo(getOwner());
             } else {
                 pagingResultAdapter.setDataSource(dataSource);

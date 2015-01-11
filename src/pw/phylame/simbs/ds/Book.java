@@ -31,15 +31,17 @@ public class Book {
     private Date date;
     private String category;
     private String publisher;
+    private BigDecimal purchase;
     private BigDecimal price;
     private String intro;
 
     public Book() {
-        this("", "", "", "", "", new Date(), "", "", new BigDecimal(0.0D), "");
+        this("", "", "", "", "", new Date(), "", "", new BigDecimal(0), new BigDecimal(0), "");
     }
 
     public Book(String isbn, String name, String version, String authors, String cover, Date date,
-                String category, String publisher, BigDecimal price, String intro) {
+                String category, String publisher, BigDecimal purchase, BigDecimal price,
+                String intro) {
         setISBN(isbn);
         setName(name);
         setVersion(version);
@@ -48,6 +50,7 @@ public class Book {
         setDate(date);
         setCategory(category);
         setPublisher(publisher);
+        setPurchase(purchase);
         setPrice(price);
         setIntro(intro);
     }
@@ -118,6 +121,14 @@ public class Book {
 
     public void setPublisher(String publisher) {
         this.publisher = publisher;
+    }
+
+    public BigDecimal getPurchase() {
+        return purchase;
+    }
+
+    public void setPurchase(BigDecimal purchase) {
+        this.purchase = purchase;
     }
 
     public BigDecimal getPrice() {

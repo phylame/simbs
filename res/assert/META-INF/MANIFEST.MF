@@ -1,4 +1,4 @@
 Manifest-Version: 1.0
-Class-Path: . hsqldb.jar
+Class-Path: . hsqldb.jar commons-logging.jar
 Main-Class: pw.phylame.simbs.Application
 
