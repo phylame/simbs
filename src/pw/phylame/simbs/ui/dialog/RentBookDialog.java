@@ -125,10 +125,7 @@ public class RentBookDialog extends JDialog {
         buttonChooseBook.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                ChooseBookDialog dialog = new ChooseBookDialog(parent,
-                        app.getString("Dialog.ChooseBook.Title"));
-                dialog.setVisible(true);
-                String isbn = dialog.getISBN();
+                String isbn = ChooseBookDialog.chooseBook(parent);
                 System.gc();
                 if (isbn != null) {
                     setBook(isbn);
@@ -139,14 +136,7 @@ public class RentBookDialog extends JDialog {
         buttonChooseCustomer.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                ChooseCustomerDialog dialog = new ChooseCustomerDialog(parent,
-                        app.getString("Dialog.ChooseCustomer.Title"));
-                int id = getCustomer();
-                if (id > 0) {
-                    dialog.setCustomerID(id);
-                }
-                dialog.setVisible(true);
-                id = dialog.getCustomerID();
+                int id = ChooseCustomerDialog.chooseCustomer(parent);
                 System.gc();
                 if (id > 0) {
                     setCustomer(id);

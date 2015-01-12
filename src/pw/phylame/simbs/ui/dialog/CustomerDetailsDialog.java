@@ -30,6 +30,7 @@ public class CustomerDetailsDialog extends JDialog {
 
     public CustomerDetailsDialog() {
         super();
+        setTitle(Application.getInstance().getString("Dialog.CustomerDetails.Title"));
         init();
     }
 
@@ -90,5 +91,31 @@ public class CustomerDetailsDialog extends JDialog {
 
     public void setCustomer(Customer customer) {
         detailsPane.setCustomer(customer);
+    }
+
+    public static void viewCustomer(java.awt.Dialog owner, int id) {
+        CustomerDetailsDialog dialog = new CustomerDetailsDialog(owner,
+                Application.getInstance().getString("Dialog.CustomerDetails.Title"));
+        dialog.setCustomer(id);
+        dialog.setVisible(true);
+    }
+
+    public static void viewCustomer(int id) {
+        CustomerDetailsDialog dialog = new CustomerDetailsDialog();
+        dialog.setCustomer(id);
+        dialog.setVisible(true);
+    }
+
+    public static void viewCustomer(java.awt.Frame owner, int id) {
+        CustomerDetailsDialog dialog = new CustomerDetailsDialog(owner,
+                Application.getInstance().getString("Dialog.CustomerDetails.Title"));
+        dialog.setCustomer(id);
+        dialog.setVisible(true);
+    }
+
+    public static void viewCustomer(Customer customer) {
+        CustomerDetailsDialog dialog = new CustomerDetailsDialog();
+        dialog.setCustomer(customer);
+        dialog.setVisible(true);
     }
 }

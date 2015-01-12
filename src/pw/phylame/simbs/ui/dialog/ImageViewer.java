@@ -90,11 +90,22 @@ public class ImageViewer extends JDialog {
         }
     }
 
-    public void setImage(java.io.File file) {
-        if (file == null) {
-            resetImage(null);
-        } else {
-            setImage(file.getPath());
-        }
+    public static void viewImage(String title, String path) {
+        ImageViewer dialog = new ImageViewer();
+        dialog.setTitle(title);
+        dialog.setImage(path);
+        dialog.setVisible(true);
+    }
+
+    public static void viewImage(java.awt.Dialog owner, String title, String path) {
+        ImageViewer dialog = new ImageViewer(owner, title);
+        dialog.setImage(path);
+        dialog.setVisible(true);
+    }
+
+    public static void viewImage(java.awt.Frame owner, String title, String path) {
+        ImageViewer dialog = new ImageViewer(owner, title);
+        dialog.setImage(path);
+        dialog.setVisible(true);
     }
 }

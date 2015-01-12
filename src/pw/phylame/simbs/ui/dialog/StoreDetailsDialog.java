@@ -123,4 +123,16 @@ public class StoreDetailsDialog extends JDialog {
         tfRentalMoney.setValue(rentalTotal);
         tfTotalMoney.setValue(saleTotal.add(rentalTotal).subtract(stockTotal));
     }
+
+    public static void viewDetails(java.awt.Dialog owner) {
+        StoreDetailsDialog dialog = new StoreDetailsDialog(owner,
+                Application.getInstance().getString("Dialog.Info.Title"));
+        dialog.setVisible(true);
+    }
+
+    public static void viewDetails(java.awt.Frame owner) {
+        StoreDetailsDialog dialog = new StoreDetailsDialog(owner,
+                Application.getInstance().getString("Dialog.Info.Title"));
+        dialog.setVisible(true);
+    }
 }

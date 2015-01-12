@@ -31,7 +31,7 @@ import java.sql.SQLException;
  * Created by Peng Wan on 2015-1-11.
  */
 public class BillTablePane extends ViewerTablePane {
-    public static final int BILL_COLUMN_COUNT = 4;
+    public static final int BILL_COLUMN_COUNT = 3;
     public static final String SQL_SELECT_BILL = "SELECT Lno, Ldate, Ltime, Levent, Lid FROM bill ";
 
     public static final int MAX_ROW_COUNT = 20;
@@ -40,6 +40,11 @@ public class BillTablePane extends ViewerTablePane {
         super(new BillTableModel(), SQL_SELECT_BILL, MAX_ROW_COUNT);
         getDeleteAction().setEnabled(false);
         getModifyAction().setEnabled(false);
+    }
+
+    public int getSelectedRecord() {
+        BillTableModel tableModel = (BillTableModel) getTableModel();
+        return tableModel.getRecordNO(getSelectedRow());
     }
 
     private static class BillTableModel extends PagingResultTableModel {
@@ -98,11 +103,22 @@ public class BillTablePane extends ViewerTablePane {
             }
         }
 
-        private PagingResultSet dataSource = null;
         private ArrayList<Entry> rows = new ArrayList<>();
 
+        public int getRecordNO(int rowIndex) {
+            if (rows.size() == 0 || rowIndex < 0) {
+                return -1;
+            }
+            try {
+                return rows.get(rowIndex).getNo();
+            } catch (IndexOutOfBoundsException exp) {
+                exp.printStackTrace();
+                return -1;
+            }
+        }
+
         /** Update current page from ResultSet */
-        public void updateCurrentPage() {
+        public void updateCurrentPage(PagingResultSet dataSource) {
             if (dataSource == null) {
                 return;
             }
@@ -113,7 +129,7 @@ public class BillTablePane extends ViewerTablePane {
             }
             try {
                 for (int i = 0; i < dataSource.getCurrentRows(); ++i) {
-                    Entry entry = new Entry(rs.getInt(1), Worker.toDate(rs.getDate(2),
+                    Entry entry = new Entry(rs.getInt(1), Worker.toNormalDate(rs.getDate(2),
                             rs.getTime(3)), rs.getInt(4), rs.getInt(5), null);
                     rows.add(entry);
                     rs.next();
@@ -126,9 +142,8 @@ public class BillTablePane extends ViewerTablePane {
 
         @Override
         public void pageUpdated(PagingResultSet dataSource) {
-            this.dataSource = dataSource;
             rows.clear();
-            updateCurrentPage();
+            updateCurrentPage(dataSource);
         }
 
         @Override
@@ -153,10 +168,10 @@ public class BillTablePane extends ViewerTablePane {
 
         @Override
         public int getRowCount() {
-            if (dataSource == null) {
+            if (rows.size() == 0) {
                 return 0;
             } else {
-                return dataSource.getCurrentRows();
+                return rows.size();
             }
         }
 
@@ -167,7 +182,7 @@ public class BillTablePane extends ViewerTablePane {
 
         @Override
         public Object getValueAt(int rowIndex, int columnIndex) {
-            if (dataSource == null) {
+            if (rows.size() == 0) {
                 return null;
             }
             Application app = Application.getInstance();

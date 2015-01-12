@@ -52,6 +52,9 @@ public abstract class TablePaneAdapter {
     /** Get current page number */
     public abstract int getCurrentPage();
 
+    /** Get total amount of rows */
+    public abstract int getRowCount();
+
     /** Get number of rows in current page */
     public abstract int getCurrentRows();
 

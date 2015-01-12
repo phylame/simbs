@@ -17,6 +17,7 @@
 package pw.phylame.simbs.ui.com;
 
 import pw.phylame.simbs.Application;
+import pw.phylame.simbs.Worker;
 import pw.phylame.simbs.ui.dialog.DialogFactory;
 import pw.phylame.tools.StringUtility;
 
@@ -40,6 +41,9 @@ public class CustomerConditionPane extends PaneRender {
     private JFormattedTextField tfLimitBegin;
     private JFormattedTextField tfLimitEnd;
     private JButton buttonSearch;
+    private JCheckBox cbDate;
+    private JSpinner jsDateBegin;
+    private JSpinner jsDateEnd;
 
     private String queryCondition = null;
 
@@ -50,6 +54,9 @@ public class CustomerConditionPane extends PaneRender {
         tfLevelEnd.setValue(100);
         tfLimitBegin.setValue(0);
         tfLimitEnd.setValue(100);
+
+        jsDateBegin.setModel(new SpinnerDateModel());
+        jsDateEnd.setModel(new SpinnerDateModel());
     }
 
     public JButton getSearchButton() {
@@ -76,7 +83,8 @@ public class CustomerConditionPane extends PaneRender {
         if (cbLevel.isSelected()) {
             int begin = (int) tfLevelBegin.getValue(), end = (int) tfLevelEnd.getValue();
             if (begin > end) {
-                DialogFactory.showError(getParent(), app.getString("Dialog.ChooseCustomer.InvalidLevel"),
+                DialogFactory.showError(getParent(),
+                        app.getString("Dialog.ChooseCustomer.InvalidLevel"),
                         app.getString("Dialog.ChooseCustomer.Title"));
                 return;
             }
@@ -85,11 +93,24 @@ public class CustomerConditionPane extends PaneRender {
         if (cbLimit.isSelected()) {
             int begin = (int) tfLimitBegin.getValue(), end = (int) tfLimitEnd.getValue();
             if (begin > end) {
-                DialogFactory.showError(getParent(), app.getString("Dialog.ChooseCustomer.InvalidLimit"),
+                DialogFactory.showError(getParent(),
+                        app.getString("Dialog.ChooseCustomer.InvalidLimit"),
                         app.getString("Dialog.ChooseCustomer.Title"));
                 return;
             }
             conditions.add(String.format("Clent_limit BETWEEN %d AND %d", begin, end));
+        }
+        if (cbDate.isSelected()) {
+            java.util.Date begin = (java.util.Date) jsDateBegin.getValue(),
+                    end = (java.util.Date) jsDateEnd.getValue();
+            if (begin.compareTo(end) > 0) {
+                DialogFactory.showError(getParent(),
+                        app.getString("Dialog.ChooseCustomer.InvalidDate"),
+                        app.getString("Dialog.ChooseCustomer.Title"));
+                return;
+            }
+            conditions.add(String.format("Cdate BETWEEN '%s' AND '%s'", Worker.toSQLDate(begin),
+                    Worker.toSQLDate(end)));
         }
         queryCondition = StringUtility.join(conditions, " AND ");
     }

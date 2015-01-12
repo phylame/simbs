@@ -21,7 +21,6 @@ import pw.phylame.simbs.Application;
 import pw.phylame.simbs.ds.Book;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.*;
 import java.math.BigDecimal;
 
@@ -50,12 +49,12 @@ public class ModifyBookDialog extends JDialog {
         init();
     }
 
-    public ModifyBookDialog(Dialog owner, String title) {
+    public ModifyBookDialog(java.awt.Dialog owner, String title) {
         super(owner, title);
         init();
     }
 
-    public ModifyBookDialog(Frame owner, String title) {
+    public ModifyBookDialog(java.awt.Frame owner, String title) {
         super(owner, title);
         init();
     }
@@ -205,5 +204,21 @@ public class ModifyBookDialog extends JDialog {
             taIntro.setText("");
         }
         tfISBN.setEditable(isISBNEditable);
+    }
+
+    public static Book modifyBook(java.awt.Dialog owner, Book book, boolean isISBNEditable) {
+        ModifyBookDialog dialog = new ModifyBookDialog(owner,
+                Application.getInstance().getString("Dialog.ModifyBook.Title"));
+        dialog.setBook(book, isISBNEditable);
+        dialog.setVisible(true);
+        return dialog.getBook();
+    }
+
+    public static Book modifyBook(java.awt.Frame owner, Book book, boolean isISBNEditable) {
+        ModifyBookDialog dialog = new ModifyBookDialog(owner,
+                Application.getInstance().getString("Dialog.ModifyBook.Title"));
+        dialog.setBook(book, isISBNEditable);
+        dialog.setVisible(true);
+        return dialog.getBook();
     }
 }

@@ -32,14 +32,20 @@ import java.awt.event.MouseEvent;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  * Created by Peng Wan on 2015-1-10.
  */
 public class CustomerTablePane extends ViewerTablePane {
-    public static final int CUSTOMER_COLUMN_COUNT = 6;
-    public static final String SQL_SELECT_CUSTOMER = "SELECT Cid, Cname, Cphone, Cemail, Cdate, " +
-            "Clevel, Climit FROM customer WHERE Cid<>0 ";
+    public static final int CUSTOMER_COLUMN_COUNT = 7;
+    public static final String SQL_SELECT_CUSTOMER = "SELECT Cid, Cname, Cphone, Cemail, Cdate," +
+            " Clevel, Climit, SUM(S.Snumber), SUM(R.Rnumber)" +
+            " FROM customer AS C " +
+            "LEFT JOIN rental AS R ON R.Cid=C.Cid " +
+            "LEFT JOIN sale AS S ON S.Cid=C.Cid " +
+            "WHERE Cid<>0 " +
+            "GROUP BY C.Cid ";
 
     public static final int MAX_ROW_COUNT = 20;
 
@@ -73,11 +79,45 @@ public class CustomerTablePane extends ViewerTablePane {
     }
 
     private static class CustomerTableModel extends PagingResultTableModel {
-        private PagingResultSet dataSource = null;
-        private ArrayList<Customer> rows = new ArrayList<>();
+        private static class Entry extends Customer {
+            private int boughtNumber, borrowedNumber;
+
+            public Entry(int id, String name, String phone, String email, Date date, int level,
+                         int limit, String comment) {
+                super(id, name, phone, email, date, level, limit, comment);
+            }
+
+            public void setField(Customer customer) {
+                setId(customer.getId());
+                setName(customer.getName());
+                setPhone(customer.getPhone());
+                setEmail(customer.getEmail());
+                setDate(customer.getDate());
+                setLevel(customer.getLevel());
+                setLimit(customer.getLimit());
+                setComment(customer.getComment());
+            }
+
+            public int getBoughtNumber() {
+                return boughtNumber;
+            }
+
+            public void setBoughtNumber(int boughtNumber) {
+                this.boughtNumber = boughtNumber;
+            }
+
+            public int getBorrowedNumber() {
+                return borrowedNumber;
+            }
+
+            public void setBorrowedNumber(int borrowedNumber) {
+                this.borrowedNumber = borrowedNumber;
+            }
+        }
+        private ArrayList<Entry> rows = new ArrayList<>();
 
         public int getID(int rowIndex) {
-            if (dataSource == null || rowIndex < 0) {
+            if (rows.size() == 0 || rowIndex < 0) {
                 return -1;
             }
             try {
@@ -89,12 +129,13 @@ public class CustomerTablePane extends ViewerTablePane {
         }
 
         public void updateCustomer(int row, Customer customer) {
-            rows.set(row, customer);
+            Entry entry = rows.get(row);
+            entry.setField(customer);
             fireTableDataChanged();
         }
 
         /** Update current page from ResultSet */
-        public void updateCurrentPage() {
+        public void updateCurrentPage(PagingResultSet dataSource) {
             if (dataSource == null) {
                 return;
             }
@@ -105,9 +146,11 @@ public class CustomerTablePane extends ViewerTablePane {
             }
             try {
                 for (int i = 0; i < dataSource.getCurrentRows(); ++i) {
-                    Customer customer = new Customer(rs.getInt(1), rs.getString(2), rs.getString(3),
+                    Entry entry = new Entry(rs.getInt(1), rs.getString(2), rs.getString(3),
                             rs.getString(4), rs.getDate(5), rs.getInt(6), rs.getInt(7), null);
-                    rows.add(customer);
+                    entry.setBoughtNumber(rs.getInt(8));
+                    entry.setBorrowedNumber(rs.getInt(9));
+                    rows.add(entry);
                     rs.next();
                 }
             } catch (SQLException exp) {
@@ -118,9 +161,8 @@ public class CustomerTablePane extends ViewerTablePane {
 
         @Override
         public void pageUpdated(PagingResultSet dataSource) {
-            this.dataSource = dataSource;
             rows.clear();
-            updateCurrentPage();
+            updateCurrentPage(dataSource);
         }
 
         @Override
@@ -133,17 +175,19 @@ public class CustomerTablePane extends ViewerTablePane {
             Application app = Application.getInstance();
             switch (column) {
                 case 0:
-                    return app.getString("Customer.Property.Name");
+                    return app.getString("Customer.Property.ID");
                 case 1:
-                    return app.getString("Customer.Property.Phone");
+                    return app.getString("Customer.Property.Name");
                 case 2:
-                    return app.getString("Customer.Property.Email");
+                    return app.getString("Customer.Property.Phone");
                 case 3:
-                    return app.getString("Customer.Property.Date");
-                case 4:
                     return app.getString("Customer.Property.Level");
-                case 5:
+                case 4:
                     return app.getString("Customer.Property.Limit");
+                case 5:
+                    return app.getString("Customer.Property.Bought");
+                case 6:
+                    return app.getString("Customer.Property.Borrowed");
                 default:
                     return app.getString("Customer.Property.Unknown");
             }
@@ -151,10 +195,10 @@ public class CustomerTablePane extends ViewerTablePane {
 
         @Override
         public int getRowCount() {
-            if (dataSource == null) {
+            if (rows.size() == 0) {
                 return 0;
             } else {
-                return dataSource.getCurrentRows();
+                return rows.size();
             }
         }
 
@@ -165,24 +209,26 @@ public class CustomerTablePane extends ViewerTablePane {
 
         @Override
         public Object getValueAt(int rowIndex, int columnIndex) {
-            if (dataSource == null) {
+            if (rows.size() == 0) {
                 return null;
             }
             try {
-                Customer customer = rows.get(rowIndex);
+                Entry customer = rows.get(rowIndex);
                 switch (columnIndex) {
                     case 0:
-                        return customer.getName();
+                        return customer.getId();
                     case 1:
-                        return customer.getPhone();
+                        return customer.getName();
                     case 2:
-                        return customer.getEmail();
+                        return customer.getPhone();
                     case 3:
-                        return customer.getDate();
-                    case 4:
                         return customer.getLevel();
-                    case 5:
+                    case 4:
                         return customer.getLimit();
+                    case 5:
+                        return customer.getBoughtNumber();
+                    case 6:
+                        return customer.getBorrowedNumber();
                     default:
                         return null;
                 }

@@ -116,14 +116,17 @@ public class LoginDialog extends JDialog {
             }
         }
 
-        String user = prop.getProperty("user");
-        if (user != null && ! "".equals(user)) {
-            tfUserName.setText(user.trim());
+        String s = prop.getProperty("user");
+        if (s != null && ! "".equals(s)) {
+            tfUserName.setText(s.trim());
         }
-        try {
-            jcbSource.setSelectedIndex(Integer.parseInt(prop.getProperty("profileId")));
-        } catch (NumberFormatException exp) {
-            exp.printStackTrace();
+        s = prop.getProperty("profileId");
+        if (s != null && ! "".equals(s)) {
+            try {
+                jcbSource.setSelectedIndex(Integer.parseInt(s));
+            } catch (NumberFormatException exp) {
+                exp.printStackTrace();
+            }
         }
     }
 

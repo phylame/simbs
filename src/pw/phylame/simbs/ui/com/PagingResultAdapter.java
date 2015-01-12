@@ -87,6 +87,11 @@ public class PagingResultAdapter extends TablePaneAdapter {
     }
 
     @Override
+    public int getRowCount() {
+        return prs.getRowCount();
+    }
+
+    @Override
     public void previousPage() {
         try {
             prs.previousPage();

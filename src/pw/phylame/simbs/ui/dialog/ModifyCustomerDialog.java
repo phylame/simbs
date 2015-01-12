@@ -22,7 +22,6 @@ import pw.phylame.simbs.Constants;
 import pw.phylame.simbs.ds.Customer;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.*;
 
 public class ModifyCustomerDialog extends JDialog {
@@ -46,12 +45,12 @@ public class ModifyCustomerDialog extends JDialog {
         init();
     }
 
-    public ModifyCustomerDialog(Dialog owner, String title) {
+    public ModifyCustomerDialog(java.awt.Dialog owner, String title) {
         super(owner, title);
         init();
     }
 
-    public ModifyCustomerDialog(Frame owner, String title) {
+    public ModifyCustomerDialog(java.awt.Frame owner, String title) {
         super(owner, title);
         init();
     }
@@ -150,5 +149,21 @@ public class ModifyCustomerDialog extends JDialog {
             jsLimit.setValue(Constants.DEFAULT_LENT_LIMIT);
             taComment.setText("");
         }
+    }
+
+    public static Customer modifyCustomer(java.awt.Dialog owner, Customer customer) {
+        ModifyCustomerDialog dialog = new ModifyCustomerDialog(owner,
+                Application.getInstance().getString("Dialog.ModifyCustomer.Title"));
+        dialog.setCustomer(customer);
+        dialog.setVisible(true);
+        return dialog.getCustomer();
+    }
+
+    public static Customer modifyCustomer(java.awt.Frame owner, Customer customer) {
+        ModifyCustomerDialog dialog = new ModifyCustomerDialog(owner,
+                Application.getInstance().getString("Dialog.ModifyCustomer.Title"));
+        dialog.setCustomer(customer);
+        dialog.setVisible(true);
+        return dialog.getCustomer();
     }
 }

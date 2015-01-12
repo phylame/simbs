@@ -177,10 +177,7 @@ public class ChooseBookDialog extends JDialog {
                             return;
                         }
                         String isbn = tableModel.getISBN(row);
-                        BookDetailsDialog dialog = new BookDetailsDialog(parent,
-                                app.getString("Dialog.BookDetails.Title"));
-                        dialog.setBook(isbn);
-                        dialog.setVisible(true);
+                        BookDetailsDialog.viewBook(isbn);
                     }
                 });
                 popupMenu.add(menuItem);
@@ -225,12 +222,22 @@ public class ChooseBookDialog extends JDialog {
         }
     }
 
-    public void setISBN(String isbn) {
-        // nothing
-    }
-
     public String getISBN() {
         return isbn;
+    }
+
+    public static String chooseBook(java.awt.Dialog owner) {
+        ChooseBookDialog dialog = new ChooseBookDialog(owner,
+                Application.getInstance().getString("Dialog.ChooseBook.Title"));
+        dialog.setVisible(true);
+        return dialog.getISBN();
+    }
+
+    public static String chooseBook(java.awt.Frame owner) {
+        ChooseBookDialog dialog = new ChooseBookDialog(owner,
+                Application.getInstance().getString("Dialog.ChooseBook.Title"));
+        dialog.setVisible(true);
+        return dialog.getISBN();
     }
 
     public static class BookTableModel extends PagingResultTableModel {

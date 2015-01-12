@@ -29,6 +29,7 @@ import java.math.RoundingMode;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.PreparedStatement;
+
 import java.util.Calendar;
 
 /**
@@ -60,7 +61,7 @@ public final class Worker {
      * @param time the SQL time
      * @return the normal date
      */
-    public static java.util.Date toDate(java.sql.Date date, java.sql.Time time) {
+    public static java.util.Date toNormalDate(java.sql.Date date, java.sql.Time time) {
         Calendar dest = Calendar.getInstance(), src = Calendar.getInstance();
         dest.setTime(date);
         src.setTime(time);
@@ -76,7 +77,6 @@ public final class Worker {
     public static String normalizeString(String s) {
         return s == null ? null : s.trim();
     }
-
 
     /** SQL statement for selecting book */
     public static final String SQL_SELECT_BOOK = "SELECT Bisbn, Bname, Bversion, Bauthors," +
@@ -493,10 +493,14 @@ public final class Worker {
 
     /**
      * Remove a customer by its ID.
+     * <p>The 0 customer cannot be removed.</p>
      * @param id ID of the customer
      * @throws SQLException if occur errors when modify database
      */
     public void removeCustomer(int id) throws SQLException {
+        if (id == 0) {      // ignore 0 customer
+            return;
+        }
         String sql = "DELETE FROM customer WHERE Cid=?";
         PreparedStatement ps = dbHelper.prepareStatement(sql);
 
@@ -788,7 +792,7 @@ public final class Worker {
     }
 
     /**
-     * Get number of rented book
+     * Get number of rented books.
      * @param isbn ISBN of the book
      * @return the number
      */
@@ -798,7 +802,7 @@ public final class Worker {
     }
 
     /**
-     * Get number of rented book
+     * Get number of rented books for the customer.
      * @param isbn ISBN of the rented book
      * @param id ID of the customer
      * @return the number
@@ -923,13 +927,6 @@ public final class Worker {
      */
     public void storeBook(String isbn, int number, BigDecimal price, BigDecimal total, String comment)
             throws SQLException {
-
-        // increase inventory
-        modifyInventory(isbn, number);
-
-        // modify purchase price
-        updatePurchasePrice(isbn, price);
-
         // get a available ID
         int id = selectInteger("SELECT MAX(Tid) FROM stock");
         if (id < 0) {   // empty stock
@@ -956,24 +953,27 @@ public final class Worker {
 
         ps.executeUpdate();
 
+        // increase inventory
+        modifyInventory(isbn, number);
+
+        // modify purchase price
+        updatePurchasePrice(isbn, price);
+
         // fill bill
         fillBill(today, EVENT_STOCK, id);
     }
 
     /**
      * Sell book(s) to customer on today.
-     * @param isbn the ISBN of sold book
      * @param id the ID of customer who buy the book, 0 indicate anonymous customer
+     * @param isbn the ISBN of sold book
+     * @param customerID
      * @param number number of the book to sold
      * @param price total price of those book
      * @param comment the comment
      */
-    public void sellBook(String isbn, int id, int number, BigDecimal price, String comment)
+    public void sellBook(String isbn, int customerID, int number, BigDecimal price, String comment)
             throws SQLException {
-
-        // reduce inventory
-        modifyInventory(isbn, -number);
-
         // get a available number
         int no = selectInteger("SELECT MAX(Sid) FROM sale");
         if (no < 0) {   // empty sale listing
@@ -981,7 +981,7 @@ public final class Worker {
         }
         no++;
 
-        if (id == 0 && ! isCustomerRegistered(0)) {
+        if (customerID == 0 && ! isCustomerRegistered(0)) {
             insertZeroCustomer();
         }
 
@@ -995,7 +995,7 @@ public final class Worker {
 
         ps.setInt(1, no);
         ps.setString(2, isbn);
-        ps.setInt(3, id);
+        ps.setInt(3, customerID);
         ps.setDate(4, toSQLDate(today));
         ps.setTime(5, toSQLTime(today));
         ps.setInt(6, number);
@@ -1004,39 +1004,38 @@ public final class Worker {
 
         ps.executeUpdate();
 
+        // reduce inventory
+        modifyInventory(isbn, -number);
+
         // fill bill
         fillBill(today, EVENT_SALE, no);
 
         // not anonymous customer and price more than 0
-        if (id > 0 && price.compareTo(new BigDecimal(0)) > 0) {
+        if (customerID > 0 && price.compareTo(new BigDecimal(0)) > 0) {
             // increase level, totalPrice / PRICE_OF_INCREASE_LEVEL
             BigDecimal val = price.divide(new BigDecimal(Constants.PRICE_OF_INCREASE_LEVEL),
                     RoundingMode.FLOOR);
-            modifyCustomerLevel(id, val.intValue());
+            modifyCustomerLevel(customerID, val.intValue());
 
             // increase borrowing limits, totalPrice / PRICE_OF_INCREASE_LIMIT
             val = price.divide(new BigDecimal(Constants.PRICE_OF_INCREASE_LIMIT), RoundingMode.FLOOR);
-            modifyCustomerLimit(id, val.intValue());
+            modifyCustomerLimit(customerID, val.intValue());
         }
     }
 
     /**
      * Rent book(s) to customer on today.
      * @param isbn the ISBN of rented book
-     * @param id the ID of customer who borrow the book
+     * @param customerID the ID of customer who borrow the book
      * @param number number of the book to lend
      * @param period days if the customer borrow the book
      * @param price rental price of each book
      * @param deposit the deposit price of those book
      * @param comment the comment
      */
-    public void rentBook(String isbn, int id, int number, int period, BigDecimal price,
+    public void rentBook(String isbn, int customerID, int number, int period, BigDecimal price,
                          BigDecimal deposit, String comment)
             throws SQLException {
-
-        // reduce inventory
-        modifyInventory(isbn, -number);
-
         // get a available number
         int no = selectInteger("SELECT MAX(Rid) FROM rental");
         if (no < 0) {   // empty sale listing
@@ -1052,7 +1051,7 @@ public final class Worker {
 
         ps.setInt(1, no);
         ps.setString(2, isbn);
-        ps.setInt(3, id);
+        ps.setInt(3, customerID);
         ps.setDate(4, toSQLDate(today));
         ps.setTime(5, toSQLTime(today));
         ps.setInt(6, number);
@@ -1064,8 +1063,11 @@ public final class Worker {
 
         ps.executeUpdate();
 
+        // reduce inventory
+        modifyInventory(isbn, -number);
+
         // reduce rented limit
-        modifyCustomerLimit(id, -number);
+        modifyCustomerLimit(customerID, -number);
 
         // fill bill
         fillBill(today, EVENT_RENTAL, no);
@@ -1073,26 +1075,54 @@ public final class Worker {
 
     /**
      * Customer return book.
-     * @param id the ID of customer who borrowed book
-     * @param isbn ISBN of the returned book
+     * @param no the record number
      * @param number number of the returned book
+     * @param refund the refunded deposit
+     * @param revenue revenue of those books
      */
-    public void returnBook(int id, String isbn, int number) throws SQLException {
-        String sql = String.format("SELECT Rdate, Rtime, Rnumber, Rperiod FROM rental WHERE Bisbn='%s' AND Cid=%d",
-                isbn, id);
-        ResultSet rs = dbHelper.executeQuery(sql);
-        while (rs.next()) {
-            // TODO: add return operation
-            break;
+    public void returnBook(int no, int number, BigDecimal refund, BigDecimal revenue)
+            throws SQLException {
+        String sql = "SELECT Rnumber, Rdeposit, Rrevenue, Bisbn, Cid FROM rental WHERE Rid=?";
+        PreparedStatement ps = dbHelper.prepareStatement(sql, ResultSet.TYPE_FORWARD_ONLY, ResultSet.CONCUR_UPDATABLE);
+
+        ps.setInt(1, no);
+
+        ResultSet rs = ps.executeQuery();
+
+        if (! rs.next()) {
+            return;
         }
+        int oNumber = rs.getInt(1);
+        BigDecimal oDeposit = rs.getBigDecimal(2), oRevenue = rs.getBigDecimal(3);
+        String isbn = rs.getString(4);
+        int customerID = rs.getInt(5);
+        oNumber -= number;
+        oDeposit = oDeposit.subtract(refund);
+        oRevenue = oRevenue.add(revenue);
+
+        rs.updateInt(1, oNumber);
+        rs.updateBigDecimal(2, oDeposit);
+        rs.updateBigDecimal(3, oRevenue);
+        rs.updateRow();
+
+        rs.close();
+
+        // increase inventory
+        modifyInventory(isbn, number);
+
+        // reduce rented limit
+        modifyCustomerLimit(customerID, number);
+
+        // fill bill
+        fillBill(new java.util.Date(), EVENT_RETURN, no);
     }
 
     /**
      * Notify customer return book.
-     * @param id the ID of customer who borrowed book
+     * @param customerID the ID of customer who borrowed book
      * @param isbn ISBN of the book that customer borrowed
      */
-    public void notifyReturn(int id, String isbn) {
+    public void notifyReturn(int customerID, String isbn) {
 
     }
 

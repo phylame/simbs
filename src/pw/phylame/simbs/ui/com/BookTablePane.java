@@ -70,11 +70,10 @@ public class BookTablePane extends ViewerTablePane {
     }
 
     private static class BookTableModel extends PagingResultTableModel {
-        private PagingResultSet dataSource = null;
         private ArrayList<Book> rows = new ArrayList<>();
 
         public String getISBN(int rowIndex) {
-            if (dataSource == null || rowIndex < 0) {
+            if (rows.size() == 0 || rowIndex < 0) {
                 return null;
             }
             try {
@@ -92,7 +91,7 @@ public class BookTablePane extends ViewerTablePane {
         }
 
         /** Update current page from ResultSet */
-        public void updateCurrentPage() {
+        public void updateCurrentPage(PagingResultSet dataSource) {
             if (dataSource == null) {
                 return;
             }
@@ -120,9 +119,8 @@ public class BookTablePane extends ViewerTablePane {
 
         @Override
         public void pageUpdated(PagingResultSet dataSource) {
-            this.dataSource = dataSource;
             rows.clear();
-            updateCurrentPage();
+            updateCurrentPage(dataSource);
         }
 
         @Override
@@ -151,10 +149,10 @@ public class BookTablePane extends ViewerTablePane {
 
         @Override
         public int getRowCount() {
-            if (dataSource == null) {
+            if (rows.size() == 0) {
                 return 0;
             } else {
-                return dataSource.getCurrentRows();
+                return rows.size();
             }
         }
 
@@ -165,7 +163,7 @@ public class BookTablePane extends ViewerTablePane {
 
         @Override
         public Object getValueAt(int rowIndex, int columnIndex) {
-            if (dataSource == null) {
+            if (rows.size() == 0) {
                 return null;
             }
             try {

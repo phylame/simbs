@@ -107,8 +107,9 @@ public class TablePane extends PaneRender {
 
     /** Update page status to the label */
     public void updatePageStatus() {
-        int currentRows = 0, pageCount = 0, currentPage = 0;
+        int currentRows = 0, pageCount = 0, currentPage = 0, totalRows = 0;
         if (tableAdapter != null) {
+            totalRows = tableAdapter.getRowCount();
             currentRows = tableAdapter.getCurrentRows();
             pageCount = tableAdapter.getPageCount();
             currentPage = tableAdapter.getCurrentPage();
@@ -135,7 +136,7 @@ public class TablePane extends PaneRender {
         }
         labelStatus.setText(String.format(
                 Application.getInstance().getString("Pane.TableViewer.LabelPageInfo"),
-                currentRows, pageCount));
+                totalRows, currentRows, pageCount));
         tfPage.setValue(currentPage);
     }
 

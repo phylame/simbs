@@ -26,6 +26,8 @@ import pw.phylame.tools.sql.DbHelper;
 import pw.phylame.tools.sql.PagingResultSet;
 
 import javax.swing.*;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import java.awt.*;
@@ -37,15 +39,14 @@ import java.sql.SQLException;
 public class ReturnBookDialog extends JDialog {
     public static final int RESULT_COLUMN_COUNT = 7;
     private static final String SQL_QUERY_RENTAL = "SELECT Rdate, Rtime, Rnumber, Rperiod, Rprice," +
-            " Rdeposit, Rrevenue FROM rental WHERE Bisbn='%s' AND Cid=%d";
+            " Rdeposit, Rrevenue, Rid FROM rental WHERE Bisbn='%s' AND Cid=%d";
 
     private JPanel contentPane;
-    private JButton buttonOK;
-    private JButton buttonCancel;
+    private JButton btnClose;
     private JTextField tfISBN;
-    private JButton buttonChooseBook;
+    private JButton btnChooseBook;
     private JTextField tfCustomerName;
-    private JButton buttonChooseCustomer;
+    private JButton btnChooseCustomer;
     private JSpinner jsNumber;
     private JLabel labelLentNumber;
     private JFormattedTextField tfLentDays;
@@ -53,6 +54,7 @@ public class ReturnBookDialog extends JDialog {
     private JFormattedTextField tfTotal;
     private JFormattedTextField tfPrice;
     private TablePane tablePane;
+    private JButton btnCommit;
 
     private String oldISBN = null;
     private int customerID = -1;
@@ -75,7 +77,7 @@ public class ReturnBookDialog extends JDialog {
     private void init() {
         setContentPane(contentPane);
         setModal(true);
-        getRootPane().setDefaultButton(buttonOK);
+        getRootPane().setDefaultButton(btnClose);
 
         final Application app = Application.getInstance();
 
@@ -99,15 +101,19 @@ public class ReturnBookDialog extends JDialog {
             public void changedUpdate(DocumentEvent e) {}
         });
 
+        jsNumber.addChangeListener(new ChangeListener() {
+            @Override
+            public void stateChanged(ChangeEvent e) {
+                calculateTotal();
+            }
+        });
+
         final ReturnBookDialog parent = this;
 
-        buttonChooseBook.addActionListener(new ActionListener() {
+        btnChooseBook.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                ChooseBookDialog dialog = new ChooseBookDialog(parent,
-                        app.getString("Dialog.ChooseBook.Title"));
-                dialog.setVisible(true);
-                String isbn = dialog.getISBN();
+                String isbn = ChooseBookDialog.chooseBook(parent);
                 System.gc();
                 if (isbn != null) {
                     setBook(isbn);
@@ -115,17 +121,10 @@ public class ReturnBookDialog extends JDialog {
             }
         });
 
-        buttonChooseCustomer.addActionListener(new ActionListener() {
+        btnChooseCustomer.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                ChooseCustomerDialog dialog = new ChooseCustomerDialog(parent,
-                        app.getString("Dialog.ChooseCustomer.Title"));
-                int id = getCustomer();
-                if (id > 0) {
-                    dialog.setCustomerID(id);
-                }
-                dialog.setVisible(true);
-                id = dialog.getCustomerID();
+                int id = ChooseCustomerDialog.chooseCustomer(parent);
                 System.gc();
                 if (id > 0) {
                     setCustomer(id);
@@ -133,14 +132,14 @@ public class ReturnBookDialog extends JDialog {
             }
         });
 
-
-        buttonOK.addActionListener(new ActionListener() {
+        btnCommit.addActionListener(new ActionListener() {
+            @Override
             public void actionPerformed(ActionEvent e) {
-                onOK();
+                onCommit();
             }
         });
 
-        buttonCancel.addActionListener(new ActionListener() {
+        btnClose.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 onCancel();
             }
@@ -169,41 +168,51 @@ public class ReturnBookDialog extends JDialog {
         updateNumber();
     }
 
-    private void onOK() {
-// add your code here
-        dispose();
-    }
-
     private void onCancel() {
 // add your code here if necessary
         dispose();
     }
 
+    private void onCommit() {
+        String isbn = tfISBN.getText().trim();
+        if ("".equals(isbn) || customerID <= 0) {
+            return;
+        }
+        Application app = Application.getInstance();
+        RentalTableModel.RentalEntry entry =
+                ((RentalTableModel) tablePane.getTableModel()).getRentalEntry(tablePane.getSelectedRow());
+        int number = (int) jsNumber.getValue();
+        BigDecimal deposit = (BigDecimal) tfDeposit.getValue();
+        BigDecimal total = (BigDecimal) tfTotal.getValue();
+        try {
+            Worker.getInstance().returnBook(entry.getNo(), number, deposit, total);
+            updateTable();
+            updateRentalInfo();
+            DialogFactory.showInfo(getOwner(), app.getString("Dialog.Return.Successful"),
+                    app.getString("Dialog.Return.Title"));
+        } catch (SQLException e) {
+            e.printStackTrace();
+            DialogFactory.showInfo(getOwner(), app.getString("Dialog.Return.Failed"),
+                    app.getString("Dialog.Return.Title"));
+        }
+    }
+
     private void updateNumber() {
         setNumberInfo(0, 0, 0);
         jsNumber.setEnabled(false);
-        updateRentalInfo();
-        buttonOK.setEnabled(false);
+        tfLentDays.setValue(0);
+        tfDeposit.setValue(new BigDecimal("0.00"));
+        tfDeposit.setEditable(false);
+        tfPrice.setValue(new BigDecimal("0.0"));
+        tfTotal.setValue(new BigDecimal("0.00"));
+        btnCommit.setEnabled(false);
 
         String isbn = tfISBN.getText().trim();
         if ("".equals(isbn) || customerID < 0) {
             return;
         }
-
-        Worker worker = Worker.getInstance();
-
-        int number = worker.getRentalNumber(isbn, customerID);
-        if (number <= 0) {   // not found
-            return;
-        }
-
-        setNumberInfo(1, 1, number);
-        jsNumber.setEnabled(true);
-
         updateTable();
-
-        buttonOK.setEnabled(true);
-
+        updateRentalInfo();
     }
 
     private void setNumberInfo(int number, int begin, int lentNumber) {
@@ -213,15 +222,61 @@ public class ReturnBookDialog extends JDialog {
     }
 
     private void updateRentalInfo() {
+        setNumberInfo(0, 0, 0);
+        jsNumber.setEnabled(false);
         tfLentDays.setValue(0);
         tfDeposit.setValue(new BigDecimal("0.00"));
+        tfDeposit.setEditable(false);
         tfPrice.setValue(new BigDecimal("0.0"));
         tfTotal.setValue(new BigDecimal("0.00"));
+        btnCommit.setEnabled(false);
+        int row = tablePane.getSelectedRow();
+        if (row < 0) {  // no selection
+            return;
+        }
+        RentalTableModel.RentalEntry entry =
+                ((RentalTableModel) tablePane.getTableModel()).getRentalEntry(row);
+        if (entry != null) {
+            int n = entry.getNumber();
+            if (n <= 0) {   // when 0, all books returned
+                btnCommit.setEnabled(false);
+                return;
+            }
+            setNumberInfo(1, 1, n);
+            jsNumber.setEnabled(true);
+            java.util.Date sDate = Worker.toNormalDate(entry.getDate(), entry.getTime());
+            int days = pw.phylame.tools.DateUtility.calculateInterval(sDate, new java.util.Date(), "D");
+            tfLentDays.setValue(days);
+            tfPrice.setValue(entry.getPrice());
+            calculateTotal();
+            btnCommit.setEnabled(true);
+        }
+    }
+
+    private void calculateTotal() {
+        int row = tablePane.getSelectedRow();
+        if (row < 0) {  // no selection
+            return;
+        }
+        RentalTableModel.RentalEntry entry =
+                ((RentalTableModel) tablePane.getTableModel()).getRentalEntry(row);
+        if (entry != null) {
+            int totalNumber = entry.getNumber();
+            int currentNumber = (int) jsNumber.getValue();
+            tfDeposit.setValue(entry.getDeposit().divide(new BigDecimal(totalNumber),
+                    BigDecimal.ROUND_CEILING).multiply(new BigDecimal(currentNumber)));
+            tfDeposit.setEditable(true);    // we can modify deposit, example the book is broken
+            java.util.Date sDate = Worker.toNormalDate(entry.getDate(), entry.getTime());
+            int days = pw.phylame.tools.DateUtility.calculateInterval(sDate, new java.util.Date(), "D");
+            BigDecimal v = entry.getPrice().multiply(new BigDecimal(days)).multiply(new BigDecimal(currentNumber));
+            tfTotal.setValue(v);
+        }
     }
 
     private void updateTable() {
         String sql = String.format(SQL_QUERY_RENTAL, tfISBN.getText().trim(), customerID);
-        DbHelper dbHelper = Application.getInstance().getDbHelper();
+        final Application app = Application.getInstance();
+        DbHelper dbHelper = app.getDbHelper();
         try {
             PagingResultSet dataSet = dbHelper.queryAndPaging(sql, Constants.MAX_ROW_COUNT,
                     ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
@@ -233,22 +288,32 @@ public class ReturnBookDialog extends JDialog {
                 // add action to table
                 final JTable table = pagingResultAdapter.getTable();
                 table.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+
+
+                // add details popup menu
+//                final JPopupMenu popupMenu = new JPopupMenu();
+//                JMenuItem menuItem = new JMenuItem(app.getString("Dialog.ReturnBook.Menu.Details"));
+//                menuItem.addActionListener(new ActionListener() {
+//                    @Override
+//                    public void actionPerformed(ActionEvent e) {
+//                        int row = table.getSelectedRow();
+//                        if (row < 0) {
+//                            return;
+//                        }
+//                        // TODO: add view rental information
+////                        String isbn = tableModel.getISBN(row);
+////                        BookDetailsDialog.viewBook(isbn);
+//                    }
+//                });
+//                popupMenu.add(menuItem);
+
                 table.addMouseListener(new MouseAdapter() {
                     @Override
                     public void mouseClicked(MouseEvent e) {
-                        int row = table.getSelectedRow();
-                        if (row == -1) {
+                        if (e.isMetaDown()) {
                             return;
                         }
-//                        isbn = tableModel.getISBN(row);
-//                        if (isbn != null) {
-//                            if (e.getClickCount() == 2) {
-//                                dispose();
-//                            }
-////                            } else {
-////                                buttonOk.setEnabled(true);
-////                            }
-//                        }
+                        updateRentalInfo();
                     }
                 });
                 tablePane.setTableAdapter(pagingResultAdapter);
@@ -288,11 +353,10 @@ public class ReturnBookDialog extends JDialog {
             String name = Worker.getInstance().getCustomerName(id);
             if (name == null) {     // invalid ID
                 tfCustomerName.setText("");
-                buttonOK.setEnabled(false);
             } else {
                 tfCustomerName.setText(name);
-                updateNumber();
             }
+            updateNumber();
         }
     }
 
@@ -305,7 +369,8 @@ public class ReturnBookDialog extends JDialog {
     }
 
     public static class RentalTableModel extends PagingResultTableModel {
-        private static class RentalEntry {
+        public static class RentalEntry {
+            private int no;
             private java.sql.Date date;
             private java.sql.Time time;
             private int number, period;
@@ -320,6 +385,14 @@ public class ReturnBookDialog extends JDialog {
                 setPrice(price);
                 setDeposit(deposit);
                 setRevenue(revenue);
+            }
+
+            public int getNo() {
+                return no;
+            }
+
+            public void setNo(int no) {
+                this.no = no;
             }
 
             public java.sql.Date getDate() {
@@ -385,6 +458,14 @@ public class ReturnBookDialog extends JDialog {
         public RentalTableModel() {
         }
 
+        public RentalEntry getRentalEntry(int rowIndex) {
+            if (dataSource == null) {
+                return null;
+            } else {
+                return rows.get(rowIndex);
+            }
+        }
+
         @Override
         public void pageUpdated(PagingResultSet dataSource) {
             this.dataSource = dataSource;
@@ -402,6 +483,7 @@ public class ReturnBookDialog extends JDialog {
                 for (int i = 0; i < dataSource.getCurrentRows(); ++i) {
                     RentalEntry entry = new RentalEntry(rs.getDate(1), rs.getTime(2), rs.getInt(3),
                             rs.getInt(4), rs.getBigDecimal(5), rs.getBigDecimal(6), rs.getBigDecimal(7));
+                    entry.setNo(rs.getInt(8));
                     rows.add(entry);
                     rs.next();
                 }
@@ -470,7 +552,7 @@ public class ReturnBookDialog extends JDialog {
                     case 3:
                         return entry.getPeriod();
                     case 4:
-                        return entry.getPeriod();
+                        return entry.getPrice();
                     case 5:
                         return entry.getDeposit();
                     case 6:

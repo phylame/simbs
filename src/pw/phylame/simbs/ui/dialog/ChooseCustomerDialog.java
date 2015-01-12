@@ -142,7 +142,7 @@ public class ChooseCustomerDialog extends JDialog {
 
         String sql = SQL_SELECT_CUSTOMER;
         if (! "".equals(cond.trim())) {
-            sql = sql + cond;
+            sql = sql + " AND " + cond;
         }
         final Application app = Application.getInstance();
         final ChooseCustomerDialog parent = this;
@@ -169,10 +169,7 @@ public class ChooseCustomerDialog extends JDialog {
                             return;
                         }
                         int id = tableModel.getCustomerID(row);
-                        CustomerDetailsDialog dialog = new CustomerDetailsDialog(parent,
-                                app.getString("Dialog.CustomerDetails.Title"));
-                        dialog.setCustomer(id);
-                        dialog.setVisible(true);
+                        CustomerDetailsDialog.viewCustomer(id);
                     }
                 });
                 popupMenu.add(menuItem);
@@ -225,12 +222,22 @@ public class ChooseCustomerDialog extends JDialog {
         tablePane.destroy();
     }
 
-    public void setCustomerID(int id) {
-
-    }
-
     public int getCustomerID() {
         return customerID;
+    }
+
+    public static int chooseCustomer(java.awt.Dialog owner) {
+        ChooseCustomerDialog dialog = new ChooseCustomerDialog(owner,
+                Application.getInstance().getString("Dialog.ChooseCustomer.Title"));
+        dialog.setVisible(true);
+        return dialog.getCustomerID();
+    }
+
+    public static int chooseCustomer(java.awt.Frame owner) {
+        ChooseCustomerDialog dialog = new ChooseCustomerDialog(owner,
+                Application.getInstance().getString("Dialog.ChooseCustomer.Title"));
+        dialog.setVisible(true);
+        return dialog.getCustomerID();
     }
 
     public static class CustomerTableModel extends PagingResultTableModel {

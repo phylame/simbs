@@ -95,27 +95,25 @@ public class Manager {
     }
 
     public void showStoreInfo() {
-        StoreDetailsDialog dialog = new StoreDetailsDialog(getFrame(),
-                app.getString("Dialog.Info.Title"));
-        dialog.setVisible(true);
+        StoreDetailsDialog.viewDetails(getFrame());
     }
 
     private void onViewDetails() {
         String isbn = getSelectedBook();
         if (isbn != null) {
-            BookDetailsDialog dialog = new BookDetailsDialog(getFrame(),
-                    app.getString("Dialog.BookDetails.Title"));
-            dialog.setBook(isbn);
-            dialog.setVisible(true);
+            BookDetailsDialog.viewBook(getFrame(), isbn);
             System.gc();
             return;
         }
         int id = getSelectedCustomer();
         if (id > 0) {
-            CustomerDetailsDialog dialog = new CustomerDetailsDialog(getFrame(),
-                    app.getString("Dialog.CustomerDetails.Title"));
-            dialog.setCustomer(id);
-            dialog.setVisible(true);
+            CustomerDetailsDialog.viewCustomer(getFrame(), id);
+            System.gc();
+            return;
+        }
+        int no = getSelectedBillRecord();
+        if (no > 0) {
+            BillDetailsDialog.viewBill(getFrame(), no);
             System.gc();
         }
     }
@@ -130,12 +128,8 @@ public class Manager {
         if (isbn == null) {
             return;
         }
-        ModifyBookDialog dialog = new ModifyBookDialog(getFrame(),
-                app.getString("Dialog.ModifyBook.Title"));
         Book book = worker.getBook(isbn);
-        dialog.setBook(book, false);
-        dialog.setVisible(true);
-        book = dialog.getBook();
+        book = ModifyBookDialog.modifyBook(getFrame(), book, false);
         if (book != null) {
             try {
                 worker.updateBook(book);
@@ -158,12 +152,8 @@ public class Manager {
         if (id <= 0) {
             return;
         }
-        ModifyCustomerDialog dialog = new ModifyCustomerDialog(getFrame(),
-                app.getString("Dialog.ModifyCustomer.Title"));
         Customer customer = worker.getCustomer(id);
-        dialog.setCustomer(customer);
-        dialog.setVisible(true);
-        customer = dialog.getCustomer();
+        customer = ModifyCustomerDialog.modifyCustomer(getFrame(), customer);
         if (customer != null) {
             try {
                 worker.updateCustomer(customer);
@@ -291,6 +281,19 @@ public class Manager {
         System.gc();
     }
 
+    /**
+     * Get selected book if the book table is shown.
+     * @return the ISBN of the book otherwise {@code null} if no table is shown
+     */
+    private String getSelectedBook() {
+        BookTablePane tablePane = getBookTablePane();
+        if (tablePane == null) {
+            return null;
+        } else {
+            return tablePane.getSelectedBook();
+        }
+    }
+
     private void updateBookPane() {
         BookTablePane tablePane = getBookTablePane();
         if (tablePane != null) {
@@ -321,6 +324,19 @@ public class Manager {
         ui.setContentArea(paneRender);
         ((CustomerTablePane) paneRender).focusTable();
         System.gc();
+    }
+
+    /**
+     * Get selected customer if the book table is shown.
+     * @return the ID of the book otherwise {@code -1} if no table is shown
+     */
+    private int getSelectedCustomer() {
+        CustomerTablePane tablePane = getCustomerTablePane();
+        if (tablePane == null) {
+            return -1;
+        } else {
+            return tablePane.getSelectedCustomer();
+        }
     }
 
     private void updateCustomerPane() {
@@ -358,6 +374,15 @@ public class Manager {
         return paneRender instanceof BillTablePane;
     }
 
+    private int getSelectedBillRecord() {
+        BillTablePane tablePane = getBillTablePane();
+        if (tablePane == null) {
+            return -1;
+        } else {
+            return tablePane.getSelectedRecord();
+        }
+    }
+
     private void viewBill() {
         if (isBillShown()) {
             return;
@@ -368,6 +393,7 @@ public class Manager {
         }
         paneRender = new BillTablePane();
         ui.setContentArea(paneRender);
+        ((BillTablePane) paneRender).focusTable();
         System.gc();
     }
 
@@ -375,32 +401,6 @@ public class Manager {
         BillTablePane tablePane = getBillTablePane();
         if (tablePane != null) {
             tablePane.reloadTable();
-        }
-    }
-
-    /**
-     * Get selected book if the book table is shown.
-     * @return the ISBN of the book otherwise {@code null} if no table is shown
-     */
-    private String getSelectedBook() {
-        BookTablePane tablePane = getBookTablePane();
-        if (tablePane == null) {
-            return null;
-        } else {
-            return tablePane.getSelectedBook();
-        }
-    }
-
-    /**
-     * Get selected customer if the book table is shown.
-     * @return the ID of the book otherwise {@code -1} if no table is shown
-     */
-    private int getSelectedCustomer() {
-        CustomerTablePane tablePane = getCustomerTablePane();
-        if (tablePane == null) {
-            return -1;
-        } else {
-            return tablePane.getSelectedCustomer();
         }
     }
 

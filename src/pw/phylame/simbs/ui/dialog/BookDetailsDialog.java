@@ -17,6 +17,7 @@
 package pw.phylame.simbs.ui.dialog;
 
 import pw.phylame.simbs.Application;
+import pw.phylame.simbs.ds.Book;
 import pw.phylame.simbs.ui.com.BookDetailsPane;
 
 import javax.swing.*;
@@ -29,6 +30,7 @@ public class BookDetailsDialog extends JDialog {
 
     public BookDetailsDialog() {
         super();
+        setTitle(Application.getInstance().getString("Dialog.BookDetails.Title"));
         init();
     }
 
@@ -89,5 +91,31 @@ public class BookDetailsDialog extends JDialog {
 
     public void setBook(pw.phylame.simbs.ds.Book book) {
         detailsPane.setBook(book);
+    }
+
+    public static void viewBook(java.awt.Dialog owner, String isbn) {
+        BookDetailsDialog dialog = new BookDetailsDialog(owner,
+                Application.getInstance().getString("Dialog.BookDetails.Title"));
+        dialog.setBook(isbn);
+        dialog.setVisible(true);
+    }
+
+    public static void viewBook(String isbn) {
+        BookDetailsDialog dialog = new BookDetailsDialog();
+        dialog.setBook(isbn);
+        dialog.setVisible(true);
+    }
+
+    public static void viewBook(java.awt.Frame owner, String isbn) {
+        BookDetailsDialog dialog = new BookDetailsDialog(owner,
+                Application.getInstance().getString("Dialog.BookDetails.Title"));
+        dialog.setBook(isbn);
+        dialog.setVisible(true);
+    }
+
+    public static void viewBook(Book book) {
+        BookDetailsDialog dialog = new BookDetailsDialog();
+        dialog.setBook(book);
+        dialog.setVisible(true);
     }
 }

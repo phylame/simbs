@@ -78,10 +78,7 @@ public class BookDetailsPane extends PaneRender {
         if ("".equals(path)) {
             return;
         }
-        ImageViewer viewer = new ImageViewer();
-        viewer.setTitle(tfName.getText().trim());
-        viewer.setImage(path);
-        viewer.setVisible(true);
+        ImageViewer.viewImage(tfName.getText().trim(), path);
         System.gc();
     }
 
