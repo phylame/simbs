@@ -206,9 +206,12 @@ public class TablePane extends PaneRender {
 
     public void reloadTable() {
         if (tableAdapter != null) {
+            JTable table = getTable();
+            int row = table.getSelectedRow();
             tableAdapter.refresh();
             updatePageStatus();
             tableUpdated();
+            table.setRowSelectionInterval(row, row);
         }
     }
 
