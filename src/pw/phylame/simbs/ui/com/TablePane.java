@@ -133,6 +133,11 @@ public class TablePane extends PaneRender {
                     btnNext.setEnabled(true);
                 }
             }
+            JTable table = getTable();
+            table.requestFocus();
+            if (getRowCount() > 0) {
+                table.setRowSelectionInterval(0, 0);
+            }
         }
         labelStatus.setText(String.format(
                 Application.getInstance().getString("Pane.TableViewer.LabelPageInfo"),

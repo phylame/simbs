@@ -7,46 +7,52 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2ebda3fe-8c21-4cf1-8658-10992e9c1086" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/pw/phylame/simbs/ui/dialog/BillDetailsDialog.form" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/pw/phylame/simbs/ui/dialog/BillDetailsDialog.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/pw/phylame/simbs/ui/com/RentalDetailsPane.form" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/pw/phylame/simbs/ui/com/RentalDetailsPane.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/pw/phylame/simbs/ui/com/SaleDetailsPane.form" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/pw/phylame/simbs/ui/com/SaleDetailsPane.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/pw/phylame/simbs/ui/com/StockDetailsPane.form" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/pw/phylame/simbs/ui/com/StockDetailsPane.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lib/postgresql.jar" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/PostgreSQL.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/pw/phylame/simbs/ui/com/PromotionDetailsPane.form" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/pw/phylame/simbs/ui/com/PromotionDetailsPane.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/pw/phylame/simbs/ui/com/ReturnDetailsPane.form" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/pw/phylame/simbs/ui/com/ReturnDetailsPane.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/TODO.txt" />
+      <change type="DELETED" beforePath="D:\code\simbs\lib\jgoodies-common.jar" afterPath="" />
+      <change type="DELETED" beforePath="D:\code\simbs\lib\jgoodies-looks.jar" afterPath="" />
+      <change type="DELETED" beforePath="D:\code\simbs\lib\quaqua.jar" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/data/bookdb.lck" afterPath="$PROJECT_DIR$/res/data/bookdb.lck" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/simbs.jar" afterPath="$PROJECT_DIR$/lib/simbs.jar" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/pw/phylame/simbs/Application.java" afterPath="$PROJECT_DIR$/src/pw/phylame/simbs/Application.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/pw/phylame/simbs/ui/dialog/BillDetailsDialog.java" afterPath="$PROJECT_DIR$/src/pw/phylame/simbs/ui/dialog/BillDetailsDialog.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/pw/phylame/simbs/ui/com/BillTablePane.java" afterPath="$PROJECT_DIR$/src/pw/phylame/simbs/ui/com/BillTablePane.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/pw/phylame/simbs/ui/dialog/BookDetailsDialog.java" afterPath="$PROJECT_DIR$/src/pw/phylame/simbs/ui/dialog/BookDetailsDialog.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/pw/phylame/simbs/ui/com/BookDetailsPane.java" afterPath="$PROJECT_DIR$/src/pw/phylame/simbs/ui/com/BookDetailsPane.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/pw/phylame/simbs/ui/com/BookTablePane.java" afterPath="$PROJECT_DIR$/src/pw/phylame/simbs/ui/com/BookTablePane.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/pw/phylame/simbs/ui/dialog/ChooseBookDialog.java" afterPath="$PROJECT_DIR$/src/pw/phylame/simbs/ui/dialog/ChooseBookDialog.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/pw/phylame/simbs/ui/dialog/ChooseCustomerDialog.java" afterPath="$PROJECT_DIR$/src/pw/phylame/simbs/ui/dialog/ChooseCustomerDialog.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/pw/phylame/simbs/ui/com/CustomerConditionPane.form" afterPath="$PROJECT_DIR$/src/pw/phylame/simbs/ui/com/CustomerConditionPane.form" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/pw/phylame/simbs/ui/com/CustomerConditionPane.java" afterPath="$PROJECT_DIR$/src/pw/phylame/simbs/ui/com/CustomerConditionPane.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/pw/phylame/simbs/ui/dialog/CustomerDetailsDialog.java" afterPath="$PROJECT_DIR$/src/pw/phylame/simbs/ui/dialog/CustomerDetailsDialog.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/pw/phylame/simbs/Constants.java" afterPath="$PROJECT_DIR$/src/pw/phylame/simbs/Constants.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/pw/phylame/simbs/ui/com/CustomerDetailsPane.form" afterPath="$PROJECT_DIR$/src/pw/phylame/simbs/ui/com/CustomerDetailsPane.form" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/pw/phylame/simbs/ui/com/CustomerDetailsPane.java" afterPath="$PROJECT_DIR$/src/pw/phylame/simbs/ui/com/CustomerDetailsPane.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/pw/phylame/simbs/ui/com/CustomerTablePane.java" afterPath="$PROJECT_DIR$/src/pw/phylame/simbs/ui/com/CustomerTablePane.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/pw/phylame/simbs/ui/dialog/ImageViewer.java" afterPath="$PROJECT_DIR$/src/pw/phylame/simbs/ui/dialog/ImageViewer.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/pw/phylame/simbs/ui/dialog/LoginDialog.java" afterPath="$PROJECT_DIR$/src/pw/phylame/simbs/ui/dialog/LoginDialog.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/pw/phylame/tools/sql/DbHelper.java" afterPath="$PROJECT_DIR$/src/pw/phylame/tools/sql/DbHelper.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/pw/phylame/ixin/frame/IFrame.java" afterPath="$PROJECT_DIR$/src/pw/phylame/ixin/frame/IFrame.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/assert/META-INF/MANIFEST.MF" afterPath="$PROJECT_DIR$/res/assert/META-INF/MANIFEST.MF" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/pw/phylame/simbs/ui/MainFrame.java" afterPath="$PROJECT_DIR$/src/pw/phylame/simbs/ui/MainFrame.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/pw/phylame/simbs/Manager.java" afterPath="$PROJECT_DIR$/src/pw/phylame/simbs/Manager.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/pw/phylame/simbs/ui/dialog/ModifyBookDialog.java" afterPath="$PROJECT_DIR$/src/pw/phylame/simbs/ui/dialog/ModifyBookDialog.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/pw/phylame/simbs/ui/dialog/ModifyCustomerDialog.java" afterPath="$PROJECT_DIR$/src/pw/phylame/simbs/ui/dialog/ModifyCustomerDialog.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/Note.txt" afterPath="$PROJECT_DIR$/res/Note.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/pw/phylame/simbs/ui/com/NavigatePane.form" afterPath="$PROJECT_DIR$/src/pw/phylame/simbs/ui/com/NavigatePane.form" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/pw/phylame/simbs/ui/com/PagingResultAdapter.java" afterPath="$PROJECT_DIR$/src/pw/phylame/simbs/ui/com/PagingResultAdapter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/pw/phylame/simbs/ui/dialog/RentBookDialog.java" afterPath="$PROJECT_DIR$/src/pw/phylame/simbs/ui/dialog/RentBookDialog.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/pw/phylame/tools/sql/PagingResultSet.java" afterPath="$PROJECT_DIR$/src/pw/phylame/tools/sql/PagingResultSet.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/pw/phylame/simbs/ui/com/RentalDetailsPane.java" afterPath="$PROJECT_DIR$/src/pw/phylame/simbs/ui/com/RentalDetailsPane.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/pw/phylame/simbs/ui/dialog/ReturnBookDialog.form" afterPath="$PROJECT_DIR$/src/pw/phylame/simbs/ui/dialog/ReturnBookDialog.form" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/pw/phylame/simbs/ui/dialog/ReturnBookDialog.java" afterPath="$PROJECT_DIR$/src/pw/phylame/simbs/ui/dialog/ReturnBookDialog.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/pw/phylame/simbs/ui/dialog/SellBookDialog.java" afterPath="$PROJECT_DIR$/src/pw/phylame/simbs/ui/dialog/SellBookDialog.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/pw/phylame/simbs/ui/dialog/StoreBookDialog.java" afterPath="$PROJECT_DIR$/src/pw/phylame/simbs/ui/dialog/StoreBookDialog.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/pw/phylame/simbs/ui/dialog/StoreDetailsDialog.java" afterPath="$PROJECT_DIR$/src/pw/phylame/simbs/ui/dialog/StoreDetailsDialog.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/pw/phylame/simbs/ui/com/SaleDetailsPane.java" afterPath="$PROJECT_DIR$/src/pw/phylame/simbs/ui/com/SaleDetailsPane.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/pw/phylame/simbs/ui/com/StockDetailsPane.java" afterPath="$PROJECT_DIR$/src/pw/phylame/simbs/ui/com/StockDetailsPane.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/pw/phylame/simbs/ui/com/TablePane.java" afterPath="$PROJECT_DIR$/src/pw/phylame/simbs/ui/com/TablePane.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/pw/phylame/simbs/ui/com/TablePaneAdapter.java" afterPath="$PROJECT_DIR$/src/pw/phylame/simbs/ui/com/TablePaneAdapter.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/pw/phylame/simbs/ui/com/ViewerTablePane.java" afterPath="$PROJECT_DIR$/src/pw/phylame/simbs/ui/com/ViewerTablePane.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/pw/phylame/simbs/Worker.java" afterPath="$PROJECT_DIR$/src/pw/phylame/simbs/Worker.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/data/bookdb.log" afterPath="$PROJECT_DIR$/res/data/bookdb.log" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/data/bookdb.properties" afterPath="$PROJECT_DIR$/res/data/bookdb.properties" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/data/bookdb.script" afterPath="$PROJECT_DIR$/res/data/bookdb.script" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/codeStyleSettings.xml" afterPath="$PROJECT_DIR$/.idea/codeStyleSettings.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/assert/create_table.sql" afterPath="$PROJECT_DIR$/res/assert/create_table.sql" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/assert/drop_table.sql" afterPath="$PROJECT_DIR$/res/assert/drop_table.sql" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/runServer.bat" afterPath="$PROJECT_DIR$/bin/runServer.bat" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/runServer.sh" afterPath="$PROJECT_DIR$/bin/runServer.sh" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/simbs.iml" afterPath="$PROJECT_DIR$/simbs.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/i18n/simbs.properties" afterPath="$PROJECT_DIR$/src/i18n/simbs.properties" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/i18n/simbs_zh_CN.properties" afterPath="$PROJECT_DIR$/src/i18n/simbs_zh_CN.properties" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
@@ -74,25 +80,7 @@
     <favorites_list name="simbs" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="simbs.properties" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/i18n/simbs.properties">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.8355932" vertical-offset="9377" max-vertical-offset="12726">
-              <caret line="470" column="25" selection-start-line="470" selection-start-column="25" selection-end-line="470" selection-end-column="25" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="simbs" pinned="false" current-in-tab="false">
-        <entry file="file://simbs">
-          <provider selected="true" editor-type-id="ResourceBundle">
-            <state />
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -103,57 +91,57 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/res/assert/drop_table.sql" />
-        <option value="$PROJECT_DIR$/src/pw/phylame/simbs/ui/dialog/ChooseCustomerDialog.form" />
-        <option value="$PROJECT_DIR$/src/pw/phylame/simbs/ui/dialog/ChooseBookDialog.form" />
-        <option value="$PROJECT_DIR$/src/pw/phylame/simbs/ds/Book.java" />
-        <option value="$PROJECT_DIR$/src/pw/phylame/simbs/ui/com/BookDetailsPane.form" />
-        <option value="$PROJECT_DIR$/src/pw/phylame/simbs/ui/dialog/StockBookDialog.form" />
-        <option value="$PROJECT_DIR$/src/pw/phylame/simbs/ui/dialog/StoreBookDialog.form" />
-        <option value="$PROJECT_DIR$/src/pw/phylame/simbs/ds/Customer.java" />
-        <option value="$PROJECT_DIR$/src/pw/phylame/simbs/ui/dialog/ModifyCustomerDialog.form" />
-        <option value="$PROJECT_DIR$/src/pw/phylame/simbs/ui/com/CustomerDetailsPane.java" />
-        <option value="$PROJECT_DIR$/src/pw/phylame/simbs/ui/com/CustomerDetailsPane.form" />
-        <option value="$PROJECT_DIR$/src/pw/phylame/simbs/ui/dialog/ViewPromoteDialog.java" />
-        <option value="$PROJECT_DIR$/res/assert/create_table.sql" />
-        <option value="$PROJECT_DIR$/src/pw/phylame/simbs/ui/com/ViewerTablePane.java" />
-        <option value="$PROJECT_DIR$/src/pw/phylame/simbs/Application.java" />
-        <option value="$PROJECT_DIR$/src/pw/phylame/simbs/Constants.java" />
-        <option value="$PROJECT_DIR$/src/pw/phylame/simbs/ui/dialog/LoginDialog.java" />
-        <option value="$PROJECT_DIR$/src/pw/phylame/simbs/ui/com/BookTablePane.java" />
-        <option value="$PROJECT_DIR$/src/pw/phylame/simbs/ui/com/TablePaneAdapter.java" />
-        <option value="$PROJECT_DIR$/src/pw/phylame/simbs/ui/com/TablePane.java" />
-        <option value="$PROJECT_DIR$/src/pw/phylame/simbs/ui/com/PagingResultAdapter.java" />
-        <option value="$PROJECT_DIR$/src/pw/phylame/simbs/ui/com/CustomerConditionPane.form" />
-        <option value="$PROJECT_DIR$/src/pw/phylame/simbs/ui/com/CustomerConditionPane.java" />
-        <option value="$PROJECT_DIR$/res/Note.txt" />
-        <option value="$PROJECT_DIR$/src/pw/phylame/simbs/ui/com/BillTablePane.java" />
-        <option value="$PROJECT_DIR$/src/pw/phylame/simbs/ui/dialog/BillDetailsDialog.form" />
         <option value="$PROJECT_DIR$/src/pw/phylame/simbs/ui/com/StockDetailsPane.form" />
         <option value="$PROJECT_DIR$/src/pw/phylame/simbs/ui/dialog/BookDetailsDialog.java" />
         <option value="$PROJECT_DIR$/src/pw/phylame/simbs/ui/dialog/CustomerDetailsDialog.java" />
         <option value="$PROJECT_DIR$/src/pw/phylame/simbs/ui/dialog/ModifyBookDialog.java" />
         <option value="$PROJECT_DIR$/src/pw/phylame/simbs/ui/dialog/ModifyCustomerDialog.java" />
         <option value="$PROJECT_DIR$/src/pw/phylame/simbs/ui/dialog/ImageViewer.java" />
-        <option value="$PROJECT_DIR$/src/pw/phylame/simbs/ui/com/BookDetailsPane.java" />
         <option value="$PROJECT_DIR$/src/pw/phylame/simbs/ui/dialog/StoreBookDialog.java" />
-        <option value="$PROJECT_DIR$/src/pw/phylame/simbs/ui/dialog/ChooseBookDialog.java" />
         <option value="$PROJECT_DIR$/src/pw/phylame/simbs/ui/dialog/ChooseCustomerDialog.java" />
         <option value="$PROJECT_DIR$/src/pw/phylame/simbs/ui/dialog/RentBookDialog.java" />
         <option value="$PROJECT_DIR$/src/pw/phylame/simbs/ui/dialog/SellBookDialog.java" />
+        <option value="$PROJECT_DIR$/src/pw/phylame/simbs/ui/com/SaleDetailsPane.form" />
+        <option value="$PROJECT_DIR$/src/pw/phylame/simbs/ui/com/RentalDetailsPane.form" />
+        <option value="$PROJECT_DIR$/src/pw/phylame/simbs/ui/dialog/ReturnBookDialog.form" />
+        <option value="$PROJECT_DIR$/src/pw/phylame/simbs/ui/com/TablePane.java" />
+        <option value="$PROJECT_DIR$/src/pw/phylame/simbs/ui/com/ReturnDetailsPane.form" />
+        <option value="$PROJECT_DIR$/src/pw/phylame/simbs/ui/dialog/ReturnBookDialog.java" />
+        <option value="$PROJECT_DIR$/src/pw/phylame/ixin/frame/IFrame.java" />
+        <option value="$PROJECT_DIR$/src/pw/phylame/simbs/ui/MainFrame.java" />
+        <option value="$PROJECT_DIR$/src/pw/phylame/simbs/ui/com/NavigatePane.form" />
+        <option value="$PROJECT_DIR$/src/pw/phylame/simbs/ui/com/BillTablePaneX.form" />
+        <option value="$PROJECT_DIR$/src/pw/phylame/simbs/ui/com/BillTablePaneX.java" />
+        <option value="$PROJECT_DIR$/src/pw/phylame/simbs/ui/com/CustomerDetailsPane.java" />
+        <option value="$PROJECT_DIR$/src/pw/phylame/simbs/ui/com/BookDetailsPane.java" />
+        <option value="$PROJECT_DIR$/src/pw/phylame/simbs/ui/com/ReturnDetailsPane.java" />
+        <option value="$PROJECT_DIR$/res/assert/create_table.sql" />
         <option value="$PROJECT_DIR$/src/pw/phylame/simbs/ui/dialog/StoreDetailsDialog.java" />
+        <option value="$PROJECT_DIR$/bin/runServer.sh" />
+        <option value="$PROJECT_DIR$/res/assert/drop_table.sql" />
+        <option value="$PROJECT_DIR$/src/pw/phylame/simbs/Application.java" />
+        <option value="$PROJECT_DIR$/bin/runServer.bat" />
+        <option value="$PROJECT_DIR$/src/pw/phylame/simbs/ui/dialog/ChooseBookDialog.java" />
+        <option value="$PROJECT_DIR$/src/pw/phylame/simbs/ui/com/BookTablePane.java" />
+        <option value="$PROJECT_DIR$/src/pw/phylame/tools/sql/DbHelper.java" />
+        <option value="$PROJECT_DIR$/src/pw/phylame/simbs/ui/com/CustomerDetailsPane.form" />
         <option value="$PROJECT_DIR$/src/pw/phylame/simbs/Manager.java" />
         <option value="$PROJECT_DIR$/src/pw/phylame/simbs/ui/com/CustomerTablePane.java" />
-        <option value="$PROJECT_DIR$/src/pw/phylame/simbs/ui/com/SaleDetailsPane.form" />
-        <option value="$PROJECT_DIR$/src/pw/phylame/simbs/ui/com/StockDetailsPane.java" />
-        <option value="$PROJECT_DIR$/src/pw/phylame/simbs/ui/com/SaleDetailsPane.java" />
-        <option value="$PROJECT_DIR$/src/pw/phylame/simbs/ui/com/RentalDetailsPane.java" />
-        <option value="$PROJECT_DIR$/src/pw/phylame/simbs/ui/com/RentalDetailsPane.form" />
-        <option value="$PROJECT_DIR$/src/pw/phylame/simbs/ui/dialog/BillDetailsDialog.java" />
-        <option value="$PROJECT_DIR$/src/pw/phylame/simbs/ui/dialog/ReturnBookDialog.form" />
         <option value="$PROJECT_DIR$/src/pw/phylame/simbs/Worker.java" />
+        <option value="$PROJECT_DIR$/src/pw/phylame/simbs/ui/dialog/BillDetailsDialog.java" />
+        <option value="$PROJECT_DIR$/src/pw/phylame/simbs/ui/com/PromotionDetailsPane.form" />
+        <option value="$PROJECT_DIR$/src/pw/phylame/simbs/ui/com/PromotionDetailsPane.java" />
         <option value="$PROJECT_DIR$/src/i18n/simbs.properties" />
-        <option value="$PROJECT_DIR$/src/pw/phylame/simbs/ui/dialog/ReturnBookDialog.java" />
+        <option value="$PROJECT_DIR$/src/pw/phylame/simbs/ui/com/RentalDetailsPane.java" />
+        <option value="$PROJECT_DIR$/src/pw/phylame/simbs/ui/com/SaleDetailsPane.java" />
+        <option value="$PROJECT_DIR$/src/pw/phylame/simbs/ui/com/StockDetailsPane.java" />
+        <option value="$PROJECT_DIR$/src/pw/phylame/tools/sql/PagingResultSet.java" />
+        <option value="$PROJECT_DIR$/src/pw/phylame/simbs/ui/com/PagingResultAdapter.java" />
+        <option value="$PROJECT_DIR$/src/pw/phylame/simbs/ui/com/ViewerTablePane.java" />
+        <option value="$PROJECT_DIR$/src/pw/phylame/simbs/ui/com/BillTablePane.java" />
+        <option value="$PROJECT_DIR$/TODO" />
+        <option value="$PROJECT_DIR$/TODO.txt" />
+        <option value="$PROJECT_DIR$/src/pw/phylame/simbs/Constants.java" />
       </list>
     </option>
   </component>
@@ -179,7 +167,7 @@
     <ConfirmationsSetting value="0" id="Remove" />
   </component>
   <component name="ProjectView">
-    <navigator currentView="PackagesPane" proportions="" version="1">
+    <navigator currentView="ProjectPane" proportions="" version="1">
       <flattenPackages />
       <showMembers />
       <showModules />
@@ -191,6 +179,16 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="simbs" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
       <pane id="PackagesPane">
         <subPane>
           <PATH>
@@ -279,7 +277,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="dialog" />
+              <option name="myItemId" value="com" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -305,71 +303,11 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="dialog" />
+              <option name="myItemId" value="com" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="SellBookDialog" />
-              <option name="myItemType" value="com.intellij.uiDesigner.projectView.FormNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="simbs" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="simbs" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pw.phylame" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="simbs" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ui" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="dialog" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ReturnBookDialog" />
-              <option name="myItemType" value="com.intellij.uiDesigner.projectView.FormNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="simbs" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="simbs" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pw.phylame" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="simbs" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ui" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="dialog" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ChooseBookDialog" />
+              <option name="myItemId" value="BookConditionPane" />
               <option name="myItemType" value="com.intellij.uiDesigner.projectView.FormNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -393,16 +331,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="ProjectPane">
-        <subPane>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="simbs" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
-      </pane>
       <pane id="Scope" />
     </panes>
   </component>
@@ -413,14 +341,14 @@
     <property name="MemberChooser.sorted" value="false" />
     <property name="MemberChooser.showClasses" value="true" />
     <property name="MemberChooser.copyJavadoc" value="false" />
-    <property name="project.structure.last.edited" value="Artifacts" />
+    <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="options.lastSelected" value="preferences.sourceCode" />
+    <property name="options.lastSelected" value="reference.settingsdialog.IDE.editor.colors" />
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="options.splitter.details.proportions" value="0.2" />
     <property name="FullScreen" value="false" />
-    <property name="last_opened_file_path" value="C:/Program Files (x86)/Git/bin/git.exe" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/lib/postgresql.jar!/" />
     <property name="recentsLimit" value="5" />
     <property name="dynamic.classpath" value="false" />
     <property name="restartRequiresConfirmation" value="true" />
@@ -449,13 +377,15 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\code\simbs\src\res" />
+      <recent name="D:\code\simbs\lib" />
       <recent name="$PROJECT_DIR$/lib" />
       <recent name="D:\code\simbs\src\res\img\menu" />
-      <recent name="D:\code\simbs\lib" />
       <recent name="D:\code\simbs\src\res\img\dialog" />
-      <recent name="D:\code\simbs\src\res\img" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\code\simbs\res\assert" />
+      <recent name="D:\code\simbs\src\res\sql" />
       <recent name="D:\code\simbs\src\res\img" />
       <recent name="$PROJECT_DIR$/src/res" />
       <recent name="D:\code\simbs\src\i18n" />
@@ -749,8 +679,8 @@
     </list>
     <recent_temporary>
       <list size="3">
-        <item index="0" class="java.lang.String" itemvalue="Batch.runAdmin" />
-        <item index="1" class="java.lang.String" itemvalue="Batch.runServer" />
+        <item index="0" class="java.lang.String" itemvalue="Batch.runServer" />
+        <item index="1" class="java.lang.String" itemvalue="Batch.runAdmin" />
         <item index="2" class="java.lang.String" itemvalue="Bash.runServer.sh" />
       </list>
     </recent_temporary>
@@ -818,23 +748,23 @@
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32960895" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4385475" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.31843576" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.31730768" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.1954612" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3198324" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24743778" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32876712" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39385474" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.1954612" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3926282" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4375" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.31891027" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -863,19 +793,13 @@
           <option name="timeStamp" value="21" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/pw/phylame/simbs/Worker.java</url>
-          <line>429</line>
+          <url>file://$PROJECT_DIR$/src/pw/phylame/simbs/Manager.java</url>
+          <line>446</line>
           <properties />
-          <option name="timeStamp" value="25" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/pw/phylame/simbs/Worker.java</url>
-          <line>1084</line>
-          <properties />
-          <option name="timeStamp" value="32" />
+          <option name="timeStamp" value="46" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="40" />
+      <option name="time" value="47" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -884,10 +808,137 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/pw/phylame/tools/sql/PagingResultSet.java">
+    <entry file="file://$PROJECT_DIR$/src/pw/phylame/simbs/ui/dialog/RentBookDialog.form">
+      <provider selected="true" editor-type-id="ui-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pw/phylame/simbs/ui/com/RentalDetailsPane.form">
+      <provider selected="true" editor-type-id="ui-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.7.0_15/src.zip!/java/awt/Rectangle.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.68582374" vertical-offset="1132" max-vertical-offset="3266">
-          <caret line="73" column="18" selection-start-line="73" selection-start-column="18" selection-end-line="73" selection-end-column="18" />
+        <state vertical-scroll-proportion="0.7864407" vertical-offset="3169" max-vertical-offset="3759">
+          <caret line="1216" column="0" selection-start-line="1216" selection-start-column="0" selection-end-line="1216" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.7.0_15/src.zip!/javax/swing/JComponent.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.33275563" vertical-offset="89961" max-vertical-offset="112686">
+          <caret line="4474" column="17" selection-start-line="4474" selection-start-column="17" selection-end-line="4474" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pw/phylame/simbs/ui/dialog/ReturnBookDialog.form">
+      <provider selected="true" editor-type-id="ui-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pw/phylame/simbs/ui/dialog/ReturnBookDialog.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6830509" vertical-offset="3482" max-vertical-offset="4515">
+          <caret line="324" column="45" selection-start-line="324" selection-start-column="45" selection-end-line="324" selection-end-column="45" />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="method#ReturnBookDialog#0;class#ReturnBookDialog#0" expanded="false" />
+            <element signature="method#ReturnBookDialog#1;class#ReturnBookDialog#0" expanded="false" />
+            <element signature="method#ReturnBookDialog#2;class#ReturnBookDialog#0" expanded="false" />
+            <element signature="method#init#0;class#ReturnBookDialog#0" expanded="false" />
+            <element signature="class#2910:3264" expanded="false" />
+            <element signature="method#onCancel#0;class#ReturnBookDialog#0" expanded="false" />
+            <element signature="method#setNumberInfo#0;class#ReturnBookDialog#0" expanded="false" />
+            <element signature="e#11048#11073#0" expanded="false" />
+            <element signature="method#updateISBN#0;class#ReturnBookDialog#0" expanded="false" />
+            <element signature="method#setBook#0;class#ReturnBookDialog#0" expanded="false" />
+            <element signature="method#setCustomer#0;class#ReturnBookDialog#0" expanded="false" />
+            <element signature="class#RentalTableModel#0;class#ReturnBookDialog#0" expanded="false" />
+            <element signature="class#RentalEntry#0;class#RentalTableModel#0;class#ReturnBookDialog#0" expanded="false" />
+            <element signature="method#RentalEntry#0;class#RentalEntry#0;class#RentalTableModel#0;class#ReturnBookDialog#0" expanded="false" />
+            <element signature="method#RentalTableModel#0;class#RentalTableModel#0;class#ReturnBookDialog#0" expanded="false" />
+            <element signature="method#getRentalEntry#0;class#RentalTableModel#0;class#ReturnBookDialog#0" expanded="false" />
+            <element signature="method#pageUpdated#0;class#RentalTableModel#0;class#ReturnBookDialog#0" expanded="false" />
+            <element signature="method#getColumnName#0;class#RentalTableModel#0;class#ReturnBookDialog#0" expanded="false" />
+            <element signature="method#getRowCount#0;class#RentalTableModel#0;class#ReturnBookDialog#0" expanded="false" />
+            <element signature="method#getValueAt#0;class#RentalTableModel#0;class#ReturnBookDialog#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bin/runServer.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.7608319" vertical-offset="136" max-vertical-offset="713">
+          <caret line="25" column="0" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.7.0_15/src.zip!/java/io/BufferedReader.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.8" vertical-offset="264" max-vertical-offset="1794">
+          <caret line="107" column="11" selection-start-line="107" selection-start-column="11" selection-end-line="107" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pw/phylame/simbs/ui/dialog/StoreDetailsDialog.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.32711864" vertical-offset="1578" max-vertical-offset="2645">
+          <caret line="106" column="41" selection-start-line="106" selection-start-column="41" selection-end-line="106" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/assert/drop_table.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.7661017" vertical-offset="169" max-vertical-offset="759">
+          <caret line="27" column="26" selection-start-line="27" selection-start-column="26" selection-end-line="27" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pw/phylame/simbs/Application.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.22033899" vertical-offset="560" max-vertical-offset="2369">
+          <caret line="119" column="0" selection-start-line="119" selection-start-column="0" selection-end-line="119" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/assert/create_table.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.84542584" vertical-offset="4217" max-vertical-offset="5796">
+          <caret line="195" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="246" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pw/phylame/simbs/ui/dialog/ChooseBookDialog.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.3118644" vertical-offset="0" max-vertical-offset="7567">
+          <caret line="39" column="50" selection-start-line="39" selection-start-column="50" selection-end-line="41" selection-end-column="47" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pw/phylame/simbs/ds/Book.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.3322034" vertical-offset="11" max-vertical-offset="2231">
+          <caret line="24" column="13" selection-start-line="24" selection-start-column="13" selection-end-line="24" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pw/phylame/simbs/ui/com/BookDetailsPane.form">
+      <provider selected="true" editor-type-id="ui-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pw/phylame/simbs/ui/com/BookDetailsPane.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.25932205" vertical-offset="675" max-vertical-offset="3588">
+          <caret line="69" column="8" selection-start-line="69" selection-start-column="8" selection-end-line="71" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pw/phylame/simbs/ui/com/CustomerDetailsPane.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.8593221" vertical-offset="283" max-vertical-offset="2415">
+          <caret line="80" column="22" selection-start-line="80" selection-start-column="22" selection-end-line="80" selection-end-column="22" />
         </state>
       </provider>
     </entry>
@@ -896,476 +947,59 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/pw/phylame/simbs/ui/dialog/StartPromotionDialog.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="115" max-vertical-offset="2783">
-          <caret line="23" column="28" selection-start-line="23" selection-start-column="28" selection-end-line="23" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/res/assert/create_table.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="2.0864406" vertical-offset="2196" max-vertical-offset="5152">
-          <caret line="149" column="0" selection-start-line="149" selection-start-column="0" selection-end-line="149" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/pw/phylame/simbs/ui/UIDesign.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6013865" vertical-offset="1263" max-vertical-offset="4485">
-          <caret line="88" column="12" selection-start-line="88" selection-start-column="12" selection-end-line="88" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/pw/phylame/ixin/IAction.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.34545454" vertical-offset="1105" max-vertical-offset="2415">
-          <caret line="71" column="0" selection-start-line="71" selection-start-column="0" selection-end-line="71" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.47833622" vertical-offset="1104" max-vertical-offset="2415">
+          <caret line="78" column="26" selection-start-line="78" selection-start-column="26" selection-end-line="78" selection-end-column="26" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/pw/phylame/ixin/frame/IFrame.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.34545454" vertical-offset="1243" max-vertical-offset="4439">
+        <state vertical-scroll-proportion="0.19930676" vertical-offset="1104" max-vertical-offset="4255">
           <caret line="94" column="0" selection-start-line="94" selection-start-column="0" selection-end-line="94" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/pw/phylame/simbs/ui/dialog/LoginDialog.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5048011" vertical-offset="1840" max-vertical-offset="2990">
-          <caret line="132" column="23" selection-start-line="132" selection-start-column="23" selection-end-line="132" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/pw/phylame/simbs/Application.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1970" max-vertical-offset="5704">
-          <caret line="131" column="0" selection-start-line="131" selection-start-column="0" selection-end-line="131" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/pw/phylame/simbs/ui/com/PagingResultAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6995885" vertical-offset="1100" max-vertical-offset="2599">
-          <caret line="96" column="31" selection-start-line="96" selection-start-column="31" selection-end-line="96" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/pw/phylame/simbs/ui/dialog/ChooseCustomerDialog.form">
-      <provider selected="true" editor-type-id="ui-designer">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/pw/phylame/simbs/ui/com/CustomerConditionPane.form">
-      <provider selected="true" editor-type-id="ui-designer">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/pw/phylame/simbs/ui/com/CustomerConditionPane.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.1262003" vertical-offset="7" max-vertical-offset="2576">
-          <caret line="58" column="51" selection-start-line="58" selection-start-column="51" selection-end-line="58" selection-end-column="51" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/pw/phylame/simbs/ui/com/BookConditionPane.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.6625514" vertical-offset="260" max-vertical-offset="2852">
-          <caret line="90" column="12" selection-start-line="90" selection-start-column="12" selection-end-line="98" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/res/Note.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="345">
-          <caret line="9" column="14" selection-start-line="9" selection-start-column="14" selection-end-line="9" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/pw/phylame/simbs/Constants.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1495" max-vertical-offset="2691">
-          <caret line="86" column="28" selection-start-line="86" selection-start-column="28" selection-end-line="86" selection-end-column="28" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/pw/phylame/simbs/ui/com/ViewerTablePane.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.7489712" vertical-offset="1574" max-vertical-offset="2576">
-          <caret line="39" column="11" selection-start-line="39" selection-start-column="11" selection-end-line="39" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/pw/phylame/simbs/ui/com/BillTablePane.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.4101509" vertical-offset="0" max-vertical-offset="729">
-          <caret line="38" column="27" selection-start-line="38" selection-start-column="27" selection-end-line="38" selection-end-column="27" />
-          <folding>
-            <element signature="docComment;class#BillTablePane#0" expanded="false" />
-            <element signature="method#getSelectedRecord#0;class#BillTablePane#0" expanded="false" />
-            <element signature="class#BillTableModel#0;class#BillTablePane#0" expanded="false" />
-            <element signature="class#Entry#0;class#BillTableModel#0;class#BillTablePane#0" expanded="false" />
-            <element signature="method#Entry#0;class#Entry#0;class#BillTableModel#0;class#BillTablePane#0" expanded="false" />
-            <element signature="method#getRecordNO#0;class#BillTableModel#0;class#BillTablePane#0" expanded="false" />
-            <element signature="docComment;method#updateCurrentPage#0;class#BillTableModel#0;class#BillTablePane#0" expanded="false" />
-            <element signature="method#updateCurrentPage#0;class#BillTableModel#0;class#BillTablePane#0" expanded="false" />
-            <element signature="method#pageUpdated#0;class#BillTableModel#0;class#BillTablePane#0" expanded="false" />
-            <element signature="method#getColumnName#0;class#BillTableModel#0;class#BillTablePane#0" expanded="false" />
-            <element signature="method#getRowCount#0;class#BillTableModel#0;class#BillTablePane#0" expanded="false" />
-            <element signature="method#getValueAt#0;class#BillTableModel#0;class#BillTablePane#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/pw/phylame/simbs/ui/dialog/BillDetailsDialog.form">
-      <provider selected="true" editor-type-id="ui-designer">
-        <state />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/pw/phylame/simbs/ui/MainFrame.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.46364883" vertical-offset="858" max-vertical-offset="1587">
-          <caret line="79" column="33" selection-start-line="79" selection-start-column="33" selection-end-line="79" selection-end-column="33" />
+        <state vertical-scroll-proportion="0.5216638" vertical-offset="1148" max-vertical-offset="1725">
+          <caret line="99" column="0" selection-start-line="99" selection-start-column="0" selection-end-line="99" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/pw/phylame/simbs/ui/com/CustomerDetailsPane.java">
+    <entry file="file://$PROJECT_DIR$/src/pw/phylame/tools/sql/DbHelper.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.1559322" vertical-offset="0" max-vertical-offset="2530">
-          <caret line="18" column="7" selection-start-line="18" selection-start-column="7" selection-end-line="18" selection-end-column="7" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
+        <state vertical-scroll-proportion="0.5661017" vertical-offset="310" max-vertical-offset="3795">
+          <caret line="42" column="45" selection-start-line="42" selection-start-column="45" selection-end-line="42" selection-end-column="45" />
         </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/pw/phylame/simbs/ui/com/StockDetailsPane.form">
-      <provider selected="true" editor-type-id="ui-designer">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/pw/phylame/simbs/ui/com/TablePane.form">
-      <provider selected="true" editor-type-id="ui-designer">
-        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/pw/phylame/simbs/ui/com/BookTablePane.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.720339" vertical-offset="564" max-vertical-offset="4531">
-          <caret line="43" column="0" selection-start-line="43" selection-start-column="0" selection-end-line="43" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#6059#0" expanded="false" />
-            <element signature="imports" expanded="false" />
-            <element signature="e#1216#1217#0" expanded="false" />
-            <element signature="e#1291#1292#0" expanded="false" />
-            <element signature="e#4108#4109#0" expanded="false" />
-            <element signature="e#4144#4145#0" expanded="false" />
-            <element signature="e#5118#5119#0" expanded="false" />
-            <element signature="e#5166#5167#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/pw/phylame/simbs/ui/dialog/BookDetailsDialog.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.11611785" vertical-offset="320" max-vertical-offset="897">
-          <caret line="30" column="31" selection-start-line="30" selection-start-column="31" selection-end-line="30" selection-end-column="31" />
-          <folding>
-            <element signature="method#BookDetailsDialog#0;class#BookDetailsDialog#0" expanded="false" />
-            <element signature="method#BookDetailsDialog#1;class#BookDetailsDialog#0" expanded="false" />
-            <element signature="method#BookDetailsDialog#2;class#BookDetailsDialog#0" expanded="false" />
-            <element signature="method#init#0;class#BookDetailsDialog#0" expanded="false" />
-            <element signature="method#onCancel#0;class#BookDetailsDialog#0" expanded="false" />
-            <element signature="method#viewBook#0;class#BookDetailsDialog#0" expanded="false" />
-            <element signature="method#viewBook#1;class#BookDetailsDialog#0" expanded="false" />
-            <element signature="method#viewBook#2;class#BookDetailsDialog#0" expanded="false" />
-            <element signature="method#viewBook#3;class#BookDetailsDialog#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/pw/phylame/simbs/ui/dialog/CustomerDetailsDialog.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.50606585" vertical-offset="7" max-vertical-offset="2162">
-          <caret line="32" column="84" selection-start-line="32" selection-start-column="84" selection-end-line="32" selection-end-column="84" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/pw/phylame/simbs/ui/dialog/ModifyBookDialog.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.0424403" vertical-offset="941" max-vertical-offset="1656">
-          <caret line="216" column="48" selection-start-line="216" selection-start-column="48" selection-end-line="216" selection-end-column="48" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#ModifyBookDialog#0;class#ModifyBookDialog#0" expanded="false" />
-            <element signature="method#ModifyBookDialog#1;class#ModifyBookDialog#0" expanded="false" />
-            <element signature="method#ModifyBookDialog#2;class#ModifyBookDialog#0" expanded="false" />
-            <element signature="method#init#0;class#ModifyBookDialog#0" expanded="false" />
-            <element signature="method#onChooseCover#0;class#ModifyBookDialog#0" expanded="false" />
-            <element signature="method#onOK#0;class#ModifyBookDialog#0" expanded="false" />
-            <element signature="method#onCancel#0;class#ModifyBookDialog#0" expanded="false" />
-            <element signature="method#setBook#0;class#ModifyBookDialog#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/pw/phylame/simbs/ui/dialog/ModifyCustomerDialog.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.45423728" vertical-offset="859" max-vertical-offset="1449">
-          <caret line="161" column="17" selection-start-line="161" selection-start-column="17" selection-end-line="161" selection-end-column="17" />
-          <folding>
-            <element signature="method#ModifyCustomerDialog#0;class#ModifyCustomerDialog#0" expanded="false" />
-            <element signature="method#ModifyCustomerDialog#1;class#ModifyCustomerDialog#0" expanded="false" />
-            <element signature="method#init#0;class#ModifyCustomerDialog#0" expanded="false" />
-            <element signature="method#onOK#0;class#ModifyCustomerDialog#0" expanded="false" />
-            <element signature="method#onCancel#0;class#ModifyCustomerDialog#0" expanded="false" />
-            <element signature="method#setCustomer#0;class#ModifyCustomerDialog#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/pw/phylame/simbs/ui/com/BookDetailsPane.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6101695" vertical-offset="1687" max-vertical-offset="4370">
-          <caret line="89" column="27" selection-start-line="89" selection-start-column="27" selection-end-line="89" selection-end-column="27" />
-          <folding>
-            <element signature="e#0#5475#0" expanded="false" />
-            <element signature="imports" expanded="false" />
-            <element signature="e#1851#2007#0" expanded="false" />
-            <element signature="e#2006#2007#0" expanded="false" />
-            <element signature="e#2049#2205#0" expanded="false" />
-            <element signature="e#2204#2205#0" expanded="false" />
-            <element signature="e#5440#5441#0" expanded="false" />
-            <element signature="e#5471#5472#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/pw/phylame/simbs/ui/dialog/StoreBookDialog.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7586207" vertical-offset="1462" max-vertical-offset="5083">
-          <caret line="125" column="14" selection-start-line="125" selection-start-column="14" selection-end-line="125" selection-end-column="14" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/pw/phylame/simbs/ui/dialog/ChooseCustomerDialog.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.331565" vertical-offset="772" max-vertical-offset="1380">
-          <caret line="229" column="8" selection-start-line="229" selection-start-column="8" selection-end-line="229" selection-end-column="8" />
-          <folding>
-            <element signature="method#ChooseCustomerDialog#0;class#ChooseCustomerDialog#0" expanded="false" />
-            <element signature="method#ChooseCustomerDialog#1;class#ChooseCustomerDialog#0" expanded="false" />
-            <element signature="method#ChooseCustomerDialog#2;class#ChooseCustomerDialog#0" expanded="false" />
-            <element signature="method#init#0;class#ChooseCustomerDialog#0" expanded="false" />
-            <element signature="e#2638#2697#0" expanded="false" />
-            <element signature="method#onNew#0;class#ChooseCustomerDialog#0" expanded="false" />
-            <element signature="method#onSearch#0;class#ChooseCustomerDialog#0" expanded="false" />
-            <element signature="class#5874:7201" expanded="false" />
-            <element signature="method#mouseClicked#0;class#5874:7201" expanded="false" />
-            <element signature="method#mouseReleased#0;class#5874:7201" expanded="false" />
-            <element signature="method#onCancel#0;class#ChooseCustomerDialog#0" expanded="false" />
-            <element signature="class#CustomerTableModel#0;class#ChooseCustomerDialog#0" expanded="false" />
-            <element signature="method#CustomerTableModel#0;class#CustomerTableModel#0;class#ChooseCustomerDialog#0" expanded="false" />
-            <element signature="method#getCustomerID#0;class#CustomerTableModel#0;class#ChooseCustomerDialog#0" expanded="false" />
-            <element signature="method#pageUpdated#0;class#CustomerTableModel#0;class#ChooseCustomerDialog#0" expanded="false" />
-            <element signature="method#getColumnName#0;class#CustomerTableModel#0;class#ChooseCustomerDialog#0" expanded="false" />
-            <element signature="method#getRowCount#0;class#CustomerTableModel#0;class#ChooseCustomerDialog#0" expanded="false" />
-            <element signature="method#getValueAt#0;class#CustomerTableModel#0;class#ChooseCustomerDialog#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/pw/phylame/simbs/ui/dialog/RentBookDialog.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.21186441" vertical-offset="1807" max-vertical-offset="6670">
-          <caret line="138" column="25" selection-start-line="138" selection-start-column="25" selection-end-line="138" selection-end-column="25" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/pw/phylame/simbs/ui/dialog/ImageViewer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.2983051" vertical-offset="445" max-vertical-offset="1150">
-          <caret line="94" column="29" selection-start-line="94" selection-start-column="29" selection-end-line="94" selection-end-column="29" />
-          <folding>
-            <element signature="method#ImageViewer#0;class#ImageViewer#0" expanded="false" />
-            <element signature="method#ImageViewer#1;class#ImageViewer#0" expanded="false" />
-            <element signature="method#ImageViewer#2;class#ImageViewer#0" expanded="false" />
-            <element signature="method#init#0;class#ImageViewer#0" expanded="false" />
-            <element signature="method#setPixel#0;class#ImageViewer#0" expanded="false" />
-            <element signature="method#resetImage#0;class#ImageViewer#0" expanded="false" />
-            <element signature="method#setImage#0;class#ImageViewer#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/pw/phylame/simbs/ui/dialog/StoreDetailsDialog.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7608319" vertical-offset="458" max-vertical-offset="1173">
-          <caret line="132" column="49" selection-start-line="132" selection-start-column="49" selection-end-line="132" selection-end-column="49" />
-          <folding>
-            <element signature="method#StoreDetailsDialog#0;class#StoreDetailsDialog#0" expanded="false" />
-            <element signature="method#StoreDetailsDialog#1;class#StoreDetailsDialog#0" expanded="false" />
-            <element signature="method#StoreDetailsDialog#2;class#StoreDetailsDialog#0" expanded="false" />
-            <element signature="method#init#0;class#StoreDetailsDialog#0" expanded="false" />
-            <element signature="method#onOK#0;class#StoreDetailsDialog#0" expanded="false" />
-            <element signature="method#onCancel#0;class#StoreDetailsDialog#0" expanded="false" />
-            <element signature="method#updateInfo#0;class#StoreDetailsDialog#0" expanded="false" />
-          </folding>
+        <state vertical-scroll-proportion="0.33275563" vertical-offset="199" max-vertical-offset="4738">
+          <caret line="40" column="11" selection-start-line="40" selection-start-column="11" selection-end-line="40" selection-end-column="11" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/pw/phylame/simbs/ui/com/CustomerTablePane.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.8769497" vertical-offset="2162" max-vertical-offset="3082">
-          <caret line="229" column="26" selection-start-line="229" selection-start-column="26" selection-end-line="229" selection-end-column="26" />
-          <folding>
-            <element signature="docComment;class#CustomerTablePane#0" expanded="false" />
-            <element signature="method#CustomerTablePane#0;class#CustomerTablePane#0" expanded="false" />
-            <element signature="method#getSelectedCustomer#0;class#CustomerTablePane#0" expanded="false" />
-            <element signature="method#getSelectedCustomers#0;class#CustomerTablePane#0" expanded="false" />
-            <element signature="docComment;method#updateCustomer#0;class#CustomerTablePane#0" expanded="false" />
-            <element signature="method#updateCustomer#0;class#CustomerTablePane#0" expanded="false" />
-            <element signature="class#Entry#0;class#CustomerTableModel#0;class#CustomerTablePane#0" expanded="false" />
-            <element signature="method#Entry#0;class#Entry#0;class#CustomerTableModel#0;class#CustomerTablePane#0" expanded="false" />
-            <element signature="method#setField#0;class#Entry#0;class#CustomerTableModel#0;class#CustomerTablePane#0" expanded="false" />
-            <element signature="method#setBorrowedNumber#0;class#Entry#0;class#CustomerTableModel#0;class#CustomerTablePane#0" expanded="false" />
-            <element signature="method#getID#0;class#CustomerTableModel#0;class#CustomerTablePane#0" expanded="false" />
-            <element signature="method#updateCustomer#0;class#CustomerTableModel#0;class#CustomerTablePane#0" expanded="false" />
-            <element signature="docComment;method#updateCurrentPage#0;class#CustomerTableModel#0;class#CustomerTablePane#0" expanded="false" />
-            <element signature="method#pageUpdated#0;class#CustomerTableModel#0;class#CustomerTablePane#0" expanded="false" />
-            <element signature="method#getRowCount#0;class#CustomerTableModel#0;class#CustomerTablePane#0" expanded="false" />
-          </folding>
+        <state vertical-scroll-proportion="0.66271186" vertical-offset="1035" max-vertical-offset="3358">
+          <caret line="159" column="9" selection-start-line="159" selection-start-column="9" selection-end-line="159" selection-end-column="9" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/pw/phylame/simbs/ui/com/SaleDetailsPane.form">
-      <provider selected="true" editor-type-id="ui-designer">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/pw/phylame/simbs/ui/com/StockDetailsPane.java">
+    <entry file="file://$PROJECT_DIR$/src/pw/phylame/simbs/ui/dialog/StartPromotionDialog.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5457627" vertical-offset="1043" max-vertical-offset="1785">
-          <caret line="92" column="23" selection-start-line="92" selection-start-column="23" selection-end-line="92" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/pw/phylame/simbs/ui/com/SaleDetailsPane.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.57288134" vertical-offset="1027" max-vertical-offset="1743">
-          <caret line="108" column="23" selection-start-line="108" selection-start-column="23" selection-end-line="108" selection-end-column="23" />
-          <folding>
-            <element signature="docComment;class#SaleDetailsPane#0" expanded="false" />
-            <element signature="method#reset#0;class#SaleDetailsPane#0" expanded="false" />
-            <element signature="method#destroy#0;class#SaleDetailsPane#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/pw/phylame/simbs/ui/com/RentalDetailsPane.form">
-      <provider selected="true" editor-type-id="ui-designer">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/pw/phylame/simbs/ui/com/RentalDetailsPane.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6173393" vertical-offset="1876" max-vertical-offset="2709">
-          <caret line="115" column="23" selection-start-line="115" selection-start-column="23" selection-end-line="115" selection-end-column="23" />
-          <folding>
-            <element signature="e#0#4329#0" expanded="true" />
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/pw/phylame/simbs/ds/Book.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.2771261" vertical-offset="0" max-vertical-offset="2079">
-          <caret line="24" column="13" selection-start-line="24" selection-start-column="13" selection-end-line="24" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/pw/phylame/simbs/ui/dialog/BillDetailsDialog.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.28005865" vertical-offset="775" max-vertical-offset="1554">
-          <caret line="114" column="50" selection-start-line="114" selection-start-column="50" selection-end-line="114" selection-end-column="50" />
-          <folding>
-            <element signature="method#BillDetailsDialog#0;class#BillDetailsDialog#0" expanded="false" />
-            <element signature="method#BillDetailsDialog#1;class#BillDetailsDialog#0" expanded="false" />
-            <element signature="method#BillDetailsDialog#2;class#BillDetailsDialog#0" expanded="false" />
-            <element signature="method#init#0;class#BillDetailsDialog#0" expanded="false" />
-            <element signature="method#onCancel#0;class#BillDetailsDialog#0" expanded="false" />
-            <element signature="method#setRecordNO#0;class#BillDetailsDialog#0" expanded="false" />
-            <element signature="method#viewBill#0;class#BillDetailsDialog#0" expanded="false" />
-            <element signature="method#viewBill#1;class#BillDetailsDialog#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/pw/phylame/simbs/ui/dialog/ChooseBookDialog.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.1994135" vertical-offset="746" max-vertical-offset="1617">
-          <caret line="242" column="70" selection-start-line="242" selection-start-column="70" selection-end-line="242" selection-end-column="70" />
-          <folding>
-            <element signature="method#ChooseBookDialog#0;class#ChooseBookDialog#0" expanded="false" />
-            <element signature="method#ChooseBookDialog#1;class#ChooseBookDialog#0" expanded="false" />
-            <element signature="method#ChooseBookDialog#2;class#ChooseBookDialog#0" expanded="false" />
-            <element signature="method#init#0;class#ChooseBookDialog#0" expanded="false" />
-            <element signature="e#2739#2798#0" expanded="false" />
-            <element signature="method#onCancel#0;class#ChooseBookDialog#0" expanded="false" />
-            <element signature="method#onNew#0;class#ChooseBookDialog#0" expanded="false" />
-            <element signature="method#onSearch#0;class#ChooseBookDialog#0" expanded="false" />
-            <element signature="class#6030:7345" expanded="false" />
-            <element signature="method#mouseClicked#0;class#6030:7345" expanded="false" />
-            <element signature="method#mouseReleased#0;class#6030:7345" expanded="false" />
-            <element signature="method#chooseBook#0;class#ChooseBookDialog#0" expanded="false" />
-            <element signature="method#chooseBook#1;class#ChooseBookDialog#0" expanded="false" />
-            <element signature="class#BookX#0;class#BookTableModel#0;class#ChooseBookDialog#0" expanded="false" />
-            <element signature="method#BookTableModel#0;class#BookTableModel#0;class#ChooseBookDialog#0" expanded="false" />
-            <element signature="method#getISBN#0;class#BookTableModel#0;class#ChooseBookDialog#0" expanded="false" />
-            <element signature="method#pageUpdated#0;class#BookTableModel#0;class#ChooseBookDialog#0" expanded="false" />
-            <element signature="method#getColumnName#0;class#BookTableModel#0;class#ChooseBookDialog#0" expanded="false" />
-            <element signature="method#getRowCount#0;class#BookTableModel#0;class#ChooseBookDialog#0" expanded="false" />
-            <element signature="method#getValueAt#0;class#BookTableModel#0;class#ChooseBookDialog#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/pw/phylame/simbs/ui/dialog/SellBookDialog.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.94020927" vertical-offset="1471" max-vertical-offset="4914">
-          <caret line="163" column="0" selection-start-line="163" selection-start-column="0" selection-end-line="163" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/pw/phylame/simbs/ui/com/TablePaneAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7228739" vertical-offset="599" max-vertical-offset="1281">
-          <caret line="70" column="25" selection-start-line="70" selection-start-column="25" selection-end-line="70" selection-end-column="25" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/pw/phylame/simbs/ui/com/TablePane.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.45601174" vertical-offset="2923" max-vertical-offset="4347">
-          <caret line="205" column="27" selection-start-line="205" selection-start-column="27" selection-end-line="205" selection-end-column="27" />
-          <folding />
+        <state vertical-scroll-proportion="0.5661017" vertical-offset="1621" max-vertical-offset="2622">
+          <caret line="120" column="38" selection-start-line="120" selection-start-column="38" selection-end-line="120" selection-end-column="38" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/pw/phylame/simbs/Worker.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.28699553" vertical-offset="6318" max-vertical-offset="7476">
-          <caret line="1112" column="30" selection-start-line="1112" selection-start-column="30" selection-end-line="1112" selection-end-column="30" />
+        <state vertical-scroll-proportion="0.7209705" vertical-offset="4897" max-vertical-offset="6785">
+          <caret line="893" column="60" selection-start-line="893" selection-start-column="60" selection-end-line="893" selection-end-column="60" />
           <folding>
             <element signature="docComment;class#Worker#0" expanded="false" />
             <element signature="docComment;method#toSQLDate#0;class#Worker#0" expanded="false" />
@@ -1384,8 +1018,6 @@
             <element signature="docComment;field#EVENT_SALE#0;class#Worker#0" expanded="false" />
             <element signature="docComment;field#EVENT_RENTAL#0;class#Worker#0" expanded="false" />
             <element signature="docComment;field#EVENT_RETURN#0;class#Worker#0" expanded="false" />
-            <element signature="e#4235#4258#0" expanded="false" />
-            <element signature="docComment;field#PROMOTION_SALE#0;class#Worker#0" expanded="false" />
             <element signature="docComment;field#PROMOTION_RENTAL#0;class#Worker#0" expanded="false" />
             <element signature="method#Worker#0;class#Worker#0" expanded="false" />
             <element signature="docComment;method#getInstance#0;class#Worker#0" expanded="false" />
@@ -1397,7 +1029,7 @@
             <element signature="method#selectDecimal#0;class#Worker#0" expanded="false" />
             <element signature="docComment;method#selectString#0;class#Worker#0" expanded="false" />
             <element signature="method#selectString#0;class#Worker#0" expanded="false" />
-            <element signature="e#6358#6380#0" expanded="false" />
+            <element signature="e#6563#6585#0" expanded="false" />
             <element signature="docComment;method#saveCoverImage#0;class#Worker#0" expanded="false" />
             <element signature="method#saveCoverImage#0;class#Worker#0" expanded="false" />
             <element signature="docComment;method#registerBook#0;class#Worker#0" expanded="false" />
@@ -1414,7 +1046,7 @@
             <element signature="method#getBooks#0;class#Worker#0" expanded="false" />
             <element signature="docComment;method#getBook#0;class#Worker#0" expanded="false" />
             <element signature="method#getBook#0;class#Worker#0" expanded="false" />
-            <element signature="e#10744#10773#0" expanded="false" />
+            <element signature="e#11029#11058#0" expanded="false" />
             <element signature="method#getSalePromotion#0;class#Worker#0" expanded="false" />
             <element signature="method#getRentalPromotion#0;class#Worker#0" expanded="false" />
             <element signature="docComment;method#getPurchasePrice#0;class#Worker#0" expanded="false" />
@@ -1427,7 +1059,7 @@
             <element signature="method#getRentalPrice#0;class#Worker#0" expanded="false" />
             <element signature="docComment;method#updatePurchasePrice#0;class#Worker#0" expanded="false" />
             <element signature="method#updatePurchasePrice#0;class#Worker#0" expanded="false" />
-            <element signature="e#13462#13489#0" expanded="false" />
+            <element signature="e#13767#13794#0" expanded="false" />
             <element signature="docComment;method#writeCustomer#0;class#Worker#0" expanded="false" />
             <element signature="method#writeCustomer#0;class#Worker#0" expanded="false" />
             <element signature="docComment;method#insertZeroCustomer#0;class#Worker#0" expanded="false" />
@@ -1436,6 +1068,7 @@
             <element signature="method#registerCustomer#0;class#Worker#0" expanded="false" />
             <element signature="docComment;method#updateCustomer#0;class#Worker#0" expanded="false" />
             <element signature="method#updateCustomer#0;class#Worker#0" expanded="false" />
+            <element signature="docComment;method#removeCustomer#0;class#Worker#0" expanded="false" />
             <element signature="method#removeCustomer#0;class#Worker#0" expanded="false" />
             <element signature="docComment;method#isCustomerRegistered#0;class#Worker#0" expanded="false" />
             <element signature="method#isCustomerRegistered#0;class#Worker#0" expanded="false" />
@@ -1445,7 +1078,7 @@
             <element signature="method#getCustomers#0;class#Worker#0" expanded="false" />
             <element signature="docComment;method#getCustomer#0;class#Worker#0" expanded="false" />
             <element signature="method#getCustomer#0;class#Worker#0" expanded="false" />
-            <element signature="e#18141#18173#0" expanded="false" />
+            <element signature="e#18528#18560#0" expanded="false" />
             <element signature="docComment;method#getAvailableCustomerId#0;class#Worker#0" expanded="false" />
             <element signature="method#getAvailableCustomerId#0;class#Worker#0" expanded="false" />
             <element signature="docComment;method#getCustomerName#0;class#Worker#0" expanded="false" />
@@ -1461,9 +1094,9 @@
             <element signature="method#getBoughtNumber#0;class#Worker#0" expanded="false" />
             <element signature="method#getBorrowedNumber#0;class#Worker#0" expanded="false" />
             <element signature="method#getOverdueNumber#0;class#Worker#0" expanded="false" />
-            <element signature="e#21867#21914#0" expanded="false" />
+            <element signature="e#22906#22953#0" expanded="false" />
             <element signature="method#getTotalSpending#0;class#Worker#0" expanded="false" />
-            <element signature="e#22773#22796#0" expanded="false" />
+            <element signature="e#23860#23883#0" expanded="false" />
             <element signature="docComment;method#getInventory#0;class#Worker#0" expanded="false" />
             <element signature="method#getInventory#0;class#Worker#0" expanded="false" />
             <element signature="docComment;method#modifyInventory#0;class#Worker#0" expanded="false" />
@@ -1480,9 +1113,7 @@
             <element signature="method#getRentalNumber#1;class#Worker#0" expanded="false" />
             <element signature="docComment;method#getRentalNumber#2;class#Worker#0" expanded="false" />
             <element signature="method#getRentalNumber#2;class#Worker#0" expanded="false" />
-            <element signature="e#26159#26168#0" expanded="false" />
             <element signature="docComment;method#addPromotion#0;class#Worker#0" expanded="false" />
-            <element signature="method#addPromotion#0;class#Worker#0" expanded="false" />
             <element signature="method#getSalePromotion#1;class#Worker#0" expanded="false" />
             <element signature="method#getRentalPromotion#1;class#Worker#0" expanded="false" />
             <element signature="docComment;method#fillBill#0;class#Worker#0" expanded="false" />
@@ -1492,6 +1123,11 @@
             <element signature="docComment;method#sellBook#0;class#Worker#0" expanded="false" />
             <element signature="method#sellBook#0;class#Worker#0" expanded="false" />
             <element signature="docComment;method#rentBook#0;class#Worker#0" expanded="false" />
+            <element signature="method#rentBook#0;class#Worker#0" expanded="false" />
+            <element signature="docComment;method#returnBook#0;class#Worker#0" expanded="false" />
+            <element signature="method#returnBook#0;class#Worker#0" expanded="false" />
+            <element signature="docComment;method#notifyReturn#0;class#Worker#0" expanded="false" />
+            <element signature="method#notifyReturn#0;class#Worker#0" expanded="false" />
             <element signature="docComment;method#getStockSpending#0;class#Worker#0" expanded="false" />
             <element signature="method#getStockSpending#0;class#Worker#0" expanded="false" />
             <element signature="docComment;method#getSaleRevenue#0;class#Worker#0" expanded="false" />
@@ -1507,10 +1143,109 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/pw/phylame/simbs/ui/dialog/BillDetailsDialog.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.4003466" vertical-offset="1655" max-vertical-offset="2875">
+          <caret line="115" column="22" selection-start-line="115" selection-start-column="22" selection-end-line="115" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pw/phylame/simbs/ui/dialog/StartPromotionDialog.form">
+      <provider selected="true" editor-type-id="ui-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pw/phylame/simbs/ui/com/PromotionDetailsPane.form">
+      <provider selected="true" editor-type-id="ui-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pw/phylame/simbs/ui/com/PromotionDetailsPane.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5322034" vertical-offset="1365" max-vertical-offset="2392">
+          <caret line="73" column="71" selection-start-line="73" selection-start-column="39" selection-end-line="73" selection-end-column="71" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pw/phylame/simbs/ui/com/ReturnDetailsPane.form">
+      <provider selected="true" editor-type-id="ui-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pw/phylame/simbs/ui/com/StockDetailsPane.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.32235703" vertical-offset="849" max-vertical-offset="1449">
+          <caret line="94" column="23" selection-start-line="94" selection-start-column="23" selection-end-line="94" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pw/phylame/simbs/ui/com/SaleDetailsPane.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.49740034" vertical-offset="1507" max-vertical-offset="2254">
+          <caret line="110" column="23" selection-start-line="110" selection-start-column="23" selection-end-line="110" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pw/phylame/simbs/ui/com/ReturnDetailsPane.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.21317157" vertical-offset="1648" max-vertical-offset="2461">
+          <caret line="109" column="60" selection-start-line="109" selection-start-column="60" selection-end-line="109" selection-end-column="60" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pw/phylame/simbs/ui/com/RentalDetailsPane.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.81109184" vertical-offset="1487" max-vertical-offset="2415">
+          <caret line="117" column="23" selection-start-line="117" selection-start-column="23" selection-end-line="117" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pw/phylame/simbs/ui/com/PagingResultTableModel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5457627" vertical-offset="0" max-vertical-offset="590">
+          <caret line="30" column="0" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pw/phylame/simbs/ui/com/TablePaneAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.35084745" vertical-offset="69" max-vertical-offset="1403">
+          <caret line="26" column="5" selection-start-line="26" selection-start-column="5" selection-end-line="26" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pw/phylame/tools/sql/PagingResultSet.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6117851" vertical-offset="843" max-vertical-offset="2484">
+          <caret line="73" column="0" selection-start-line="73" selection-start-column="0" selection-end-line="73" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pw/phylame/simbs/ui/com/PagingResultAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.29322034" vertical-offset="287" max-vertical-offset="1288">
+          <caret line="61" column="4" selection-start-line="61" selection-start-column="4" selection-end-line="61" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pw/phylame/simbs/ui/com/TablePane.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.3322034" vertical-offset="402" max-vertical-offset="1978">
+          <caret line="87" column="16" selection-start-line="87" selection-start-column="16" selection-end-line="87" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pw/phylame/simbs/ui/com/ViewerTablePane.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5271186" vertical-offset="218" max-vertical-offset="1357">
+          <caret line="58" column="21" selection-start-line="58" selection-start-column="21" selection-end-line="58" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/pw/phylame/simbs/Manager.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.44992527" vertical-offset="1841" max-vertical-offset="2562">
-          <caret line="503" column="0" selection-start-line="503" selection-start-column="0" selection-end-line="503" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.33968803" vertical-offset="1644" max-vertical-offset="4301">
+          <caret line="409" column="17" selection-start-line="409" selection-start-column="17" selection-end-line="409" selection-end-column="17" />
           <folding>
             <element signature="docComment;class#Manager#0" expanded="false" />
             <element signature="method#Manager#0;class#Manager#0" expanded="false" />
@@ -1547,64 +1282,83 @@
             <element signature="method#getSelectedBillRecord#0;class#Manager#0" expanded="false" />
             <element signature="method#viewBill#0;class#Manager#0" expanded="false" />
             <element signature="method#updateBillPane#0;class#Manager#0" expanded="false" />
-            <element signature="method#setPromote#0;class#Manager#0" expanded="false" />
             <element signature="method#storeBook#0;class#Manager#0" expanded="false" />
             <element signature="method#sellBook#0;class#Manager#0" expanded="false" />
             <element signature="method#rentBook#0;class#Manager#0" expanded="false" />
-            <element signature="method#onCommand#0;class#Manager#0" expanded="false" />
+            <element signature="method#returnBook#0;class#Manager#0" expanded="false" />
             <element signature="docComment;field#app#0;class#Manager#0" expanded="false" />
             <element signature="docComment;field#paneRender#0;class#Manager#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/pw/phylame/simbs/ui/dialog/ReturnBookDialog.java">
+    <entry file="file://$PROJECT_DIR$/src/i18n/simbs.properties">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6696562" vertical-offset="2093" max-vertical-offset="6153">
-          <caret line="191" column="58" selection-start-line="191" selection-start-column="58" selection-end-line="191" selection-end-column="58" />
-          <folding>
-            <element signature="method#ReturnBookDialog#0;class#ReturnBookDialog#0" expanded="false" />
-            <element signature="method#ReturnBookDialog#1;class#ReturnBookDialog#0" expanded="false" />
-            <element signature="class#2876:3230" expanded="false" />
-            <element signature="e#3269#3425#0" expanded="true" />
-            <element signature="e#3424#3425#0" expanded="true" />
-            <element signature="e#3874#4183#0" expanded="true" />
-            <element signature="e#4182#4183#0" expanded="true" />
-            <element signature="e#4223#4376#0" expanded="true" />
-            <element signature="e#4375#4376#0" expanded="true" />
-            <element signature="method#onCancel#0;class#ReturnBookDialog#0" expanded="false" />
-            <element signature="e#10584#10609#0" expanded="false" />
-            <element signature="e#11433#11736#0" expanded="true" />
-            <element signature="e#11735#11736#0" expanded="true" />
-            <element signature="e#12493#12494#0" expanded="true" />
-            <element signature="e#12539#12540#0" expanded="true" />
-            <element signature="e#12949#12950#0" expanded="true" />
-            <element signature="e#12982#12983#0" expanded="true" />
-            <element signature="e#13012#13013#0" expanded="true" />
-            <element signature="e#13060#13061#0" expanded="true" />
-            <element signature="class#RentalTableModel#0;class#ReturnBookDialog#0" expanded="false" />
-            <element signature="class#RentalEntry#0;class#RentalTableModel#0;class#ReturnBookDialog#0" expanded="false" />
-            <element signature="method#RentalEntry#0;class#RentalEntry#0;class#RentalTableModel#0;class#ReturnBookDialog#0" expanded="false" />
-            <element signature="e#13855#13856#0" expanded="true" />
-            <element signature="e#13896#13897#0" expanded="true" />
-            <element signature="e#13937#13938#0" expanded="true" />
-            <element signature="e#13981#13982#0" expanded="true" />
-            <element signature="method#RentalTableModel#0;class#RentalTableModel#0;class#ReturnBookDialog#0" expanded="false" />
-            <element signature="method#getColumnName#0;class#RentalTableModel#0;class#ReturnBookDialog#0" expanded="false" />
-            <element signature="method#getRowCount#0;class#RentalTableModel#0;class#ReturnBookDialog#0" expanded="false" />
-          </folding>
+        <state vertical-scroll-proportion="0.7435009" vertical-offset="13762" max-vertical-offset="14743">
+          <caret line="617" column="35" selection-start-line="617" selection-start-column="35" selection-end-line="617" selection-end-column="35" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/pw/phylame/simbs/ui/dialog/ReturnBookDialog.form">
+    <entry file="file://$PROJECT_DIR$/src/pw/phylame/simbs/ui/com/NavigatePane.form">
       <provider selected="true" editor-type-id="ui-designer">
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/i18n/simbs.properties">
+    <entry file="file://$PROJECT_DIR$/src/pw/phylame/simbs/ui/com/NavigatePane.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.8355932" vertical-offset="9377" max-vertical-offset="12726">
-          <caret line="470" column="25" selection-start-line="470" selection-start-column="25" selection-end-line="470" selection-end-column="25" />
+        <state vertical-scroll-proportion="0.03898305" vertical-offset="184" max-vertical-offset="1242">
+          <caret line="30" column="13" selection-start-line="30" selection-start-column="13" selection-end-line="30" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pw/phylame/simbs/ui/com/BookConditionPane.form">
+      <provider selected="true" editor-type-id="ui-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pw/phylame/simbs/ui/com/BookConditionPane.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.32542372" vertical-offset="15" max-vertical-offset="2852">
+          <caret line="33" column="13" selection-start-line="33" selection-start-column="13" selection-end-line="33" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pw/phylame/simbs/ui/com/BillTablePane.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="495" max-vertical-offset="1702">
+          <caret line="56" column="11" selection-start-line="56" selection-start-column="11" selection-end-line="56" selection-end-column="11" />
+          <folding>
+            <element signature="docComment;class#BillTablePane#0" expanded="false" />
+            <element signature="class#Entry#0;class#BillTableModel#0;class#BillTablePane#0" expanded="false" />
+            <element signature="method#Entry#0;class#Entry#0;class#BillTableModel#0;class#BillTablePane#0" expanded="false" />
+            <element signature="method#getRecordNO#0;class#BillTableModel#0;class#BillTablePane#0" expanded="false" />
+            <element signature="method#updateCurrentPage#0;class#BillTableModel#0;class#BillTablePane#0" expanded="false" />
+            <element signature="method#pageUpdated#0;class#BillTableModel#0;class#BillTablePane#0" expanded="false" />
+            <element signature="method#getColumnName#0;class#BillTableModel#0;class#BillTablePane#0" expanded="false" />
+            <element signature="method#getRowCount#0;class#BillTableModel#0;class#BillTablePane#0" expanded="false" />
+            <element signature="method#getValueAt#0;class#BillTableModel#0;class#BillTablePane#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/TODO.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.3118644" vertical-offset="0" max-vertical-offset="590">
+          <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bin/runServer.bat">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.3188908" vertical-offset="0" max-vertical-offset="577">
+          <caret line="8" column="91" selection-start-line="8" selection-start-column="91" selection-end-line="8" selection-end-column="91" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pw/phylame/simbs/Constants.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.47833622" vertical-offset="0" max-vertical-offset="2990">
+          <caret line="29" column="51" selection-start-line="29" selection-start-column="51" selection-end-line="29" selection-end-column="51" />
           <folding />
         </state>
       </provider>
@@ -1688,7 +1442,7 @@
       </state>
       <state key="ProjectLibrariesConfigurable.UI">
         <settings>
-          <last-edited>HyperSQL</last-edited>
+          <last-edited>PostgreSQL</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>

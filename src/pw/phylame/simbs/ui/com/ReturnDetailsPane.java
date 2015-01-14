@@ -31,25 +31,27 @@ import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 
 /**
- * Created by Peng Wan on 2015-1-12.
+ * Created by Peng Wan on 2015-1-13.
  */
-public class RentalDetailsPane extends PaneRender {
+public class ReturnDetailsPane extends PaneRender {
     private JPanel rootPane;
-    private JFormattedTextField tfNO;
-    private JTextField tfCustomerName;
-    private JButton btnViewCustomer;
+
+    private JTextField tfComment;
+    private JFormattedTextField tfRevenue;
+    private JFormattedTextField tfRefund;
+    private JFormattedTextField tfNumber;
+    private JTextField tfReturnTime;
     private JTextField tfISBN;
     private JButton btnViewBook;
-    private JTextField tfDateTime;
-    private JFormattedTextField tfNumber;
+    private JTextField tfCustomerName;
+    private JButton btnViewCustomer;
+    private JFormattedTextField tfNO;
+    private JTextField tfRentalTime;
     private JFormattedTextField tfPeriod;
-    private JFormattedTextField tfPrice;
-    private JFormattedTextField tfDeposit;
-    private JTextField tfComment;
 
     private int customerID = -1;
 
-    public RentalDetailsPane(int no) {
+    public ReturnDetailsPane(int no) {
         super();
         btnViewBook.addActionListener(new ActionListener() {
             @Override
@@ -77,11 +79,10 @@ public class RentalDetailsPane extends PaneRender {
         btnViewBook.setEnabled(false);
         tfCustomerName.setText("");
         btnViewCustomer.setEnabled(false);
-        tfDateTime.setText("");
+        tfReturnTime.setText("");
         tfNumber.setText("");
-        tfPeriod.setText("");
-        tfPrice.setText("");
-        tfDeposit.setText("");
+        tfRefund.setText("");
+        tfRevenue.setText("");
         tfComment.setText("");
     }
 
@@ -89,17 +90,17 @@ public class RentalDetailsPane extends PaneRender {
         if (no <= 0) {
             reset();
         }
-        String sql = "SELECT Bisbn, Cid, Rdate, Rtime, Rnumber, Rperiod, Rprice, Rdeposit, Rcomment" +
-                " FROM rental WHERE Rid=?";
+        String sql = "SELECT Edate, Etime, Bisbn, Cid, Enumber, Erefund, Erevenue, Ecomment, Rdate, Rtime, Rperiod " +
+                "FROM return, rental WHERE Eid=? AND return.Rid=rental.Rid";
         try {
             PreparedStatement ps = Application.getInstance().getDbHelper().prepareStatement(sql);
             ps.setInt(1, no);
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
                 tfNO.setValue(no);
-                tfISBN.setText(rs.getString(1));
+                tfISBN.setText(rs.getString(3));
                 btnViewBook.setEnabled(true);
-                customerID = rs.getInt(2);
+                customerID = rs.getInt(4);
                 if (customerID != 0) {
                     tfCustomerName.setText(Worker.getInstance().getCustomerName(customerID));
                     btnViewCustomer.setEnabled(true);
@@ -107,12 +108,13 @@ public class RentalDetailsPane extends PaneRender {
                     tfCustomerName.setText("");
                 }
                 SimpleDateFormat sdf = new SimpleDateFormat(Constants.DATE_TIME_FORMAT);
-                tfDateTime.setText(sdf.format(Worker.toNormalDate(rs.getDate(3), rs.getTime(4))));
+                tfReturnTime.setText(sdf.format(Worker.toNormalDate(rs.getDate(1), rs.getTime(2))));
                 tfNumber.setValue(rs.getInt(5));
-                tfPeriod.setValue(rs.getInt(6));
-                tfPrice.setValue(rs.getBigDecimal(7));
-                tfDeposit.setValue(rs.getBigDecimal(8));
-                tfComment.setText(Worker.normalizeString(rs.getString(9)));
+                tfRefund.setValue(rs.getBigDecimal(6));
+                tfRevenue.setValue(rs.getBigDecimal(7));
+                tfComment.setText(Worker.normalizeString(rs.getString(8)));
+                tfRentalTime.setText(sdf.format(Worker.toNormalDate(rs.getDate(9), rs.getTime(10))));
+                tfPeriod.setValue(rs.getInt(11));
             }
             rs.close();
             ps.close();

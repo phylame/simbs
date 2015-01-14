@@ -16,6 +16,7 @@
 
 package pw.phylame.simbs.ui.com;
 
+import pw.phylame.simbs.Constants;
 import pw.phylame.simbs.Worker;
 import pw.phylame.simbs.ds.Book;
 import pw.phylame.simbs.ui.dialog.ImageViewer;
@@ -128,7 +129,7 @@ public class BookDetailsPane extends PaneRender {
             btnViewCover.setEnabled(false);
             btnSaveCover.setEnabled(false);
         }
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat sdf = new SimpleDateFormat(Constants.DATE_FORMAT);
         tfDate.setText(sdf.format(book.getDate()));
         tfCategory.setText(book.getCategory());
         tfPublisher.setText(book.getPublisher());

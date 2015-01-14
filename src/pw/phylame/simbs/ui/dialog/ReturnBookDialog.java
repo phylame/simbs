@@ -55,6 +55,7 @@ public class ReturnBookDialog extends JDialog {
     private JFormattedTextField tfPrice;
     private TablePane tablePane;
     private JButton btnCommit;
+    private JTextField tfComment;
 
     private String oldISBN = null;
     private int customerID = -1;
@@ -185,11 +186,12 @@ public class ReturnBookDialog extends JDialog {
         BigDecimal deposit = (BigDecimal) tfDeposit.getValue();
         BigDecimal total = (BigDecimal) tfTotal.getValue();
         try {
-            Worker.getInstance().returnBook(entry.getNo(), number, deposit, total);
+            Worker.getInstance().returnBook(entry.getNo(), number, deposit, total, tfComment.getText().trim());
             updateTable();
             updateRentalInfo();
             DialogFactory.showInfo(getOwner(), app.getString("Dialog.Return.Successful"),
                     app.getString("Dialog.Return.Title"));
+            app.onCommand(Constants.UPDATE_BILL_TABLE);
         } catch (SQLException e) {
             e.printStackTrace();
             DialogFactory.showInfo(getOwner(), app.getString("Dialog.Return.Failed"),
@@ -205,6 +207,9 @@ public class ReturnBookDialog extends JDialog {
         tfDeposit.setEditable(false);
         tfPrice.setValue(new BigDecimal("0.0"));
         tfTotal.setValue(new BigDecimal("0.00"));
+        tfTotal.setEditable(false);
+        tfComment.setText("");
+        tfComment.setEditable(false);
         btnCommit.setEnabled(false);
 
         String isbn = tfISBN.getText().trim();
@@ -229,6 +234,9 @@ public class ReturnBookDialog extends JDialog {
         tfDeposit.setEditable(false);
         tfPrice.setValue(new BigDecimal("0.0"));
         tfTotal.setValue(new BigDecimal("0.00"));
+        tfTotal.setEditable(false);
+        tfComment.setText("");
+        tfComment.setEditable(false);
         btnCommit.setEnabled(false);
         int row = tablePane.getSelectedRow();
         if (row < 0) {  // no selection
@@ -239,7 +247,6 @@ public class ReturnBookDialog extends JDialog {
         if (entry != null) {
             int n = entry.getNumber();
             if (n <= 0) {   // when 0, all books returned
-                btnCommit.setEnabled(false);
                 return;
             }
             setNumberInfo(1, 1, n);
@@ -249,6 +256,8 @@ public class ReturnBookDialog extends JDialog {
             tfLentDays.setValue(days);
             tfPrice.setValue(entry.getPrice());
             calculateTotal();
+            tfTotal.setEditable(true);
+            tfComment.setEditable(true);
             btnCommit.setEnabled(true);
         }
     }
@@ -268,7 +277,11 @@ public class ReturnBookDialog extends JDialog {
             tfDeposit.setEditable(true);    // we can modify deposit, example the book is broken
             java.util.Date sDate = Worker.toNormalDate(entry.getDate(), entry.getTime());
             int days = pw.phylame.tools.DateUtility.calculateInterval(sDate, new java.util.Date(), "D");
-            BigDecimal v = entry.getPrice().multiply(new BigDecimal(days)).multiply(new BigDecimal(currentNumber));
+            BigDecimal price = entry.getPrice();
+            if (days > entry.getPeriod()) {     // overdue
+                price = price.multiply(Constants.OVERDUE_PERIOD_RATE);
+            }
+            BigDecimal v = price.multiply(new BigDecimal(days)).multiply(new BigDecimal(currentNumber));
             tfTotal.setValue(v);
         }
     }
@@ -278,8 +291,7 @@ public class ReturnBookDialog extends JDialog {
         final Application app = Application.getInstance();
         DbHelper dbHelper = app.getDbHelper();
         try {
-            PagingResultSet dataSet = dbHelper.queryAndPaging(sql, Constants.MAX_ROW_COUNT,
-                    ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+            PagingResultSet dataSet = dbHelper.queryAndPaging(sql, Constants.MAX_ROW_COUNT);
             PagingResultAdapter pagingResultAdapter = (PagingResultAdapter) tablePane.getTableAdapter();
             if (pagingResultAdapter == null) {     // first search
                 final RentalTableModel tableModel = new RentalTableModel();
@@ -343,10 +355,6 @@ public class ReturnBookDialog extends JDialog {
         tfISBN.setText(isbn.trim());
     }
 
-    public String getBook() {
-        return tfISBN.getText().trim();
-    }
-
     public void setCustomer(int id) {
         this.customerID = id;
         if (id > 0) {
@@ -358,14 +366,6 @@ public class ReturnBookDialog extends JDialog {
             }
             updateNumber();
         }
-    }
-
-    public int getCustomer() {
-        return customerID;
-    }
-
-    public int getNumber() {
-        return (int) jsNumber.getValue();
     }
 
     public static class RentalTableModel extends PagingResultTableModel {

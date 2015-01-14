@@ -26,6 +26,9 @@ import pw.phylame.simbs.ui.MainFrame;
 import static pw.phylame.simbs.Constants.*;
 
 import javax.swing.*;
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.math.BigDecimal;
 import java.sql.SQLException;
 
@@ -66,7 +69,7 @@ public class Manager {
         return ui;
     }
 
-    public void showAbout() {
+    private void showAbout() {
         StringBuilder sb = new StringBuilder();
         sb.append("<html>");
         sb.append(String.format("%s v%s by %s %s", app.getString("App.Name"), APP_VERSION,
@@ -409,6 +412,9 @@ public class Manager {
                 app.getString("Dialog.Promotion.Title"));
         dialog.setVisible(true);
         System.gc();
+        if (paneRender instanceof TablePane) {
+            ((TablePane) paneRender).reloadTable();
+        }
     }
 
     private void storeBook() {
@@ -425,9 +431,8 @@ public class Manager {
         }
         try {
             worker.storeBook(isbn, number, price, total, comm);
-            BillTablePane tablePane = getBillTablePane();
-            if (tablePane != null) {
-                tablePane.reloadTable();
+            if (paneRender instanceof TablePane) {
+                ((TablePane) paneRender).reloadTable();
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -453,9 +458,8 @@ public class Manager {
         }
         try {
             worker.sellBook(isbn, customerId, sales, price, comm);
-            BillTablePane tablePane = getBillTablePane();
-            if (tablePane != null) {
-                tablePane.reloadTable();
+            if (paneRender instanceof TablePane) {
+                ((TablePane) paneRender).reloadTable();
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -478,9 +482,8 @@ public class Manager {
         }
         try {
             worker.rentBook(isbn, customerId, number, period, price, deposit, comm);
-            BillTablePane tablePane = getBillTablePane();
-            if (tablePane != null) {
-                tablePane.reloadTable();
+            if (paneRender instanceof TablePane) {
+                ((TablePane) paneRender).reloadTable();
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -488,18 +491,14 @@ public class Manager {
     }
 
     private void returnBook() {
-        ReturnBookDialog dialog = new ReturnBookDialog(getFrame(),
-                app.getString("Dialog.Return.Title"));
+        ReturnBookDialog dialog = new ReturnBookDialog(getFrame(), app.getString("Dialog.Return.Title"));
         dialog.setBook(getSelectedBook());
         dialog.setCustomer(getSelectedCustomer());
         dialog.setVisible(true);
-        String isbn = dialog.getBook();
-        int customerId = dialog.getCustomer(), number = dialog.getNumber();
         System.gc();
-        if (isbn == null || customerId <= 0 || number <= 0) {
-            return;
+        if (paneRender instanceof TablePane) {
+            ((TablePane) paneRender).reloadTable();
         }
-
     }
 
     public void onCommand(Object cmdId) {

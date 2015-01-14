@@ -56,6 +56,10 @@ public class PagingResultAdapter extends TablePaneAdapter {
         }
     }
 
+    public PagingResultSet getDataSource() {
+        return prs;
+    }
+
     public void setDataSource(PagingResultSet prs) {
         this.prs = prs;
         paneTableModel.pageUpdated(prs);

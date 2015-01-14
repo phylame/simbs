@@ -34,8 +34,22 @@ import java.sql.SQLException;
  * Created by Peng Wan on 2015-1-11.
  */
 public class ViewerTablePane extends TablePane {
+    public static class Order {
+        public String name, order;
+
+        public Order(String name, String order) {
+            this.name = name;
+            this.order = order;
+        }
+    }
+
     private JPopupMenu popupMenu = null;
     private IAction deleteAction, modifyAction, viewAction;
+
+    private String sqlQuery;
+
+    /** The order of result */
+    private Order order = null;
 
     public ViewerTablePane(PagingResultTableModel tableModel, String sqlQuery, int maxRow) {
         DbHelper dbHelper = Application.getInstance().getDbHelper();
@@ -46,6 +60,22 @@ public class ViewerTablePane extends TablePane {
             init();
         } catch (SQLException exp) {
             exp.printStackTrace();
+        }
+        this.sqlQuery = sqlQuery;
+    }
+
+    public Order getOrder() {
+        return order;
+    }
+
+    public void setOrder(String name, String order) {
+        this.order = new Order(name, order);
+        String sql = String.format("%s %s %s", sqlQuery, name, order);
+        PagingResultAdapter adapter = (PagingResultAdapter) getTableAdapter();
+        try {
+            adapter.getDataSource().setStatement(sql);
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
 

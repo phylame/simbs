@@ -21,10 +21,12 @@ import pw.phylame.ixin.frame.IFrame;
 import pw.phylame.simbs.Application;
 import pw.phylame.simbs.Constants;
 import pw.phylame.simbs.Manager;
-import pw.phylame.simbs.ui.com.NavigatePane;
 import pw.phylame.simbs.ui.com.PaneRender;
 
 import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
@@ -48,7 +50,18 @@ public class MainFrame extends IFrame {
     }
 
     private void createComponent() {
+        JPanel statusBar = getStatusBar();
+        final JLabel labelTime = new JLabel();
+        final java.text.SimpleDateFormat format = new java.text.SimpleDateFormat(app.getString("Frame.LabelTime"));
+        labelTime.setText(format.format(new java.util.Date()));
+        statusBar.add(labelTime, BorderLayout.EAST);
 
+        new Timer(1000, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                labelTime.setText(format.format(new java.util.Date()));
+            }
+        }).start();
     }
 
     private void init() {
@@ -86,7 +99,7 @@ public class MainFrame extends IFrame {
         manager.onCommand(cmdId);
     }
 
+    private Application app = Application.getInstance();
     private Manager manager;
 
-    private Application app = Application.getInstance();
 }

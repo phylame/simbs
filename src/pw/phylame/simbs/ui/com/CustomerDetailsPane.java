@@ -16,6 +16,7 @@
 
 package pw.phylame.simbs.ui.com;
 
+import pw.phylame.simbs.Constants;
 import pw.phylame.simbs.Worker;
 import pw.phylame.simbs.ds.Customer;
 
@@ -79,7 +80,7 @@ public class CustomerDetailsPane extends PaneRender {
         tfName.setText(customer.getName());
         tfPhone.setText(customer.getPhone());
         tfEmail.setText(customer.getEmail());
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat sdf = new SimpleDateFormat(Constants.DATE_FORMAT);
         tfDate.setText(sdf.format(customer.getDate()));
         tfLevel.setValue(customer.getLevel());
         tfLimit.setValue(customer.getLimit());

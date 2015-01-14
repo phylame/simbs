@@ -39,7 +39,7 @@ public class ChooseBookDialog extends JDialog {
     public static final int BOOK_COLUMN_COUNT = 8;
     public static final String SQL_SELECT_BOOK = "SELECT book.Bisbn, Bname, Bauthors, Bdate," +
             " Bcategory, Bpublisher, Bprice, Inumber FROM book LEFT JOIN inventory" +
-            " ON inventory.bisbn = book.bisbn ";
+            " ON inventory.Bisbn = book.Bisbn ";
 
     private JPanel contentPane;
 //    private JButton buttonOk;

@@ -17,9 +17,13 @@
 package pw.phylame.simbs.ui.com;
 
 import pw.phylame.simbs.Application;
+import pw.phylame.simbs.Constants;
 import pw.phylame.simbs.Worker;
 import pw.phylame.tools.sql.PagingResultSet;
 
+import javax.swing.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.ArrayList;
@@ -38,6 +42,7 @@ public class BillTablePane extends ViewerTablePane {
 
     public BillTablePane() {
         super(new BillTableModel(), SQL_SELECT_BILL, MAX_ROW_COUNT);
+
         getDeleteAction().setEnabled(false);
         getModifyAction().setEnabled(false);
     }
@@ -47,8 +52,14 @@ public class BillTablePane extends ViewerTablePane {
         return tableModel.getRecordNO(getSelectedRow());
     }
 
+    @Override
+    public void headerClicked(int columnIndex) {
+        // TODO: add order
+    }
+
+
     private static class BillTableModel extends PagingResultTableModel {
-        private static class Entry {
+        public static class Entry {
             private int no;
             private Date date;
             private int event, eventId;
@@ -114,6 +125,14 @@ public class BillTablePane extends ViewerTablePane {
             } catch (IndexOutOfBoundsException exp) {
                 exp.printStackTrace();
                 return -1;
+            }
+        }
+
+        public Entry getEntry(int row) {
+            if (rows.size() == 0 || row < 0) {
+                return null;
+            } else {
+                return rows.get(row);
             }
         }
 
@@ -192,7 +211,7 @@ public class BillTablePane extends ViewerTablePane {
                     case 0:
                         return entry.getNo();
                     case 1:
-                        java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                        java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat(Constants.DATE_TIME_FORMAT);
                         return sdf.format(entry.getDate());
                     case 2:
                         switch (entry.getEvent()) {
@@ -204,6 +223,8 @@ public class BillTablePane extends ViewerTablePane {
                                 return app.getString("Pane.Bill.Event.Rental");
                             case Worker.EVENT_RETURN:
                                 return app.getString("Pane.Bill.Event.Return");
+                            case Worker.EVENT_PROMOTION:
+                                return app.getString("Pane.Bill.Event.Promotion");
                             default:
                                 return app.getString("Pane.Bill.Event.Unknown");
                         }

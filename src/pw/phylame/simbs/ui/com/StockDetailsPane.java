@@ -17,6 +17,7 @@
 package pw.phylame.simbs.ui.com;
 
 import pw.phylame.simbs.Application;
+import pw.phylame.simbs.Constants;
 import pw.phylame.simbs.Worker;
 import pw.phylame.simbs.ui.dialog.BookDetailsDialog;
 
@@ -81,7 +82,7 @@ public class StockDetailsPane extends PaneRender {
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
                 tfID.setValue(no);
-                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-mm-DD HH:MM:SS");
+                SimpleDateFormat sdf = new SimpleDateFormat(Constants.DATE_TIME_FORMAT);
                 tfDateTime.setText(sdf.format(Worker.toNormalDate(rs.getDate(2), rs.getTime(3))));
                 tfISBN.setText(rs.getString(1));
                 btnViewBook.setEnabled(true);
@@ -91,6 +92,7 @@ public class StockDetailsPane extends PaneRender {
                 tfComment.setText(Worker.normalizeString(rs.getString(7)));
             }
             rs.close();
+            ps.close();
         } catch (SQLException exp) {
             exp.printStackTrace();
         }

@@ -61,6 +61,17 @@ public class PagingResultSet {
         rs.close();
     }
 
+    /** Get the SQL statement */
+    public String getStatement() {
+        return sql;
+    }
+
+    /** Set the SQL statement */
+    public void setStatement(String sql) throws SQLException {
+        this.sql = sql;
+        refresh();
+    }
+
     /** Re-query from database */
     public void refresh() throws SQLException {
         if (rs != null) {

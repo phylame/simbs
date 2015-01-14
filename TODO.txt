@@ -1,0 +1,8 @@
+1. Add promotion editor.
+2. Order chooser on BookTable, CustomerTable, BillTable and etc.
+3. Top books of sale and rental.
+4. Show new come books.
+5. Show overdue books
+6. Send notification to the customer whose borrowed books is overdue.
+7. Add common logging.
+8. Pack to single binary executable.

@@ -18,10 +18,7 @@ package pw.phylame.simbs.ui.dialog;
 
 import pw.phylame.simbs.Application;
 import pw.phylame.simbs.Worker;
-import pw.phylame.simbs.ui.com.PaneRender;
-import pw.phylame.simbs.ui.com.RentalDetailsPane;
-import pw.phylame.simbs.ui.com.SaleDetailsPane;
-import pw.phylame.simbs.ui.com.StockDetailsPane;
+import pw.phylame.simbs.ui.com.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -112,7 +109,10 @@ public class BillDetailsDialog extends JDialog {
                 paneRender = new RentalDetailsPane(id);
                 break;
             case Worker.EVENT_RETURN:
-                // TODO: Add rental details viewer
+                paneRender = new ReturnDetailsPane(id);
+                break;
+            case Worker.EVENT_PROMOTION:
+                paneRender = new PromotionDetailsPane(id);
                 break;
             default:
                 break;

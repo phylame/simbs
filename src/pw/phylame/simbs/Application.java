@@ -22,10 +22,9 @@ import pw.phylame.ixin.IToolkit;
 import pw.phylame.ixin.frame.IFrame;
 import pw.phylame.simbs.ui.dialog.LoginDialog;
 import pw.phylame.simbs.ui.dialog.DialogFactory;
+
+import java.io.*;
 import java.sql.SQLException;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
 import java.util.Map;
 import java.util.Locale;
 import java.util.Properties;
@@ -227,9 +226,8 @@ public class Application {
         dialog.setIconImage(IToolkit.createImage(getString("App.Icon")));
         dialog.setTitle(getString("Dialog.Login.Title"));
         dialog.setVisible(true);
-
         Profile profile = dialog.getProfile();
-
+        System.gc();
         return checkLogin(profile);
     }
 
@@ -239,7 +237,6 @@ public class Application {
             @Override
             public void run() {
                 if (login()) {
-                    System.gc();
                     getManager().start();
                 } else {
                     System.exit(1);

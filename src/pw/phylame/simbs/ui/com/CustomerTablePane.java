@@ -21,6 +21,7 @@ import pw.phylame.ixin.IToolkit;
 import pw.phylame.ixin.frame.IFrame;
 import pw.phylame.simbs.Application;
 import pw.phylame.simbs.Constants;
+import pw.phylame.simbs.Worker;
 import pw.phylame.simbs.ds.Book;
 import pw.phylame.simbs.ds.Customer;
 import pw.phylame.tools.sql.DbHelper;
@@ -39,12 +40,11 @@ import java.util.Date;
  */
 public class CustomerTablePane extends ViewerTablePane {
     public static final int CUSTOMER_COLUMN_COUNT = 7;
-    public static final String SQL_SELECT_CUSTOMER = "SELECT Cid, Cname, Cphone, Cemail, Cdate," +
-            " Clevel, Climit, SUM(S.Snumber), SUM(R.Rnumber)" +
-            " FROM customer AS C " +
-            "LEFT JOIN rental AS R ON R.Cid=C.Cid " +
+    public static final String SQL_SELECT_CUSTOMER = "SELECT C.Cid, Cname, Cphone, Cemail, Cdate, " +
+            "Clevel, Climit, SUM(S.Snumber) " +
+            "FROM customer AS C " +
             "LEFT JOIN sale AS S ON S.Cid=C.Cid " +
-            "WHERE Cid<>0 " +
+            "WHERE C.Cid<>0 " +
             "GROUP BY C.Cid ";
 
     public static final int MAX_ROW_COUNT = 20;
@@ -149,7 +149,7 @@ public class CustomerTablePane extends ViewerTablePane {
                     Entry entry = new Entry(rs.getInt(1), rs.getString(2), rs.getString(3),
                             rs.getString(4), rs.getDate(5), rs.getInt(6), rs.getInt(7), null);
                     entry.setBoughtNumber(rs.getInt(8));
-                    entry.setBorrowedNumber(rs.getInt(9));
+                    entry.setBorrowedNumber(Worker.getInstance().getBorrowedNumber(entry.getId()));
                     rows.add(entry);
                     rs.next();
                 }

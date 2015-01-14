@@ -6,4 +6,4 @@ REM Use database bookdb
 REM Get the home directory of SIMBS
 set SIMBS_HOME=%~dp0..
 
-java -cp "%SIMBS_HOME%\lib\hsqldb.jar" org.hsqldb.Server -database.0 "%SIMBS_HOME%\res\data\bookdb;user=book_admin;password=123456" -dbname.0 bookdb
+java -cp "%SIMBS_HOME%\lib\hsqldb.jar" org.hsqldb.Server -database.0 "%SIMBS_HOME%\res\data\bookdb;user=simbs;password=123456" -dbname.0 bookdb

@@ -40,6 +40,7 @@ public class DbHelper {
         } catch (ClassNotFoundException e) {
             throw new SQLException("Not found JDBC drive: "+profile.getDriver());
         }
+        System.out.println(profile.getURL());
         conn = DriverManager.getConnection(profile.getURL(), profile.getUserName(), profile.getPassword());
     }
 

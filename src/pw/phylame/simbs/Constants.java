@@ -27,7 +27,7 @@ import java.util.ResourceBundle;
 public final class Constants {
 
     /** Application version */
-    public static final String APP_VERSION = "1.0";
+    public static final String APP_VERSION = "1.3.2";
 
     /** Name of {@code ResourceBundle} file */
     public static final String I18N_PATH = "i18n/simbs";
@@ -74,6 +74,12 @@ public final class Constants {
     /** User home of SIMBS */
     public static final String SIMBS_HOME = String.format("%s/.simbs", System.getProperty("user.home"));
 
+    // ************************
+    // ** Date and time format
+    // ************************
+    public static final String DATE_FORMAT = "yyyy-M-d";
+    public static final String TIME_FORMAT = "H:m:s";
+    public static final String DATE_TIME_FORMAT = DATE_FORMAT+" "+TIME_FORMAT;
 
     /** Max rows in result table */
     public static final int MAX_ROW_COUNT = 8;
@@ -81,16 +87,23 @@ public final class Constants {
     /** Days limit for customer borrow book */
     public static final int MAX_LENT_DAYS = 100;
 
+    /** Number of increased days when increasing level */
     public static final int DAYS_OF_LEVEL = 20;
 
     /** Number of book for customer can borrow each time */
     public static final int DEFAULT_LENT_LIMIT = 10;
 
+    /** Default rental price of book */
     public static final BigDecimal DEFAULT_RENTAL_PRICE = new BigDecimal("0.2");
 
-    public static final float PRICE_OF_INCREASE_LIMIT = 50.0F;
+    /** For overdue period of price when returning books */
+    public static final BigDecimal OVERDUE_PERIOD_RATE = new BigDecimal(2);
 
-    public static final float PRICE_OF_INCREASE_LEVEL = 150.0F;
+    /** The money for upgrade limits */
+    public static final BigDecimal PRICE_OF_INCREASE_LIMIT = new BigDecimal(100);
+
+    /** The money for upgrade level */
+    public static final BigDecimal PRICE_OF_INCREASE_LEVEL = new BigDecimal(150);
 
 
     // ***********************

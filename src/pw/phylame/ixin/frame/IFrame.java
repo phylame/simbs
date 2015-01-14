@@ -84,7 +84,7 @@ public abstract class IFrame extends JFrame implements IToolTipListener {
         topPane.add(contentArea, BorderLayout.CENTER);
 
         createStatusBar();
-        topPane.add(statusLabel, BorderLayout.SOUTH);
+        topPane.add(statusBar, BorderLayout.SOUTH);
     }
 
     private void createMenuActions() {
@@ -185,7 +185,7 @@ public abstract class IFrame extends JFrame implements IToolTipListener {
     private void createStatusBar() {
         statusLabel = new JLabel();
         statusBar = new JPanel(new BorderLayout());
-        statusBar.add(statusLabel, BorderLayout.CENTER);
+        statusBar.add(statusLabel, BorderLayout.WEST);
     }
 
     @Override

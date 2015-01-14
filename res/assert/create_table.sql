@@ -67,17 +67,17 @@ CREATE TABLE customer
 	Climit SMALLINT DEFAULT 10 NOT NULL CHECK (Climit >= 0),
 
 	/* The comments */
-	Ccomment VARCHAR(512),
+	Ccomment VARCHAR(512)
 );
 
 /* Inventory listing, field name starts with "I" */
 CREATE TABLE inventory
 (
 	/* ISBN of book */
-	Bisbn CHAR(17) PRIMARY KEY FOREIGN KEY REFERENCES book(Bisbn),
+	Bisbn CHAR(17) PRIMARY KEY REFERENCES book(Bisbn),
 
 	/* Inventory number */
-	Inumber INT NOT NULL CHECK (Inumber >= 0),
+	Inumber INT NOT NULL CHECK (Inumber >= 0)
 );
 
 /* Stock listing, field name starts with "T" */
@@ -87,7 +87,7 @@ CREATE TABLE stock
 	Tid INT PRIMARY KEY CHECK (Tid > 0),
 
 	/* ISBN of book */
-	Bisbn CHAR(17) NOT NULL FOREIGN KEY REFERENCES book(Bisbn),
+	Bisbn CHAR(17) NOT NULL REFERENCES book(Bisbn),
 
 	/* The date */
 	Tdate DATE NOT NULL,
@@ -102,10 +102,10 @@ CREATE TABLE stock
 	Tpurchase DECIMAL(10, 2) NOT NULL CHECK (Tpurchase >= 0),
 
 	/* Total price of those books */
-    Ttotal DECIMAL(10, 2) NOT NULL CHECK (Ttotal >= 0),
+	Ttotal DECIMAL(10, 2) NOT NULL CHECK (Ttotal >= 0),
 
-    /* The comments */
-	Tcomment VARCHAR(512),
+	/* The comments */
+	Tcomment VARCHAR(512)
 );
 
 /* Sale listing, field name starts with "S" */
@@ -115,10 +115,10 @@ CREATE TABLE sale
 	Sid INT PRIMARY KEY CHECK (Sid > 0),
 
 	/* ISBN of the book */
-	Bisbn CHAR(17) NOT NULL FOREIGN KEY REFERENCES book(Bisbn),
+	Bisbn CHAR(17) NOT NULL REFERENCES book(Bisbn),
 
 	/* ID of the customer */
-	Cid INT NOT NULL FOREIGN KEY REFERENCES customer(Cid),
+	Cid INT NOT NULL REFERENCES customer(Cid),
 
 	/* The date */
 	Sdate DATE NOT NULL,
@@ -133,7 +133,7 @@ CREATE TABLE sale
 	Stotal DECIMAL(10, 2) NOT NULL CHECK (Stotal >= 0),
 
 	/* The comments */
-	Scomment VARCHAR(128),
+	Scomment VARCHAR(128)
 );
 
 /* Rental list, field name starts with "R" */
@@ -143,10 +143,10 @@ CREATE TABLE rental
 	Rid INT PRIMARY KEY CHECK (Rid > 0),
 
 	/* ISBN of the book */
-	Bisbn CHAR(17) NOT NULL FOREIGN KEY REFERENCES book(Bisbn),
+	Bisbn CHAR(17) NOT NULL REFERENCES book(Bisbn),
 
 	/* ID of the customer */
-	Cid INT NOT NULL FOREIGN KEY REFERENCES customer(Cid),
+	Cid INT NOT NULL REFERENCES customer(Cid),
 
 	/* The date */
 	Rdate DATE NOT NULL,
@@ -170,7 +170,35 @@ CREATE TABLE rental
 	Rrevenue DECIMAL(10, 2) NOT NULL CHECK (Rrevenue >= 0),
 
 	/* The comments */
-	Rcomment VARCHAR(128),
+	Rcomment VARCHAR(128)
+);
+
+/* The return listing, field name starts with "E" */
+CREATE TABLE return
+(
+	/* Record number, begin from 1 */
+	Eid INT PRIMARY KEY CHECK (Eid > 0),
+
+	/* The date */
+	Edate DATE NOT NULL,
+
+	/* The time */
+	Etime TIME NOT NULL,
+
+	/* ID of record in rental table */
+	Rid INT NOT NULL REFERENCES rental(Rid),
+
+	/* The number of returned book */
+	Enumber INT NOT NULL CHECK (Enumber >= 0),
+
+	/* The refund deposit */
+	Erefund DECIMAL(10, 2) NOT NULL CHECK (Erefund >= 0),
+
+	/* The revenue of those books */
+	Erevenue DECIMAL(10, 2) NOT NULL CHECK (Erevenue >= 0),
+
+	/* The comments */
+	Ecomment VARCHAR(512)
 );
 
 /* The bill, field name starts with "L" */
@@ -185,11 +213,11 @@ CREATE TABLE bill
 	/* The time */
 	Ltime TIME NOT NULL,
 
-	/* Event of the bill, maybe 1:stock, 2:sale, 3:rental, 4:return */
-	Levent INT NOT NULL CHECK (Levent IN (1, 2, 3, 4)),
+	/* Event of the bill, maybe 1:stock, 2:sale, 3:rental, 4:return, 5:promotion */
+	Levent INT NOT NULL CHECK (Levent > 0),
 
 	/* Task ID in its table, such as Tid, Sid, Rid, Rid */
-	Lid INT NOT NULL CHECK (Lid > 0),
+	Lid INT NOT NULL CHECK (Lid > 0)
 );
 
 /* Promotion activity, field name starts with "P" */

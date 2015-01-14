@@ -119,6 +119,8 @@ public final class Worker {
     public static final int EVENT_RENTAL = 3;
     /** Return book */
     public static final int EVENT_RETURN = 4;
+    /** Start promotion */
+    public static final int EVENT_PROMOTION = 5;
 
     // ********************
     // ** Promotion object
@@ -157,9 +159,10 @@ public final class Worker {
         int number = -1;
         try {
             ResultSet rs = dbHelper.executeQuery(sql);
-            if (rs.next()) {
+            if (! rs.isClosed() && rs.next()) {
                 number = rs.getInt(1);
             }
+            rs.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -175,9 +178,10 @@ public final class Worker {
         BigDecimal value = null;
         try {
             ResultSet rs = dbHelper.executeQuery(sql);
-            if (rs.next()) {
+            if (! rs.isClosed() && rs.next()) {
                 value = rs.getBigDecimal(1);
             }
+            rs.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -193,9 +197,10 @@ public final class Worker {
         String value = null;
         try {
             ResultSet rs = dbHelper.executeQuery(sql);
-            if (rs.next()) {
+            if (! rs.isClosed() && rs.next()) {
                 value = normalizeString(rs.getString(1));
             }
+            rs.close();
         } catch (SQLException e) {
             e.printStackTrace();
 
@@ -237,6 +242,7 @@ public final class Worker {
         ps.setString(11, book.getIntro());
 
         ps.executeUpdate();
+        ps.close();
     }
 
     /**
@@ -268,6 +274,7 @@ public final class Worker {
         ps.setString(10, book.getISBN());
 
         ps.executeUpdate();
+        ps.close();
     }
 
     /**
@@ -282,6 +289,7 @@ public final class Worker {
         ps.setString(1, isbn);
 
         ps.executeUpdate();
+        ps.close();
     }
 
 
@@ -298,7 +306,7 @@ public final class Worker {
      * Returns number of registered books.
      */
     public int getRegisteredBookCount() {
-        String sql = "SELECT COUNT(Bisbn) FROM book";
+        String sql = "SELECT COUNT(*) FROM book";
         return selectInteger(sql);
     }
 
@@ -317,6 +325,7 @@ public final class Worker {
             while (rs.next()) {
                 books.add(gainBook(rs));
             }
+            rs.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -415,6 +424,7 @@ public final class Worker {
         ps.setString(2, isbn);
 
         ps.executeUpdate();
+        ps.close();
     }
 
     // ************************
@@ -441,6 +451,7 @@ public final class Worker {
         ps.setDate(8, toSQLDate(customer.getDate()));
 
         ps.executeUpdate();
+        ps.close();
     }
 
     /**
@@ -489,6 +500,7 @@ public final class Worker {
         ps.setInt(8, customer.getId());
 
         ps.executeUpdate();
+        ps.close();
     }
 
     /**
@@ -507,6 +519,7 @@ public final class Worker {
         ps.setInt(1, id);
 
         ps.executeUpdate();
+        ps.close();
     }
 
     /**
@@ -522,7 +535,7 @@ public final class Worker {
      * Returns number of registered customers.
      */
     public int getRegisteredCustomerCount() {
-        String sql = "SELECT COUNT(Cid) FROM customer";
+        String sql = "SELECT COUNT(*) FROM customer";
         return selectInteger(sql);
     }
 
@@ -542,6 +555,7 @@ public final class Worker {
             while (rs.next()) {
                 customers.add(gainCustomer(rs));
             }
+            rs.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -604,12 +618,26 @@ public final class Worker {
      * @param id ID of the customer
      * @param levelDiff changed level of the customer, if more than 0 increase level,
      *               if less than 0 reduce level, if 0 do nothing
-     * @return new level
+     * @return new level or {@code -1} if the customer is not existed
      * @throws SQLException if occur errors when modify database
      */
     private int modifyCustomerLevel(int id, int levelDiff) throws SQLException {
-        int level = getCustomerLevel(id);
+        String sql = "SELECT Clevel FROM customer WHERE Cid=?";
+        PreparedStatement ps = dbHelper.prepareStatement(sql, ResultSet.TYPE_FORWARD_ONLY, ResultSet.CONCUR_UPDATABLE);
+
+        ps.setInt(1, id);
+
+        ResultSet rs = ps.executeQuery();
+        if (! rs.next()) {  // not found
+            rs.close();
+            ps.close();
+            return -1;
+        }
+
+        int level = rs.getInt(1);
         if (levelDiff == 0) {
+            rs.close();
+            ps.close();
             return level;
         }
         int newLevel = level + levelDiff;
@@ -617,13 +645,13 @@ public final class Worker {
             throw new IllegalArgumentException(
                     String.format("Invalid levelDiff, level: %d, levelDiff: %d", level, levelDiff));
         }
-        String sql = "UPDATE customer SET Clevel=? WHERE Cid=?";
-        PreparedStatement ps = dbHelper.prepareStatement(sql);
 
-        ps.setInt(1, newLevel);
-        ps.setInt(2, id);
+        rs.updateInt(1, newLevel);
 
-        ps.executeUpdate();
+        rs.updateRow();
+        rs.close();
+        ps.close();
+
         return newLevel;
     }
 
@@ -646,22 +674,36 @@ public final class Worker {
      * @throws SQLException if occur errors when modify database
      */
     private int modifyCustomerLimit(int id, int limitDiff) throws SQLException {
-        int limit = geCustomerLimit(id);
-        if (limitDiff == 0) {
-            return limit;
+        String sql = "SELECT Climit FROM customer WHERE Cid=?";
+        PreparedStatement ps = dbHelper.prepareStatement(sql, ResultSet.TYPE_FORWARD_ONLY, ResultSet.CONCUR_UPDATABLE);
+
+        ps.setInt(1, id);
+
+        ResultSet rs = ps.executeQuery();
+        if (! rs.next()) {  // not found
+            rs.close();
+            ps.close();
+            return -1;
         }
-        int newLimit = limit + limitDiff;
+
+        int level = rs.getInt(1);
+        if (limitDiff == 0) {
+            rs.close();
+            ps.close();
+            return level;
+        }
+        int newLimit = level + limitDiff;
         if (newLimit < 0) {
             throw new IllegalArgumentException(
-                    String.format("Invalid limitDiff, limit: %d, limitDiff: %d", limit, limitDiff));
+                    String.format("Invalid limitDiff, limit: %d, limitDiff: %d", level, limitDiff));
         }
-        String sql = "UPDATE customer SET Climit=? WHERE Cid=?";
-        PreparedStatement ps = dbHelper.prepareStatement(sql);
 
-        ps.setInt(1, newLimit);
-        ps.setInt(2, id);
+        rs.updateInt(1, newLimit);
 
-        ps.executeUpdate();
+        rs.updateRow();
+        rs.close();
+        ps.close();
+
         return newLimit;
     }
 
@@ -696,6 +738,8 @@ public final class Worker {
                     v = v.add(n);
                 }
             }
+            rs.close();
+            ps.close();
             return v;
         } catch (SQLException e) {
             e.printStackTrace();
@@ -753,6 +797,7 @@ public final class Worker {
         ps.setInt(1, newInventory);
         ps.setString(2, isbn);
         ps.executeUpdate();
+        ps.close();
 
         return newInventory;
     }
@@ -813,24 +858,6 @@ public final class Worker {
         return selectInteger(sql);
     }
 
-//    /**
-//     * Returns existing books in stock
-//     */
-//    public java.util.Map<String, Integer> getExistingBooks() {
-//        String sql = "SELECT Bisbn, Inumber FROM inventory";
-//        java.util.HashMap<String, Integer> results = new java.util.HashMap<>();
-//        try {
-//            ResultSet rs = dbHelper.executeQuery(sql);
-//            while (rs.next()) {
-//                results.put(normalizeString(rs.getString(1)), rs.getInt(2));
-//            }
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//            results = null;
-//        }
-//        return results;
-//    }
-
     /**
      * Add a promotion record.
      * @param obj promotion object, maybe {@code PROMOTION_SALE}: sale,
@@ -861,6 +888,10 @@ public final class Worker {
         ps.setString(6, comment);
 
         ps.executeUpdate();
+        ps.close();
+
+        // fill the bill
+        fillBill(new java.util.Date(), EVENT_PROMOTION, id);
     }
 
     public BigDecimal getSalePromotion() {
@@ -915,6 +946,7 @@ public final class Worker {
         ps.setInt(5, id);
 
         ps.executeUpdate();
+        ps.close();
     }
 
     /**
@@ -952,6 +984,7 @@ public final class Worker {
         ps.setString(8, comment);
 
         ps.executeUpdate();
+        ps.close();
 
         // increase inventory
         modifyInventory(isbn, number);
@@ -965,7 +998,7 @@ public final class Worker {
 
     /**
      * Sell book(s) to customer on today.
-     * @param id the ID of customer who buy the book, 0 indicate anonymous customer
+     * @param customerID the ID of customer who buy the book, 0 indicate anonymous customer
      * @param isbn the ISBN of sold book
      * @param customerID
      * @param number number of the book to sold
@@ -1003,6 +1036,7 @@ public final class Worker {
         ps.setString(8, comment);
 
         ps.executeUpdate();
+        ps.close();
 
         // reduce inventory
         modifyInventory(isbn, -number);
@@ -1013,12 +1047,11 @@ public final class Worker {
         // not anonymous customer and price more than 0
         if (customerID > 0 && price.compareTo(new BigDecimal(0)) > 0) {
             // increase level, totalPrice / PRICE_OF_INCREASE_LEVEL
-            BigDecimal val = price.divide(new BigDecimal(Constants.PRICE_OF_INCREASE_LEVEL),
-                    RoundingMode.FLOOR);
+            BigDecimal val = price.divide(Constants.PRICE_OF_INCREASE_LEVEL, RoundingMode.FLOOR);
             modifyCustomerLevel(customerID, val.intValue());
 
             // increase borrowing limits, totalPrice / PRICE_OF_INCREASE_LIMIT
-            val = price.divide(new BigDecimal(Constants.PRICE_OF_INCREASE_LIMIT), RoundingMode.FLOOR);
+            val = price.divide(Constants.PRICE_OF_INCREASE_LIMIT, RoundingMode.FLOOR);
             modifyCustomerLimit(customerID, val.intValue());
         }
     }
@@ -1062,6 +1095,7 @@ public final class Worker {
         ps.setString(11, comment);
 
         ps.executeUpdate();
+        ps.close();
 
         // reduce inventory
         modifyInventory(isbn, -number);
@@ -1075,15 +1109,41 @@ public final class Worker {
 
     /**
      * Customer return book.
-     * @param no the record number
+     * @param no the record number in rental
      * @param number number of the returned book
      * @param refund the refunded deposit
      * @param revenue revenue of those books
+     * @param comment the comment message
      */
-    public void returnBook(int no, int number, BigDecimal refund, BigDecimal revenue)
+    public void returnBook(int no, int number, BigDecimal refund, BigDecimal revenue, String comment)
             throws SQLException {
-        String sql = "SELECT Rnumber, Rdeposit, Rrevenue, Bisbn, Cid FROM rental WHERE Rid=?";
-        PreparedStatement ps = dbHelper.prepareStatement(sql, ResultSet.TYPE_FORWARD_ONLY, ResultSet.CONCUR_UPDATABLE);
+        // get a available number
+        int id = selectInteger("SELECT MAX(Eid) FROM return");
+        if (id < 0) {   // empty sale listing
+            id = 0;
+        }
+        id++;
+
+        // get today
+        java.util.Date today = new java.util.Date();
+        String sql = "INSERT INTO return (Eid, Edate, Etime, Rid, Enumber, Erefund, Erevenue, Ecomment)" +
+                " VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
+        PreparedStatement ps = dbHelper.prepareStatement(sql);
+
+        ps.setInt(1, id);
+        ps.setDate(2, toSQLDate(today));
+        ps.setTime(3, toSQLTime(today));
+        ps.setInt(4, no);
+        ps.setInt(5, number);
+        ps.setBigDecimal(6, refund);
+        ps.setBigDecimal(7, revenue);
+        ps.setString(8, comment);
+
+        ps.executeUpdate();
+        ps.close();
+
+        sql = "SELECT Rnumber, Rdeposit, Rrevenue, Bisbn, Cid FROM rental WHERE Rid=?";
+        ps = dbHelper.prepareStatement(sql, ResultSet.TYPE_FORWARD_ONLY, ResultSet.CONCUR_UPDATABLE);
 
         ps.setInt(1, no);
 
@@ -1104,8 +1164,8 @@ public final class Worker {
         rs.updateBigDecimal(2, oDeposit);
         rs.updateBigDecimal(3, oRevenue);
         rs.updateRow();
-
         rs.close();
+        ps.close();
 
         // increase inventory
         modifyInventory(isbn, number);
@@ -1114,7 +1174,7 @@ public final class Worker {
         modifyCustomerLimit(customerID, number);
 
         // fill bill
-        fillBill(new java.util.Date(), EVENT_RETURN, no);
+        fillBill(today, EVENT_RETURN, id);
     }
 
     /**
