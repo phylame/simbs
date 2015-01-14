@@ -84,7 +84,7 @@ public class MainFrame extends IFrame {
         contentArea.removeAll();
         if (paneRender != null) {
             paneRender.setParent(this);
-            contentArea.add(paneRender.getPane());
+            contentArea.add(paneRender.getPane(), BorderLayout.CENTER);
         }
         contentArea.updateUI();
     }

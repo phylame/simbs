@@ -74,15 +74,11 @@ public abstract class IFrame extends JFrame implements IToolTipListener {
 
     private void init() {
         Container topPane = getContentPane();
-
         createMenu();
-
         createToolBar();
         topPane.add(toolBar, BorderLayout.NORTH);
-
         contentArea = new JPanel(new BorderLayout());
         topPane.add(contentArea, BorderLayout.CENTER);
-
         createStatusBar();
         topPane.add(statusBar, BorderLayout.SOUTH);
     }
@@ -154,7 +150,6 @@ public abstract class IFrame extends JFrame implements IToolTipListener {
             IToolkit.addButton(toolBar, Arrays.asList(toolBarModel), toolBarActions, this);
         }
         toolBar.setRollover(true);
-
         /* lock toolbar menu */
         toolBar.addMouseListener(new MouseAdapter() {
             @Override
@@ -164,16 +159,12 @@ public abstract class IFrame extends JFrame implements IToolTipListener {
                 }
                 JPopupMenu popupMenu = new JPopupMenu();
                 JCheckBoxMenuItem menuItem = new JCheckBoxMenuItem(getString("Frame.Toolbar.Lock"));
-
-                final boolean locked = ! toolBar.isFloatable();
-
+                final boolean locked = !toolBar.isFloatable();
                 menuItem.setState(locked);
                 menuItem.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
-
                         toolBar.setFloatable(locked);
-
                     }
                 });
                 popupMenu.add(menuItem);
@@ -232,7 +223,6 @@ public abstract class IFrame extends JFrame implements IToolTipListener {
     private static Object[][] menuBarModel = null;
 
     private static Object[] toolBarModel = null;
-
 
     private JToolBar toolBar = null;
     private JPanel contentArea = null;
