@@ -31,7 +31,7 @@ import java.util.Date;
  * Created by Peng Wan on 2015-1-7.
  */
 public class BookTablePane extends ViewerTablePane {
-    public static final int BOOK_COLUMN_COUNT = 6;
+    public static final int BOOK_COLUMN_COUNT = 6 + 2;  // sale and rental number
     public static final String SQL_SELECT_BOOK = "SELECT B.Bisbn, Bname, Bauthors, Bpublisher, Bprice, Inumber " +
             "FROM book AS B " +
             "LEFT JOIN inventory AS I ON I.Bisbn = B.Bisbn ";
@@ -75,6 +75,7 @@ public class BookTablePane extends ViewerTablePane {
     private static class BookTableModel extends PagingResultTableModel {
         public static class Entry extends Book {
             private int inventory;
+            private int saleNumber, rentalNumber;
 
             public Entry() {
                 super();
@@ -105,6 +106,22 @@ public class BookTablePane extends ViewerTablePane {
 
             public void setInventory(int inventory) {
                 this.inventory = inventory;
+            }
+
+            public int getSaleNumber() {
+                return saleNumber;
+            }
+
+            public void setSaleNumber(int saleNumber) {
+                this.saleNumber = saleNumber;
+            }
+
+            public int getRentalNumber() {
+                return rentalNumber;
+            }
+
+            public void setRentalNumber(int rentalNumber) {
+                this.rentalNumber = rentalNumber;
             }
         }
         private ArrayList<Entry> rows = new ArrayList<>();
@@ -137,6 +154,7 @@ public class BookTablePane extends ViewerTablePane {
                 fireTableDataChanged();
                 return;
             }
+            Worker worker = Worker.getInstance();
             try {
                 for (int i = 0; i < dataSource.getCurrentRows(); ++i) {
                     Entry book = new Entry();
@@ -146,6 +164,8 @@ public class BookTablePane extends ViewerTablePane {
                     book.setPublisher(Worker.normalizeString(rs.getString(4)));
                     book.setPrice(rs.getBigDecimal(5));
                     book.setInventory(rs.getInt(6));
+                    book.setSaleNumber(worker.getSaleCount(book.getISBN()));
+                    book.setRentalNumber(worker.getRentalNumber(book.getISBN()));
                     rows.add(book);
                     rs.next();
                 }
@@ -182,6 +202,10 @@ public class BookTablePane extends ViewerTablePane {
                     return app.getString("Book.Property.Price");
                 case 5:
                     return app.getString("Book.Property.Inventory");
+                case 6:
+                    return app.getString("Book.Property.Sales");
+                case 7:
+                    return app.getString("Book.Property.Rentals");
                 default:
                     return app.getString("Book.Property.Unknown");
             }
@@ -221,6 +245,10 @@ public class BookTablePane extends ViewerTablePane {
                         return book.getPrice();
                     case 5:
                         return book.getInventory();
+                    case 6:
+                        return book.getSaleNumber();
+                    case 7:
+                        return book.getRentalNumber();
                     default:
                         return null;
                 }

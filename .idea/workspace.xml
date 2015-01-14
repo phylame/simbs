@@ -7,52 +7,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2ebda3fe-8c21-4cf1-8658-10992e9c1086" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lib/postgresql.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/PostgreSQL.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/pw/phylame/simbs/ui/com/PromotionDetailsPane.form" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/pw/phylame/simbs/ui/com/PromotionDetailsPane.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/pw/phylame/simbs/ui/com/ReturnDetailsPane.form" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/pw/phylame/simbs/ui/com/ReturnDetailsPane.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/TODO.txt" />
-      <change type="DELETED" beforePath="D:\code\simbs\lib\jgoodies-common.jar" afterPath="" />
-      <change type="DELETED" beforePath="D:\code\simbs\lib\jgoodies-looks.jar" afterPath="" />
-      <change type="DELETED" beforePath="D:\code\simbs\lib\quaqua.jar" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/data/bookdb.lck" afterPath="$PROJECT_DIR$/res/data/bookdb.lck" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/simbs.jar" afterPath="$PROJECT_DIR$/lib/simbs.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/pw/phylame/simbs/Application.java" afterPath="$PROJECT_DIR$/src/pw/phylame/simbs/Application.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/pw/phylame/simbs/ui/dialog/BillDetailsDialog.java" afterPath="$PROJECT_DIR$/src/pw/phylame/simbs/ui/dialog/BillDetailsDialog.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/pw/phylame/simbs/ui/com/BillTablePane.java" afterPath="$PROJECT_DIR$/src/pw/phylame/simbs/ui/com/BillTablePane.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/pw/phylame/simbs/ui/com/BookDetailsPane.java" afterPath="$PROJECT_DIR$/src/pw/phylame/simbs/ui/com/BookDetailsPane.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/pw/phylame/simbs/ui/com/BookTablePane.java" afterPath="$PROJECT_DIR$/src/pw/phylame/simbs/ui/com/BookTablePane.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/pw/phylame/simbs/ui/dialog/ChooseBookDialog.java" afterPath="$PROJECT_DIR$/src/pw/phylame/simbs/ui/dialog/ChooseBookDialog.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/pw/phylame/simbs/Constants.java" afterPath="$PROJECT_DIR$/src/pw/phylame/simbs/Constants.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/pw/phylame/simbs/ui/com/CustomerDetailsPane.form" afterPath="$PROJECT_DIR$/src/pw/phylame/simbs/ui/com/CustomerDetailsPane.form" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/pw/phylame/simbs/ui/com/CustomerDetailsPane.java" afterPath="$PROJECT_DIR$/src/pw/phylame/simbs/ui/com/CustomerDetailsPane.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/pw/phylame/simbs/ui/com/CustomerTablePane.java" afterPath="$PROJECT_DIR$/src/pw/phylame/simbs/ui/com/CustomerTablePane.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/pw/phylame/tools/sql/DbHelper.java" afterPath="$PROJECT_DIR$/src/pw/phylame/tools/sql/DbHelper.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/pw/phylame/ixin/frame/IFrame.java" afterPath="$PROJECT_DIR$/src/pw/phylame/ixin/frame/IFrame.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/assert/META-INF/MANIFEST.MF" afterPath="$PROJECT_DIR$/res/assert/META-INF/MANIFEST.MF" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/pw/phylame/simbs/ui/MainFrame.java" afterPath="$PROJECT_DIR$/src/pw/phylame/simbs/ui/MainFrame.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/pw/phylame/simbs/Manager.java" afterPath="$PROJECT_DIR$/src/pw/phylame/simbs/Manager.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/pw/phylame/simbs/ui/com/NavigatePane.form" afterPath="$PROJECT_DIR$/src/pw/phylame/simbs/ui/com/NavigatePane.form" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/pw/phylame/simbs/ui/com/PagingResultAdapter.java" afterPath="$PROJECT_DIR$/src/pw/phylame/simbs/ui/com/PagingResultAdapter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/pw/phylame/tools/sql/PagingResultSet.java" afterPath="$PROJECT_DIR$/src/pw/phylame/tools/sql/PagingResultSet.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/pw/phylame/simbs/ui/com/RentalDetailsPane.java" afterPath="$PROJECT_DIR$/src/pw/phylame/simbs/ui/com/RentalDetailsPane.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/pw/phylame/simbs/ui/dialog/ReturnBookDialog.form" afterPath="$PROJECT_DIR$/src/pw/phylame/simbs/ui/dialog/ReturnBookDialog.form" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/pw/phylame/simbs/ui/dialog/ReturnBookDialog.java" afterPath="$PROJECT_DIR$/src/pw/phylame/simbs/ui/dialog/ReturnBookDialog.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/pw/phylame/simbs/ui/com/SaleDetailsPane.java" afterPath="$PROJECT_DIR$/src/pw/phylame/simbs/ui/com/SaleDetailsPane.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/pw/phylame/simbs/ui/com/StockDetailsPane.java" afterPath="$PROJECT_DIR$/src/pw/phylame/simbs/ui/com/StockDetailsPane.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/pw/phylame/simbs/ui/com/TablePane.java" afterPath="$PROJECT_DIR$/src/pw/phylame/simbs/ui/com/TablePane.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/pw/phylame/simbs/ui/com/ViewerTablePane.java" afterPath="$PROJECT_DIR$/src/pw/phylame/simbs/ui/com/ViewerTablePane.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/pw/phylame/simbs/Worker.java" afterPath="$PROJECT_DIR$/src/pw/phylame/simbs/Worker.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/data/bookdb.log" afterPath="$PROJECT_DIR$/res/data/bookdb.log" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/data/bookdb.properties" afterPath="$PROJECT_DIR$/res/data/bookdb.properties" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/data/bookdb.script" afterPath="$PROJECT_DIR$/res/data/bookdb.script" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/assert/create_table.sql" afterPath="$PROJECT_DIR$/res/assert/create_table.sql" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/assert/drop_table.sql" afterPath="$PROJECT_DIR$/res/assert/drop_table.sql" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/runServer.bat" afterPath="$PROJECT_DIR$/bin/runServer.bat" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/runServer.sh" afterPath="$PROJECT_DIR$/bin/runServer.sh" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/simbs.iml" afterPath="$PROJECT_DIR$/simbs.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/i18n/simbs.properties" afterPath="$PROJECT_DIR$/src/i18n/simbs.properties" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/i18n/simbs_zh_CN.properties" afterPath="$PROJECT_DIR$/src/i18n/simbs_zh_CN.properties" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
@@ -122,7 +83,6 @@
         <option value="$PROJECT_DIR$/src/pw/phylame/simbs/Application.java" />
         <option value="$PROJECT_DIR$/bin/runServer.bat" />
         <option value="$PROJECT_DIR$/src/pw/phylame/simbs/ui/dialog/ChooseBookDialog.java" />
-        <option value="$PROJECT_DIR$/src/pw/phylame/simbs/ui/com/BookTablePane.java" />
         <option value="$PROJECT_DIR$/src/pw/phylame/tools/sql/DbHelper.java" />
         <option value="$PROJECT_DIR$/src/pw/phylame/simbs/ui/com/CustomerDetailsPane.form" />
         <option value="$PROJECT_DIR$/src/pw/phylame/simbs/Manager.java" />
@@ -131,7 +91,6 @@
         <option value="$PROJECT_DIR$/src/pw/phylame/simbs/ui/dialog/BillDetailsDialog.java" />
         <option value="$PROJECT_DIR$/src/pw/phylame/simbs/ui/com/PromotionDetailsPane.form" />
         <option value="$PROJECT_DIR$/src/pw/phylame/simbs/ui/com/PromotionDetailsPane.java" />
-        <option value="$PROJECT_DIR$/src/i18n/simbs.properties" />
         <option value="$PROJECT_DIR$/src/pw/phylame/simbs/ui/com/RentalDetailsPane.java" />
         <option value="$PROJECT_DIR$/src/pw/phylame/simbs/ui/com/SaleDetailsPane.java" />
         <option value="$PROJECT_DIR$/src/pw/phylame/simbs/ui/com/StockDetailsPane.java" />
@@ -141,6 +100,8 @@
         <option value="$PROJECT_DIR$/src/pw/phylame/simbs/ui/com/BillTablePane.java" />
         <option value="$PROJECT_DIR$/TODO" />
         <option value="$PROJECT_DIR$/TODO.txt" />
+        <option value="$PROJECT_DIR$/src/pw/phylame/simbs/ui/com/BookTablePane.java" />
+        <option value="$PROJECT_DIR$/src/i18n/simbs.properties" />
         <option value="$PROJECT_DIR$/src/pw/phylame/simbs/Constants.java" />
       </list>
     </option>
@@ -149,10 +110,10 @@
     <detection-done>true</detection-done>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-4" />
-    <option name="y" value="-4" />
-    <option name="width" value="1374" />
-    <option name="height" value="736" />
+    <option name="x" value="-5" />
+    <option name="y" value="-5" />
+    <option name="width" value="1376" />
+    <option name="height" value="738" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <OptionsSetting value="true" id="Add" />
@@ -167,7 +128,7 @@
     <ConfirmationsSetting value="0" id="Remove" />
   </component>
   <component name="ProjectView">
-    <navigator currentView="ProjectPane" proportions="" version="1">
+    <navigator currentView="PackagesPane" proportions="" version="1">
       <flattenPackages />
       <showMembers />
       <showModules />
@@ -179,16 +140,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="ProjectPane">
-        <subPane>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="simbs" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
-      </pane>
       <pane id="PackagesPane">
         <subPane>
           <PATH>
@@ -291,42 +242,22 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="pw.phylame" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="simbs" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ui" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="com" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="BookConditionPane" />
-              <option name="myItemType" value="com.intellij.uiDesigner.projectView.FormNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="simbs" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="simbs" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="i18n" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="Resource Bundle 'simbs'" />
               <option name="myItemType" value="com.intellij.lang.properties.projectView.ResourceBundleNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+      <pane id="ProjectPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="simbs" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
@@ -431,10 +362,10 @@
       <option name="INTERPRETER_PATH" value="/bin/bash" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/bin" />
       <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <module name="simbs" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/bin/runServer.sh" />
       <option name="PARAMETERS" value="" />
-      <module name="simbs" />
-      <envs />
       <RunnerSettings RunnerId="Run" />
       <ConfigurationWrapper RunnerId="Run" />
       <method />
@@ -444,10 +375,10 @@
       <option name="INTERPRETER_PATH" value="/bin/bash" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/bin" />
       <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <module name="simbs" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/bin/simbs.sh" />
       <option name="PARAMETERS" value="" />
-      <module name="simbs" />
-      <envs />
       <RunnerSettings RunnerId="Run" />
       <ConfigurationWrapper RunnerId="Run" />
       <method />
@@ -486,10 +417,10 @@
       <option name="INTERPRETER_PATH" value="" />
       <option name="WORKING_DIRECTORY" value="" />
       <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <module name="" />
       <option name="SCRIPT_NAME" value="" />
       <option name="PARAMETERS" value="" />
-      <module name="" />
-      <envs />
       <method />
     </configuration>
     <configuration default="true" type="AndroidRunConfigurationType" factoryName="Android Application">
@@ -632,10 +563,10 @@
       <option name="INTERPRETER_PATH" value="/bin/bash" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/bin" />
       <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <module name="simbs" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/bin/runAdmin.sh" />
       <option name="PARAMETERS" value="" />
-      <module name="simbs" />
-      <envs />
       <RunnerSettings RunnerId="Debug">
         <option name="DEBUG_PORT" value="" />
         <option name="TRANSPORT" value="0" />
@@ -735,7 +666,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-4" y="-4" width="1374" height="736" extended-state="6" />
+    <frame x="-5" y="-5" width="1376" height="738" extended-state="0" />
     <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3170391" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -748,21 +679,21 @@
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32960895" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.31730768" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.43540668" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3168" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.1954612" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Structure" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24743778" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.1954612" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3926282" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3926282" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4375" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.31891027" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
@@ -785,20 +716,6 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/src/pw/phylame/simbs/ui/dialog/StoreBookDialog.java</url>
-          <line>265</line>
-          <properties class="pw.phylame.simbs.ui.dialog.StoreBookDialog" />
-          <option name="timeStamp" value="21" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/pw/phylame/simbs/Manager.java</url>
-          <line>446</line>
-          <properties />
-          <option name="timeStamp" value="46" />
-        </line-breakpoint>
-      </breakpoints>
       <option name="time" value="47" />
     </breakpoint-manager>
     <watches-manager />
@@ -808,14 +725,22 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/pw/phylame/simbs/ui/dialog/RentBookDialog.form">
-      <provider selected="true" editor-type-id="ui-designer">
-        <state />
+    <entry file="file://$PROJECT_DIR$/src/pw/phylame/simbs/ui/com/BookTablePane.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="2576" max-vertical-offset="4324">
+          <caret line="207" column="42" selection-start-line="207" selection-start-column="42" selection-end-line="207" selection-end-column="63" />
+          <folding>
+            <element signature="class#Entry#0;class#BookTableModel#0;class#BookTablePane#0" expanded="false" />
+          </folding>
+        </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/pw/phylame/simbs/ui/com/RentalDetailsPane.form">
-      <provider selected="true" editor-type-id="ui-designer">
-        <state />
+    <entry file="file://$PROJECT_DIR$/src/i18n/simbs.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="100">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
       </provider>
     </entry>
     <entry file="jar://C:/Program Files/Java/jdk1.7.0_15/src.zip!/java/awt/Rectangle.java">
@@ -881,13 +806,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/pw/phylame/simbs/ui/dialog/StoreDetailsDialog.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.32711864" vertical-offset="1578" max-vertical-offset="2645">
-          <caret line="106" column="41" selection-start-line="106" selection-start-column="41" selection-end-line="106" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/res/assert/drop_table.sql">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.7661017" vertical-offset="169" max-vertical-offset="759">
@@ -921,11 +839,6 @@
         <state vertical-scroll-proportion="0.3322034" vertical-offset="11" max-vertical-offset="2231">
           <caret line="24" column="13" selection-start-line="24" selection-start-column="13" selection-end-line="24" selection-end-column="13" />
         </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/pw/phylame/simbs/ui/com/BookDetailsPane.form">
-      <provider selected="true" editor-type-id="ui-designer">
-        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/pw/phylame/simbs/ui/com/BookDetailsPane.java">
@@ -975,24 +888,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/pw/phylame/simbs/ui/com/BookTablePane.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33275563" vertical-offset="199" max-vertical-offset="4738">
-          <caret line="40" column="11" selection-start-line="40" selection-start-column="11" selection-end-line="40" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/pw/phylame/simbs/ui/com/CustomerTablePane.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.66271186" vertical-offset="1035" max-vertical-offset="3358">
           <caret line="159" column="9" selection-start-line="159" selection-start-column="9" selection-end-line="159" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/pw/phylame/simbs/ui/dialog/StartPromotionDialog.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5661017" vertical-offset="1621" max-vertical-offset="2622">
-          <caret line="120" column="38" selection-start-line="120" selection-start-column="38" selection-end-line="120" selection-end-column="38" />
         </state>
       </provider>
     </entry>
@@ -1150,11 +1049,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/pw/phylame/simbs/ui/dialog/StartPromotionDialog.form">
-      <provider selected="true" editor-type-id="ui-designer">
-        <state />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/pw/phylame/simbs/ui/com/PromotionDetailsPane.form">
       <provider selected="true" editor-type-id="ui-designer">
         <state />
@@ -1200,20 +1094,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/pw/phylame/simbs/ui/com/PagingResultTableModel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5457627" vertical-offset="0" max-vertical-offset="590">
-          <caret line="30" column="0" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/pw/phylame/simbs/ui/com/TablePaneAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.35084745" vertical-offset="69" max-vertical-offset="1403">
-          <caret line="26" column="5" selection-start-line="26" selection-start-column="5" selection-end-line="26" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/pw/phylame/tools/sql/PagingResultSet.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.6117851" vertical-offset="843" max-vertical-offset="2484">
@@ -1247,55 +1127,9 @@
         <state vertical-scroll-proportion="0.33968803" vertical-offset="1644" max-vertical-offset="4301">
           <caret line="409" column="17" selection-start-line="409" selection-start-column="17" selection-end-line="409" selection-end-column="17" />
           <folding>
-            <element signature="docComment;class#Manager#0" expanded="false" />
-            <element signature="method#Manager#0;class#Manager#0" expanded="false" />
-            <element signature="docComment;method#start#0;class#Manager#0" expanded="false" />
-            <element signature="method#start#0;class#Manager#0" expanded="false" />
             <element signature="docComment;method#exit#0;class#Manager#0" expanded="false" />
             <element signature="method#exit#0;class#Manager#0" expanded="false" />
-            <element signature="method#showAbout#0;class#Manager#0" expanded="false" />
-            <element signature="method#registerBook#0;class#Manager#0" expanded="false" />
-            <element signature="method#registerCustomer#0;class#Manager#0" expanded="false" />
-            <element signature="method#onViewDetails#0;class#Manager#0" expanded="false" />
-            <element signature="docComment;method#modifyBook#0;class#Manager#0" expanded="false" />
-            <element signature="method#modifyBook#0;class#Manager#0" expanded="false" />
-            <element signature="docComment;method#modifyCustomer#0;class#Manager#0" expanded="false" />
-            <element signature="method#modifyCustomer#0;class#Manager#0" expanded="false" />
-            <element signature="method#onModify#0;class#Manager#0" expanded="false" />
-            <element signature="docComment;method#deleteBooks#0;class#Manager#0" expanded="false" />
-            <element signature="method#deleteBooks#0;class#Manager#0" expanded="false" />
-            <element signature="docComment;method#deleteCustomers#0;class#Manager#0" expanded="false" />
-            <element signature="method#deleteCustomers#0;class#Manager#0" expanded="false" />
-            <element signature="method#onDelete#0;class#Manager#0" expanded="false" />
-            <element signature="method#getBookTablePane#0;class#Manager#0" expanded="false" />
-            <element signature="method#viewBook#0;class#Manager#0" expanded="false" />
-            <element signature="docComment;method#getSelectedBook#0;class#Manager#0" expanded="false" />
-            <element signature="method#getSelectedBook#0;class#Manager#0" expanded="false" />
-            <element signature="method#updateBookPane#0;class#Manager#0" expanded="false" />
-            <element signature="method#getCustomerTablePane#0;class#Manager#0" expanded="false" />
-            <element signature="method#viewCustomer#0;class#Manager#0" expanded="false" />
-            <element signature="docComment;method#getSelectedCustomer#0;class#Manager#0" expanded="false" />
-            <element signature="method#getSelectedCustomer#0;class#Manager#0" expanded="false" />
-            <element signature="method#updateCustomerPane#0;class#Manager#0" expanded="false" />
-            <element signature="method#viewHome#0;class#Manager#0" expanded="false" />
-            <element signature="method#getBillTablePane#0;class#Manager#0" expanded="false" />
-            <element signature="method#getSelectedBillRecord#0;class#Manager#0" expanded="false" />
-            <element signature="method#viewBill#0;class#Manager#0" expanded="false" />
-            <element signature="method#updateBillPane#0;class#Manager#0" expanded="false" />
-            <element signature="method#storeBook#0;class#Manager#0" expanded="false" />
-            <element signature="method#sellBook#0;class#Manager#0" expanded="false" />
-            <element signature="method#rentBook#0;class#Manager#0" expanded="false" />
-            <element signature="method#returnBook#0;class#Manager#0" expanded="false" />
-            <element signature="docComment;field#app#0;class#Manager#0" expanded="false" />
-            <element signature="docComment;field#paneRender#0;class#Manager#0" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/i18n/simbs.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7435009" vertical-offset="13762" max-vertical-offset="14743">
-          <caret line="617" column="35" selection-start-line="617" selection-start-column="35" selection-end-line="617" selection-end-column="35" />
         </state>
       </provider>
     </entry>
@@ -1308,18 +1142,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.03898305" vertical-offset="184" max-vertical-offset="1242">
           <caret line="30" column="13" selection-start-line="30" selection-start-column="13" selection-end-line="30" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/pw/phylame/simbs/ui/com/BookConditionPane.form">
-      <provider selected="true" editor-type-id="ui-designer">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/pw/phylame/simbs/ui/com/BookConditionPane.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.32542372" vertical-offset="15" max-vertical-offset="2852">
-          <caret line="33" column="13" selection-start-line="33" selection-start-column="13" selection-end-line="33" selection-end-column="13" />
         </state>
       </provider>
     </entry>
@@ -1355,9 +1177,27 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/pw/phylame/simbs/ui/com/BookTablePane.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.59934855" vertical-offset="0" max-vertical-offset="4324">
+          <caret line="31" column="3" selection-start-line="31" selection-start-column="3" selection-end-line="31" selection-end-column="3" />
+          <folding>
+            <element signature="class#Entry#0;class#BookTableModel#0;class#BookTablePane#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/i18n/simbs.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.221875" vertical-offset="1196" max-vertical-offset="14789">
+          <caret line="69" column="29" selection-start-line="69" selection-start-column="29" selection-end-line="69" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/pw/phylame/simbs/Constants.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.47833622" vertical-offset="0" max-vertical-offset="2990">
+        <state vertical-scroll-proportion="0.47882736" vertical-offset="129" max-vertical-offset="2990">
           <caret line="29" column="51" selection-start-line="29" selection-start-column="51" selection-end-line="29" selection-end-column="51" />
           <folding />
         </state>

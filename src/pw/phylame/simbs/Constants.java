@@ -27,7 +27,7 @@ import java.util.ResourceBundle;
 public final class Constants {
 
     /** Application version */
-    public static final String APP_VERSION = "1.3.2";
+    public static final String APP_VERSION = "1.3.3";
 
     /** Name of {@code ResourceBundle} file */
     public static final String I18N_PATH = "i18n/simbs";
