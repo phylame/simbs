@@ -42,6 +42,9 @@ CREATE TABLE book
 	Bintro VARCHAR(512)
 );
 
+/* Index on book */
+CREATE UNIQUE INDEX BookIndex ON book (Bisbn);
+
 /* Customer information, field name starts with "C" */
 CREATE TABLE customer
 (
@@ -69,6 +72,9 @@ CREATE TABLE customer
 	/* The comments */
 	Ccomment VARCHAR(512)
 );
+
+/* Index on customer */
+CREATE UNIQUE INDEX CustomerIndex ON customer (Cid);
 
 /* Inventory listing, field name starts with "I" */
 CREATE TABLE inventory
